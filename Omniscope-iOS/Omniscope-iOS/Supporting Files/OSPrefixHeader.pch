@@ -1,0 +1,17 @@
+//
+//  Omniscope-iOS-PrefixHeader.pch
+//  Omniscope-iOS
+//
+//  Created by Cris Uy on 31/01/2016.
+//  Copyright © 2016 Pancake Unlimited. All rights reserved.
+//
+
+#if defined(DEBUG)
+#ifndef NSLog
+#define NSLog( m, args... ) NSLog( m, ##args )
+#endif
+#else
+#ifndef NSLog
+#define NSLog( m, args... )
+#endif
+#endif
