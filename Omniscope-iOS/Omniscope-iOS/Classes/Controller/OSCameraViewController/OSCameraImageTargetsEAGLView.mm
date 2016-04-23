@@ -245,7 +245,7 @@ namespace {
         
         glActiveTexture(GL_TEXTURE0);
         
-        glBindTexture(GL_TEXTURE_2D, augmentationTexture[1].textureID);
+        glBindTexture(GL_TEXTURE_2D, augmentationTexture[0].textureID);
         glUniformMatrix4fv(mvpMatrixHandle, 1, GL_FALSE, (const GLfloat*)&modelViewProjection.data[0]);
         glUniform1i(texSampler2DHandle, 0 /*GL_TEXTURE0*/);
         

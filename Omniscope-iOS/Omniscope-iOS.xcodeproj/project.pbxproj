@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2320FA058494C459E86A8EA4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA567D56BC4C04C7C6B7D6AD /* libPods.a */; };
+		782B87C41CCB2D0900E0982E /* bag1.png in Resources */ = {isa = PBXBuildFile; fileRef = 782B87C31CCB2D0900E0982E /* bag1.png */; };
 		7845862B1C9541F80063F152 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7845862A1C9541F80063F152 /* CoreMotion.framework */; };
 		7845862D1C9542250063F152 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7845862C1C9542250063F152 /* CoreMedia.framework */; };
-		784586301C9568350063F152 /* bag1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7845862F1C9568350063F152 /* bag1.png */; };
 		784586381C9569480063F152 /* PhotoDetection.dat in Resources */ = {isa = PBXBuildFile; fileRef = 784586361C9569480063F152 /* PhotoDetection.dat */; };
 		784586391C9569480063F152 /* PhotoDetection.xml in Resources */ = {isa = PBXBuildFile; fileRef = 784586371C9569480063F152 /* PhotoDetection.xml */; };
 		7845863C1C956F410063F152 /* OSCameraAboutPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7845863B1C956F410063F152 /* OSCameraAboutPopupView.m */; };
@@ -70,9 +70,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		782B87C31CCB2D0900E0982E /* bag1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bag1.png; sourceTree = "<group>"; };
 		7845862A1C9541F80063F152 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		7845862C1C9542250063F152 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		7845862F1C9568350063F152 /* bag1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bag1.png; sourceTree = "<group>"; };
 		784586361C9569480063F152 /* PhotoDetection.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = PhotoDetection.dat; sourceTree = "<group>"; };
 		784586371C9569480063F152 /* PhotoDetection.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PhotoDetection.xml; sourceTree = "<group>"; };
 		7845863A1C956F410063F152 /* OSCameraAboutPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCameraAboutPopupView.h; sourceTree = "<group>"; };
@@ -255,7 +255,7 @@
 		7845862E1C9567FC0063F152 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				7845862F1C9568350063F152 /* bag1.png */,
+				782B87C31CCB2D0900E0982E /* bag1.png */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -682,7 +682,7 @@
 				784586391C9569480063F152 /* PhotoDetection.xml in Resources */,
 				78A704681C5FA0F8005114AA /* OSAboutViewController.xib in Resources */,
 				78A704701C5FA0F8005114AA /* OSWelcomeViewController.xib in Resources */,
-				784586301C9568350063F152 /* bag1.png in Resources */,
+				782B87C41CCB2D0900E0982E /* bag1.png in Resources */,
 				78A7046A1C5FA0F8005114AA /* OSCameraViewController.xib in Resources */,
 				784586461C957CDA0063F152 /* Simple.fragsh in Resources */,
 				784586381C9569480063F152 /* PhotoDetection.dat in Resources */,

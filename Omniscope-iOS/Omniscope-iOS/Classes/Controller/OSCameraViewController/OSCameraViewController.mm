@@ -297,6 +297,10 @@
     
 }
 
+- (void) onQCARUpdate: (QCAR::State *) state {
+    [self activateDataSet:dataSetPhoto];
+}
+
 - (void)pauseAR {
     NSError * error = nil;
     if (![vapp pauseAR:&error]) {
@@ -499,6 +503,40 @@
     
     NSLog(@"datasets destroyed");
     return YES;
+}
+
+- (BOOL)activateDataSet:(QCAR::DataSet *)theDataSet
+{
+    // if we've previously recorded an activation, deactivate it
+    if (dataSetCurrent != nil)
+    {
+        [self deactivateDataSet:dataSetCurrent];
+    }
+    BOOL success = NO;
+    
+    // Get the image tracker:
+    QCAR::TrackerManager& trackerManager = QCAR::TrackerManager::getInstance();
+    QCAR::ObjectTracker* objectTracker = static_cast<QCAR::ObjectTracker*>(trackerManager.getTracker(QCAR::ObjectTracker::getClassType()));
+    
+    if (objectTracker == NULL) {
+        NSLog(@"Failed to load tracking data set because the ObjectTracker has not been initialized.");
+    }
+    else
+    {
+        // Activate the data set:
+        if (!objectTracker->activateDataSet(theDataSet))
+        {
+            NSLog(@"Failed to activate data set.");
+        }
+        else
+        {
+//            NSLog(@"Successfully activated data set.");
+            dataSetCurrent = theDataSet;
+            success = YES;
+        }
+    }
+    
+    return success;
 }
 
 - (BOOL)deactivateDataSet:(QCAR::DataSet *)theDataSet {
