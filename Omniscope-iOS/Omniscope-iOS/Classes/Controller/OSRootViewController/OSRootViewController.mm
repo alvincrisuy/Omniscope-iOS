@@ -71,7 +71,7 @@ static OSRootViewController *_sharedController = nil;
           self.view.bounds.origin.x,
           self.view.bounds.origin.y);
     
-    [self transitionAbout];
+    [self transitionWelcome];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -185,6 +185,22 @@ static OSRootViewController *_sharedController = nil;
     }
 }
 
+- (void)showNavigationView {
+    self.navigationViewHeight.constant = 60;//self.navigationView.frame.size.height;
+}
+
+- (void)hideNavigationView {
+    self.navigationViewHeight.constant = 0.0f;
+}
+
+- (void)showTabView {
+    self.tabViewHeight.constant = 60;//self.tabView.frame.size.height;
+}
+
+- (void)hideTabView {
+    self.tabViewHeight.constant = 0.0f;
+}
+
 #pragma mark - Transfer
 - (void)transferAboutViewController:(id)sender animated:(BOOL)animated {
     [self pushTransition:self.aboutViewController animated:animated];
@@ -209,7 +225,6 @@ static OSRootViewController *_sharedController = nil;
     }
     
     return _aboutViewController;
-
 }
 
 - (OSCameraViewController *)cameraViewController {
@@ -219,7 +234,6 @@ static OSRootViewController *_sharedController = nil;
     }
     
     return _cameraViewController;
-
 }
 
 - (OSInstructionViewController *)instructionViewController {
@@ -239,7 +253,6 @@ static OSRootViewController *_sharedController = nil;
     }
     
     return _welcomeViewController;
-
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OSGLResourceHandler.h"
 
 @class OSRootViewController;
 
@@ -14,6 +15,8 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) OSRootViewController *rootViewController;
+
+@property (nonatomic, weak) id<OSGLResourceHandler> glResourceHandler;
 
 @end
 

@@ -10,4 +10,6 @@
 
 @interface OSWelcomeViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet UILabel *omniscopeLabel;
+
 @end

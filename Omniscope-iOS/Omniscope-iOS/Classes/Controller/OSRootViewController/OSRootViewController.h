@@ -20,6 +20,9 @@
 @property (nonatomic, retain) IBOutlet UIView *contentView;
 @property (nonatomic, retain) IBOutlet UIView *tabView;
 
+@property (nonatomic, retain) IBOutlet NSLayoutConstraint *navigationViewHeight;
+@property (nonatomic, retain) IBOutlet NSLayoutConstraint *tabViewHeight;
+
 // Navigation Controller - Navigate Pages
 @property (nonatomic, retain) UINavigationController *contentNavigationController;
 
@@ -35,6 +38,12 @@
 - (void)transition:(UIViewController *)viewController animated:(BOOL)animated;
 - (void)popTransitionAnimated:(BOOL)animated;
 - (void)pushTransition:(UIViewController *)viewController animated:(BOOL)animated;
+
+- (void)showNavigationView;
+- (void)hideNavigationView;
+
+- (void)showTabView;
+- (void)hideTabView;
 
 // Transfer
 - (void)transferAboutViewController:(id)sender animated:(BOOL)animated;
