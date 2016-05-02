@@ -15,16 +15,29 @@
 #import "CameraDevice.h"
 #import "OSAppDelegate.h"
 
-#import "OSCameraAboutPopupView.h"
 #import "OSRootViewController.h"
+#import "OSAboutViewController.h"
+#import "OSGalleryViewController.h"
+
+#import "UIDevice+DeviceType.h"
+#import "NSString+DeviceType.h"
 
 #import <QuartzCore/QuartzCore.h>
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 #import <sys/time.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
+#import "CustomAlbum.h"
+
+NSString *const CSAlbum = @"Omniscope";
+NSString *const CSAssetIdentifier = @"assetIdentifier";
+NSString *const CSAlbumIdentifier = @"albumIdentifier";
 
 @interface OSCameraViewController ()
+
+@property (nonatomic, retain) NSString *albumId;
+@property (nonatomic, retain) NSString *recentImg;
 
 @end
 
@@ -33,10 +46,8 @@
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
-    if (self = [super initWithNibName:NSStringFromClass([OSCameraViewController class]) bundle:nibBundleOrNil]) {
+    if (self = [super initWithNibName:[NSStringFromClass([OSCameraViewController class]) concatenateClassToDeviceType] bundle:nibBundleOrNil]) {
         // Custom initialization
-        
-        NSLog(@"ENTER");
     }
     
     return self;
@@ -64,11 +75,12 @@
 }
 
 - (void)doubleTapGestureAction:(UITapGestureRecognizer*)theGesture {
-    NSLog(@"Double Tapped");
     
-    OSCameraAboutPopupView *aboutPopupView = [OSCameraAboutPopupView viewFromNib];
-    aboutPopupView.delegate = self;
-    [aboutPopupView show];
+    OSAboutViewController *aboutViewController = [OSRootViewController sharedController].aboutViewController;
+    
+    [[OSRootViewController sharedController] presentViewController:aboutViewController animated:YES completion:^{
+        
+    }];
 }
 
 - (void)showLoadingAnimation {
@@ -80,8 +92,7 @@
     if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown ) {
         indicatorBounds = CGRectMake(smallerBoundsSize / 2 - 12,
                                      largerBoundsSize / 2 - 12, 24, 24);
-    }
-    else {
+    } else {
         indicatorBounds = CGRectMake(largerBoundsSize / 2 - 12,
                                      smallerBoundsSize / 2 - 12, 24, 24);
     }
@@ -95,102 +106,14 @@
     [loadingIndicator startAnimating];
 }
 
-//- (void)loadView {
-//    
-//    self.frontCameraEnabled = NO;
-//    self.flashEnabled = NO;
-//    
-//    [[OSRootViewController sharedController].navigationController setNavigationBarHidden:YES animated:NO];
-//    
-//    vapp = [[OSApplicationSession alloc] initWithDelegate:self];
-//    
-//    CGRect viewFrame = [self getCurrentARViewFrame];
-//    
-//    self.cameraView = [[OSCameraImageTargetsEAGLView alloc] initWithFrame:viewFrame appSession:vapp];
-//    [self setView:self.cameraView];
-//    
-//    CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.cameraView.layer;
-//    eaglLayer.opaque = TRUE;
-//    
-//    eaglLayer.drawableProperties = @{
-//                                     kEAGLDrawablePropertyRetainedBacking: [NSNumber numberWithBool:YES],
-//                                     kEAGLDrawablePropertyColorFormat: kEAGLColorFormatRGBA8,
-//                                     };
-//    
-//    CGRect screenRect = [[UIScreen mainScreen] bounds];
-//    CGFloat captureButtonX = (screenRect.size.width / 2.0f) - 50/2;
-//    CGFloat captureButtonY = (screenRect.size.height - 50.0f * 1.5f);
-//    
-//    UIButton *captureButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [captureButton addTarget:self
-//                      action:@selector(captureButtonAction:)
-//            forControlEvents:UIControlEventTouchUpInside];
-//    [captureButton setImage:[UIImage imageNamed:@"capture150"] forState:UIControlStateNormal];
-//    captureButton.frame = CGRectMake(captureButtonX, captureButtonY, 50.0, 50.0);
-//    [self.view addSubview:captureButton];
-//    
-//    //    CGFloat galleryButtonX = 50.0f/2.0f;
-//    //    CGFloat galleryButtonY = (screenRect.size.height - 50.0f * 1.5f);
-//    //
-//    //    UIButton *galleryButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    //    [galleryButton addTarget:self
-//    //                      action:@selector(galleryButtonAction:)
-//    //            forControlEvents:UIControlEventTouchUpInside];
-//    //    [galleryButton setImage:[UIImage imageNamed:@"art"] forState:UIControlStateNormal];
-//    //    galleryButton.frame = CGRectMake(galleryButtonX, galleryButtonY, 50.0, 50.0);
-//    //    [self.view addSubview:galleryButton];
-//    
-//    CGFloat frontBackButtonX = screenRect.size.width - 50.0f * 1.5f;
-//    CGFloat frontBackButtonY = (screenRect.size.height - 50.0f * 1.5f);
-//    
-//    UIButton *frontBackButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [frontBackButton addTarget:self
-//                        action:@selector(frontBackButtonAction:)
-//              forControlEvents:UIControlEventTouchUpInside];
-//    [frontBackButton setImage:[UIImage imageNamed:@"arrows-1"] forState:UIControlStateNormal];
-//    frontBackButton.frame = CGRectMake(frontBackButtonX, frontBackButtonY, 50.0, 50.0);
-//    [self.view addSubview:frontBackButton];
-//    
-//    OSAppDelegate *appDelegate = (OSAppDelegate*)[[UIApplication sharedApplication] delegate];
-//    appDelegate.glResourceHandler = self.cameraView;
-//    
-//    // double tap used to also trigger the menu
-//    /*UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(doubleTapGestureAction:)];
-//     doubleTap.numberOfTapsRequired = 2;
-//     [self.cameraView addGestureRecognizer:doubleTap];
-//     
-//     // a single tap will trigger a single autofocus operation
-//     tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(autofocus:)];
-//     if (doubleTap != NULL) {
-//     [tapGestureRecognizer requireGestureRecognizerToFail:doubleTap];
-//     }
-//     
-//     [[NSNotificationCenter defaultCenter] addObserver:self
-//     selector:@selector(dismissARViewController)
-//     name:@"kDismissARViewController"
-//     object:nil]; */
-//    
-//    // we use the iOS notification to pause/resume the AR when the application goes (or come back from) background
-//    [[NSNotificationCenter defaultCenter]
-//     addObserver:self
-//     selector:@selector(pauseAR)
-//     name:UIApplicationWillResignActiveNotification
-//     object:nil];
-//    
-//    [[NSNotificationCenter defaultCenter]
-//     addObserver:self
-//     selector:@selector(resumeAR)
-//     name:UIApplicationDidBecomeActiveNotification
-//     object:nil];
-//    
-//    // initialize AR
-//    [vapp initAR:QCAR::GL_20 orientation:[[UIApplication sharedApplication] statusBarOrientation]];
-//    
-//    // show loading animation while AR is being initialized
-//    [self showLoadingAnimation];
-//    
-//
-//}
+- (void)createAlbum {
+    [CustomAlbum makeAlbumWithTitle:CSAlbum onSuccess:^(NSString *AlbumId) {
+        NSLog(@"album: %@", AlbumId);
+        self.albumId = AlbumId;
+     } onError:^(NSError *error) {
+        NSLog(@"problem in creating album");
+    }];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -208,11 +131,37 @@
     self.cameraView = [[OSCameraImageTargetsEAGLView alloc] initWithFrame:viewFrame appSession:vapp];
     [self setView:self.cameraView];
     
+    CGRect doubleTapRect = CGRectZero;
+    
+    switch ([[UIDevice currentDevice] getDeviceTypeScreenXIB]) {
+        case UIDeviceTypeScreenXIB35:
+            doubleTapRect = CGRectMake(0, 0, 320, 480);
+            break;
+        case UIDeviceTypeScreenXIB4:
+            doubleTapRect = CGRectMake(0, 0, 320, 568);
+            break;
+        case UIDeviceTypeScreenXIB47:
+            doubleTapRect = CGRectMake(0, 0, 375, 667);
+            break;
+        case UIDeviceTypeScreenXIB55:
+            doubleTapRect = CGRectMake(0, 0, 414, 736);
+            break;
+        case UIDeviceTypeScreenXIB97:
+            doubleTapRect = CGRectMake(0, 0, 320, 480);
+            break;
+        case UIDeviceTypeScreenXIB129:
+            doubleTapRect = CGRectMake(0, 0, 320, 480);
+            break;
+    }
+    
+    UIView *doubleTapView = [[UIView alloc] initWithFrame:doubleTapRect];
+    [self.view addSubview:doubleTapView];
+    
     OSAppDelegate *appDelegate = (OSAppDelegate*)[[UIApplication sharedApplication] delegate];
     appDelegate.glResourceHandler = self.cameraView;
     
     CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.cameraView.layer;
-    eaglLayer.opaque = TRUE;    
+    eaglLayer.opaque = TRUE;
     
     eaglLayer.drawableProperties = @{
                                      kEAGLDrawablePropertyRetainedBacking: [NSNumber numberWithBool:YES],
@@ -220,44 +169,68 @@
                                      };
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat captureButtonX = (screenRect.size.width / 2.0f) - 50/2;
-    CGFloat captureButtonY = (screenRect.size.height - 50.0f * 1.5f);
+    CGFloat captureButtonX = (screenRect.size.width / 2.0f) - 75/2;
+    CGFloat captureButtonY = (screenRect.size.height - 75.0f * 1.5f);
     
     UIButton *captureButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [captureButton addTarget:self
                action:@selector(captureButtonAction:)
      forControlEvents:UIControlEventTouchUpInside];
     [captureButton setImage:[UIImage imageNamed:@"capture150"] forState:UIControlStateNormal];
-    captureButton.frame = CGRectMake(captureButtonX, captureButtonY, 50.0, 50.0);
+    [captureButton setImage:[UIImage imageNamed:@"capture150selected"] forState:UIControlStateSelected];
+    [captureButton setImage:[UIImage imageNamed:@"capture150selected"] forState:UIControlStateFocused];
+    [captureButton setImage:[UIImage imageNamed:@"capture150selected"] forState:UIControlStateHighlighted];
+    captureButton.frame = CGRectMake(captureButtonX, captureButtonY, 75.0f, 75.0f);
+    captureButton.contentVerticalAlignment = UIControlContentVerticalAlignmentFill;
+    captureButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentFill;
+
     [self.view addSubview:captureButton];
     
-//    CGFloat galleryButtonX = 50.0f/2.0f;
-//    CGFloat galleryButtonY = (screenRect.size.height - 50.0f * 1.5f);
-//    
-//    UIButton *galleryButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [galleryButton addTarget:self
-//                      action:@selector(galleryButtonAction:)
-//            forControlEvents:UIControlEventTouchUpInside];
-//    [galleryButton setImage:[UIImage imageNamed:@"art"] forState:UIControlStateNormal];
-//    galleryButton.frame = CGRectMake(galleryButtonX, galleryButtonY, 50.0, 50.0);
-//    [self.view addSubview:galleryButton];
+    CGFloat galleryButtonX = screenRect.size.width/4.0f - (60.0f / 1.5f);
+    CGFloat galleryButtonY = (screenRect.size.height - 65.0f * 1.5f);
     
-    CGFloat frontBackButtonX = screenRect.size.width - 50.0f * 1.5f;
-    CGFloat frontBackButtonY = (screenRect.size.height - 50.0f * 1.5f);
+    [self createAlbum];
     
-    UIButton *frontBackButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [frontBackButton addTarget:self
+    self.galleryImageView = [[UIImageView alloc] initWithFrame:CGRectMake(galleryButtonX, galleryButtonY, 45, 45)];
+    self.galleryImageView.layer.cornerRadius = 2.0f;
+    self.galleryImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.galleryImageView.clipsToBounds = YES;
+    [self.view addSubview:self.galleryImageView];
+    
+    PHAssetCollection *collection = [CustomAlbum getMyAlbumWithName:CSAlbum];
+    [CustomAlbum getImageWithCollection:collection onSuccess:^(UIImage *image) {
+        self.galleryImageView.image = image;
+        
+        UIButton *galleryButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [galleryButton addTarget:self
+                          action:@selector(galleryButtonAction:)
+                forControlEvents:UIControlEventTouchUpInside];
+//        [galleryButton setImage:image forState:UIControlStateNormal];
+        galleryButton.frame = CGRectMake(galleryButtonX, galleryButtonY, 45.0, 45.0);
+        [self.view addSubview:galleryButton];
+
+    } onError:^(NSError *error) {
+        NSLog(@"Not Found!");
+    }];
+
+    CGFloat frontBackButtonX = screenRect.size.width/2.0f + screenRect.size.width/4.0f;
+    CGFloat frontBackButtonY = (screenRect.size.height - 60.0f * 1.5f);
+    
+    self.frontBackButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.frontBackButton addTarget:self
                       action:@selector(frontBackButtonAction:)
             forControlEvents:UIControlEventTouchUpInside];
-    [frontBackButton setImage:[UIImage imageNamed:@"arrows-1"] forState:UIControlStateNormal];
-    frontBackButton.frame = CGRectMake(frontBackButtonX, frontBackButtonY, 50.0, 50.0);
-    [self.view addSubview:frontBackButton];
-    
+    [self.frontBackButton setImage:[UIImage imageNamed:@"arrows-1"] forState:UIControlStateNormal];
+    self.frontBackButton.frame = CGRectMake(frontBackButtonX, frontBackButtonY, 30.0, 30.0);
+    self.frontBackButton.contentVerticalAlignment = UIControlContentVerticalAlignmentFill;
+    self.frontBackButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentFill;
+
+    [self.view addSubview:self.frontBackButton];
     
     // double tap used to also trigger the menu
-    /*UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(doubleTapGestureAction:)];
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(doubleTapGestureAction:)];
     doubleTap.numberOfTapsRequired = 2;
-    [self.cameraView addGestureRecognizer:doubleTap];
+    [doubleTapView addGestureRecognizer:doubleTap];
     
     // a single tap will trigger a single autofocus operation
     tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(autofocus:)];
@@ -268,7 +241,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(dismissARViewController)
                                                  name:@"kDismissARViewController"
-                                               object:nil]; */
+                                               object:nil];
     
     // we use the iOS notification to pause/resume the AR when the application goes (or come back from) background
     [[NSNotificationCenter defaultCenter]
@@ -289,7 +262,7 @@
     // show loading animation while AR is being initialized
     [self showLoadingAnimation];
     
-
+    [self.view addGestureRecognizer:tapGestureRecognizer];
 
 }
 
@@ -317,7 +290,6 @@
     QCAR::CameraDevice::getInstance().setFlashTorchMode(false);
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -326,39 +298,61 @@
 - (IBAction)galleryButtonAction:(id)sender {
     NSLog(@"gallery");
     
-    // request authorization status
-    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            // init picker
-            CTAssetsPickerController *picker = [[CTAssetsPickerController alloc] init];
-            
-            // set delegate
-            picker.delegate = self;
-            
-            
-            
-            // Optionally present picker as a form sheet on iPad
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-                picker.modalPresentationStyle = UIModalPresentationFormSheet;
-            
-            // present picker
-//            [self presentViewController:picker animated:YES completion:nil];
-            
-            [[OSRootViewController sharedController].contentNavigationController presentViewController:picker animated:YES completion:^{
-                
-            }];
-        });
+    OSGalleryViewController *galleryViewController = [OSRootViewController sharedController].galleryViewController;
+    
+    [[OSRootViewController sharedController].contentNavigationController presentViewController:galleryViewController animated:YES completion:^{
+        
     }];
 }
 
 - (IBAction)captureButtonAction:(id)sender {
     NSLog(@"capture");
     
+    AudioServicesPlaySystemSoundWithCompletion(1108, ^{
+        
+        
+        
+    });
+    
     UIImage *outputImage = nil;
     
+    CGFloat widthScale = 0;
+    CGFloat heightScale = 0;
+    
+    switch ([[UIDevice currentDevice] getDeviceTypeScreenXIB]) {
+        case UIDeviceTypeScreenXIB35:
+            widthScale = 320.0f;
+            heightScale = 480.0f;
+            break;
+        case UIDeviceTypeScreenXIB4:
+            
+            widthScale = 320.0f;
+            heightScale = 568.0f;
+            break;
+        case UIDeviceTypeScreenXIB47:
+            
+            widthScale = 375.0f;
+            heightScale = 667.0f;
+            break;
+        case UIDeviceTypeScreenXIB55:
+            
+            widthScale = 414.0f;
+            heightScale = 736.0f;
+            break;
+        case UIDeviceTypeScreenXIB97:
+            
+            widthScale = 320.0f;
+            heightScale = 480.0f;
+            break;
+        case UIDeviceTypeScreenXIB129:
+            
+            widthScale = 320.0f;
+            heightScale = 480.0f;
+            break;
+    }
+    
     CGFloat scale = [[UIScreen mainScreen] scale];
-    CGRect s = CGRectMake(0, 0, 320.0f * scale, 480.0f * scale);
+    CGRect s = CGRectMake(0, 0, widthScale * scale, heightScale * scale);
     uint8_t *buffer = (uint8_t *) malloc(s.size.width * s.size.height * 4);
 
     glReadPixels(0, 0, s.size.width, s.size.height, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
@@ -394,8 +388,74 @@
     free(pixels);
     free(buffer);
     
-    UIImageWriteToSavedPhotosAlbum(outputImage, nil, nil, nil);
+    [CustomAlbum addNewAssetWithImage:outputImage toAlbum:[CustomAlbum getMyAlbumWithName:CSAlbum] onSuccess:^(NSString *ImageId) {
+        NSLog(@"%@",ImageId);
+        self.recentImg = ImageId;
+    } onError:^(NSError *error) {
+        NSLog(@"probelm in saving image");
+    } onFinish:^(NSString *finish) {
+        
+        PHAssetCollection *collection = [CustomAlbum getMyAlbumWithName:CSAlbum];
+        [CustomAlbum getImageWithCollection:collection onSuccess:^(UIImage *image) {
+            self.galleryImageView.image = image;
+            
+            [UIView animateWithDuration:0.3f animations:^(void) {
+                [self.galleryImageView.layer addAnimation:[OSCameraViewController showAnimationGroup_] forKey:nil];
+            }];
+            
+        } onError:^(NSError *error) {
+            NSLog(@"Not Found!");
+        }];
+        
+        
+    }];
     
+    [UIView animateWithDuration: 0.2
+                     animations: ^{
+                         self.view.alpha = 0.0f;
+                     }
+                     completion: ^(BOOL finished) {
+                         self.view.alpha = 1.0f;
+                     }
+     ];
+}
+
++ (CAAnimationGroup*)showAnimationGroup_
+{
+    static CAAnimationGroup* showAnimationGroup_ = nil;
+    
+    if (!showAnimationGroup_) {
+        CABasicAnimation* opacityAnime;
+        opacityAnime           = [[CABasicAnimation alloc] init];
+        opacityAnime.keyPath   = @"opacity";
+        opacityAnime.duration  = 0.3f;
+        opacityAnime.fromValue = [NSNumber numberWithFloat:0.0f];
+        opacityAnime.toValue   = [NSNumber numberWithFloat:1.0f];
+        
+        NSArray* valArraay;
+        valArraay = [[NSArray alloc] initWithObjects:
+                     [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.5, 0.5, 0.5)],
+                     [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.1, 1.1, 1.1)],
+                     [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.9, 0.9, 0.9)],
+                     [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.0, 1.0, 1.0)], nil];
+        
+        CAKeyframeAnimation* scaleAnime;
+        scaleAnime          = [[CAKeyframeAnimation alloc] init];
+        scaleAnime.keyPath  = @"transform";
+        scaleAnime.duration = 0.32f;
+        scaleAnime.values   = valArraay;
+        
+        NSArray* animeArraay;
+        animeArraay = [[NSArray alloc] initWithObjects:
+                       opacityAnime,
+                       scaleAnime, nil];
+        
+        showAnimationGroup_            = [[CAAnimationGroup alloc] init];
+        showAnimationGroup_.duration   = 0.32;
+        showAnimationGroup_.animations = animeArraay;
+    }
+    
+    return showAnimationGroup_;
 }
 
 - (IBAction)frontBackButtonAction:(id)sender {
@@ -407,7 +467,14 @@
             bool result = [vapp startAR:QCAR::CameraDevice::CAMERA_BACK error:&error];
             self.frontCameraEnabled = !result;
             
+            [UIView animateWithDuration:0.3 animations:^{
+                self.frontBackButton.transform = CGAffineTransformMakeRotation(-0);
+            }];
         } else {
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                self.frontBackButton.transform = CGAffineTransformMakeRotation(-3.14159265358979);
+            }];
             bool result = [vapp startAR:QCAR::CameraDevice::CAMERA_FRONT error:&error];
             self.frontCameraEnabled = result;
             if (self.frontCameraEnabled) {
@@ -415,7 +482,6 @@
                 // as the front camera does not support flash
                 self.flashEnabled = NO;
             }
-            
         }
     }
 }
@@ -628,7 +694,7 @@
 - (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets {
     // assets contains PHAsset objects.
     
-    NSLog(@"ENTER assetsPickerController");
+//    NSLog(@"ENTER assetsPickerController");
     
     [picker dismissViewControllerAnimated:YES completion:nil];
 }

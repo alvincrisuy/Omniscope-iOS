@@ -9,11 +9,23 @@
 #import "OSWelcomeViewController.h"
 #import "OSRootViewController.h"
 
+#import "NSString+DeviceType.h"
+
 @interface OSWelcomeViewController ()
 
 @end
 
 @implementation OSWelcomeViewController
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    
+    if (self = [super initWithNibName:[NSStringFromClass([OSWelcomeViewController class]) concatenateClassToDeviceType] bundle:nibBundleOrNil]) {
+        // Custom initialization
+        
+    }
+    
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,7 +38,7 @@
     [[OSRootViewController sharedController] hideNavigationView];
     [[OSRootViewController sharedController] hideTabView];
     
-    [NSTimer scheduledTimerWithTimeInterval:5.0
+    [NSTimer scheduledTimerWithTimeInterval:3.0
                                      target:self
                                    selector:@selector(transitionCamera)
                                    userInfo:nil

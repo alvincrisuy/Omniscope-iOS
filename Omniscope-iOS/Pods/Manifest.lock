@@ -1,13 +1,27 @@
 PODS:
+  - Bolts (1.7.0):
+    - Bolts/AppLinks (= 1.7.0)
+    - Bolts/Tasks (= 1.7.0)
+  - Bolts/AppLinks (1.7.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.7.0)
   - CTAssetsPickerController (3.3.1):
     - PureLayout (~> 3.0.0)
+  - FBSDKCoreKit (4.11.0):
+    - Bolts (~> 1.7)
+  - FBSDKShareKit (4.11.0):
+    - FBSDKCoreKit
   - PureLayout (3.0.1)
 
 DEPENDENCIES:
   - CTAssetsPickerController (~> 3.3.0)
+  - FBSDKShareKit
 
 SPEC CHECKSUMS:
+  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   CTAssetsPickerController: b1d1d50ab87cf6b8b13531de5f4530482e7e53ed
+  FBSDKCoreKit: 686ac982723a14ec9ddb85e2f81235d7706c891b
+  FBSDKShareKit: 2d1746144cfc8a9dbbd24997c34ee0471be51b6a
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
 
 COCOAPODS: 0.39.0

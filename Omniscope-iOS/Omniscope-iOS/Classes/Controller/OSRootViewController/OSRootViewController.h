@@ -12,6 +12,8 @@
 @class OSCameraViewController;
 @class OSInstructionViewController;
 @class OSWelcomeViewController;
+@class OSGalleryViewController;
+@class OSImageViewController;
 
 @interface OSRootViewController : UIViewController
 
@@ -34,6 +36,8 @@
 - (void)transitionCamera;
 - (void)transitionInstruction;
 - (void)transitionWelcome;
+- (void)transitionGallery;
+- (void)transitionImage;
 
 - (void)transition:(UIViewController *)viewController animated:(BOOL)animated;
 - (void)popTransitionAnimated:(BOOL)animated;
@@ -50,11 +54,15 @@
 - (void)transferCameraViewController:(id)sender animated:(BOOL)animated;
 - (void)transferInstructionViewController:(id)sender animated:(BOOL)animated;
 - (void)transferWelcomeViewController:(id)sender animated:(BOOL)animated;
+- (void)transferGalleryViewController:(id)sender animated:(BOOL)animated;
+- (void)transferImageViewController:(id)sender animated:(BOOL)animated index:(NSInteger)index;
 
 - (OSAboutViewController *)aboutViewController;
 - (OSCameraViewController *)cameraViewController;
 - (OSInstructionViewController *)instructionViewController;
 - (OSWelcomeViewController *)welcomeViewController;
+- (OSGalleryViewController *)galleryViewController;
+- (OSImageViewController *)imageViewController;
 
 // Singleton
 + (OSRootViewController *)sharedController;

@@ -11,6 +11,8 @@
 #import "OSCameraViewController.h"
 #import "OSInstructionViewController.h"
 #import "OSWelcomeViewController.h"
+#import "OSGalleryViewController.h"
+#import "OSImageViewController.h"
 
 static OSRootViewController *_sharedController = nil;
 
@@ -19,6 +21,8 @@ static OSRootViewController *_sharedController = nil;
     OSCameraViewController *_cameraViewController;
     OSInstructionViewController *_instructionViewController;
     OSWelcomeViewController *_welcomeViewController;
+    OSGalleryViewController *_galleryViewController;
+    OSImageViewController *_imageViewController;
 }
 
 // Transition
@@ -111,6 +115,17 @@ static OSRootViewController *_sharedController = nil;
     [self transition:self.welcomeViewController animated:NO];
 }
 
+- (void)transitionGallery {
+    [self hiddenAllPage];
+    
+    [self transition:self.galleryViewController animated:NO];
+}
+
+- (void)transitionImage {
+    [self hiddenAllPage];
+    
+    [self transition:self.imageViewController animated:NO];
+}
 
 - (void)hiddenAllPage {
     if (self.contentNavigationController) {
@@ -218,6 +233,18 @@ static OSRootViewController *_sharedController = nil;
     [self pushTransition:self.welcomeViewController animated:animated];
 }
 
+- (void)transferGalleryViewController:(id)sender animated:(BOOL)animated {
+    [self pushTransition:self.galleryViewController animated:animated];
+}
+
+- (void)transferImageViewController:(id)sender animated:(BOOL)animated index:(NSInteger)index {
+    
+    OSImageViewController *vc = self.imageViewController;
+    vc.index = index;
+    
+    [self pushTransition:vc animated:animated];
+}
+
 - (OSAboutViewController *)aboutViewController {
     if (!_aboutViewController) {
         _aboutViewController = [[OSAboutViewController alloc] init];
@@ -253,6 +280,24 @@ static OSRootViewController *_sharedController = nil;
     }
     
     return _welcomeViewController;
+}
+
+- (OSGalleryViewController *)galleryViewController {
+//    if (!_galleryViewController) {
+        _galleryViewController = [[OSGalleryViewController alloc] init];
+        _galleryViewController.view.frame = self.contentView.bounds;
+//    }
+    
+    return _galleryViewController;
+}
+
+- (OSImageViewController *)imageViewController {
+//    if (!_imageViewController) {
+    _imageViewController = [[OSImageViewController alloc] init];
+    _imageViewController.view.frame = self.contentView.bounds;
+//    }
+    
+    return _imageViewController;
 }
 
 @end

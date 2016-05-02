@@ -30,12 +30,29 @@ namespace {
     
     // Teapot texture filenames
     const char* textureFilenames[] = {
-        "bag1.png",
+        "bag1.png",             // 0
+        "emoji_heaven.png",     // 1
+        "emoji1.png",           // 2
+        "emoji2.png",           // 3
+        "emoji3.png",           // 4
+        "emoji4.png",           // 5
+        "emoji5.png",           // 6
+        "emoji6.png",           // 7
+        "emoji7.png",           // 8
+        "emoji8.png",           // 9
+        "emoji9.png",           // 10
+        "emoji10.png",          // 11
+        "emoji11.png",          // 12
+        "emoji12.png",          // 13
+        "emoji13.png",          // 14
+        "emoji14.png",          // 15
+        "emoji15.png",          // 16
+        "emoji16.png",          // 17
     };
     
     // Model scale factor
     //    const float kObjectScaleNormal = 20.0f;
-    const float kObjectScaleNormal = 55.0f;
+//    const float kObjectScaleNormal = 55.0f;
     //    const float kObjectScaleOffTargetTracking = 12.0f;
 }
 
@@ -187,7 +204,8 @@ namespace {
     for (int i = 0; i < state.getNumTrackableResults(); ++i) {
         // Get the trackable
         const QCAR::TrackableResult* result = state.getTrackableResult(i);
-//        const QCAR::Trackable& trackable = result->getTrackable();
+        
+        const QCAR::Trackable& trackable = result->getTrackable();
         
         //const QCAR::Trackable& trackable = result->getTrackable();
         QCAR::Matrix44F modelViewMatrix = QCAR::Tool::convertPose2GLMatrix(result->getPose());
@@ -195,32 +213,108 @@ namespace {
         // OpenGL 2
         QCAR::Matrix44F modelViewProjection;
         
-        OSApplicationUtils::translatePoseMatrix(0.0f, 0.0f, kObjectScaleNormal, &modelViewMatrix.data[0]);
+        int targetIndex = 0;
+        float kObjectScaleNormal = 55.0f;
+        GLfloat vertices[] = {  -5, -10, 0, // bottom left corner
+            -5,  10, 0, // top left corner
+            5,  10, 0, // top right corner
+            5, -10, 0  // bottom right corner
+        }; // bottom right corner
+        
+        float xX = 0.0f;
+        float yY = 0.0f;
+        
+        if (!strcmp(trackable.getName(), "Track1")) {
+            targetIndex = 1;
+            kObjectScaleNormal = 20.0f;
+//            vertices[12] = {  -5, -5, 0, // bottom left corner
+//                              -5,  5, 0, // top left corner
+//                               5,  5, 0, // top right corner
+//                               5, -5, 0  // bottom right corner
+//                                      }; // bottom right corner
+            vertices[0] = -5;
+            vertices[1] = -5;
+            vertices[2] = 0;
+            vertices[3] = -5;
+            vertices[4] = 5;
+            vertices[5] = 0;
+            vertices[6] = 5;
+            vertices[7] = 5;
+            vertices[8] = 0;
+            vertices[9] = 5;
+            vertices[10] = -5;
+            vertices[11] = 0;
+            
+            xX = 130.0f;
+            yY = 300.0f;
+        } else if (!strcmp(trackable.getName(), "Track2")) {
+            // 11   12
+            targetIndex = 12;
+            kObjectScaleNormal = 15.0f;
+            
+            vertices[0] = -5;
+            vertices[1] = -5;
+            vertices[2] = 0;
+            vertices[3] = -5;
+            vertices[4] = 5;
+            vertices[5] = 0;
+            vertices[6] = 5;
+            vertices[7] = 5;
+            vertices[8] = 0;
+            vertices[9] = 5;
+            vertices[10] = -5;
+            vertices[11] = 0;
+            
+            xX = 120.0f;
+            yY = -220.0f;
+            
+        } else if (!strcmp(trackable.getName(), "Track5")) {
+            // 2    3
+            targetIndex = 3;
+            kObjectScaleNormal = 15.0f;
+            
+            vertices[0] = -5;
+            vertices[1] = -5;
+            vertices[2] = 0;
+            vertices[3] = -5;
+            vertices[4] = 5;
+            vertices[5] = 0;
+            vertices[6] = 5;
+            vertices[7] = 5;
+            vertices[8] = 0;
+            vertices[9] = 5;
+            vertices[10] = -5;
+            vertices[11] = 0;
+            
+            
+            xX = 40.0f;
+            yY = 300.0f;
+            
+        } else if (!strcmp(trackable.getName(), "Track4_7")) {
+            
+        } else if (!strcmp(trackable.getName(), "Track5_8")) {
+            
+        } else if (!strcmp(trackable.getName(), "Track6_1")) {
+            
+        } else if (!strcmp(trackable.getName(), "Track7_2")) {
+            
+        } else if (!strcmp(trackable.getName(), "Track8_8")) {
+            
+        }
+        
+        OSApplicationUtils::translatePoseMatrix(xX, yY, kObjectScaleNormal, &modelViewMatrix.data[0]);
         OSApplicationUtils::scalePoseMatrix(kObjectScaleNormal, kObjectScaleNormal, kObjectScaleNormal, &modelViewMatrix.data[0]);
         
         OSApplicationUtils::multiplyMatrix(&vapp.projectionMatrix.data[0], &modelViewMatrix.data[0], &modelViewProjection.data[0]);
         
-        float x = modelViewMatrix.data[12];
-        float y = modelViewMatrix.data[13];
-        float z = modelViewMatrix.data[14];
-        float distance = sqrt(x*x + y*y + z*z);
+//        float x = modelViewMatrix.data[12];
+//        float y = modelViewMatrix.data[13];
+//        float z = modelViewMatrix.data[14];
+//        float distance = sqrt(x*x + y*y + z*z);
         
-        NSLog(@"DISTANCE: %f", distance);
+//        NSLog(@"DISTANCE: %f", distance);
         
         glUseProgram(shaderProgramID);
-        
-        //        GLfloat vertices[] = {  -5, -10, 0, // bottom left corner
-        //                                -5,  10, 0, // top left corner
-        //                                 5,  10, 0, // top right corner
-        //                                 5, -10, 0  // bottom right corner
-        //        }; // bottom right corner
-        //
-        
-        GLfloat vertices[] = {  -10, -5, 0, // bottom left corner
-            -10,  5, 0, // top left corner
-            10,  5, 0, // top right corner
-            10, -5, 0  // bottom right corner
-        }; // bottom right corner
         
         const GLfloat texices[] = { 0, 0,
             0, 1,
@@ -229,23 +323,16 @@ namespace {
         };
         
         glVertexAttribPointer(vertexHandle, 3, GL_FLOAT, GL_FALSE, 0, vertices);
-        glVertexAttribPointer(textureCoordHandle, 2, GL_FLOAT, GL_FALSE, 0, texices);//(const GLvoid*)teapotTexCoords);
+        glVertexAttribPointer(textureCoordHandle, 2, GL_FLOAT, GL_FALSE, 0, texices);
         
         glEnableVertexAttribArray(vertexHandle);
         glEnableVertexAttribArray(textureCoordHandle);
         
         glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
         
-        // Choose the texture based on the target name
-//        int targetIndex = 0; // "stones"
-//        if (!strcmp(trackable.getName(), "chips"))
-//            targetIndex = 1;
-//        else if (!strcmp(trackable.getName(), "tarmac"))
-//            targetIndex = 2;
-        
         glActiveTexture(GL_TEXTURE0);
         
-        glBindTexture(GL_TEXTURE_2D, augmentationTexture[0].textureID);
+        glBindTexture(GL_TEXTURE_2D, augmentationTexture[targetIndex].textureID);
         glUniformMatrix4fv(mvpMatrixHandle, 1, GL_FALSE, (const GLfloat*)&modelViewProjection.data[0]);
         glUniform1i(texSampler2DHandle, 0 /*GL_TEXTURE0*/);
         

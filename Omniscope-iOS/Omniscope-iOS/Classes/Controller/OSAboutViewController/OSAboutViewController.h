@@ -10,4 +10,6 @@
 
 @interface OSAboutViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet UIButton *closeButton;
+
 @end

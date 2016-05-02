@@ -7,6 +7,9 @@
 //
 
 #import "OSAboutViewController.h"
+#import "OSRootViewController.h"
+
+#import "NSString+DeviceType.h"
 
 @interface OSAboutViewController ()
 
@@ -14,9 +17,29 @@
 
 @implementation OSAboutViewController
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    
+    if (self = [super initWithNibName:[NSStringFromClass([OSAboutViewController class]) concatenateClassToDeviceType] bundle:nibBundleOrNil]) {
+        // Custom initialization
+        
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [self.closeButton addTarget:self action:@selector(closeButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)closeButtonAction:(UIButton *)sender {
+    
+    [[OSRootViewController sharedController] dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

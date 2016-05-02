@@ -30,6 +30,9 @@
 @property (nonatomic, assign) BOOL flashEnabled;
 @property (nonatomic, assign) BOOL frontCameraEnabled;
 
+@property (nonatomic, retain) UIButton *frontBackButton;
+@property (nonatomic, retain) UIImageView *galleryImageView;
+
 - (IBAction)galleryButtonAction:(id)sender;
 - (IBAction)captureButtonAction:(id)sender;
 - (IBAction)frontBackButtonAction:(id)sender;
