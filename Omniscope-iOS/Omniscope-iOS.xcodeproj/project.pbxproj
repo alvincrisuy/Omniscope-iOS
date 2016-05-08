@@ -93,6 +93,20 @@
 		78F808B21CD72F7000E67007 /* emoji14.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F808A21CD72F7000E67007 /* emoji14.png */; };
 		78F808B31CD72F7000E67007 /* emoji15.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F808A31CD72F7000E67007 /* emoji15.png */; };
 		78F808B41CD72F7000E67007 /* emoji16.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F808A41CD72F7000E67007 /* emoji16.png */; };
+		78F808B61CD75D2700E67007 /* emojis.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F808B51CD75D2700E67007 /* emojis.png */; };
+		78FB9CEA1CD9C5A000D2023B /* e1.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FB9CDD1CD9C5A000D2023B /* e1.png */; };
+		78FB9CEB1CD9C5A000D2023B /* e2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FB9CDE1CD9C5A000D2023B /* e2.png */; };
+		78FB9CEC1CD9C5A000D2023B /* e3.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FB9CDF1CD9C5A000D2023B /* e3.png */; };
+		78FB9CED1CD9C5A000D2023B /* e4.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FB9CE01CD9C5A000D2023B /* e4.png */; };
+		78FB9CEE1CD9C5A000D2023B /* e5.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FB9CE11CD9C5A000D2023B /* e5.png */; };
+		78FB9CEF1CD9C5A000D2023B /* e6.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FB9CE21CD9C5A000D2023B /* e6.png */; };
+		78FB9CF01CD9C5A000D2023B /* e7.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FB9CE31CD9C5A000D2023B /* e7.png */; };
+		78FB9CF11CD9C5A000D2023B /* e8.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FB9CE41CD9C5A000D2023B /* e8.png */; };
+		78FB9CF21CD9C5A000D2023B /* e9.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FB9CE51CD9C5A000D2023B /* e9.png */; };
+		78FB9CF31CD9C5A000D2023B /* e10.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FB9CE61CD9C5A000D2023B /* e10.png */; };
+		78FB9CF41CD9C5A000D2023B /* e11.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FB9CE71CD9C5A000D2023B /* e11.png */; };
+		78FB9CF51CD9C5A000D2023B /* e12.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FB9CE81CD9C5A000D2023B /* e12.png */; };
+		78FB9CF61CD9C5A000D2023B /* e13.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FB9CE91CD9C5A000D2023B /* e13.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -290,6 +304,20 @@
 		78F808A21CD72F7000E67007 /* emoji14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emoji14.png; sourceTree = "<group>"; };
 		78F808A31CD72F7000E67007 /* emoji15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emoji15.png; sourceTree = "<group>"; };
 		78F808A41CD72F7000E67007 /* emoji16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emoji16.png; sourceTree = "<group>"; };
+		78F808B51CD75D2700E67007 /* emojis.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emojis.png; sourceTree = "<group>"; };
+		78FB9CDD1CD9C5A000D2023B /* e1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e1.png; sourceTree = "<group>"; };
+		78FB9CDE1CD9C5A000D2023B /* e2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e2.png; sourceTree = "<group>"; };
+		78FB9CDF1CD9C5A000D2023B /* e3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e3.png; sourceTree = "<group>"; };
+		78FB9CE01CD9C5A000D2023B /* e4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e4.png; sourceTree = "<group>"; };
+		78FB9CE11CD9C5A000D2023B /* e5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e5.png; sourceTree = "<group>"; };
+		78FB9CE21CD9C5A000D2023B /* e6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e6.png; sourceTree = "<group>"; };
+		78FB9CE31CD9C5A000D2023B /* e7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e7.png; sourceTree = "<group>"; };
+		78FB9CE41CD9C5A000D2023B /* e8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e8.png; sourceTree = "<group>"; };
+		78FB9CE51CD9C5A000D2023B /* e9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e9.png; sourceTree = "<group>"; };
+		78FB9CE61CD9C5A000D2023B /* e10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e10.png; sourceTree = "<group>"; };
+		78FB9CE71CD9C5A000D2023B /* e11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e11.png; sourceTree = "<group>"; };
+		78FB9CE81CD9C5A000D2023B /* e12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e12.png; sourceTree = "<group>"; };
+		78FB9CE91CD9C5A000D2023B /* e13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e13.png; sourceTree = "<group>"; };
 		947E1FC7BF8FD838CBEC192C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E57A9B002F8BA13C2767EE91 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EA567D56BC4C04C7C6B7D6AD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -364,6 +392,20 @@
 		7845862E1C9567FC0063F152 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				78FB9CDD1CD9C5A000D2023B /* e1.png */,
+				78FB9CDE1CD9C5A000D2023B /* e2.png */,
+				78FB9CDF1CD9C5A000D2023B /* e3.png */,
+				78FB9CE01CD9C5A000D2023B /* e4.png */,
+				78FB9CE11CD9C5A000D2023B /* e5.png */,
+				78FB9CE21CD9C5A000D2023B /* e6.png */,
+				78FB9CE31CD9C5A000D2023B /* e7.png */,
+				78FB9CE41CD9C5A000D2023B /* e8.png */,
+				78FB9CE51CD9C5A000D2023B /* e9.png */,
+				78FB9CE61CD9C5A000D2023B /* e10.png */,
+				78FB9CE71CD9C5A000D2023B /* e11.png */,
+				78FB9CE81CD9C5A000D2023B /* e12.png */,
+				78FB9CE91CD9C5A000D2023B /* e13.png */,
+				78F808B51CD75D2700E67007 /* emojis.png */,
 				78F808951CD72F7000E67007 /* emoji1.png */,
 				78F808961CD72F7000E67007 /* emoji2.png */,
 				78F808971CD72F7000E67007 /* emoji3.png */,
@@ -866,18 +908,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78FB9CF51CD9C5A000D2023B /* e12.png in Resources */,
+				78FB9CF31CD9C5A000D2023B /* e10.png in Resources */,
+				78FB9CEF1CD9C5A000D2023B /* e6.png in Resources */,
 				78F808B01CD72F7000E67007 /* emoji12.png in Resources */,
 				78A7046C1C5FA0F8005114AA /* OSInstructionViewController.xib in Resources */,
+				78FB9CF61CD9C5A000D2023B /* e13.png in Resources */,
 				78F8088C1CD4285A00E67007 /* OSImageViewController.xib in Resources */,
+				78FB9CEC1CD9C5A000D2023B /* e3.png in Resources */,
 				78F8086D1CD3922E00E67007 /* OSCameraViewController~iphone55.xib in Resources */,
+				78FB9CF21CD9C5A000D2023B /* e9.png in Resources */,
+				78FB9CF11CD9C5A000D2023B /* e8.png in Resources */,
 				78F8087F1CD4266000E67007 /* OSGalleryViewController~iphone47.xib in Resources */,
 				78F808861CD4275000E67007 /* CollectionCell~iphone55.xib in Resources */,
 				78A704751C5FA18A005114AA /* OSAppDelegate.xib in Resources */,
 				78F808801CD4266000E67007 /* OSGalleryViewController~iphone55.xib in Resources */,
 				78F808AA1CD72F7000E67007 /* emoji6.png in Resources */,
 				782B87D91CCBF01900E0982E /* OSAboutViewController~iphone4.xib in Resources */,
+				78F808B61CD75D2700E67007 /* emojis.png in Resources */,
 				78F808B11CD72F7000E67007 /* emoji13.png in Resources */,
 				78F808B41CD72F7000E67007 /* emoji16.png in Resources */,
+				78FB9CF01CD9C5A000D2023B /* e7.png in Resources */,
 				78F808AE1CD72F7000E67007 /* emoji10.png in Resources */,
 				78F808A51CD72F7000E67007 /* emoji1.png in Resources */,
 				784586471C957CDA0063F152 /* Simple.vertsh in Resources */,
@@ -890,13 +941,16 @@
 				78F808B31CD72F7000E67007 /* emoji15.png in Resources */,
 				78F8087E1CD4266000E67007 /* OSGalleryViewController~iphone4.xib in Resources */,
 				78F808B21CD72F7000E67007 /* emoji14.png in Resources */,
+				78FB9CEA1CD9C5A000D2023B /* e1.png in Resources */,
 				78F808AB1CD72F7000E67007 /* emoji7.png in Resources */,
 				782B87C91CCB327900E0982E /* OSWelcomeViewController~iphone47.xib in Resources */,
 				78F808921CD4456000E67007 /* OSImageViewController~iphone55.xib in Resources */,
+				78FB9CEE1CD9C5A000D2023B /* e5.png in Resources */,
 				782B87C81CCB327900E0982E /* OSWelcomeViewController~iphone4.xib in Resources */,
 				78F808A91CD72F7000E67007 /* emoji5.png in Resources */,
 				78F808901CD4456000E67007 /* OSImageViewController~iphone4.xib in Resources */,
 				78F8086C1CD3922E00E67007 /* OSCameraViewController~iphone47.xib in Resources */,
+				78FB9CF41CD9C5A000D2023B /* e11.png in Resources */,
 				78A7046E1C5FA0F8005114AA /* OSRootViewController.xib in Resources */,
 				78F808A81CD72F7000E67007 /* emoji4.png in Resources */,
 				78F808911CD4456000E67007 /* OSImageViewController~iphone47.xib in Resources */,
@@ -912,8 +966,10 @@
 				789F68A21CCEED3100DCFC97 /* OSFrontBackCameraView.xib in Resources */,
 				78F8087A1CD4204700E67007 /* CollectionCell.xib in Resources */,
 				782B87DA1CCBF01900E0982E /* OSAboutViewController~iphone47.xib in Resources */,
+				78FB9CEB1CD9C5A000D2023B /* e2.png in Resources */,
 				782B87C41CCB2D0900E0982E /* bag1.png in Resources */,
 				78A7046A1C5FA0F8005114AA /* OSCameraViewController.xib in Resources */,
+				78FB9CED1CD9C5A000D2023B /* e4.png in Resources */,
 				78F808841CD4275000E67007 /* CollectionCell~iphone4.xib in Resources */,
 				78F808771CD415FE00E67007 /* OSGalleryViewController.xib in Resources */,
 				78F808A61CD72F7000E67007 /* emoji2.png in Resources */,
@@ -1180,7 +1236,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Omniscope-iOS/Classes/Utilities/QCAR",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pancakeunlimited.Omniscope-iOS";
 				PRODUCT_NAME = Omniscope;
 				PROVISIONING_PROFILE = "0b61e7df-9781-4352-8920-e52022967ccb";

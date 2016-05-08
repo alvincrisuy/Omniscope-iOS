@@ -19,6 +19,7 @@
 #import "Renderer.h"
 #import "TrackableResult.h"
 #import "VideoBackgroundConfig.h"
+#import "MultiTargetResult.h"
 
 #import "OSCameraImageTargetsEAGLView.h"
 #import "Texture.h"
@@ -30,24 +31,38 @@ namespace {
     
     // Teapot texture filenames
     const char* textureFilenames[] = {
-        "bag1.png",             // 0
+//        "bag1.png",             // 0
         "emoji_heaven.png",     // 1
-        "emoji1.png",           // 2
-        "emoji2.png",           // 3
-        "emoji3.png",           // 4
-        "emoji4.png",           // 5
-        "emoji5.png",           // 6
-        "emoji6.png",           // 7
-        "emoji7.png",           // 8
-        "emoji8.png",           // 9
-        "emoji9.png",           // 10
-        "emoji10.png",          // 11
-        "emoji11.png",          // 12
-        "emoji12.png",          // 13
-        "emoji13.png",          // 14
-        "emoji14.png",          // 15
-        "emoji15.png",          // 16
-        "emoji16.png",          // 17
+//        "emoji1.png",           // 2
+//        "emoji2.png",           // 3
+//        "emoji3.png",           // 4
+//        "emoji4.png",           // 5
+//        "emoji5.png",           // 6
+//        "emoji6.png",           // 7
+//        "emoji7.png",           // 8
+//        "emoji8.png",           // 9
+//        "emoji9.png",           // 10
+//        "emoji10.png",          // 11
+//        "emoji11.png",          // 12
+//        "emoji12.png",          // 13
+//        "emoji13.png",          // 14
+//        "emoji14.png",          // 15
+//        "emoji15.png",          // 16
+//        "emoji16.png",          // 17
+        "emojis.png",           // 18
+        "e1.png",               // 19
+        "e2.png",               // 20
+        "e3.png",               // 21
+        "e4.png",               // 22
+        "e5.png",               // 23
+        "e6.png",               // 24
+//        "e7.png",               // 25
+//        "e8.png",               // 26
+        "e9.png",               // 27
+        "e10.png",              // 28
+        "e11.png",              // 29
+        "e12.png",              // 30
+        "e13.png",              // 31
     };
     
     // Model scale factor
@@ -120,7 +135,7 @@ namespace {
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, [augmentationTexture[i] width], [augmentationTexture[i] height], 0, GL_RGBA, GL_UNSIGNED_BYTE, (GLvoid*)[augmentationTexture[i] pngData]);
         }
         
-        offTargetTrackingEnabled = NO;
+        offTargetTrackingEnabled = YES;
         
         [self initShaders];
     }
@@ -201,6 +216,37 @@ namespace {
     else
         glFrontFace(GL_CCW);   //Back camera
     
+//    if (state.getNumTrackableResults()) {
+//        
+//        const QCAR::TrackableResult* result = NULL;
+//        int numResults = state.getNumTrackableResults();
+//        
+//        // Browse results searching for the MultiTargets
+//        for (int j=0; j<numResults; j++) {
+//            NSLog(@"index: %d", j);
+//            result = state.getTrackableResult(j);
+//            if (result->isOfType(QCAR::MultiTargetResult::getClassType())) {
+//                NSLog(@"ENTER is multitarget");
+//                break;
+//            }
+//            
+//        }
+//        
+//        // If it was not found exit
+//        if (result == NULL)
+//        {
+//            // Clean up and leave
+//            glDisable(GL_BLEND);
+//            glDisable(GL_DEPTH_TEST);
+//            glDisable(GL_CULL_FACE);
+//            
+//            QCAR::Renderer::getInstance().end();
+//            [self presentFramebuffer];
+//            return;
+//        }
+//        
+//    }
+    
     for (int i = 0; i < state.getNumTrackableResults(); ++i) {
         // Get the trackable
         const QCAR::TrackableResult* result = state.getTrackableResult(i);
@@ -225,7 +271,7 @@ namespace {
         float yY = 0.0f;
         
         if (!strcmp(trackable.getName(), "Track1")) {
-            targetIndex = 1;
+            targetIndex = 0;
             kObjectScaleNormal = 20.0f;
 //            vertices[12] = {  -5, -5, 0, // bottom left corner
 //                              -5,  5, 0, // top left corner
@@ -247,59 +293,336 @@ namespace {
             
             xX = 130.0f;
             yY = 300.0f;
-        } else if (!strcmp(trackable.getName(), "Track2")) {
-            // 11   12
-            targetIndex = 12;
-            kObjectScaleNormal = 15.0f;
+//        } else if (!strcmp(trackable.getName(), "Track2")) {
+//            // 11   12
+//            targetIndex = 12;
+//            kObjectScaleNormal = 15.0f;
+//            
+//            vertices[0] = -5;
+//            vertices[1] = -5;
+//            vertices[2] = 0;
+//            vertices[3] = -5;
+//            vertices[4] = 5;
+//            vertices[5] = 0;
+//            vertices[6] = 5;
+//            vertices[7] = 5;
+//            vertices[8] = 0;
+//            vertices[9] = 5;
+//            vertices[10] = -5;
+//            vertices[11] = 0;
+//            
+//            xX = 120.0f;
+//            yY = -220.0f;
+//            
+//        } else if (!strcmp(trackable.getName(), "Track5")) {
+//            // 2    3
+//            targetIndex = 3;
+//            kObjectScaleNormal = 15.0f;
+//            
+//            vertices[0] = -5;
+//            vertices[1] = -5;
+//            vertices[2] = 0;
+//            vertices[3] = -5;
+//            vertices[4] = 5;
+//            vertices[5] = 0;
+//            vertices[6] = 5;
+//            vertices[7] = 5;
+//            vertices[8] = 0;
+//            vertices[9] = 5;
+//            vertices[10] = -5;
+//            vertices[11] = 0;
+//            
+//            
+//            xX = 40.0f;
+//            yY = 300.0f;
+//            
+        } else if (!strcmp(trackable.getName(), "Track3")) {
+            targetIndex = 1;
+            kObjectScaleNormal = 100.0f;
             
-            vertices[0] = -5;
+            vertices[0] = -20;
             vertices[1] = -5;
             vertices[2] = 0;
-            vertices[3] = -5;
+            
+            vertices[3] = -20;
             vertices[4] = 5;
             vertices[5] = 0;
-            vertices[6] = 5;
+            
+            vertices[6] = 20;
             vertices[7] = 5;
             vertices[8] = 0;
-            vertices[9] = 5;
+            
+            vertices[9] = 20;
             vertices[10] = -5;
             vertices[11] = 0;
-            
+
             xX = 120.0f;
-            yY = -220.0f;
+            yY = 220.0f;
             
-        } else if (!strcmp(trackable.getName(), "Track5")) {
-            // 2    3
+        } else if (!strcmp(trackable.getName(), "T1")) {
+            targetIndex = 2;
+            
+            kObjectScaleNormal = 100.0f;
+            
+            vertices[0] = -5;
+            vertices[1] = -10;
+            vertices[2] = 0;
+            
+            vertices[3] = -5;
+            vertices[4] = 10;
+            vertices[5] = 0;
+            
+            vertices[6] = 5;
+            vertices[7] = 10;
+            vertices[8] = 0;
+            
+            vertices[9] = 5;
+            vertices[10] = -10;
+            vertices[11] = 0;
+            
+            xX = 720.0f;
+            yY = 50.0f;
+        } else if (!strcmp(trackable.getName(), "T2")) {
             targetIndex = 3;
-            kObjectScaleNormal = 15.0f;
+            
+            kObjectScaleNormal = 25.0f;
+            
+            vertices[0] = -10;
+            vertices[1] = -5;
+            vertices[2] = 0;
+            
+            vertices[3] = -10;
+            vertices[4] = 5;
+            vertices[5] = 0;
+            
+            vertices[6] = 10;
+            vertices[7] = 5;
+            vertices[8] = 0;
+            
+            vertices[9] = 10;
+            vertices[10] = -5;
+            vertices[11] = 0;
+            
+            xX = 440.0f;
+            yY = 450.0f;
+        } else if (!strcmp(trackable.getName(), "T3")) {
+            targetIndex = 4;
+            
+            kObjectScaleNormal = 100.0f;
             
             vertices[0] = -5;
             vertices[1] = -5;
             vertices[2] = 0;
+            
             vertices[3] = -5;
             vertices[4] = 5;
             vertices[5] = 0;
+            
             vertices[6] = 5;
             vertices[7] = 5;
             vertices[8] = 0;
+            
             vertices[9] = 5;
             vertices[10] = -5;
             vertices[11] = 0;
             
+            xX = 380.0f;
+            yY = 400.0f;
+
+        } else if (!strcmp(trackable.getName(), "T4")) {
+            targetIndex = 5;
             
-            xX = 40.0f;
-            yY = 300.0f;
+            kObjectScaleNormal = 50.0f;
             
-        } else if (!strcmp(trackable.getName(), "Track4_7")) {
+            vertices[0] = -5;
+            vertices[1] = -5;
+            vertices[2] = 0;
             
-        } else if (!strcmp(trackable.getName(), "Track5_8")) {
+            vertices[3] = -5;
+            vertices[4] = 5;
+            vertices[5] = 0;
             
-        } else if (!strcmp(trackable.getName(), "Track6_1")) {
+            vertices[6] = 5;
+            vertices[7] = 5;
+            vertices[8] = 0;
             
-        } else if (!strcmp(trackable.getName(), "Track7_2")) {
+            vertices[9] = 5;
+            vertices[10] = -5;
+            vertices[11] = 0;
             
-        } else if (!strcmp(trackable.getName(), "Track8_8")) {
+            xX = 380.0f;
+            yY = 240.0f;
+        } else if (!strcmp(trackable.getName(), "T5")) {
+            targetIndex = 6;
             
+            kObjectScaleNormal = 100.0f;
+            
+            vertices[0] = -10;
+            vertices[1] = -5;
+            vertices[2] = 0;
+            
+            vertices[3] = -10;
+            vertices[4] = 5;
+            vertices[5] = 0;
+            
+            vertices[6] = 10;
+            vertices[7] = 5;
+            vertices[8] = 0;
+            
+            vertices[9] = 10;
+            vertices[10] = -5;
+            vertices[11] = 0;
+            
+            xX = 150.0f;
+            yY = 180.0f;
+        } else if (!strcmp(trackable.getName(), "T6")) {
+            targetIndex = 7;
+            
+            kObjectScaleNormal = 35.0f;
+            
+            vertices[0] = -20;
+            vertices[1] = -5;
+            vertices[2] = 0;
+            
+            vertices[3] = -20;
+            vertices[4] = 5;
+            vertices[5] = 0;
+            
+            vertices[6] = 20;
+            vertices[7] = 5;
+            vertices[8] = 0;
+            
+            vertices[9] = 20;
+            vertices[10] = -5;
+            vertices[11] = 0;
+            
+            xX = 0.0f;
+            yY = 100.0f;
+        } else if (!strcmp(trackable.getName(), "T7")) {
+            targetIndex = 25;
+            
+            // not working
+        } else if (!strcmp(trackable.getName(), "T8")) {
+            targetIndex = 26;
+            
+            // not working
+        } else if (!strcmp(trackable.getName(), "T9")) {
+            targetIndex = 8;
+            
+            kObjectScaleNormal = 100.0f;
+            
+            vertices[0] = -10;
+            vertices[1] = -5;
+            vertices[2] = 0;
+            
+            vertices[3] = -10;
+            vertices[4] = 5;
+            vertices[5] = 0;
+            
+            vertices[6] = 10;
+            vertices[7] = 5;
+            vertices[8] = 0;
+            
+            vertices[9] = 10;
+            vertices[10] = -5;
+            vertices[11] = 0;
+            
+            xX = 250.0f;
+            yY = 128.0f;
+        } else if (!strcmp(trackable.getName(), "T10")) {
+            targetIndex = 9;
+            
+            
+            kObjectScaleNormal = 100.0f;
+            
+            vertices[0] = -9;
+            vertices[1] = -4;
+            vertices[2] = 0;
+            
+            vertices[3] = -9;
+            vertices[4] = 4;
+            vertices[5] = 0;
+            
+            vertices[6] = 8;
+            vertices[7] = 4;
+            vertices[8] = 0;
+            
+            vertices[9] = 8;
+            vertices[10] = -4;
+            vertices[11] = 0;
+            
+            xX = 20.0f;
+            yY = 35.0f;
+        } else if (!strcmp(trackable.getName(), "T11")) {
+            targetIndex = 10;
+            
+            kObjectScaleNormal = 50.0f;
+            
+            vertices[0] = -20;
+            vertices[1] = -5;
+            vertices[2] = 0;
+            
+            vertices[3] = -20;
+            vertices[4] = 5;
+            vertices[5] = 0;
+            
+            vertices[6] = 22;
+            vertices[7] = 5;
+            vertices[8] = 0;
+            
+            vertices[9] = 22;
+            vertices[10] = -5;
+            vertices[11] = 0;
+            
+            xX = 50.0f;
+            yY = 50.0f;
+        } else if (!strcmp(trackable.getName(), "T12")) {
+            targetIndex = 11;
+            
+            kObjectScaleNormal = 100.0f;
+            
+            vertices[0] = -10;
+            vertices[1] = -5;
+            vertices[2] = 0;
+            
+            vertices[3] = -10;
+            vertices[4] = 5;
+            vertices[5] = 0;
+            
+            vertices[6] = 10;
+            vertices[7] = 5;
+            vertices[8] = 0;
+            
+            vertices[9] = 10;
+            vertices[10] = -5;
+            vertices[11] = 0;
+            
+            xX = 0.0f;
+            yY = 90.0f;
+
+        } else if (!strcmp(trackable.getName(), "T13")) {
+            targetIndex = 12;
+            
+            kObjectScaleNormal = 100.0f;
+            
+            vertices[0] = -10;
+            vertices[1] = -5;
+            vertices[2] = 0;
+            
+            vertices[3] = -10;
+            vertices[4] = 5;
+            vertices[5] = 0;
+            
+            vertices[6] = 10;
+            vertices[7] = 5;
+            vertices[8] = 0;
+            
+            vertices[9] = 10;
+            vertices[10] = -5;
+            vertices[11] = 0;
+            
+            xX = 250.0f;
+            yY = 200.0f;
         }
         
         OSApplicationUtils::translatePoseMatrix(xX, yY, kObjectScaleNormal, &modelViewMatrix.data[0]);
@@ -316,7 +639,8 @@ namespace {
         
         glUseProgram(shaderProgramID);
         
-        const GLfloat texices[] = { 0, 0,
+        const GLfloat texices[] = {
+            0, 0,
             0, 1,
             1, 1,
             1, 0
@@ -363,9 +687,10 @@ namespace {
 - (void)initShaders {
     shaderProgramID = [OSApplicationShaderUtils createProgramWithVertexShaderFileName:@"Simple.vertsh"
                                                                    fragmentShaderFileName:@"Simple.fragsh"];
-    
-    // TODO
-    QCAR::setHint(QCAR::HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS, 2);
+//    
+//    QCAR::setHint(QCAR::HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS, 5);
+//    
+//    QCAR::setHint(QCAR::HINT_MAX_SIMULTANEOUS_OBJECT_TARGETS, 2);
     
     if (0 < shaderProgramID) {
         vertexHandle = glGetAttribLocation(shaderProgramID, "vertexPosition");

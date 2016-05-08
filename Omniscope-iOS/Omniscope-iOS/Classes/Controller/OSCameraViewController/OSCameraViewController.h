@@ -32,6 +32,7 @@
 
 @property (nonatomic, retain) UIButton *frontBackButton;
 @property (nonatomic, retain) UIImageView *galleryImageView;
+@property (nonatomic, retain) UIButton *captureButton;
 
 - (IBAction)galleryButtonAction:(id)sender;
 - (IBAction)captureButtonAction:(id)sender;

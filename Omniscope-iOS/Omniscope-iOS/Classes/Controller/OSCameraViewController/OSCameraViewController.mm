@@ -172,19 +172,19 @@ NSString *const CSAlbumIdentifier = @"albumIdentifier";
     CGFloat captureButtonX = (screenRect.size.width / 2.0f) - 75/2;
     CGFloat captureButtonY = (screenRect.size.height - 75.0f * 1.5f);
     
-    UIButton *captureButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [captureButton addTarget:self
+    self.captureButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.captureButton addTarget:self
                action:@selector(captureButtonAction:)
      forControlEvents:UIControlEventTouchUpInside];
-    [captureButton setImage:[UIImage imageNamed:@"capture150"] forState:UIControlStateNormal];
-    [captureButton setImage:[UIImage imageNamed:@"capture150selected"] forState:UIControlStateSelected];
-    [captureButton setImage:[UIImage imageNamed:@"capture150selected"] forState:UIControlStateFocused];
-    [captureButton setImage:[UIImage imageNamed:@"capture150selected"] forState:UIControlStateHighlighted];
-    captureButton.frame = CGRectMake(captureButtonX, captureButtonY, 75.0f, 75.0f);
-    captureButton.contentVerticalAlignment = UIControlContentVerticalAlignmentFill;
-    captureButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentFill;
+    [self.captureButton setImage:[UIImage imageNamed:@"capture150"] forState:UIControlStateNormal];
+    [self.captureButton setImage:[UIImage imageNamed:@"capture150selected"] forState:UIControlStateSelected];
+    [self.captureButton setImage:[UIImage imageNamed:@"capture150selected"] forState:UIControlStateFocused];
+    [self.captureButton setImage:[UIImage imageNamed:@"capture150selected"] forState:UIControlStateHighlighted];
+    self.captureButton.frame = CGRectMake(captureButtonX, captureButtonY, 75.0f, 75.0f);
+    self.captureButton.contentVerticalAlignment = UIControlContentVerticalAlignmentFill;
+    self.captureButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentFill;
 
-    [self.view addSubview:captureButton];
+    [self.view addSubview:self.captureButton];
     
     CGFloat galleryButtonX = screenRect.size.width/4.0f - (60.0f / 1.5f);
     CGFloat galleryButtonY = (screenRect.size.height - 65.0f * 1.5f);
@@ -224,6 +224,7 @@ NSString *const CSAlbumIdentifier = @"albumIdentifier";
     self.frontBackButton.frame = CGRectMake(frontBackButtonX, frontBackButtonY, 30.0, 30.0);
     self.frontBackButton.contentVerticalAlignment = UIControlContentVerticalAlignmentFill;
     self.frontBackButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentFill;
+    self.frontBackButton.alpha = 0.5f;
 
     [self.view addSubview:self.frontBackButton];
     
@@ -263,7 +264,77 @@ NSString *const CSAlbumIdentifier = @"albumIdentifier";
     [self showLoadingAnimation];
     
     [self.view addGestureRecognizer:tapGestureRecognizer];
+    
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(orientationChanged:)
+     name:UIDeviceOrientationDidChangeNotification
+     object:[UIDevice currentDevice]];
+}
 
+- (void) orientationChanged:(NSNotification *)note {
+    UIDevice * device = note.object;
+    switch(device.orientation) {
+        case UIDeviceOrientationPortrait:
+            NSLog(@"portrait");
+        {
+            [UIView animateWithDuration:0.3 animations:^{
+                self.galleryImageView.transform = CGAffineTransformMakeRotation(0);
+                self.captureButton.transform = CGAffineTransformMakeRotation(0);
+                self.frontBackButton.transform = CGAffineTransformMakeRotation(0);
+            }];
+            
+        }
+            break;
+        case UIDeviceOrientationPortraitUpsideDown:
+            NSLog(@"upside down");
+            
+        {
+            [UIView animateWithDuration:0.3 animations:^{
+                self.galleryImageView.transform = CGAffineTransformMakeRotation(-3.14159265358979);
+                self.captureButton.transform = CGAffineTransformMakeRotation(-3.14159265358979);
+                self.frontBackButton.transform = CGAffineTransformMakeRotation(-3.14159265358979);
+            }];
+            
+        }
+            
+            break;
+        case UIDeviceOrientationLandscapeLeft:
+            NSLog(@"landscape left");
+            
+        {
+            [UIView animateWithDuration:0.3 animations:^{
+                self.galleryImageView.transform = CGAffineTransformMakeRotation(3.14159265358979/2);
+                self.captureButton.transform = CGAffineTransformMakeRotation(3.14159265358979/2);
+                self.frontBackButton.transform = CGAffineTransformMakeRotation(3.14159265358979/2);
+            }];
+            
+        }
+            
+            
+            break;
+        case UIDeviceOrientationLandscapeRight:
+            NSLog(@"landscape right");
+            
+        {
+            [UIView animateWithDuration:0.3 animations:^{
+                self.galleryImageView.transform = CGAffineTransformMakeRotation(-3.14159265358979/2);
+                self.captureButton.transform = CGAffineTransformMakeRotation(-3.14159265358979/2);
+                self.frontBackButton.transform = CGAffineTransformMakeRotation(-3.14159265358979/2);
+            }];
+            
+        }
+            
+            break;
+        case UIDeviceOrientationFaceUp:
+            NSLog(@"faceup");
+            break;
+        case UIDeviceOrientationFaceDown:
+            NSLog(@"facedown");
+            break;
+        default:
+            break;
+    };
 }
 
 - (void)dismissARViewController {
@@ -467,14 +538,120 @@ NSString *const CSAlbumIdentifier = @"albumIdentifier";
             bool result = [vapp startAR:QCAR::CameraDevice::CAMERA_BACK error:&error];
             self.frontCameraEnabled = !result;
             
-            [UIView animateWithDuration:0.3 animations:^{
-                self.frontBackButton.transform = CGAffineTransformMakeRotation(-0);
-            }];
+            UIDevice * device = [UIDevice currentDevice];
+            switch(device.orientation) {
+                case UIDeviceOrientationPortrait:
+                    NSLog(@"portrait");
+                {
+                    [UIView animateWithDuration:0.3 animations:^{
+                        self.frontBackButton.transform = CGAffineTransformMakeRotation(0);
+                    }];
+                    
+                }
+                    break;
+                case UIDeviceOrientationPortraitUpsideDown:
+                    NSLog(@"upside down");
+                    
+                {
+                    [UIView animateWithDuration:0.3 animations:^{
+                        self.frontBackButton.transform = CGAffineTransformMakeRotation(-3.14159265358979);
+                    }];
+                    
+                }
+                    
+                    break;
+                case UIDeviceOrientationLandscapeLeft:
+                    NSLog(@"landscape left");
+                    
+                {
+                    [UIView animateWithDuration:0.3 animations:^{
+                        self.frontBackButton.transform = CGAffineTransformMakeRotation(3.14159265358979/2);
+                    }];
+                    
+                }
+                    
+                    
+                    break;
+                case UIDeviceOrientationLandscapeRight:
+                    NSLog(@"landscape right");
+                    
+                {
+                    [UIView animateWithDuration:0.3 animations:^{
+                        self.frontBackButton.transform = CGAffineTransformMakeRotation(-3.14159265358979/2);
+                    }];
+                    
+                }
+                    
+                    break;
+                case UIDeviceOrientationFaceUp:
+                    NSLog(@"faceup");
+                    break;
+                case UIDeviceOrientationFaceDown:
+                    NSLog(@"facedown");
+                    break;
+                default:
+                    break;
+            };
+
         } else {
             
-            [UIView animateWithDuration:0.3 animations:^{
-                self.frontBackButton.transform = CGAffineTransformMakeRotation(-3.14159265358979);
-            }];
+            UIDevice * device = [UIDevice currentDevice];
+            switch(device.orientation) {
+                case UIDeviceOrientationPortrait:
+                    NSLog(@"portrait");
+                {
+                    [UIView animateWithDuration:0.3 animations:^{
+                        self.frontBackButton.transform = CGAffineTransformMakeRotation(-3.14159265358979);
+                    }];
+                    
+                }
+                    break;
+                case UIDeviceOrientationPortraitUpsideDown:
+                    NSLog(@"upside down");
+                    
+                {
+                    
+                    [UIView animateWithDuration:0.3 animations:^{
+                        self.frontBackButton.transform = CGAffineTransformMakeRotation(0);
+                    }];
+                    
+                }
+                    
+                    break;
+                case UIDeviceOrientationLandscapeLeft:
+                    NSLog(@"landscape left");
+                    
+                {
+                    [UIView animateWithDuration:0.3 animations:^{
+                        self.frontBackButton.transform = CGAffineTransformMakeRotation(-3.14159265358979/2);
+                    }];
+                    
+                    
+                }
+                    
+                    
+                    break;
+                case UIDeviceOrientationLandscapeRight:
+                    NSLog(@"landscape right");
+                    
+                {
+                    [UIView animateWithDuration:0.3 animations:^{
+                        self.frontBackButton.transform = CGAffineTransformMakeRotation(3.14159265358979/2);
+                    }];
+                    
+                }
+                    
+                    break;
+                case UIDeviceOrientationFaceUp:
+                    NSLog(@"faceup");
+                    break;
+                case UIDeviceOrientationFaceDown:
+                    NSLog(@"facedown");
+                    break;
+                default:
+                    break;
+            };
+            
             bool result = [vapp startAR:QCAR::CameraDevice::CAMERA_FRONT error:&error];
             self.frontCameraEnabled = result;
             if (self.frontCameraEnabled) {
@@ -528,6 +705,9 @@ NSString *const CSAlbumIdentifier = @"albumIdentifier";
         
         if (NULL != dataSet) {
             NSLog(@"INFO: successfully loaded data set");
+            
+            
+            QCAR::setHint(QCAR::HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS, 5);
             
             // Load the data set from the app's resources location
             if (!dataSet->load([dataFile cStringUsingEncoding:NSASCIIStringEncoding], QCAR::STORAGE_APPRESOURCE)) {

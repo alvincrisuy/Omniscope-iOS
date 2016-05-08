@@ -12,7 +12,7 @@
 #import "Texture.h"
 #import "OSApplicationSession.h"
 
-#define kNumAugmentationTextures 18
+#define kNumAugmentationTextures 13
 
 @interface OSCameraImageTargetsEAGLView : UIView <UIGLViewProtocol, OSGLResourceHandler> {
 @private
