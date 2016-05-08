@@ -17,8 +17,6 @@
 		782B87D91CCBF01900E0982E /* OSAboutViewController~iphone4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 782B87D61CCBF01900E0982E /* OSAboutViewController~iphone4.xib */; };
 		782B87DA1CCBF01900E0982E /* OSAboutViewController~iphone47.xib in Resources */ = {isa = PBXBuildFile; fileRef = 782B87D71CCBF01900E0982E /* OSAboutViewController~iphone47.xib */; };
 		782B87DB1CCBF01900E0982E /* OSAboutViewController~iphone55.xib in Resources */ = {isa = PBXBuildFile; fileRef = 782B87D81CCBF01900E0982E /* OSAboutViewController~iphone55.xib */; };
-		7845862B1C9541F80063F152 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7845862A1C9541F80063F152 /* CoreMotion.framework */; };
-		7845862D1C9542250063F152 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7845862C1C9542250063F152 /* CoreMedia.framework */; };
 		784586381C9569480063F152 /* PhotoDetection.dat in Resources */ = {isa = PBXBuildFile; fileRef = 784586361C9569480063F152 /* PhotoDetection.dat */; };
 		784586391C9569480063F152 /* PhotoDetection.xml in Resources */ = {isa = PBXBuildFile; fileRef = 784586371C9569480063F152 /* PhotoDetection.xml */; };
 		784586441C957CDA0063F152 /* Line.fragsh in Resources */ = {isa = PBXBuildFile; fileRef = 784586401C957CDA0063F152 /* Line.fragsh */; };
@@ -32,13 +30,6 @@
 		78683AE31C95229D000EBE3E /* Texture.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78683AE21C95229D000EBE3E /* Texture.mm */; };
 		78683AE61C952355000EBE3E /* OSApplicationShaderUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 78683AE51C952355000EBE3E /* OSApplicationShaderUtils.m */; };
 		78683AE91C95239F000EBE3E /* OSApplicationUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78683AE81C95239F000EBE3E /* OSApplicationUtils.cpp */; };
-		78683AEB1C953BCA000EBE3E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78683AEA1C953BCA000EBE3E /* AVFoundation.framework */; };
-		78683AED1C953BE5000EBE3E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78683AEC1C953BE5000EBE3E /* UIKit.framework */; };
-		78683AEF1C953BEB000EBE3E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78683AEE1C953BEB000EBE3E /* Security.framework */; };
-		78683AF11C953BF5000EBE3E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78683AF01C953BF5000EBE3E /* SystemConfiguration.framework */; };
-		78683AF31C953BFD000EBE3E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78683AF21C953BFD000EBE3E /* QuartzCore.framework */; };
-		78683AF51C953C03000EBE3E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78683AF41C953C03000EBE3E /* OpenGLES.framework */; };
-		78683AF71C953C0B000EBE3E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78683AF61C953C0B000EBE3E /* CoreGraphics.framework */; };
 		789F68A01CCEED2300DCFC97 /* OSFrontBackCameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 789F689F1CCEED2300DCFC97 /* OSFrontBackCameraView.m */; };
 		789F68A21CCEED3100DCFC97 /* OSFrontBackCameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 789F68A11CCEED3100DCFC97 /* OSFrontBackCameraView.xib */; };
 		78A703651C5E297B005114AA /* Omniscope_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A703641C5E297B005114AA /* Omniscope_iOSTests.m */; };
@@ -58,6 +49,13 @@
 		78A704731C5FA159005114AA /* OSAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78A704721C5FA159005114AA /* OSAppDelegate.mm */; };
 		78A704751C5FA18A005114AA /* OSAppDelegate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78A704741C5FA18A005114AA /* OSAppDelegate.xib */; };
 		78B6B42D1CC70304002DCE1A /* libVuforia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B6B3FA1CC70304002DCE1A /* libVuforia.a */; };
+		78F4C4661CDF1C1C0044AF1A /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F4C4651CDF1C1C0044AF1A /* CoreMedia.framework */; };
+		78F4C4681CDF1C270044AF1A /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F4C4671CDF1C270044AF1A /* CoreMotion.framework */; };
+		78F4C46A1CDF1C320044AF1A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F4C4691CDF1C320044AF1A /* CoreGraphics.framework */; };
+		78F4C46C1CDF1C3D0044AF1A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F4C46B1CDF1C3D0044AF1A /* OpenGLES.framework */; };
+		78F4C46E1CDF1C480044AF1A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F4C46D1CDF1C480044AF1A /* QuartzCore.framework */; };
+		78F4C4701CDF1C530044AF1A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F4C46F1CDF1C530044AF1A /* SystemConfiguration.framework */; };
+		78F4C4721CDF1C600044AF1A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F4C4711CDF1C600044AF1A /* Security.framework */; };
 		78F8086B1CD3922E00E67007 /* OSCameraViewController~iphone4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78F808681CD3922E00E67007 /* OSCameraViewController~iphone4.xib */; };
 		78F8086C1CD3922E00E67007 /* OSCameraViewController~iphone47.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78F808691CD3922E00E67007 /* OSCameraViewController~iphone47.xib */; };
 		78F8086D1CD3922E00E67007 /* OSCameraViewController~iphone55.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78F8086A1CD3922E00E67007 /* OSCameraViewController~iphone55.xib */; };
@@ -138,8 +136,6 @@
 		782B87D61CCBF01900E0982E /* OSAboutViewController~iphone4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSAboutViewController~iphone4.xib"; sourceTree = "<group>"; };
 		782B87D71CCBF01900E0982E /* OSAboutViewController~iphone47.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSAboutViewController~iphone47.xib"; sourceTree = "<group>"; };
 		782B87D81CCBF01900E0982E /* OSAboutViewController~iphone55.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSAboutViewController~iphone55.xib"; sourceTree = "<group>"; };
-		7845862A1C9541F80063F152 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		7845862C1C9542250063F152 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		784586361C9569480063F152 /* PhotoDetection.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = PhotoDetection.dat; sourceTree = "<group>"; };
 		784586371C9569480063F152 /* PhotoDetection.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PhotoDetection.xml; sourceTree = "<group>"; };
 		784586401C957CDA0063F152 /* Line.fragsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Line.fragsh; sourceTree = "<group>"; };
@@ -158,13 +154,6 @@
 		78683AE51C952355000EBE3E /* OSApplicationShaderUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSApplicationShaderUtils.m; sourceTree = "<group>"; };
 		78683AE71C95239F000EBE3E /* OSApplicationUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSApplicationUtils.h; sourceTree = "<group>"; };
 		78683AE81C95239F000EBE3E /* OSApplicationUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OSApplicationUtils.cpp; sourceTree = "<group>"; };
-		78683AEA1C953BCA000EBE3E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		78683AEC1C953BE5000EBE3E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		78683AEE1C953BEB000EBE3E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		78683AF01C953BF5000EBE3E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		78683AF21C953BFD000EBE3E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		78683AF41C953C03000EBE3E /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		78683AF61C953C0B000EBE3E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		789F689E1CCEED2300DCFC97 /* OSFrontBackCameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSFrontBackCameraView.h; sourceTree = "<group>"; };
 		789F689F1CCEED2300DCFC97 /* OSFrontBackCameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSFrontBackCameraView.m; sourceTree = "<group>"; };
 		789F68A11CCEED3100DCFC97 /* OSFrontBackCameraView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OSFrontBackCameraView.xib; sourceTree = "<group>"; };
@@ -266,6 +255,13 @@
 		78B6B42B1CC70304002DCE1A /* WordList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordList.h; sourceTree = "<group>"; };
 		78B6B42C1CC70304002DCE1A /* WordResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordResult.h; sourceTree = "<group>"; };
 		78D219311C905640001899E2 /* OSGLResourceHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSGLResourceHandler.h; sourceTree = "<group>"; };
+		78F4C4651CDF1C1C0044AF1A /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		78F4C4671CDF1C270044AF1A /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		78F4C4691CDF1C320044AF1A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		78F4C46B1CDF1C3D0044AF1A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		78F4C46D1CDF1C480044AF1A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		78F4C46F1CDF1C530044AF1A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		78F4C4711CDF1C600044AF1A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		78F808681CD3922E00E67007 /* OSCameraViewController~iphone4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSCameraViewController~iphone4.xib"; sourceTree = "<group>"; };
 		78F808691CD3922E00E67007 /* OSCameraViewController~iphone47.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSCameraViewController~iphone47.xib"; sourceTree = "<group>"; };
 		78F8086A1CD3922E00E67007 /* OSCameraViewController~iphone55.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSCameraViewController~iphone55.xib"; sourceTree = "<group>"; };
@@ -328,18 +324,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78F4C4721CDF1C600044AF1A /* Security.framework in Frameworks */,
+				78F4C4701CDF1C530044AF1A /* SystemConfiguration.framework in Frameworks */,
+				78F4C46E1CDF1C480044AF1A /* QuartzCore.framework in Frameworks */,
+				78F4C46C1CDF1C3D0044AF1A /* OpenGLES.framework in Frameworks */,
+				78F4C46A1CDF1C320044AF1A /* CoreGraphics.framework in Frameworks */,
+				78F4C4681CDF1C270044AF1A /* CoreMotion.framework in Frameworks */,
+				78F4C4661CDF1C1C0044AF1A /* CoreMedia.framework in Frameworks */,
 				785ADE351CC9C9C200EF4FCA /* PhotosUI.framework in Frameworks */,
 				785ADE331CC9C9BA00EF4FCA /* Photos.framework in Frameworks */,
-				7845862D1C9542250063F152 /* CoreMedia.framework in Frameworks */,
-				7845862B1C9541F80063F152 /* CoreMotion.framework in Frameworks */,
-				78683AF71C953C0B000EBE3E /* CoreGraphics.framework in Frameworks */,
-				78683AF51C953C03000EBE3E /* OpenGLES.framework in Frameworks */,
-				78683AF31C953BFD000EBE3E /* QuartzCore.framework in Frameworks */,
-				78683AF11C953BF5000EBE3E /* SystemConfiguration.framework in Frameworks */,
 				78B6B42D1CC70304002DCE1A /* libVuforia.a in Frameworks */,
-				78683AEF1C953BEB000EBE3E /* Security.framework in Frameworks */,
-				78683AED1C953BE5000EBE3E /* UIKit.framework in Frameworks */,
-				78683AEB1C953BCA000EBE3E /* AVFoundation.framework in Frameworks */,
 				2320FA058494C459E86A8EA4 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,6 +358,13 @@
 		04DDED58A8C9F73FAF816C77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78F4C4711CDF1C600044AF1A /* Security.framework */,
+				78F4C46F1CDF1C530044AF1A /* SystemConfiguration.framework */,
+				78F4C46D1CDF1C480044AF1A /* QuartzCore.framework */,
+				78F4C46B1CDF1C3D0044AF1A /* OpenGLES.framework */,
+				78F4C4691CDF1C320044AF1A /* CoreGraphics.framework */,
+				78F4C4671CDF1C270044AF1A /* CoreMotion.framework */,
+				78F4C4651CDF1C1C0044AF1A /* CoreMedia.framework */,
 				785ADE341CC9C9C200EF4FCA /* PhotosUI.framework */,
 				785ADE321CC9C9BA00EF4FCA /* Photos.framework */,
 				EA567D56BC4C04C7C6B7D6AD /* libPods.a */,
@@ -476,15 +477,6 @@
 		78A7033E1C5E297B005114AA = {
 			isa = PBXGroup;
 			children = (
-				7845862C1C9542250063F152 /* CoreMedia.framework */,
-				7845862A1C9541F80063F152 /* CoreMotion.framework */,
-				78683AF61C953C0B000EBE3E /* CoreGraphics.framework */,
-				78683AF41C953C03000EBE3E /* OpenGLES.framework */,
-				78683AF21C953BFD000EBE3E /* QuartzCore.framework */,
-				78683AF01C953BF5000EBE3E /* SystemConfiguration.framework */,
-				78683AEE1C953BEB000EBE3E /* Security.framework */,
-				78683AEC1C953BE5000EBE3E /* UIKit.framework */,
-				78683AEA1C953BCA000EBE3E /* AVFoundation.framework */,
 				78A703491C5E297B005114AA /* Omniscope-iOS */,
 				78A703631C5E297B005114AA /* Omniscope-iOSTests */,
 				78A7036E1C5E297B005114AA /* Omniscope-iOSUITests */,
