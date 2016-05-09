@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2320FA058494C459E86A8EA4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA567D56BC4C04C7C6B7D6AD /* libPods.a */; };
-		782B87C41CCB2D0900E0982E /* bag1.png in Resources */ = {isa = PBXBuildFile; fileRef = 782B87C31CCB2D0900E0982E /* bag1.png */; };
 		782B87C81CCB327900E0982E /* OSWelcomeViewController~iphone4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 782B87C51CCB327900E0982E /* OSWelcomeViewController~iphone4.xib */; };
 		782B87C91CCB327900E0982E /* OSWelcomeViewController~iphone47.xib in Resources */ = {isa = PBXBuildFile; fileRef = 782B87C61CCB327900E0982E /* OSWelcomeViewController~iphone47.xib */; };
 		782B87CA1CCB327900E0982E /* OSWelcomeViewController~iphone55.xib in Resources */ = {isa = PBXBuildFile; fileRef = 782B87C71CCB327900E0982E /* OSWelcomeViewController~iphone55.xib */; };
@@ -133,7 +132,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		782B87C31CCB2D0900E0982E /* bag1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bag1.png; sourceTree = "<group>"; };
 		782B87C51CCB327900E0982E /* OSWelcomeViewController~iphone4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSWelcomeViewController~iphone4.xib"; sourceTree = "<group>"; };
 		782B87C61CCB327900E0982E /* OSWelcomeViewController~iphone47.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSWelcomeViewController~iphone47.xib"; sourceTree = "<group>"; };
 		782B87C71CCB327900E0982E /* OSWelcomeViewController~iphone55.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSWelcomeViewController~iphone55.xib"; sourceTree = "<group>"; };
@@ -438,7 +436,6 @@
 				78F808A21CD72F7000E67007 /* emoji14.png */,
 				78F808A31CD72F7000E67007 /* emoji15.png */,
 				78F808A41CD72F7000E67007 /* emoji16.png */,
-				782B87C31CCB2D0900E0982E /* bag1.png */,
 				78F808931CD45AC600E67007 /* emoji_heaven.png */,
 			);
 			path = Assets;
@@ -981,7 +978,6 @@
 				78F4C4A41CE045000044AF1A /* OSGalleryViewController~iphone129.xib in Resources */,
 				782B87DA1CCBF01900E0982E /* OSAboutViewController~iphone47.xib in Resources */,
 				78FB9CEB1CD9C5A000D2023B /* e2.png in Resources */,
-				782B87C41CCB2D0900E0982E /* bag1.png in Resources */,
 				78A7046A1C5FA0F8005114AA /* OSCameraViewController.xib in Resources */,
 				78FB9CED1CD9C5A000D2023B /* e4.png in Resources */,
 				78F808841CD4275000E67007 /* CollectionCell~iphone4.xib in Resources */,

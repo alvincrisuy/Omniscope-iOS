@@ -31,7 +31,6 @@ namespace {
     
     // Teapot texture filenames
     const char* textureFilenames[] = {
-//        "bag1.png",             // 0
         "emoji_heaven.png",     // 1
 //        "emoji1.png",           // 2
 //        "emoji2.png",           // 3
