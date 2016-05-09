@@ -9,7 +9,6 @@
 #import "OSRootViewController.h"
 #import "OSAboutViewController.h"
 #import "OSCameraViewController.h"
-#import "OSInstructionViewController.h"
 #import "OSWelcomeViewController.h"
 #import "OSGalleryViewController.h"
 #import "OSImageViewController.h"
@@ -19,7 +18,6 @@ static OSRootViewController *_sharedController = nil;
 @interface OSRootViewController () {
     OSAboutViewController *_aboutViewController;
     OSCameraViewController *_cameraViewController;
-    OSInstructionViewController *_instructionViewController;
     OSWelcomeViewController *_welcomeViewController;
     OSGalleryViewController *_galleryViewController;
     OSImageViewController *_imageViewController;
@@ -101,12 +99,6 @@ static OSRootViewController *_sharedController = nil;
     
     [self transition:self.cameraViewController animated:NO];
 
-}
-
-- (void)transitionInstruction {
-    [self hiddenAllPage];
-    
-    [self transition:self.instructionViewController animated:NO];
 }
 
 - (void)transitionWelcome {
@@ -225,10 +217,6 @@ static OSRootViewController *_sharedController = nil;
     [self pushTransition:self.cameraViewController animated:animated];
 }
 
-- (void)transferInstructionViewController:(id)sender animated:(BOOL)animated {
-    [self pushTransition:self.instructionViewController animated:animated];
-}
-
 - (void)transferWelcomeViewController:(id)sender animated:(BOOL)animated {
     [self pushTransition:self.welcomeViewController animated:animated];
 }
@@ -261,16 +249,6 @@ static OSRootViewController *_sharedController = nil;
     }
     
     return _cameraViewController;
-}
-
-- (OSInstructionViewController *)instructionViewController {
-    if (!_instructionViewController) {
-        _instructionViewController = [[OSInstructionViewController alloc] init];
-        _instructionViewController.view.frame = self.contentView.bounds;
-    }
-    
-    return _instructionViewController;
-
 }
 
 - (OSWelcomeViewController *)welcomeViewController {

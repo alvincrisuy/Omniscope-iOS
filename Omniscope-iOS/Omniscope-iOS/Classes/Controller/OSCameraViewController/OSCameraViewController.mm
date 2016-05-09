@@ -147,10 +147,10 @@ NSString *const CSAlbumIdentifier = @"albumIdentifier";
             doubleTapRect = CGRectMake(0, 0, 414, 736);
             break;
         case UIDeviceTypeScreenXIB97:
-            doubleTapRect = CGRectMake(0, 0, 320, 480);
+            doubleTapRect = CGRectMake(0, 0, 768, 1024);
             break;
         case UIDeviceTypeScreenXIB129:
-            doubleTapRect = CGRectMake(0, 0, 320, 480);
+            doubleTapRect = CGRectMake(0, 0, 1024, 1366);
             break;
     }
     
@@ -412,13 +412,13 @@ NSString *const CSAlbumIdentifier = @"albumIdentifier";
             break;
         case UIDeviceTypeScreenXIB97:
             
-            widthScale = 320.0f;
-            heightScale = 480.0f;
+            widthScale = 768.0f;
+            heightScale = 1024.0f;
             break;
         case UIDeviceTypeScreenXIB129:
             
-            widthScale = 320.0f;
-            heightScale = 480.0f;
+            widthScale = 1024.0f;
+            heightScale = 1366.0f;
             break;
     }
     
