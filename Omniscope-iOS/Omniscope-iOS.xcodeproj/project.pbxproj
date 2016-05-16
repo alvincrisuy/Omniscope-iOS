@@ -46,6 +46,8 @@
 		78A704731C5FA159005114AA /* OSAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78A704721C5FA159005114AA /* OSAppDelegate.mm */; };
 		78A704751C5FA18A005114AA /* OSAppDelegate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78A704741C5FA18A005114AA /* OSAppDelegate.xib */; };
 		78B6B42D1CC70304002DCE1A /* libVuforia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B6B3FA1CC70304002DCE1A /* libVuforia.a */; };
+		78D8D4DC1CE95E4400A0BD2C /* CollectionCell~iphone97.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78D8D4DA1CE95E4400A0BD2C /* CollectionCell~iphone97.xib */; };
+		78D8D4DD1CE95E4400A0BD2C /* CollectionCell~iphone129.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78D8D4DB1CE95E4400A0BD2C /* CollectionCell~iphone129.xib */; };
 		78F4C4661CDF1C1C0044AF1A /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F4C4651CDF1C1C0044AF1A /* CoreMedia.framework */; };
 		78F4C4681CDF1C270044AF1A /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F4C4671CDF1C270044AF1A /* CoreMotion.framework */; };
 		78F4C46A1CDF1C320044AF1A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F4C4691CDF1C320044AF1A /* CoreGraphics.framework */; };
@@ -258,6 +260,8 @@
 		78B6B42B1CC70304002DCE1A /* WordList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordList.h; sourceTree = "<group>"; };
 		78B6B42C1CC70304002DCE1A /* WordResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordResult.h; sourceTree = "<group>"; };
 		78D219311C905640001899E2 /* OSGLResourceHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSGLResourceHandler.h; sourceTree = "<group>"; };
+		78D8D4DA1CE95E4400A0BD2C /* CollectionCell~iphone97.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CollectionCell~iphone97.xib"; sourceTree = "<group>"; };
+		78D8D4DB1CE95E4400A0BD2C /* CollectionCell~iphone129.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CollectionCell~iphone129.xib"; sourceTree = "<group>"; };
 		78F4C4651CDF1C1C0044AF1A /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		78F4C4671CDF1C270044AF1A /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		78F4C4691CDF1C320044AF1A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -776,6 +780,8 @@
 				78F808811CD4275000E67007 /* CollectionCell~iphone4.xib */,
 				78F808821CD4275000E67007 /* CollectionCell~iphone47.xib */,
 				78F808831CD4275000E67007 /* CollectionCell~iphone55.xib */,
+				78D8D4DA1CE95E4400A0BD2C /* CollectionCell~iphone97.xib */,
+				78D8D4DB1CE95E4400A0BD2C /* CollectionCell~iphone129.xib */,
 			);
 			path = CollectionCell;
 			sourceTree = "<group>";
@@ -936,6 +942,7 @@
 				78FB9CF01CD9C5A000D2023B /* e7.png in Resources */,
 				78F808AE1CD72F7000E67007 /* emoji10.png in Resources */,
 				78F808A51CD72F7000E67007 /* emoji1.png in Resources */,
+				78D8D4DC1CE95E4400A0BD2C /* CollectionCell~iphone97.xib in Resources */,
 				784586471C957CDA0063F152 /* Simple.vertsh in Resources */,
 				782B87DB1CCBF01900E0982E /* OSAboutViewController~iphone55.xib in Resources */,
 				78F808AC1CD72F7000E67007 /* emoji8.png in Resources */,
@@ -953,6 +960,7 @@
 				782B87C91CCB327900E0982E /* OSWelcomeViewController~iphone47.xib in Resources */,
 				78F808921CD4456000E67007 /* OSImageViewController~iphone55.xib in Resources */,
 				78FB9CEE1CD9C5A000D2023B /* e5.png in Resources */,
+				78D8D4DD1CE95E4400A0BD2C /* CollectionCell~iphone129.xib in Resources */,
 				782B87C81CCB327900E0982E /* OSWelcomeViewController~iphone4.xib in Resources */,
 				78F808A91CD72F7000E67007 /* emoji5.png in Resources */,
 				78F808901CD4456000E67007 /* OSImageViewController~iphone4.xib in Resources */,
