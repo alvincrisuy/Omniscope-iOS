@@ -30,6 +30,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.pressToStartButton.alpha = 0.0f;
+    self.pressToStartLabel.alpha = 0.0f;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -38,12 +41,11 @@
     [[OSRootViewController sharedController] hideNavigationView];
     [[OSRootViewController sharedController] hideTabView];
     
-    [NSTimer scheduledTimerWithTimeInterval:3.0
+    [NSTimer scheduledTimerWithTimeInterval:4.0
                                      target:self
-                                   selector:@selector(transitionCamera)
+                                   selector:@selector(showPressToStart)
                                    userInfo:nil
                                     repeats:NO];
-    
     
     [NSTimer scheduledTimerWithTimeInterval:1.0
                                      target:self
@@ -57,17 +59,56 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)hideLoading {
+    
+    [self.loadingIndicatorView stopAnimating];
+    
+}
+
+- (void)showPressToStart {
+    
+    [self.pressToStartButton setAlpha:1.0f];
+
+    [NSTimer scheduledTimerWithTimeInterval:1.0
+                                     target:self
+                                   selector:@selector(hideLoading)
+                                   userInfo:nil
+                                    repeats:NO];
+
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(continuousFadeInOut) userInfo:nil repeats:YES];
+
+}
+
+- (void)continuousFadeInOut {
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        [self.pressToStartLabel setAlpha:1.0f];
+        
+    } completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            [self.pressToStartLabel setAlpha:0.0f];
+            
+        } completion:^(BOOL finished) {
+            
+        }];
+        
+    }];
+}
+
 - (void)animateLogo {
     
     CATransition* animation;
     animation      = [CATransition animation];
     animation.type = kCATransitionFade;
     {
-        self.omniscopeLabel.alpha = 1.0f;
+        [self.omniscopeView setAlpha:1.0f];
     }
     
-    [self.omniscopeLabel.layer addAnimation:animation forKey:nil];
-
+    [self.omniscopeView.layer addAnimation:animation forKey:nil];
+    
 }
 
 - (void)transitionCamera {
@@ -76,4 +117,11 @@
     
 }
 
+- (IBAction)pressToStartButtonAction:(UIButton *)sender {
+    
+    NSLog(@"transition camera");
+    
+    [self transitionCamera];
+    
+}
 @end

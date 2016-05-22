@@ -10,6 +10,12 @@
 
 @interface OSWelcomeViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet UIView *omniscopeView;
 @property (nonatomic, retain) IBOutlet UILabel *omniscopeLabel;
+@property (nonatomic, retain) IBOutlet UIButton *pressToStartButton;
+@property (nonatomic, retain) IBOutlet UILabel *pressToStartLabel;
+@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *loadingIndicatorView;
+
+- (IBAction)pressToStartButtonAction:(UIButton *)sender;
 
 @end

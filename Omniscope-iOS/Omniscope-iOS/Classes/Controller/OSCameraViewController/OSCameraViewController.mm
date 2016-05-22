@@ -97,13 +97,13 @@ NSString *const CSAlbumIdentifier = @"albumIdentifier";
                                      smallerBoundsSize / 2 - 12, 24, 24);
     }
     
-    UIActivityIndicatorView *loadingIndicator = [[UIActivityIndicatorView alloc]
-                                                 initWithFrame:indicatorBounds];
-    
-    loadingIndicator.tag  = 1;
-    loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
-    [self.cameraView addSubview:loadingIndicator];
-    [loadingIndicator startAnimating];
+//    UIActivityIndicatorView *loadingIndicator = [[UIActivityIndicatorView alloc]
+//                                                 initWithFrame:indicatorBounds];
+//    
+//    loadingIndicator.tag  = 1;
+//    loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+//    [self.cameraView addSubview:loadingIndicator];
+//    [loadingIndicator startAnimating];
 }
 
 - (void)createAlbum {
@@ -380,8 +380,6 @@ NSString *const CSAlbumIdentifier = @"albumIdentifier";
     NSLog(@"capture");
     
     AudioServicesPlaySystemSoundWithCompletion(1108, ^{
-        
-        
         
     });
     
@@ -706,11 +704,11 @@ NSString *const CSAlbumIdentifier = @"albumIdentifier";
         if (NULL != dataSet) {
             NSLog(@"INFO: successfully loaded data set");
             
-            
             QCAR::setHint(QCAR::HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS, 5);
             
             // Load the data set from the app's resources location
             if (!dataSet->load([dataFile cStringUsingEncoding:NSASCIIStringEncoding], QCAR::STORAGE_APPRESOURCE)) {
+                
                 NSLog(@"ERROR: failed to load data set");
                 objectTracker->destroyDataSet(dataSet);
                 dataSet = NULL;
@@ -839,12 +837,12 @@ NSString *const CSAlbumIdentifier = @"albumIdentifier";
 
 - (void)onInitARDone:(NSError *)error {
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-
-        UIActivityIndicatorView *loadingIndicator = (UIActivityIndicatorView *)[self.cameraView viewWithTag:1];
-        [loadingIndicator removeFromSuperview];
-
-    });
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//
+//        UIActivityIndicatorView *loadingIndicator = (UIActivityIndicatorView *)[self.cameraView viewWithTag:1];
+//        [loadingIndicator removeFromSuperview];
+//
+//    });
 
     if (error == nil) {
         NSError * error = nil;
