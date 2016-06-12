@@ -11,10 +11,12 @@
 #import "OSCameraImageTargetsEAGLView.h"
 #import "OSApplicationSession.h"
 #import "DataSet.h"
+#import "OSRootViewController.h"
+#import "OSGridLinesView.h"
 
 #import <CTAssetsPickerController/CTAssetsPickerController.h>
 
-@interface OSCameraViewController : UIViewController <OSApplicationControl, CTAssetsPickerControllerDelegate> {
+@interface OSCameraViewController : UIViewController <OSApplicationControl, CTAssetsPickerControllerDelegate, OSRootViewControllerDelegate> {
     QCAR::DataSet*  dataSetCurrent;
     QCAR::DataSet*  dataSetPhoto;
 
@@ -29,13 +31,12 @@
 
 @property (nonatomic, assign) BOOL flashEnabled;
 @property (nonatomic, assign) BOOL frontCameraEnabled;
+@property (nonatomic, assign) BOOL gridEnabled;
 
 @property (nonatomic, retain) UIButton *frontBackButton;
 @property (nonatomic, retain) UIImageView *galleryImageView;
 @property (nonatomic, retain) UIButton *captureButton;
 
-- (IBAction)galleryButtonAction:(id)sender;
-- (IBAction)captureButtonAction:(id)sender;
-- (IBAction)frontBackButtonAction:(id)sender;
+@property (nonatomic, retain) OSGridLinesView *gridLinesView;
 
 @end

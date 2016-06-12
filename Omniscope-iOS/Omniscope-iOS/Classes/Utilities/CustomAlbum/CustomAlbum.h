@@ -29,4 +29,6 @@
 
 + (void)getImageWithCollection:(PHAssetCollection*)collection onSuccess:(void(^)(UIImage *image))onSuccess onError: (void(^)(NSError * error)) onError atIndex:(NSInteger)index;
 
+//Delete image
++ (void)deleteImageWithCollection:(PHAssetCollection *)collection onSuccess:(void(^)(BOOL isSuccess))onSuccess toAlbum:(PHAssetCollection *)album onError:(void(^)(NSError * error))onError atIndex:(NSInteger)index;
 @end

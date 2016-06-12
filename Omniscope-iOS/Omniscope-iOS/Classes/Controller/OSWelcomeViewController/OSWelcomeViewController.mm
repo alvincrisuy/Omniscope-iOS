@@ -40,6 +40,7 @@
     
     [[OSRootViewController sharedController] hideNavigationView];
     [[OSRootViewController sharedController] hideTabView];
+    [[OSRootViewController sharedController] hideSideTableView];
     
     [NSTimer scheduledTimerWithTimeInterval:4.0
                                      target:self

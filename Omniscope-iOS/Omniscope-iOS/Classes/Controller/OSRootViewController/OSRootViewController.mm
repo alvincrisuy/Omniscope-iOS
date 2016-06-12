@@ -12,6 +12,11 @@
 #import "OSWelcomeViewController.h"
 #import "OSGalleryViewController.h"
 #import "OSImageViewController.h"
+#import "OSRootTableViewCell.h"
+#import "OSHelpViewController.h"
+
+#import "UIDevice+DeviceType.h"
+#import "NSString+DeviceType.h"
 
 static OSRootViewController *_sharedController = nil;
 
@@ -21,13 +26,11 @@ static OSRootViewController *_sharedController = nil;
     OSWelcomeViewController *_welcomeViewController;
     OSGalleryViewController *_galleryViewController;
     OSImageViewController *_imageViewController;
+    OSHelpViewController *_helpViewController;
 }
 
 // Transition
 - (void)hiddenAllPage;
-
-// Back Button
-- (IBAction)backButtonAction:(id)sender;
 
 @end
 
@@ -48,7 +51,7 @@ static OSRootViewController *_sharedController = nil;
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    if (self = [super initWithNibName:[NSStringFromClass([OSRootViewController class]) concatenateClassToDeviceType] bundle:nibBundleOrNil]) {
         // Custom initialization
     }
     
@@ -73,6 +76,41 @@ static OSRootViewController *_sharedController = nil;
           self.view.bounds.origin.x,
           self.view.bounds.origin.y);
     
+    self.tabBar = [[NSArray alloc] initWithObjects:
+                   self.galleryTabButton,
+                   self.captureTabButton,
+                   self.otherInformationTabButton, nil];
+    
+    self.tabBarViews = [[NSArray alloc] initWithObjects:
+                        self.galleryTabView,
+                        self.captureTabView,
+                        self.otherInformationTabButton, nil];
+    
+    
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    
+    // Create a path with the rectangle in it.
+    CGMutablePathRef path = CGPathCreateMutable();
+    
+    CGFloat radius = 35.0f;
+    
+    CGPathAddArc(path, nil, self.tabWithCircleView.frame.size.width/2, self.tabWithCircleView.frame.size.height/2, radius, 0.0, 2 * M_PI, false);
+    CGPathAddRect(path, nil, CGRectMake(0, 0, self.tabWithCircleView.frame.size.width, self.tabWithCircleView.frame.size.height));
+    
+    maskLayer.backgroundColor = [UIColor blackColor].CGColor;
+    
+    maskLayer.path = path;
+    maskLayer.fillRule = kCAFillRuleEvenOdd;
+    
+    // Release the path since it's not covered by ARC.
+    self.tabWithCircleView.layer.mask = maskLayer;
+    self.tabWithCircleView.clipsToBounds = YES;
+
+    self.isSideBarTableViewDisplay = NO;
+    
+    _selectedButtonTag = Capture;
+    [self setSelectedButtonTag:_selectedButtonTag];
+    
     [self transitionWelcome];
 }
 
@@ -81,10 +119,42 @@ static OSRootViewController *_sharedController = nil;
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Back Button
+#pragma mark - Button
 
 - (IBAction)backButtonAction:(id)sender {
     [self popTransitionAnimated:YES];
+}
+
+- (IBAction)tabButtonAction:(UIButton *)sender {
+    [self disselectHighlightedButton];
+    
+    self.selectedButtonTag = (TabBarButtonTag)[sender tag];
+    
+    switch (self.selectedButtonTag) {
+        case Gallery:
+        {
+            OSGalleryViewController *galleryViewController = [OSRootViewController sharedController].galleryViewController;
+            
+            [[OSRootViewController sharedController].contentNavigationController presentViewController:galleryViewController animated:YES completion:^{
+                
+            }];
+        }
+            break;
+        case Capture:
+            [_delegate captureTabButtonAction:sender];
+            break;
+        case OtherInformation:
+            
+            self.isSideBarTableViewDisplay = !self.isSideBarTableViewDisplay;
+            
+            if (self.isSideBarTableViewDisplay) {
+                [self showSideTableView];
+            } else {
+                [self hideSideTableView];
+            }
+            
+            break;
+    }
 }
 
 #pragma mark - Transitions
@@ -98,7 +168,6 @@ static OSRootViewController *_sharedController = nil;
     [self hiddenAllPage];
     
     [self transition:self.cameraViewController animated:NO];
-
 }
 
 - (void)transitionWelcome {
@@ -119,6 +188,31 @@ static OSRootViewController *_sharedController = nil;
     [self transition:self.imageViewController animated:NO];
 }
 
+- (void)transitionHelp {
+    [self hiddenAllPage];
+    
+    [self transition:self.helpViewController animated:NO];
+}
+
+- (void)disselectHighlightedButton {
+    [[self.tabBar objectAtIndex:self.selectedButtonTag] setSelected:NO];
+}
+
+- (void)setSelectedButtonTag:(TabBarButtonTag)selectedButtonTag {
+    _selectedButtonTag = selectedButtonTag;
+    if (self.tabBar) {
+        
+        if (selectedButtonTag != Capture) {
+            [[self.tabBar objectAtIndex:selectedButtonTag] setSelected:YES];
+        }
+        
+        [UIView animateWithDuration:0.3f animations:^(void) {
+            UIButton *button = [self.tabBar objectAtIndex:selectedButtonTag];
+            [button.layer addAnimation:[OSRootViewController showAnimationGroup] forKey:nil];
+        }];
+    }
+}
+
 - (void)hiddenAllPage {
     if (self.contentNavigationController) {
         [self.contentNavigationController popToRootViewControllerAnimated:NO];
@@ -131,6 +225,26 @@ static OSRootViewController *_sharedController = nil;
 }
 
 - (void)transition:(UIViewController *)viewController animated:(BOOL)animated {
+    
+    if ([viewController isKindOfClass:[OSCameraViewController class]] ||
+        [viewController isKindOfClass:[OSGalleryViewController class]] ||
+        [viewController isKindOfClass:[OSAboutViewController class]]) {
+        [self setSelectedButtonTag:_selectedButtonTag];
+    } else {
+        [self disselectHighlightedButton];
+        
+        CATransition* animation;
+        animation      = [CATransition animation];
+        animation.type = kCATransitionFade;
+        {
+            self.backButtonView.alpha = 1;
+        }
+        
+        if (animated) {
+            [self.backButtonView.layer addAnimation:animation forKey:nil];
+        }
+    }
+
     if (self.contentNavigationController != nil) {
         self.contentNavigationController = nil;
     }
@@ -193,15 +307,35 @@ static OSRootViewController *_sharedController = nil;
 }
 
 - (void)showNavigationView {
-    self.navigationViewHeight.constant = 60;//self.navigationView.frame.size.height;
+    self.navigationViewHeight.constant = 60;
 }
 
 - (void)hideNavigationView {
     self.navigationViewHeight.constant = 0.0f;
 }
 
+- (void)showSideTableView {
+    [self.view layoutIfNeeded];
+
+    [UIView animateWithDuration:0.3 animations:^{
+        self.sideBarTableViewWidth.constant = 0.0f;
+        
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)hideSideTableView {
+    [self.view layoutIfNeeded];
+
+    [UIView animateWithDuration:0.3 animations:^{
+        self.sideBarTableViewWidth.constant = -106.5f;
+        
+        [self.view layoutIfNeeded];
+    }];
+}
+
 - (void)showTabView {
-    self.tabViewHeight.constant = 60;//self.tabView.frame.size.height;
+    self.tabViewHeight.constant = 120;
 }
 
 - (void)hideTabView {
@@ -231,6 +365,10 @@ static OSRootViewController *_sharedController = nil;
     vc.index = index;
     
     [self pushTransition:vc animated:animated];
+}
+
+- (void)transferHelpViewController:(id)sender animated:(BOOL)animated {
+    [self pushTransition:self.helpViewController animated:animated];
 }
 
 - (OSAboutViewController *)aboutViewController {
@@ -276,6 +414,114 @@ static OSRootViewController *_sharedController = nil;
 //    }
     
     return _imageViewController;
+}
+
+- (OSHelpViewController *)helpViewController {
+    if (!_helpViewController) {
+        _helpViewController = [[OSHelpViewController alloc] init];
+        _helpViewController.view.frame = self.contentView.bounds;
+    }
+    
+    return _helpViewController;
+}
+
++ (CAAnimationGroup*)showAnimationGroup {
+    static CAAnimationGroup* showAnimationGroup_ = nil;
+    
+    if (!showAnimationGroup_) {
+        CABasicAnimation* opacityAnime;
+        opacityAnime           = [[CABasicAnimation alloc] init];
+        opacityAnime.keyPath   = @"opacity";
+        opacityAnime.duration  = 0.3f;
+        opacityAnime.fromValue = [NSNumber numberWithFloat:0.0f];
+        opacityAnime.toValue   = [NSNumber numberWithFloat:1.0f];
+        
+        NSArray* valArraay;
+        valArraay = [[NSArray alloc] initWithObjects:
+                     [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.5, 0.5, 0.5)],
+                     [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.1, 1.1, 1.1)],
+                     [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.9, 0.9, 0.9)],
+                     [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.0, 1.0, 1.0)], nil];
+        
+        CAKeyframeAnimation* scaleAnime;
+        scaleAnime          = [[CAKeyframeAnimation alloc] init];
+        scaleAnime.keyPath  = @"transform";
+        scaleAnime.duration = 0.32f;
+        scaleAnime.values   = valArraay;
+        
+        NSArray* animeArraay;
+        animeArraay = [[NSArray alloc] initWithObjects:
+                       opacityAnime,
+                       scaleAnime, nil];
+        
+        showAnimationGroup_            = [[CAAnimationGroup alloc] init];
+        showAnimationGroup_.duration   = 0.32;
+        showAnimationGroup_.animations = animeArraay;
+    }
+    
+    return showAnimationGroup_;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 4;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    OSRootTableViewCellStyleRow level = (OSRootTableViewCellStyleRow)indexPath.row;
+    
+    return [OSRootTableViewCell cellHeightWithStyle:level];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    OSRootTableViewCellStyleRow index = (OSRootTableViewCellStyleRow)indexPath.row;
+    
+    static NSString *CELL_IDENTIFIER = @"0";
+    
+    switch (index) {
+        case OSRootTableViewCellStyleRow0:
+            CELL_IDENTIFIER = @"0";
+            break;
+        case OSRootTableViewCellStyleRow1:
+            CELL_IDENTIFIER = @"1";
+            break;
+        case OSRootTableViewCellStyleRow2:
+            CELL_IDENTIFIER = @"2";
+            break;
+        case OSRootTableViewCellStyleRow3:
+            CELL_IDENTIFIER = @"3";
+            break;
+    }
+    
+    OSRootTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER];
+    
+    if (cell == nil) {
+        cell = [OSRootTableViewCell cellFromNib:index];
+    }
+    
+    [cell.rowButton0 addTarget:self action:@selector(rowButton0Action:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.rowButton1 addTarget:self action:@selector(rowButton1Action:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.rowButton2 addTarget:self action:@selector(rowButton2Action:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.rowButton3 addTarget:self action:@selector(rowButton3Action:) forControlEvents:UIControlEventTouchUpInside];
+    
+    return cell;
+}
+
+- (void)rowButton0Action:(UIButton *)sender {
+    [_delegate row0SideButtonAction:sender];
+}
+
+- (void)rowButton1Action:(UIButton *)sender {
+    [_delegate row1SideButtonAction:sender];
+}
+
+- (void)rowButton2Action:(UIButton *)sender {
+    [self transferHelpViewController:self.contentNavigationController.visibleViewController animated:YES];
+}
+
+- (void)rowButton3Action:(UIButton *)sender {
+    [self transferAboutViewController:self.contentNavigationController.visibleViewController animated:YES];
 }
 
 @end

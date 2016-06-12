@@ -9,7 +9,7 @@
 #import "OSGalleryViewController.h"
 #import "OSRootViewController.h"
 #import "CustomAlbum.h"
-
+#import "OSGalleryImagePopupView.h"
 #import "NSString+DeviceType.h"
 
 #import "OSImageViewController.h"
@@ -46,8 +46,14 @@ NSString *const CSAlbum = @"Omniscope";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [CustomAlbum makeAlbumWithTitle:CSAlbum onSuccess:^(NSString *AlbumId) {
+        //        self.albumId = AlbumId;
+    } onError:^(NSError *error) {
+        NSLog(@"problem in creating album");
+    }];
+    
     self.collection = [CustomAlbum getMyAlbumWithName:CSAlbum];
-        
+    
     UINib *nib = [UINib nibWithNibName:[@"CollectionCell" concatenateClassToDeviceType] bundle: nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:@"collectionCell"];
     self.collectionView.dataSource = self;
@@ -103,11 +109,16 @@ NSString *const CSAlbum = @"Omniscope";
 
 - (void)imageView:(UIButton *)sender {
     
-    [[OSRootViewController sharedController].contentNavigationController dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+//    [[OSRootViewController sharedController].contentNavigationController dismissViewControllerAnimated:YES completion:^{
+//        
+//    }];
+//    
+//    [[OSRootViewController sharedController] transferImageViewController:self animated:YES index:sender.tag];
     
-    [[OSRootViewController sharedController] transferImageViewController:self animated:YES index:sender.tag];
+    OSGalleryImagePopupView *popupView = [OSGalleryImagePopupView viewFromNib];
+    popupView.delegate = self;
+    popupView.index = sender.tag;
+    [popupView show];
 }
 
 @end

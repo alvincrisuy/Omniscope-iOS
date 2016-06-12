@@ -19,4 +19,3 @@
 @property (nonatomic, weak) id<OSGLResourceHandler> glResourceHandler;
 
 @end
-

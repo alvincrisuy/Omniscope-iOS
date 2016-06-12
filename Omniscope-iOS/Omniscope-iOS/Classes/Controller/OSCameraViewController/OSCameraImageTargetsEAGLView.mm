@@ -62,6 +62,9 @@ namespace {
         "e11.png",              // 29
         "e12.png",              // 30
         "e13.png",              // 31
+        "J1less.png",
+        "H1less.png",
+        "F1less.png",
     };
     
     // Model scale factor
@@ -69,7 +72,6 @@ namespace {
 //    const float kObjectScaleNormal = 55.0f;
     //    const float kObjectScaleOffTargetTracking = 12.0f;
 }
-
 
 @interface OSCameraImageTargetsEAGLView (PrivateMethods)
 
@@ -80,7 +82,6 @@ namespace {
 - (BOOL)presentFramebuffer;
 
 @end
-
 
 @implementation OSCameraImageTargetsEAGLView
 
@@ -142,9 +143,7 @@ namespace {
     return self;
 }
 
-
-- (void)dealloc
-{
+- (void)dealloc {
     [self deleteFramebuffer];
     
     // Tear down context
@@ -158,8 +157,7 @@ namespace {
 }
 
 
-- (void)finishOpenGLESCommands
-{
+- (void)finishOpenGLESCommands {
     // Called in response to applicationWillResignActive.  The render loop has
     // been stopped, so we now make sure all OpenGL ES commands complete before
     // we (potentially) go into the background
@@ -169,9 +167,7 @@ namespace {
     }
 }
 
-
-- (void)freeOpenGLESResources
-{
+- (void)freeOpenGLESResources {
     // Called in response to applicationDidEnterBackground.  Free easily
     // recreated OpenGL ES resources
     [self deleteFramebuffer];
@@ -268,10 +264,12 @@ namespace {
         
         float xX = 0.0f;
         float yY = 0.0f;
+        float zZ = 0.0f;
         
         if (!strcmp(trackable.getName(), "Track1")) {
             targetIndex = 0;
             kObjectScaleNormal = 20.0f;
+            zZ = 20.0f;
 //            vertices[12] = {  -5, -5, 0, // bottom left corner
 //                              -5,  5, 0, // top left corner
 //                               5,  5, 0, // top right corner
@@ -338,6 +336,7 @@ namespace {
         } else if (!strcmp(trackable.getName(), "Track3")) {
             targetIndex = 1;
             kObjectScaleNormal = 100.0f;
+            zZ = 100.0f;
             
             vertices[0] = -20;
             vertices[1] = -5;
@@ -362,6 +361,7 @@ namespace {
             targetIndex = 2;
             
             kObjectScaleNormal = 100.0f;
+            zZ = 100.0f;
             
             vertices[0] = -5;
             vertices[1] = -10;
@@ -385,6 +385,7 @@ namespace {
             targetIndex = 3;
             
             kObjectScaleNormal = 25.0f;
+            zZ = 25.0f;
             
             vertices[0] = -10;
             vertices[1] = -5;
@@ -408,6 +409,7 @@ namespace {
             targetIndex = 4;
             
             kObjectScaleNormal = 100.0f;
+            zZ = 100.0f;
             
             vertices[0] = -5;
             vertices[1] = -5;
@@ -432,6 +434,7 @@ namespace {
             targetIndex = 5;
             
             kObjectScaleNormal = 50.0f;
+            zZ = 50.0f;
             
             vertices[0] = -5;
             vertices[1] = -5;
@@ -455,6 +458,7 @@ namespace {
             targetIndex = 6;
             
             kObjectScaleNormal = 100.0f;
+            zZ = 100.0f;
             
             vertices[0] = -10;
             vertices[1] = -5;
@@ -478,6 +482,7 @@ namespace {
             targetIndex = 7;
             
             kObjectScaleNormal = 35.0f;
+            zZ = 35.0f;
             
             vertices[0] = -20;
             vertices[1] = -5;
@@ -509,6 +514,7 @@ namespace {
             targetIndex = 8;
             
             kObjectScaleNormal = 100.0f;
+            zZ = 100.0f;
             
             vertices[0] = -10;
             vertices[1] = -5;
@@ -533,6 +539,7 @@ namespace {
             
             
             kObjectScaleNormal = 100.0f;
+            zZ = 100.0f;
             
             vertices[0] = -9;
             vertices[1] = -4;
@@ -556,6 +563,7 @@ namespace {
             targetIndex = 10;
             
             kObjectScaleNormal = 50.0f;
+            zZ = 50.0f;
             
             vertices[0] = -20;
             vertices[1] = -5;
@@ -579,6 +587,7 @@ namespace {
             targetIndex = 11;
             
             kObjectScaleNormal = 100.0f;
+            zZ = 100.0f;
             
             vertices[0] = -10;
             vertices[1] = -5;
@@ -603,6 +612,7 @@ namespace {
             targetIndex = 12;
             
             kObjectScaleNormal = 100.0f;
+            zZ = 100.0f;
             
             vertices[0] = -10;
             vertices[1] = -5;
@@ -622,9 +632,82 @@ namespace {
             
             xX = 250.0f;
             yY = 200.0f;
+        } else if (!strcmp(trackable.getName(), "J1")) {
+            
+            targetIndex = 13;
+            
+            kObjectScaleNormal = 129.0f;
+            zZ = 0.0f;
+            
+            vertices[0] = -5;
+            vertices[1] = -10;
+            vertices[2] = 0;
+            
+            vertices[3] = -5;
+            vertices[4] = 10;
+            vertices[5] = 0;
+            
+            vertices[6] = 5;
+            vertices[7] = 10;
+            vertices[8] = 0;
+            
+            vertices[9] = 5;
+            vertices[10] = -10;
+            vertices[11] = 0;
+            
+            xX = -68.0f;
+            yY = -278.0f;
+        } else if (!strcmp(trackable.getName(), "H1")) {
+            targetIndex = 14;
+            
+            kObjectScaleNormal = 145.0f;
+            zZ = 0.0f;
+            
+            vertices[0] = -5;
+            vertices[1] = -5;
+            vertices[2] = 0;
+            
+            vertices[3] = -5;
+            vertices[4] = 5;
+            vertices[5] = 0;
+            
+            vertices[6] = 5;
+            vertices[7] = 5;
+            vertices[8] = 0;
+            
+            vertices[9] = 5;
+            vertices[10] = -5;
+            vertices[11] = 0;
+            
+            xX = 350.0f;
+            yY = -650.0f;
+        } else if (!strcmp(trackable.getName(), "F1")) {
+            targetIndex = 15;
+            
+            kObjectScaleNormal = 300.0f;
+            zZ = 0.0f;
+            
+            vertices[0] = -5;
+            vertices[1] = -5;
+            vertices[2] = 0;
+            
+            vertices[3] = -5;
+            vertices[4] = 5;
+            vertices[5] = 0;
+            
+            vertices[6] = 5;
+            vertices[7] = 5;
+            vertices[8] = 0;
+            
+            vertices[9] = 5;
+            vertices[10] = -5;
+            vertices[11] = 0;
+            
+            xX = -100.0f;
+            yY = -340.0f;
         }
         
-        OSApplicationUtils::translatePoseMatrix(xX, yY, kObjectScaleNormal, &modelViewMatrix.data[0]);
+        OSApplicationUtils::translatePoseMatrix(xX, yY, zZ, &modelViewMatrix.data[0]);
         OSApplicationUtils::scalePoseMatrix(kObjectScaleNormal, kObjectScaleNormal, kObjectScaleNormal, &modelViewMatrix.data[0]);
         
         OSApplicationUtils::multiplyMatrix(&vapp.projectionMatrix.data[0], &modelViewMatrix.data[0], &modelViewProjection.data[0]);

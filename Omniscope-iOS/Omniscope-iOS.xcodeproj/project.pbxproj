@@ -10,9 +10,48 @@
 		2320FA058494C459E86A8EA4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA567D56BC4C04C7C6B7D6AD /* libPods.a */; };
 		782B87D01CCB336200E0982E /* NSString+DeviceType.m in Sources */ = {isa = PBXBuildFile; fileRef = 782B87CD1CCB336200E0982E /* NSString+DeviceType.m */; };
 		782B87D51CCB344B00E0982E /* UIDevice+DeviceType.m in Sources */ = {isa = PBXBuildFile; fileRef = 782B87D41CCB344B00E0982E /* UIDevice+DeviceType.m */; };
-		782B87D91CCBF01900E0982E /* OSAboutViewController~iphone4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 782B87D61CCBF01900E0982E /* OSAboutViewController~iphone4.xib */; };
-		782B87DA1CCBF01900E0982E /* OSAboutViewController~iphone47.xib in Resources */ = {isa = PBXBuildFile; fileRef = 782B87D71CCBF01900E0982E /* OSAboutViewController~iphone47.xib */; };
-		782B87DB1CCBF01900E0982E /* OSAboutViewController~iphone55.xib in Resources */ = {isa = PBXBuildFile; fileRef = 782B87D81CCBF01900E0982E /* OSAboutViewController~iphone55.xib */; };
+		783154EB1CFF295800920866 /* OSWelcomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 783154EA1CFF295800920866 /* OSWelcomeView.m */; };
+		783154ED1CFF29CB00920866 /* OSWelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 783154EC1CFF29CB00920866 /* OSWelcomeView.xib */; };
+		783154F31CFF2ABE00920866 /* OSWelcomeView~iphone4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 783154EE1CFF2ABE00920866 /* OSWelcomeView~iphone4.xib */; };
+		783154F41CFF2ABE00920866 /* OSWelcomeView~iphone47.xib in Resources */ = {isa = PBXBuildFile; fileRef = 783154EF1CFF2ABE00920866 /* OSWelcomeView~iphone47.xib */; };
+		783154F51CFF2ABE00920866 /* OSWelcomeView~iphone55.xib in Resources */ = {isa = PBXBuildFile; fileRef = 783154F01CFF2ABE00920866 /* OSWelcomeView~iphone55.xib */; };
+		783154F61CFF2ABE00920866 /* OSWelcomeView~iphone97.xib in Resources */ = {isa = PBXBuildFile; fileRef = 783154F11CFF2ABE00920866 /* OSWelcomeView~iphone97.xib */; };
+		783154F71CFF2ABE00920866 /* OSWelcomeView~iphone129.xib in Resources */ = {isa = PBXBuildFile; fileRef = 783154F21CFF2ABE00920866 /* OSWelcomeView~iphone129.xib */; };
+		7831552F1D01BEDA00920866 /* OSGridLinesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7831552E1D01BEDA00920866 /* OSGridLinesView.xib */; };
+		783155331D01BFD600920866 /* OSGridLinesView~iphone4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 783155301D01BFD600920866 /* OSGridLinesView~iphone4.xib */; };
+		783155341D01BFD600920866 /* OSGridLinesView~iphone47.xib in Resources */ = {isa = PBXBuildFile; fileRef = 783155311D01BFD600920866 /* OSGridLinesView~iphone47.xib */; };
+		783155351D01BFD600920866 /* OSGridLinesView~iphone55.xib in Resources */ = {isa = PBXBuildFile; fileRef = 783155321D01BFD600920866 /* OSGridLinesView~iphone55.xib */; };
+		783155381D01C09100920866 /* OSGridLinesView~iphone97.xib in Resources */ = {isa = PBXBuildFile; fileRef = 783155361D01C09100920866 /* OSGridLinesView~iphone97.xib */; };
+		783155391D01C09100920866 /* OSGridLinesView~iphone129.xib in Resources */ = {isa = PBXBuildFile; fileRef = 783155371D01C09100920866 /* OSGridLinesView~iphone129.xib */; };
+		7831553C1D01C38000920866 /* OSGridLinesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7831553B1D01C38000920866 /* OSGridLinesView.m */; };
+		7832AFDB1D0D343B00198F37 /* J1less.png in Resources */ = {isa = PBXBuildFile; fileRef = 7832AFDA1D0D343B00198F37 /* J1less.png */; };
+		7832AFDD1D0D499000198F37 /* H1less.png in Resources */ = {isa = PBXBuildFile; fileRef = 7832AFDC1D0D499000198F37 /* H1less.png */; };
+		7832AFDF1D0D5B0F00198F37 /* F1less.png in Resources */ = {isa = PBXBuildFile; fileRef = 7832AFDE1D0D5B0F00198F37 /* F1less.png */; };
+		78367DBA1D03CA1C0054440B /* OSAboutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78367DB81D03CA1C0054440B /* OSAboutTableViewCell.m */; };
+		78367DBB1D03CA1C0054440B /* OSAboutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78367DB91D03CA1C0054440B /* OSAboutTableViewCell.xib */; };
+		78367DE11D043BCE0054440B /* OSRootTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78367DDF1D043BCE0054440B /* OSRootTableViewCell.m */; };
+		78367DE21D043BCE0054440B /* OSRootTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78367DE01D043BCE0054440B /* OSRootTableViewCell.xib */; };
+		78367DE61D0448160054440B /* OSRootViewController~iphone4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78367DE31D0448160054440B /* OSRootViewController~iphone4.xib */; };
+		78367DE71D0448160054440B /* OSRootViewController~iphone47.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78367DE41D0448160054440B /* OSRootViewController~iphone47.xib */; };
+		78367DE81D0448160054440B /* OSRootViewController~iphone55.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78367DE51D0448160054440B /* OSRootViewController~iphone55.xib */; };
+		78367DEC1D0448DD0054440B /* OSRootTableViewCell~iphone4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78367DE91D0448DD0054440B /* OSRootTableViewCell~iphone4.xib */; };
+		78367DED1D0448DD0054440B /* OSRootTableViewCell~iphone47.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78367DEA1D0448DD0054440B /* OSRootTableViewCell~iphone47.xib */; };
+		78367DEE1D0448DD0054440B /* OSRootTableViewCell~iphone55.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78367DEB1D0448DD0054440B /* OSRootTableViewCell~iphone55.xib */; };
+		78367DF31D04518E0054440B /* OSHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78367DF11D04518E0054440B /* OSHelpViewController.m */; };
+		78367DF41D04518E0054440B /* OSHelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78367DF21D04518E0054440B /* OSHelpViewController.xib */; };
+		78367DF81D0451A20054440B /* OSHelpTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78367DF61D0451A20054440B /* OSHelpTableViewCell.m */; };
+		78367DF91D0451A20054440B /* OSHelpTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78367DF71D0451A20054440B /* OSHelpTableViewCell.xib */; };
+		78367DFC1D0454A00054440B /* OSHelpBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78367DFB1D0454A00054440B /* OSHelpBannerView.m */; };
+		78367DFE1D0454B10054440B /* OSHelpBannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78367DFD1D0454B10054440B /* OSHelpBannerView.xib */; };
+		78367E021D0455190054440B /* OSHelpBannerView~iphone4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78367DFF1D0455190054440B /* OSHelpBannerView~iphone4.xib */; };
+		78367E031D0455190054440B /* OSHelpBannerView~iphone47.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78367E001D0455190054440B /* OSHelpBannerView~iphone47.xib */; };
+		78367E041D0455190054440B /* OSHelpBannerView~iphone55.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78367E011D0455190054440B /* OSHelpBannerView~iphone55.xib */; };
+		78367E081D0455840054440B /* OSHelpTableViewCell~iphone4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78367E051D0455840054440B /* OSHelpTableViewCell~iphone4.xib */; };
+		78367E091D0455840054440B /* OSHelpTableViewCell~iphone47.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78367E061D0455840054440B /* OSHelpTableViewCell~iphone47.xib */; };
+		78367E0A1D0455840054440B /* OSHelpTableViewCell~iphone55.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78367E071D0455840054440B /* OSHelpTableViewCell~iphone55.xib */; };
+		78367E141D04591D0054440B /* OSHelpViewController~iphone4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78367E111D04591D0054440B /* OSHelpViewController~iphone4.xib */; };
+		78367E151D04591D0054440B /* OSHelpViewController~iphone47.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78367E121D04591D0054440B /* OSHelpViewController~iphone47.xib */; };
+		78367E161D04591D0054440B /* OSHelpViewController~iphone55.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78367E131D04591D0054440B /* OSHelpViewController~iphone55.xib */; };
 		784586381C9569480063F152 /* PhotoDetection.dat in Resources */ = {isa = PBXBuildFile; fileRef = 784586361C9569480063F152 /* PhotoDetection.dat */; };
 		784586391C9569480063F152 /* PhotoDetection.xml in Resources */ = {isa = PBXBuildFile; fileRef = 784586371C9569480063F152 /* PhotoDetection.xml */; };
 		784586441C957CDA0063F152 /* Line.fragsh in Resources */ = {isa = PBXBuildFile; fileRef = 784586401C957CDA0063F152 /* Line.fragsh */; };
@@ -31,8 +70,6 @@
 		787483701CF19B5100FD176F /* OSWelcomeViewController~iphone55.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7874836B1CF19B5100FD176F /* OSWelcomeViewController~iphone55.xib */; };
 		787483711CF19B5100FD176F /* OSWelcomeViewController~iphone97.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7874836C1CF19B5100FD176F /* OSWelcomeViewController~iphone97.xib */; };
 		787483721CF19B5100FD176F /* OSWelcomeViewController~iphone129.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7874836D1CF19B5100FD176F /* OSWelcomeViewController~iphone129.xib */; };
-		789F68A01CCEED2300DCFC97 /* OSFrontBackCameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 789F689F1CCEED2300DCFC97 /* OSFrontBackCameraView.m */; };
-		789F68A21CCEED3100DCFC97 /* OSFrontBackCameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 789F68A11CCEED3100DCFC97 /* OSFrontBackCameraView.xib */; };
 		78A703651C5E297B005114AA /* Omniscope_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A703641C5E297B005114AA /* Omniscope_iOSTests.m */; };
 		78A703701C5E297B005114AA /* Omniscope_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A7036F1C5E297B005114AA /* Omniscope_iOSUITests.m */; };
 		78A703831C5E35B9005114AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A703811C5E35B9005114AA /* main.m */; };
@@ -50,6 +87,22 @@
 		78B6B42D1CC70304002DCE1A /* libVuforia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B6B3FA1CC70304002DCE1A /* libVuforia.a */; };
 		78D8D4DC1CE95E4400A0BD2C /* CollectionCell~iphone97.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78D8D4DA1CE95E4400A0BD2C /* CollectionCell~iphone97.xib */; };
 		78D8D4DD1CE95E4400A0BD2C /* CollectionCell~iphone129.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78D8D4DB1CE95E4400A0BD2C /* CollectionCell~iphone129.xib */; };
+		78E5008A1D08CE8800672E19 /* OSAboutViewController~iphone4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E500871D08CE8800672E19 /* OSAboutViewController~iphone4.xib */; };
+		78E5008B1D08CE8800672E19 /* OSAboutViewController~iphone47.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E500881D08CE8800672E19 /* OSAboutViewController~iphone47.xib */; };
+		78E5008C1D08CE8800672E19 /* OSAboutViewController~iphone55.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E500891D08CE8800672E19 /* OSAboutViewController~iphone55.xib */; };
+		78E500901D08CEAE00672E19 /* OSAboutTableViewCell~iphone4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E5008D1D08CEAE00672E19 /* OSAboutTableViewCell~iphone4.xib */; };
+		78E500911D08CEAE00672E19 /* OSAboutTableViewCell~iphone47.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E5008E1D08CEAE00672E19 /* OSAboutTableViewCell~iphone47.xib */; };
+		78E500921D08CEAE00672E19 /* OSAboutTableViewCell~iphone55.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E5008F1D08CEAE00672E19 /* OSAboutTableViewCell~iphone55.xib */; };
+		78E500951D08EA7B00672E19 /* OSGalleryImagePopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E500941D08EA7B00672E19 /* OSGalleryImagePopupView.m */; };
+		78E500971D08EA8C00672E19 /* OSGalleryImagePopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E500961D08EA8C00672E19 /* OSGalleryImagePopupView.xib */; };
+		78E5009A1D08F27F00672E19 /* OSGalleryImageBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E500991D08F27F00672E19 /* OSGalleryImageBannerView.m */; };
+		78E5009C1D08F28F00672E19 /* OSGalleryImageBannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E5009B1D08F28F00672E19 /* OSGalleryImageBannerView.xib */; };
+		78E500A01D09311D00672E19 /* OSGalleryImageBannerView~iphone4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E5009D1D09311D00672E19 /* OSGalleryImageBannerView~iphone4.xib */; };
+		78E500A11D09311D00672E19 /* OSGalleryImageBannerView~iphone47.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E5009E1D09311D00672E19 /* OSGalleryImageBannerView~iphone47.xib */; };
+		78E500A21D09311D00672E19 /* OSGalleryImageBannerView~iphone55.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E5009F1D09311D00672E19 /* OSGalleryImageBannerView~iphone55.xib */; };
+		78E500A61D0934C700672E19 /* OSGalleryImagePopupView~iphone4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E500A31D0934C700672E19 /* OSGalleryImagePopupView~iphone4.xib */; };
+		78E500A71D0934C700672E19 /* OSGalleryImagePopupView~iphone47.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E500A41D0934C700672E19 /* OSGalleryImagePopupView~iphone47.xib */; };
+		78E500A81D0934C700672E19 /* OSGalleryImagePopupView~iphone55.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E500A51D0934C700672E19 /* OSGalleryImagePopupView~iphone55.xib */; };
 		78F4C4661CDF1C1C0044AF1A /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F4C4651CDF1C1C0044AF1A /* CoreMedia.framework */; };
 		78F4C4681CDF1C270044AF1A /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F4C4671CDF1C270044AF1A /* CoreMotion.framework */; };
 		78F4C46A1CDF1C320044AF1A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F4C4691CDF1C320044AF1A /* CoreGraphics.framework */; };
@@ -57,8 +110,6 @@
 		78F4C46E1CDF1C480044AF1A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F4C46D1CDF1C480044AF1A /* QuartzCore.framework */; };
 		78F4C4701CDF1C530044AF1A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F4C46F1CDF1C530044AF1A /* SystemConfiguration.framework */; };
 		78F4C4721CDF1C600044AF1A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F4C4711CDF1C600044AF1A /* Security.framework */; };
-		78F4C4971CE03EC70044AF1A /* OSAboutViewController~iphone97.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78F4C4951CE03EC70044AF1A /* OSAboutViewController~iphone97.xib */; };
-		78F4C4981CE03EC70044AF1A /* OSAboutViewController~iphone129.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78F4C4961CE03EC70044AF1A /* OSAboutViewController~iphone129.xib */; };
 		78F4C49F1CE044ED0044AF1A /* OSImageViewController~iphone97.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78F4C49D1CE044ED0044AF1A /* OSImageViewController~iphone97.xib */; };
 		78F4C4A01CE044ED0044AF1A /* OSImageViewController~iphone129.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78F4C49E1CE044ED0044AF1A /* OSImageViewController~iphone129.xib */; };
 		78F4C4A31CE045000044AF1A /* OSGalleryViewController~iphone97.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78F4C4A11CE045000044AF1A /* OSGalleryViewController~iphone97.xib */; };
@@ -138,9 +189,55 @@
 		782B87CD1CCB336200E0982E /* NSString+DeviceType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DeviceType.m"; sourceTree = "<group>"; };
 		782B87D31CCB344B00E0982E /* UIDevice+DeviceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+DeviceType.h"; sourceTree = "<group>"; };
 		782B87D41CCB344B00E0982E /* UIDevice+DeviceType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+DeviceType.m"; sourceTree = "<group>"; };
-		782B87D61CCBF01900E0982E /* OSAboutViewController~iphone4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSAboutViewController~iphone4.xib"; sourceTree = "<group>"; };
-		782B87D71CCBF01900E0982E /* OSAboutViewController~iphone47.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSAboutViewController~iphone47.xib"; sourceTree = "<group>"; };
-		782B87D81CCBF01900E0982E /* OSAboutViewController~iphone55.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSAboutViewController~iphone55.xib"; sourceTree = "<group>"; };
+		783154E91CFF295800920866 /* OSWelcomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSWelcomeView.h; sourceTree = "<group>"; };
+		783154EA1CFF295800920866 /* OSWelcomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSWelcomeView.m; sourceTree = "<group>"; };
+		783154EC1CFF29CB00920866 /* OSWelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OSWelcomeView.xib; sourceTree = "<group>"; };
+		783154EE1CFF2ABE00920866 /* OSWelcomeView~iphone4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSWelcomeView~iphone4.xib"; sourceTree = "<group>"; };
+		783154EF1CFF2ABE00920866 /* OSWelcomeView~iphone47.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSWelcomeView~iphone47.xib"; sourceTree = "<group>"; };
+		783154F01CFF2ABE00920866 /* OSWelcomeView~iphone55.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSWelcomeView~iphone55.xib"; sourceTree = "<group>"; };
+		783154F11CFF2ABE00920866 /* OSWelcomeView~iphone97.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSWelcomeView~iphone97.xib"; sourceTree = "<group>"; };
+		783154F21CFF2ABE00920866 /* OSWelcomeView~iphone129.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSWelcomeView~iphone129.xib"; sourceTree = "<group>"; };
+		7831552E1D01BEDA00920866 /* OSGridLinesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OSGridLinesView.xib; sourceTree = "<group>"; };
+		783155301D01BFD600920866 /* OSGridLinesView~iphone4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSGridLinesView~iphone4.xib"; sourceTree = "<group>"; };
+		783155311D01BFD600920866 /* OSGridLinesView~iphone47.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSGridLinesView~iphone47.xib"; sourceTree = "<group>"; };
+		783155321D01BFD600920866 /* OSGridLinesView~iphone55.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSGridLinesView~iphone55.xib"; sourceTree = "<group>"; };
+		783155361D01C09100920866 /* OSGridLinesView~iphone97.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSGridLinesView~iphone97.xib"; sourceTree = "<group>"; };
+		783155371D01C09100920866 /* OSGridLinesView~iphone129.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSGridLinesView~iphone129.xib"; sourceTree = "<group>"; };
+		7831553A1D01C38000920866 /* OSGridLinesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSGridLinesView.h; sourceTree = "<group>"; };
+		7831553B1D01C38000920866 /* OSGridLinesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSGridLinesView.m; sourceTree = "<group>"; };
+		7832AFDA1D0D343B00198F37 /* J1less.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = J1less.png; sourceTree = "<group>"; };
+		7832AFDC1D0D499000198F37 /* H1less.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = H1less.png; sourceTree = "<group>"; };
+		7832AFDE1D0D5B0F00198F37 /* F1less.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = F1less.png; sourceTree = "<group>"; };
+		78367DB71D03CA1C0054440B /* OSAboutTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSAboutTableViewCell.h; sourceTree = "<group>"; };
+		78367DB81D03CA1C0054440B /* OSAboutTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSAboutTableViewCell.m; sourceTree = "<group>"; };
+		78367DB91D03CA1C0054440B /* OSAboutTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OSAboutTableViewCell.xib; sourceTree = "<group>"; };
+		78367DDE1D043BCE0054440B /* OSRootTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSRootTableViewCell.h; sourceTree = "<group>"; };
+		78367DDF1D043BCE0054440B /* OSRootTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSRootTableViewCell.m; sourceTree = "<group>"; };
+		78367DE01D043BCE0054440B /* OSRootTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OSRootTableViewCell.xib; sourceTree = "<group>"; };
+		78367DE31D0448160054440B /* OSRootViewController~iphone4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSRootViewController~iphone4.xib"; sourceTree = "<group>"; };
+		78367DE41D0448160054440B /* OSRootViewController~iphone47.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSRootViewController~iphone47.xib"; sourceTree = "<group>"; };
+		78367DE51D0448160054440B /* OSRootViewController~iphone55.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSRootViewController~iphone55.xib"; sourceTree = "<group>"; };
+		78367DE91D0448DD0054440B /* OSRootTableViewCell~iphone4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSRootTableViewCell~iphone4.xib"; sourceTree = "<group>"; };
+		78367DEA1D0448DD0054440B /* OSRootTableViewCell~iphone47.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSRootTableViewCell~iphone47.xib"; sourceTree = "<group>"; };
+		78367DEB1D0448DD0054440B /* OSRootTableViewCell~iphone55.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSRootTableViewCell~iphone55.xib"; sourceTree = "<group>"; };
+		78367DF01D04518E0054440B /* OSHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSHelpViewController.h; sourceTree = "<group>"; };
+		78367DF11D04518E0054440B /* OSHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSHelpViewController.m; sourceTree = "<group>"; };
+		78367DF21D04518E0054440B /* OSHelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OSHelpViewController.xib; sourceTree = "<group>"; };
+		78367DF51D0451A20054440B /* OSHelpTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSHelpTableViewCell.h; sourceTree = "<group>"; };
+		78367DF61D0451A20054440B /* OSHelpTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSHelpTableViewCell.m; sourceTree = "<group>"; };
+		78367DF71D0451A20054440B /* OSHelpTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OSHelpTableViewCell.xib; sourceTree = "<group>"; };
+		78367DFA1D0454A00054440B /* OSHelpBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSHelpBannerView.h; sourceTree = "<group>"; };
+		78367DFB1D0454A00054440B /* OSHelpBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSHelpBannerView.m; sourceTree = "<group>"; };
+		78367DFD1D0454B10054440B /* OSHelpBannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OSHelpBannerView.xib; sourceTree = "<group>"; };
+		78367DFF1D0455190054440B /* OSHelpBannerView~iphone4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSHelpBannerView~iphone4.xib"; sourceTree = "<group>"; };
+		78367E001D0455190054440B /* OSHelpBannerView~iphone47.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSHelpBannerView~iphone47.xib"; sourceTree = "<group>"; };
+		78367E011D0455190054440B /* OSHelpBannerView~iphone55.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSHelpBannerView~iphone55.xib"; sourceTree = "<group>"; };
+		78367E051D0455840054440B /* OSHelpTableViewCell~iphone4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSHelpTableViewCell~iphone4.xib"; sourceTree = "<group>"; };
+		78367E061D0455840054440B /* OSHelpTableViewCell~iphone47.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSHelpTableViewCell~iphone47.xib"; sourceTree = "<group>"; };
+		78367E071D0455840054440B /* OSHelpTableViewCell~iphone55.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSHelpTableViewCell~iphone55.xib"; sourceTree = "<group>"; };
+		78367E111D04591D0054440B /* OSHelpViewController~iphone4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSHelpViewController~iphone4.xib"; sourceTree = "<group>"; };
+		78367E121D04591D0054440B /* OSHelpViewController~iphone47.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSHelpViewController~iphone47.xib"; sourceTree = "<group>"; };
+		78367E131D04591D0054440B /* OSHelpViewController~iphone55.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSHelpViewController~iphone55.xib"; sourceTree = "<group>"; };
 		784586361C9569480063F152 /* PhotoDetection.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = PhotoDetection.dat; sourceTree = "<group>"; };
 		784586371C9569480063F152 /* PhotoDetection.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PhotoDetection.xml; sourceTree = "<group>"; };
 		784586401C957CDA0063F152 /* Line.fragsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Line.fragsh; sourceTree = "<group>"; };
@@ -164,9 +261,6 @@
 		7874836B1CF19B5100FD176F /* OSWelcomeViewController~iphone55.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSWelcomeViewController~iphone55.xib"; sourceTree = "<group>"; };
 		7874836C1CF19B5100FD176F /* OSWelcomeViewController~iphone97.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSWelcomeViewController~iphone97.xib"; sourceTree = "<group>"; };
 		7874836D1CF19B5100FD176F /* OSWelcomeViewController~iphone129.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSWelcomeViewController~iphone129.xib"; sourceTree = "<group>"; };
-		789F689E1CCEED2300DCFC97 /* OSFrontBackCameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSFrontBackCameraView.h; sourceTree = "<group>"; };
-		789F689F1CCEED2300DCFC97 /* OSFrontBackCameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSFrontBackCameraView.m; sourceTree = "<group>"; };
-		789F68A11CCEED3100DCFC97 /* OSFrontBackCameraView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OSFrontBackCameraView.xib; sourceTree = "<group>"; };
 		78A703471C5E297B005114AA /* Omniscope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Omniscope.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A703601C5E297B005114AA /* Omniscope-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Omniscope-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A703641C5E297B005114AA /* Omniscope_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Omniscope_iOSTests.m; sourceTree = "<group>"; };
@@ -264,6 +358,24 @@
 		78D219311C905640001899E2 /* OSGLResourceHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSGLResourceHandler.h; sourceTree = "<group>"; };
 		78D8D4DA1CE95E4400A0BD2C /* CollectionCell~iphone97.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CollectionCell~iphone97.xib"; sourceTree = "<group>"; };
 		78D8D4DB1CE95E4400A0BD2C /* CollectionCell~iphone129.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CollectionCell~iphone129.xib"; sourceTree = "<group>"; };
+		78E500871D08CE8800672E19 /* OSAboutViewController~iphone4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSAboutViewController~iphone4.xib"; sourceTree = "<group>"; };
+		78E500881D08CE8800672E19 /* OSAboutViewController~iphone47.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSAboutViewController~iphone47.xib"; sourceTree = "<group>"; };
+		78E500891D08CE8800672E19 /* OSAboutViewController~iphone55.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSAboutViewController~iphone55.xib"; sourceTree = "<group>"; };
+		78E5008D1D08CEAE00672E19 /* OSAboutTableViewCell~iphone4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSAboutTableViewCell~iphone4.xib"; sourceTree = "<group>"; };
+		78E5008E1D08CEAE00672E19 /* OSAboutTableViewCell~iphone47.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSAboutTableViewCell~iphone47.xib"; sourceTree = "<group>"; };
+		78E5008F1D08CEAE00672E19 /* OSAboutTableViewCell~iphone55.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSAboutTableViewCell~iphone55.xib"; sourceTree = "<group>"; };
+		78E500931D08EA7B00672E19 /* OSGalleryImagePopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSGalleryImagePopupView.h; sourceTree = "<group>"; };
+		78E500941D08EA7B00672E19 /* OSGalleryImagePopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSGalleryImagePopupView.m; sourceTree = "<group>"; };
+		78E500961D08EA8C00672E19 /* OSGalleryImagePopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OSGalleryImagePopupView.xib; sourceTree = "<group>"; };
+		78E500981D08F27F00672E19 /* OSGalleryImageBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSGalleryImageBannerView.h; sourceTree = "<group>"; };
+		78E500991D08F27F00672E19 /* OSGalleryImageBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSGalleryImageBannerView.m; sourceTree = "<group>"; };
+		78E5009B1D08F28F00672E19 /* OSGalleryImageBannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OSGalleryImageBannerView.xib; sourceTree = "<group>"; };
+		78E5009D1D09311D00672E19 /* OSGalleryImageBannerView~iphone4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSGalleryImageBannerView~iphone4.xib"; sourceTree = "<group>"; };
+		78E5009E1D09311D00672E19 /* OSGalleryImageBannerView~iphone47.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSGalleryImageBannerView~iphone47.xib"; sourceTree = "<group>"; };
+		78E5009F1D09311D00672E19 /* OSGalleryImageBannerView~iphone55.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSGalleryImageBannerView~iphone55.xib"; sourceTree = "<group>"; };
+		78E500A31D0934C700672E19 /* OSGalleryImagePopupView~iphone4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSGalleryImagePopupView~iphone4.xib"; sourceTree = "<group>"; };
+		78E500A41D0934C700672E19 /* OSGalleryImagePopupView~iphone47.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSGalleryImagePopupView~iphone47.xib"; sourceTree = "<group>"; };
+		78E500A51D0934C700672E19 /* OSGalleryImagePopupView~iphone55.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSGalleryImagePopupView~iphone55.xib"; sourceTree = "<group>"; };
 		78F4C4651CDF1C1C0044AF1A /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		78F4C4671CDF1C270044AF1A /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		78F4C4691CDF1C320044AF1A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -271,8 +383,6 @@
 		78F4C46D1CDF1C480044AF1A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		78F4C46F1CDF1C530044AF1A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		78F4C4711CDF1C600044AF1A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		78F4C4951CE03EC70044AF1A /* OSAboutViewController~iphone97.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSAboutViewController~iphone97.xib"; sourceTree = "<group>"; };
-		78F4C4961CE03EC70044AF1A /* OSAboutViewController~iphone129.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSAboutViewController~iphone129.xib"; sourceTree = "<group>"; };
 		78F4C49D1CE044ED0044AF1A /* OSImageViewController~iphone97.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSImageViewController~iphone97.xib"; sourceTree = "<group>"; };
 		78F4C49E1CE044ED0044AF1A /* OSImageViewController~iphone129.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSImageViewController~iphone129.xib"; sourceTree = "<group>"; };
 		78F4C4A11CE045000044AF1A /* OSGalleryViewController~iphone97.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSGalleryViewController~iphone97.xib"; sourceTree = "<group>"; };
@@ -407,6 +517,61 @@
 			path = UIDevice;
 			sourceTree = "<group>";
 		};
+		783154E81CFF294000920866 /* OSWelcomeView */ = {
+			isa = PBXGroup;
+			children = (
+				783154E91CFF295800920866 /* OSWelcomeView.h */,
+				783154EA1CFF295800920866 /* OSWelcomeView.m */,
+				783154EC1CFF29CB00920866 /* OSWelcomeView.xib */,
+				783154EE1CFF2ABE00920866 /* OSWelcomeView~iphone4.xib */,
+				783154EF1CFF2ABE00920866 /* OSWelcomeView~iphone47.xib */,
+				783154F01CFF2ABE00920866 /* OSWelcomeView~iphone55.xib */,
+				783154F11CFF2ABE00920866 /* OSWelcomeView~iphone97.xib */,
+				783154F21CFF2ABE00920866 /* OSWelcomeView~iphone129.xib */,
+			);
+			path = OSWelcomeView;
+			sourceTree = "<group>";
+		};
+		7831552D1D01BEC600920866 /* OSGridLinesView */ = {
+			isa = PBXGroup;
+			children = (
+				7831553A1D01C38000920866 /* OSGridLinesView.h */,
+				7831553B1D01C38000920866 /* OSGridLinesView.m */,
+				7831552E1D01BEDA00920866 /* OSGridLinesView.xib */,
+				783155301D01BFD600920866 /* OSGridLinesView~iphone4.xib */,
+				783155311D01BFD600920866 /* OSGridLinesView~iphone47.xib */,
+				783155321D01BFD600920866 /* OSGridLinesView~iphone55.xib */,
+				783155361D01C09100920866 /* OSGridLinesView~iphone97.xib */,
+				783155371D01C09100920866 /* OSGridLinesView~iphone129.xib */,
+			);
+			path = OSGridLinesView;
+			sourceTree = "<group>";
+		};
+		78367DEF1D0451270054440B /* OSHelpViewController */ = {
+			isa = PBXGroup;
+			children = (
+				78367DF01D04518E0054440B /* OSHelpViewController.h */,
+				78367DF11D04518E0054440B /* OSHelpViewController.m */,
+				78367DF21D04518E0054440B /* OSHelpViewController.xib */,
+				78367E111D04591D0054440B /* OSHelpViewController~iphone4.xib */,
+				78367E121D04591D0054440B /* OSHelpViewController~iphone47.xib */,
+				78367E131D04591D0054440B /* OSHelpViewController~iphone55.xib */,
+				78367DF51D0451A20054440B /* OSHelpTableViewCell.h */,
+				78367DF61D0451A20054440B /* OSHelpTableViewCell.m */,
+				78367DF71D0451A20054440B /* OSHelpTableViewCell.xib */,
+				78367E051D0455840054440B /* OSHelpTableViewCell~iphone4.xib */,
+				78367E061D0455840054440B /* OSHelpTableViewCell~iphone47.xib */,
+				78367E071D0455840054440B /* OSHelpTableViewCell~iphone55.xib */,
+				78367DFA1D0454A00054440B /* OSHelpBannerView.h */,
+				78367DFB1D0454A00054440B /* OSHelpBannerView.m */,
+				78367DFD1D0454B10054440B /* OSHelpBannerView.xib */,
+				78367DFF1D0455190054440B /* OSHelpBannerView~iphone4.xib */,
+				78367E001D0455190054440B /* OSHelpBannerView~iphone47.xib */,
+				78367E011D0455190054440B /* OSHelpBannerView~iphone55.xib */,
+			);
+			path = OSHelpViewController;
+			sourceTree = "<group>";
+		};
 		7845862E1C9567FC0063F152 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,6 +606,9 @@
 				78F808A31CD72F7000E67007 /* emoji15.png */,
 				78F808A41CD72F7000E67007 /* emoji16.png */,
 				78F808931CD45AC600E67007 /* emoji_heaven.png */,
+				7832AFDA1D0D343B00198F37 /* J1less.png */,
+				7832AFDC1D0D499000198F37 /* H1less.png */,
+				7832AFDE1D0D5B0F00198F37 /* F1less.png */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -478,16 +646,6 @@
 				78683AE81C95239F000EBE3E /* OSApplicationUtils.cpp */,
 			);
 			path = OSApplicationSession;
-			sourceTree = "<group>";
-		};
-		789F689D1CCEED0E00DCFC97 /* OSFrontBackCameraView */ = {
-			isa = PBXGroup;
-			children = (
-				789F689E1CCEED2300DCFC97 /* OSFrontBackCameraView.h */,
-				789F689F1CCEED2300DCFC97 /* OSFrontBackCameraView.m */,
-				789F68A11CCEED3100DCFC97 /* OSFrontBackCameraView.xib */,
-			);
-			path = OSFrontBackCameraView;
 			sourceTree = "<group>";
 		};
 		78A7033E1C5E297B005114AA = {
@@ -579,6 +737,7 @@
 				78A704511C5FA0F8005114AA /* OSAboutViewController */,
 				78A704551C5FA0F8005114AA /* OSCameraViewController */,
 				78F808721CD415EA00E67007 /* OSGalleryViewController */,
+				78367DEF1D0451270054440B /* OSHelpViewController */,
 				78F808871CD4283C00E67007 /* OSImageViewController */,
 				78A7045D1C5FA0F8005114AA /* OSRootViewController */,
 				78A704611C5FA0F8005114AA /* OSWelcomeViewController */,
@@ -592,11 +751,15 @@
 				78A704521C5FA0F8005114AA /* OSAboutViewController.h */,
 				78A704531C5FA0F8005114AA /* OSAboutViewController.mm */,
 				78A704541C5FA0F8005114AA /* OSAboutViewController.xib */,
-				782B87D61CCBF01900E0982E /* OSAboutViewController~iphone4.xib */,
-				782B87D71CCBF01900E0982E /* OSAboutViewController~iphone47.xib */,
-				782B87D81CCBF01900E0982E /* OSAboutViewController~iphone55.xib */,
-				78F4C4951CE03EC70044AF1A /* OSAboutViewController~iphone97.xib */,
-				78F4C4961CE03EC70044AF1A /* OSAboutViewController~iphone129.xib */,
+				78E500871D08CE8800672E19 /* OSAboutViewController~iphone4.xib */,
+				78E500881D08CE8800672E19 /* OSAboutViewController~iphone47.xib */,
+				78E500891D08CE8800672E19 /* OSAboutViewController~iphone55.xib */,
+				78367DB71D03CA1C0054440B /* OSAboutTableViewCell.h */,
+				78367DB81D03CA1C0054440B /* OSAboutTableViewCell.m */,
+				78367DB91D03CA1C0054440B /* OSAboutTableViewCell.xib */,
+				78E5008D1D08CEAE00672E19 /* OSAboutTableViewCell~iphone4.xib */,
+				78E5008E1D08CEAE00672E19 /* OSAboutTableViewCell~iphone47.xib */,
+				78E5008F1D08CEAE00672E19 /* OSAboutTableViewCell~iphone55.xib */,
 			);
 			path = OSAboutViewController;
 			sourceTree = "<group>";
@@ -624,6 +787,15 @@
 				78A7045E1C5FA0F8005114AA /* OSRootViewController.h */,
 				78A7045F1C5FA0F8005114AA /* OSRootViewController.mm */,
 				78A704601C5FA0F8005114AA /* OSRootViewController.xib */,
+				78367DE31D0448160054440B /* OSRootViewController~iphone4.xib */,
+				78367DE41D0448160054440B /* OSRootViewController~iphone47.xib */,
+				78367DE51D0448160054440B /* OSRootViewController~iphone55.xib */,
+				78367DDE1D043BCE0054440B /* OSRootTableViewCell.h */,
+				78367DDF1D043BCE0054440B /* OSRootTableViewCell.m */,
+				78367DE01D043BCE0054440B /* OSRootTableViewCell.xib */,
+				78367DE91D0448DD0054440B /* OSRootTableViewCell~iphone4.xib */,
+				78367DEA1D0448DD0054440B /* OSRootTableViewCell~iphone47.xib */,
+				78367DEB1D0448DD0054440B /* OSRootTableViewCell~iphone55.xib */,
 			);
 			path = OSRootViewController;
 			sourceTree = "<group>";
@@ -661,7 +833,8 @@
 			isa = PBXGroup;
 			children = (
 				78F808781CD4204700E67007 /* CollectionCell */,
-				789F689D1CCEED0E00DCFC97 /* OSFrontBackCameraView */,
+				7831552D1D01BEC600920866 /* OSGridLinesView */,
+				783154E81CFF294000920866 /* OSWelcomeView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -769,6 +942,18 @@
 				78F8087D1CD4266000E67007 /* OSGalleryViewController~iphone55.xib */,
 				78F4C4A11CE045000044AF1A /* OSGalleryViewController~iphone97.xib */,
 				78F4C4A21CE045000044AF1A /* OSGalleryViewController~iphone129.xib */,
+				78E500931D08EA7B00672E19 /* OSGalleryImagePopupView.h */,
+				78E500941D08EA7B00672E19 /* OSGalleryImagePopupView.m */,
+				78E500961D08EA8C00672E19 /* OSGalleryImagePopupView.xib */,
+				78E500A31D0934C700672E19 /* OSGalleryImagePopupView~iphone4.xib */,
+				78E500A41D0934C700672E19 /* OSGalleryImagePopupView~iphone47.xib */,
+				78E500A51D0934C700672E19 /* OSGalleryImagePopupView~iphone55.xib */,
+				78E500981D08F27F00672E19 /* OSGalleryImageBannerView.h */,
+				78E500991D08F27F00672E19 /* OSGalleryImageBannerView.m */,
+				78E5009B1D08F28F00672E19 /* OSGalleryImageBannerView.xib */,
+				78E5009D1D09311D00672E19 /* OSGalleryImageBannerView~iphone4.xib */,
+				78E5009E1D09311D00672E19 /* OSGalleryImageBannerView~iphone47.xib */,
+				78E5009F1D09311D00672E19 /* OSGalleryImageBannerView~iphone55.xib */,
 			);
 			path = OSGalleryViewController;
 			sourceTree = "<group>";
@@ -918,50 +1103,77 @@
 			buildActionMask = 2147483647;
 			files = (
 				78FB9CF51CD9C5A000D2023B /* e12.png in Resources */,
+				78E5008A1D08CE8800672E19 /* OSAboutViewController~iphone4.xib in Resources */,
 				78FB9CF31CD9C5A000D2023B /* e10.png in Resources */,
+				78E500A21D09311D00672E19 /* OSGalleryImageBannerView~iphone55.xib in Resources */,
+				78367DFE1D0454B10054440B /* OSHelpBannerView.xib in Resources */,
 				787483721CF19B5100FD176F /* OSWelcomeViewController~iphone129.xib in Resources */,
 				78FB9CEF1CD9C5A000D2023B /* e6.png in Resources */,
 				78F808B01CD72F7000E67007 /* emoji12.png in Resources */,
+				78E5009C1D08F28F00672E19 /* OSGalleryImageBannerView.xib in Resources */,
+				78367DED1D0448DD0054440B /* OSRootTableViewCell~iphone47.xib in Resources */,
 				78FB9CF61CD9C5A000D2023B /* e13.png in Resources */,
 				78F4C4A01CE044ED0044AF1A /* OSImageViewController~iphone129.xib in Resources */,
+				78E500971D08EA8C00672E19 /* OSGalleryImagePopupView.xib in Resources */,
+				783154F61CFF2ABE00920866 /* OSWelcomeView~iphone97.xib in Resources */,
+				783154ED1CFF29CB00920866 /* OSWelcomeView.xib in Resources */,
 				78F8088C1CD4285A00E67007 /* OSImageViewController.xib in Resources */,
 				78FB9CEC1CD9C5A000D2023B /* e3.png in Resources */,
+				78367E141D04591D0054440B /* OSHelpViewController~iphone4.xib in Resources */,
+				783155331D01BFD600920866 /* OSGridLinesView~iphone4.xib in Resources */,
 				78F8086D1CD3922E00E67007 /* OSCameraViewController~iphone55.xib in Resources */,
 				78FB9CF21CD9C5A000D2023B /* e9.png in Resources */,
 				78FB9CF11CD9C5A000D2023B /* e8.png in Resources */,
+				78367DE71D0448160054440B /* OSRootViewController~iphone47.xib in Resources */,
 				78F8087F1CD4266000E67007 /* OSGalleryViewController~iphone47.xib in Resources */,
+				78367E091D0455840054440B /* OSHelpTableViewCell~iphone47.xib in Resources */,
 				7874836F1CF19B5100FD176F /* OSWelcomeViewController~iphone47.xib in Resources */,
 				78F4C4A81CE045110044AF1A /* OSCameraViewController~iphone129.xib in Resources */,
+				783155351D01BFD600920866 /* OSGridLinesView~iphone55.xib in Resources */,
 				78F808861CD4275000E67007 /* CollectionCell~iphone55.xib in Resources */,
 				78F4C4A31CE045000044AF1A /* OSGalleryViewController~iphone97.xib in Resources */,
+				78367E041D0455190054440B /* OSHelpBannerView~iphone55.xib in Resources */,
 				78A704751C5FA18A005114AA /* OSAppDelegate.xib in Resources */,
 				78F808801CD4266000E67007 /* OSGalleryViewController~iphone55.xib in Resources */,
+				78367DE61D0448160054440B /* OSRootViewController~iphone4.xib in Resources */,
 				78F808AA1CD72F7000E67007 /* emoji6.png in Resources */,
-				782B87D91CCBF01900E0982E /* OSAboutViewController~iphone4.xib in Resources */,
+				78367DE81D0448160054440B /* OSRootViewController~iphone55.xib in Resources */,
 				78F808B61CD75D2700E67007 /* emojis.png in Resources */,
+				78367DEE1D0448DD0054440B /* OSRootTableViewCell~iphone55.xib in Resources */,
+				78367E151D04591D0054440B /* OSHelpViewController~iphone47.xib in Resources */,
+				783154F41CFF2ABE00920866 /* OSWelcomeView~iphone47.xib in Resources */,
+				78367E031D0455190054440B /* OSHelpBannerView~iphone47.xib in Resources */,
 				78F808B11CD72F7000E67007 /* emoji13.png in Resources */,
 				78F808B41CD72F7000E67007 /* emoji16.png in Resources */,
 				78FB9CF01CD9C5A000D2023B /* e7.png in Resources */,
 				78F808AE1CD72F7000E67007 /* emoji10.png in Resources */,
+				78E500A61D0934C700672E19 /* OSGalleryImagePopupView~iphone4.xib in Resources */,
 				787483701CF19B5100FD176F /* OSWelcomeViewController~iphone55.xib in Resources */,
 				78F808A51CD72F7000E67007 /* emoji1.png in Resources */,
 				78D8D4DC1CE95E4400A0BD2C /* CollectionCell~iphone97.xib in Resources */,
 				784586471C957CDA0063F152 /* Simple.vertsh in Resources */,
-				782B87DB1CCBF01900E0982E /* OSAboutViewController~iphone55.xib in Resources */,
+				783154F31CFF2ABE00920866 /* OSWelcomeView~iphone4.xib in Resources */,
 				78F808AC1CD72F7000E67007 /* emoji8.png in Resources */,
 				78A703851C5E35C3005114AA /* Assets.xcassets in Resources */,
 				7874836E1CF19B5100FD176F /* OSWelcomeViewController~iphone4.xib in Resources */,
 				78F808A71CD72F7000E67007 /* emoji3.png in Resources */,
+				78367E021D0455190054440B /* OSHelpBannerView~iphone4.xib in Resources */,
+				783155391D01C09100920866 /* OSGridLinesView~iphone129.xib in Resources */,
+				78367DBB1D03CA1C0054440B /* OSAboutTableViewCell.xib in Resources */,
 				784586441C957CDA0063F152 /* Line.fragsh in Resources */,
+				78E500901D08CEAE00672E19 /* OSAboutTableViewCell~iphone4.xib in Resources */,
 				78F808AD1CD72F7000E67007 /* emoji9.png in Resources */,
 				78F808B31CD72F7000E67007 /* emoji15.png in Resources */,
 				78F8087E1CD4266000E67007 /* OSGalleryViewController~iphone4.xib in Resources */,
 				78F4C4A71CE045110044AF1A /* OSCameraViewController~iphone97.xib in Resources */,
 				78F808B21CD72F7000E67007 /* emoji14.png in Resources */,
 				78FB9CEA1CD9C5A000D2023B /* e1.png in Resources */,
+				78E500A01D09311D00672E19 /* OSGalleryImageBannerView~iphone4.xib in Resources */,
+				7832AFDF1D0D5B0F00198F37 /* F1less.png in Resources */,
 				78F808AB1CD72F7000E67007 /* emoji7.png in Resources */,
 				78F808921CD4456000E67007 /* OSImageViewController~iphone55.xib in Resources */,
 				78FB9CEE1CD9C5A000D2023B /* e5.png in Resources */,
+				78367DE21D043BCE0054440B /* OSRootTableViewCell.xib in Resources */,
 				78D8D4DD1CE95E4400A0BD2C /* CollectionCell~iphone129.xib in Resources */,
 				78F808A91CD72F7000E67007 /* emoji5.png in Resources */,
 				78F808901CD4456000E67007 /* OSImageViewController~iphone4.xib in Resources */,
@@ -970,30 +1182,46 @@
 				78FB9CF41CD9C5A000D2023B /* e11.png in Resources */,
 				78F4C49F1CE044ED0044AF1A /* OSImageViewController~iphone97.xib in Resources */,
 				78A7046E1C5FA0F8005114AA /* OSRootViewController.xib in Resources */,
+				78E500911D08CEAE00672E19 /* OSAboutTableViewCell~iphone47.xib in Resources */,
+				78367E161D04591D0054440B /* OSHelpViewController~iphone55.xib in Resources */,
+				78E500A71D0934C700672E19 /* OSGalleryImagePopupView~iphone47.xib in Resources */,
 				78F808A81CD72F7000E67007 /* emoji4.png in Resources */,
 				78F808911CD4456000E67007 /* OSImageViewController~iphone47.xib in Resources */,
 				784586451C957CDA0063F152 /* Line.vertsh in Resources */,
 				784586391C9569480063F152 /* PhotoDetection.xml in Resources */,
 				78F8086B1CD3922E00E67007 /* OSCameraViewController~iphone4.xib in Resources */,
 				78A704681C5FA0F8005114AA /* OSAboutViewController.xib in Resources */,
+				78E5008C1D08CE8800672E19 /* OSAboutViewController~iphone55.xib in Resources */,
 				78F808851CD4275000E67007 /* CollectionCell~iphone47.xib in Resources */,
 				78A704701C5FA0F8005114AA /* OSWelcomeViewController.xib in Resources */,
-				78F4C4971CE03EC70044AF1A /* OSAboutViewController~iphone97.xib in Resources */,
+				78E500A11D09311D00672E19 /* OSGalleryImageBannerView~iphone47.xib in Resources */,
+				783155341D01BFD600920866 /* OSGridLinesView~iphone47.xib in Resources */,
 				78F808941CD45AC600E67007 /* emoji_heaven.png in Resources */,
+				78367DF91D0451A20054440B /* OSHelpTableViewCell.xib in Resources */,
 				78F808AF1CD72F7000E67007 /* emoji11.png in Resources */,
-				789F68A21CCEED3100DCFC97 /* OSFrontBackCameraView.xib in Resources */,
+				783154F71CFF2ABE00920866 /* OSWelcomeView~iphone129.xib in Resources */,
 				78F8087A1CD4204700E67007 /* CollectionCell.xib in Resources */,
 				78F4C4A41CE045000044AF1A /* OSGalleryViewController~iphone129.xib in Resources */,
-				782B87DA1CCBF01900E0982E /* OSAboutViewController~iphone47.xib in Resources */,
 				78FB9CEB1CD9C5A000D2023B /* e2.png in Resources */,
 				78A7046A1C5FA0F8005114AA /* OSCameraViewController.xib in Resources */,
 				78FB9CED1CD9C5A000D2023B /* e4.png in Resources */,
+				7832AFDD1D0D499000198F37 /* H1less.png in Resources */,
+				78367E0A1D0455840054440B /* OSHelpTableViewCell~iphone55.xib in Resources */,
+				78367DEC1D0448DD0054440B /* OSRootTableViewCell~iphone4.xib in Resources */,
 				78F808841CD4275000E67007 /* CollectionCell~iphone4.xib in Resources */,
-				78F4C4981CE03EC70044AF1A /* OSAboutViewController~iphone129.xib in Resources */,
 				78F808771CD415FE00E67007 /* OSGalleryViewController.xib in Resources */,
+				7831552F1D01BEDA00920866 /* OSGridLinesView.xib in Resources */,
+				78367E081D0455840054440B /* OSHelpTableViewCell~iphone4.xib in Resources */,
 				78F808A61CD72F7000E67007 /* emoji2.png in Resources */,
+				78367DF41D04518E0054440B /* OSHelpViewController.xib in Resources */,
+				78E500A81D0934C700672E19 /* OSGalleryImagePopupView~iphone55.xib in Resources */,
+				78E5008B1D08CE8800672E19 /* OSAboutViewController~iphone47.xib in Resources */,
 				784586461C957CDA0063F152 /* Simple.fragsh in Resources */,
+				783155381D01C09100920866 /* OSGridLinesView~iphone97.xib in Resources */,
+				78E500921D08CEAE00672E19 /* OSAboutTableViewCell~iphone55.xib in Resources */,
+				7832AFDB1D0D343B00198F37 /* J1less.png in Resources */,
 				784586381C9569480063F152 /* PhotoDetection.dat in Resources */,
+				783154F51CFF2ABE00920866 /* OSWelcomeView~iphone55.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1066,13 +1294,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78367DFC1D0454A00054440B /* OSHelpBannerView.m in Sources */,
+				78367DF81D0451A20054440B /* OSHelpTableViewCell.m in Sources */,
+				78367DE11D043BCE0054440B /* OSRootTableViewCell.m in Sources */,
+				78367DBA1D03CA1C0054440B /* OSAboutTableViewCell.m in Sources */,
+				7831553C1D01C38000920866 /* OSGridLinesView.m in Sources */,
 				78F808761CD415FE00E67007 /* OSGalleryViewController.m in Sources */,
+				78367DF31D04518E0054440B /* OSHelpViewController.m in Sources */,
 				78A703831C5E35B9005114AA /* main.m in Sources */,
+				78E500951D08EA7B00672E19 /* OSGalleryImagePopupView.m in Sources */,
 				782B87D51CCB344B00E0982E /* UIDevice+DeviceType.m in Sources */,
 				78A704671C5FA0F8005114AA /* OSAboutViewController.mm in Sources */,
-				789F68A01CCEED2300DCFC97 /* OSFrontBackCameraView.m in Sources */,
 				78F808711CD3959600E67007 /* CustomAlbum.m in Sources */,
 				78A7046F1C5FA0F8005114AA /* OSWelcomeViewController.mm in Sources */,
+				783154EB1CFF295800920866 /* OSWelcomeView.m in Sources */,
+				78E5009A1D08F27F00672E19 /* OSGalleryImageBannerView.m in Sources */,
 				78683AE31C95229D000EBE3E /* Texture.mm in Sources */,
 				78F8088B1CD4285A00E67007 /* OSImageViewController.m in Sources */,
 				782B87D01CCB336200E0982E /* NSString+DeviceType.m in Sources */,

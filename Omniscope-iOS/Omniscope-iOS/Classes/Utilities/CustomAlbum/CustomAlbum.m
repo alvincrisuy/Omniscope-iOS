@@ -80,7 +80,7 @@
                                                                                subtype:PHAssetCollectionSubtypeAlbumRegular
                                                                                options:nil];
 #endif
-    NSLog(@"assetCollections.count = %lu", (unsigned long)assetCollections.count);
+//    NSLog(@"assetCollections.count = %lu", (unsigned long)assetCollections.count);
     if (assetCollections.count == 0) return nil;
     
     __block PHAssetCollection * myAlbum;
@@ -94,8 +94,6 @@
     }];
     
     if (!myAlbum) return nil;
-    
-    NSLog(@"album: %@", myAlbum);
     
     return myAlbum;
 }
@@ -145,18 +143,40 @@
 
 + (void)getImageWithCollection:(PHAssetCollection*)collection onSuccess:(void(^)(UIImage *image))onSuccess onError: (void(^)(NSError * error)) onError atIndex:(NSInteger)index
 {
-    NSError *error = [[NSError alloc] init];
+//    NSError *error = [[NSError alloc] init];
     PHFetchResult *assets = [PHAsset fetchAssetsInAssetCollection:collection options:nil];
     if (assets.count == 0) {
-        onError(error);
+//        onError(error);
     }
-    
+
     NSArray * assetArray = [self getAssets:assets];
     PHImageManager *manager = [PHImageManager defaultManager];
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     PHAsset *asset = [assetArray objectAtIndex:index];
     [manager requestImageForAsset:asset targetSize:screenRect.size contentMode:PHImageContentModeAspectFit options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         onSuccess(result);
+    }];
+}
+
++ (void)deleteImageWithCollection:(PHAssetCollection *)collection onSuccess:(void(^)(BOOL isSuccess))onSuccess toAlbum:(PHAssetCollection *)album onError:(void(^)(NSError * error))onError atIndex:(NSInteger)index {
+    
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+        
+        NSError *error = [[NSError alloc] init];
+        PHFetchResult *assets = [PHAsset fetchAssetsInAssetCollection:collection options:nil];
+        if (assets.count == 0) {
+            onError(error);
+        }
+        
+        NSArray * assetArray = [self getAssets:assets];
+        PHAsset *asset = [assetArray objectAtIndex:index];
+        
+        PHAssetCollectionChangeRequest *albumChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:album];
+        [albumChangeRequest removeAssets:@[asset]];
+        
+    } completionHandler:^(BOOL success, NSError *error) {
+        NSLog(@"Finished removing asset from the album. %@", (success ? @"Success" : error));
+        onSuccess(YES);
     }];
 }
 

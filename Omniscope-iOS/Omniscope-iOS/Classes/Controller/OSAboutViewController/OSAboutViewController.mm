@@ -8,6 +8,7 @@
 
 #import "OSAboutViewController.h"
 #import "OSRootViewController.h"
+#import "OSAboutTableViewCell.h"
 
 #import "NSString+DeviceType.h"
 
@@ -34,17 +35,61 @@
     [self.closeButton addTarget:self action:@selector(closeButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [UIView animateWithDuration:0.3f
+                     animations: ^{
+                         [OSRootViewController sharedController].tabView.alpha = 0.0f;
+                         [OSRootViewController sharedController].sideBarTableView.alpha = 0.0f;
+     }];
+}
+
 - (void)closeButtonAction:(UIButton *)sender {
     
-    [[OSRootViewController sharedController] dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [UIView animateWithDuration:0.3f
+                     animations: ^{
+                         [OSRootViewController sharedController].tabView.alpha = 1.0f;
+                         [OSRootViewController sharedController].sideBarTableView.alpha = 1.0f;
+                     }];
     
+    [[OSRootViewController sharedController] popTransitionAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    OSAboutTableViewCellStyleRow index = (OSAboutTableViewCellStyleRow)indexPath.row;
+    
+    return [OSAboutTableViewCell cellHeightWithStyle:index];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    OSAboutTableViewCellStyleRow index = (OSAboutTableViewCellStyleRow)indexPath.row;
+    
+    static NSString *CELL_IDENTIFIER = @"0";
+    
+    switch (index) {
+        case OSAboutTableViewCellStyleRow0:
+            CELL_IDENTIFIER = @"0";
+            break;
+    }
+    
+    OSAboutTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER];
+    
+    if (cell == nil) {
+        cell = [OSAboutTableViewCell cellFromNib:index];
+    }
+    
+    return cell;
 }
 
 @end
