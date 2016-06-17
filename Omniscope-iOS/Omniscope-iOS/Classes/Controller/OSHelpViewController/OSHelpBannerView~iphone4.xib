@@ -10,7 +10,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="508"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="404" translatesAutoresizingMaskIntoConstraints="NO" id="h1o-c2-gS4">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="5a" translatesAutoresizingMaskIntoConstraints="NO" id="h1o-c2-gS4">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="508"/>
                 </imageView>
             </subviews>
@@ -22,7 +22,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="508"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="402" translatesAutoresizingMaskIntoConstraints="NO" id="k0w-NM-V4W">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="5b" translatesAutoresizingMaskIntoConstraints="NO" id="k0w-NM-V4W">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="508"/>
                 </imageView>
             </subviews>
@@ -34,7 +34,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="508"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="401" translatesAutoresizingMaskIntoConstraints="NO" id="jJR-bk-UC1">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="5c" translatesAutoresizingMaskIntoConstraints="NO" id="jJR-bk-UC1">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="508"/>
                 </imageView>
             </subviews>
@@ -46,7 +46,19 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="508"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="403" translatesAutoresizingMaskIntoConstraints="NO" id="xbB-2j-yQd">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="5d" translatesAutoresizingMaskIntoConstraints="NO" id="xbB-2j-yQd">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="508"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="Oau-28-pNG" customClass="OSHelpBannerView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="508"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="5e" translatesAutoresizingMaskIntoConstraints="NO" id="fZ2-mT-BtB">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="508"/>
                 </imageView>
             </subviews>
@@ -56,9 +68,10 @@
         </view>
     </objects>
     <resources>
-        <image name="401" width="213" height="320"/>
-        <image name="402" width="213" height="320"/>
-        <image name="403" width="213" height="320"/>
-        <image name="404" width="213" height="320"/>
+        <image name="5a" width="640" height="1136"/>
+        <image name="5b" width="640" height="1136"/>
+        <image name="5c" width="640" height="1136"/>
+        <image name="5d" width="640" height="1136"/>
+        <image name="5e" width="640" height="1136"/>
     </resources>
 </document>

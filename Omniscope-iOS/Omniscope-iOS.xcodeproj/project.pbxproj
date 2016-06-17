@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		2320FA058494C459E86A8EA4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA567D56BC4C04C7C6B7D6AD /* libPods.a */; };
+		78205CD11D12FA0B0011D6EC /* MyLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78205CD01D12FA0B0011D6EC /* MyLocation.m */; };
+		78205CD51D12FB710011D6EC /* OSLocationViewController~iphone4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78205CD21D12FB710011D6EC /* OSLocationViewController~iphone4.xib */; };
+		78205CD61D12FB710011D6EC /* OSLocationViewController~iphone47.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78205CD31D12FB710011D6EC /* OSLocationViewController~iphone47.xib */; };
+		78205CD71D12FB710011D6EC /* OSLocationViewController~iphone55.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78205CD41D12FB710011D6EC /* OSLocationViewController~iphone55.xib */; };
+		7825B9C21D12DC85009D9E3B /* OSLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7825B9C01D12DC85009D9E3B /* OSLocationViewController.m */; };
+		7825B9C31D12DC85009D9E3B /* OSLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7825B9C11D12DC85009D9E3B /* OSLocationViewController.xib */; };
+		7825B9C51D12E16D009D9E3B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7825B9C41D12E16D009D9E3B /* MapKit.framework */; };
 		782B87D01CCB336200E0982E /* NSString+DeviceType.m in Sources */ = {isa = PBXBuildFile; fileRef = 782B87CD1CCB336200E0982E /* NSString+DeviceType.m */; };
 		782B87D51CCB344B00E0982E /* UIDevice+DeviceType.m in Sources */ = {isa = PBXBuildFile; fileRef = 782B87D41CCB344B00E0982E /* UIDevice+DeviceType.m */; };
 		783154EB1CFF295800920866 /* OSWelcomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 783154EA1CFF295800920866 /* OSWelcomeView.m */; };
@@ -185,6 +192,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		78205CCF1D12FA0B0011D6EC /* MyLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLocation.h; sourceTree = "<group>"; };
+		78205CD01D12FA0B0011D6EC /* MyLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLocation.m; sourceTree = "<group>"; };
+		78205CD21D12FB710011D6EC /* OSLocationViewController~iphone4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSLocationViewController~iphone4.xib"; sourceTree = "<group>"; };
+		78205CD31D12FB710011D6EC /* OSLocationViewController~iphone47.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSLocationViewController~iphone47.xib"; sourceTree = "<group>"; };
+		78205CD41D12FB710011D6EC /* OSLocationViewController~iphone55.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSLocationViewController~iphone55.xib"; sourceTree = "<group>"; };
+		7825B9BF1D12DC85009D9E3B /* OSLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSLocationViewController.h; sourceTree = "<group>"; };
+		7825B9C01D12DC85009D9E3B /* OSLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSLocationViewController.m; sourceTree = "<group>"; };
+		7825B9C11D12DC85009D9E3B /* OSLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OSLocationViewController.xib; sourceTree = "<group>"; };
+		7825B9C41D12E16D009D9E3B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		782B87CC1CCB336200E0982E /* NSString+DeviceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DeviceType.h"; sourceTree = "<group>"; };
 		782B87CD1CCB336200E0982E /* NSString+DeviceType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DeviceType.m"; sourceTree = "<group>"; };
 		782B87D31CCB344B00E0982E /* UIDevice+DeviceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+DeviceType.h"; sourceTree = "<group>"; };
@@ -461,6 +477,7 @@
 				785ADE351CC9C9C200EF4FCA /* PhotosUI.framework in Frameworks */,
 				785ADE331CC9C9BA00EF4FCA /* Photos.framework in Frameworks */,
 				78B6B42D1CC70304002DCE1A /* libVuforia.a in Frameworks */,
+				7825B9C51D12E16D009D9E3B /* MapKit.framework in Frameworks */,
 				2320FA058494C459E86A8EA4 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,6 +502,7 @@
 		04DDED58A8C9F73FAF816C77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7825B9C41D12E16D009D9E3B /* MapKit.framework */,
 				78F4C4711CDF1C600044AF1A /* Security.framework */,
 				78F4C46F1CDF1C530044AF1A /* SystemConfiguration.framework */,
 				78F4C46D1CDF1C480044AF1A /* QuartzCore.framework */,
@@ -497,6 +515,28 @@
 				EA567D56BC4C04C7C6B7D6AD /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		78205CCE1D12F9FE0011D6EC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				78205CCF1D12FA0B0011D6EC /* MyLocation.h */,
+				78205CD01D12FA0B0011D6EC /* MyLocation.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7825B9BE1D12DC70009D9E3B /* OSLocationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7825B9BF1D12DC85009D9E3B /* OSLocationViewController.h */,
+				7825B9C01D12DC85009D9E3B /* OSLocationViewController.m */,
+				7825B9C11D12DC85009D9E3B /* OSLocationViewController.xib */,
+				78205CD21D12FB710011D6EC /* OSLocationViewController~iphone4.xib */,
+				78205CD31D12FB710011D6EC /* OSLocationViewController~iphone47.xib */,
+				78205CD41D12FB710011D6EC /* OSLocationViewController~iphone55.xib */,
+			);
+			path = OSLocationViewController;
 			sourceTree = "<group>";
 		};
 		782B87CB1CCB336200E0982E /* NSString */ = {
@@ -702,6 +742,7 @@
 			isa = PBXGroup;
 			children = (
 				78A704501C5FA0F8005114AA /* Controller */,
+				78205CCE1D12F9FE0011D6EC /* Model */,
 				78A704651C5FA0F8005114AA /* Utilities */,
 				78A704661C5FA0F8005114AA /* View */,
 			);
@@ -739,6 +780,7 @@
 				78F808721CD415EA00E67007 /* OSGalleryViewController */,
 				78367DEF1D0451270054440B /* OSHelpViewController */,
 				78F808871CD4283C00E67007 /* OSImageViewController */,
+				7825B9BE1D12DC70009D9E3B /* OSLocationViewController */,
 				78A7045D1C5FA0F8005114AA /* OSRootViewController */,
 				78A704611C5FA0F8005114AA /* OSWelcomeViewController */,
 			);
@@ -1066,6 +1108,11 @@
 					78A703461C5E297B005114AA = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = L2SXWB2TAK;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					78A7035F1C5E297B005114AA = {
 						CreatedOnToolsVersion = 7.2;
@@ -1129,6 +1176,7 @@
 				78367E091D0455840054440B /* OSHelpTableViewCell~iphone47.xib in Resources */,
 				7874836F1CF19B5100FD176F /* OSWelcomeViewController~iphone47.xib in Resources */,
 				78F4C4A81CE045110044AF1A /* OSCameraViewController~iphone129.xib in Resources */,
+				78205CD61D12FB710011D6EC /* OSLocationViewController~iphone47.xib in Resources */,
 				783155351D01BFD600920866 /* OSGridLinesView~iphone55.xib in Resources */,
 				78F808861CD4275000E67007 /* CollectionCell~iphone55.xib in Resources */,
 				78F4C4A31CE045000044AF1A /* OSGalleryViewController~iphone97.xib in Resources */,
@@ -1145,6 +1193,7 @@
 				78367E031D0455190054440B /* OSHelpBannerView~iphone47.xib in Resources */,
 				78F808B11CD72F7000E67007 /* emoji13.png in Resources */,
 				78F808B41CD72F7000E67007 /* emoji16.png in Resources */,
+				7825B9C31D12DC85009D9E3B /* OSLocationViewController.xib in Resources */,
 				78FB9CF01CD9C5A000D2023B /* e7.png in Resources */,
 				78F808AE1CD72F7000E67007 /* emoji10.png in Resources */,
 				78E500A61D0934C700672E19 /* OSGalleryImagePopupView~iphone4.xib in Resources */,
@@ -1175,6 +1224,7 @@
 				78FB9CEE1CD9C5A000D2023B /* e5.png in Resources */,
 				78367DE21D043BCE0054440B /* OSRootTableViewCell.xib in Resources */,
 				78D8D4DD1CE95E4400A0BD2C /* CollectionCell~iphone129.xib in Resources */,
+				78205CD51D12FB710011D6EC /* OSLocationViewController~iphone4.xib in Resources */,
 				78F808A91CD72F7000E67007 /* emoji5.png in Resources */,
 				78F808901CD4456000E67007 /* OSImageViewController~iphone4.xib in Resources */,
 				787483711CF19B5100FD176F /* OSWelcomeViewController~iphone97.xib in Resources */,
@@ -1206,6 +1256,7 @@
 				78A7046A1C5FA0F8005114AA /* OSCameraViewController.xib in Resources */,
 				78FB9CED1CD9C5A000D2023B /* e4.png in Resources */,
 				7832AFDD1D0D499000198F37 /* H1less.png in Resources */,
+				78205CD71D12FB710011D6EC /* OSLocationViewController~iphone55.xib in Resources */,
 				78367E0A1D0455840054440B /* OSHelpTableViewCell~iphone55.xib in Resources */,
 				78367DEC1D0448DD0054440B /* OSRootTableViewCell~iphone4.xib in Resources */,
 				78F808841CD4275000E67007 /* CollectionCell~iphone4.xib in Resources */,
@@ -1297,6 +1348,8 @@
 				78367DFC1D0454A00054440B /* OSHelpBannerView.m in Sources */,
 				78367DF81D0451A20054440B /* OSHelpTableViewCell.m in Sources */,
 				78367DE11D043BCE0054440B /* OSRootTableViewCell.m in Sources */,
+				7825B9C21D12DC85009D9E3B /* OSLocationViewController.m in Sources */,
+				78205CD11D12FA0B0011D6EC /* MyLocation.m in Sources */,
 				78367DBA1D03CA1C0054440B /* OSAboutTableViewCell.m in Sources */,
 				7831553C1D01C38000920866 /* OSGridLinesView.m in Sources */,
 				78F808761CD415FE00E67007 /* OSGalleryViewController.m in Sources */,

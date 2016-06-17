@@ -95,7 +95,7 @@
         
         cell.scrollView0.delegate = self;
         
-        NSInteger bannerCount = 4;
+        NSInteger bannerCount = 5;
         
         OSHelpBannerView* bannerView = [OSHelpBannerView loadNib:bannerCount - 1];
         

@@ -14,6 +14,7 @@
 @class OSGalleryViewController;
 @class OSImageViewController;
 @class OSHelpViewController;
+@class OSLocationViewController;
 
 typedef NS_ENUM(NSInteger, TabBarButtonTag) {
     Gallery             = 0,
@@ -90,6 +91,7 @@ typedef NS_ENUM(NSInteger, SideBarButtonTag) {
 - (void)transitionGallery;
 - (void)transitionImage;
 - (void)transitionHelp;
+- (void)transitionLocation;
 
 - (void)transition:(UIViewController *)viewController animated:(BOOL)animated;
 - (void)popTransitionAnimated:(BOOL)animated;
@@ -111,6 +113,7 @@ typedef NS_ENUM(NSInteger, SideBarButtonTag) {
 - (void)transferGalleryViewController:(id)sender animated:(BOOL)animated;
 - (void)transferImageViewController:(id)sender animated:(BOOL)animated index:(NSInteger)index;
 - (void)transferHelpViewController:(id)sender animated:(BOOL)animated;
+- (void)transferLocationViewController:(id)sender animated:(BOOL)animated;
 
 - (OSAboutViewController *)aboutViewController;
 - (OSCameraViewController *)cameraViewController;
@@ -118,6 +121,7 @@ typedef NS_ENUM(NSInteger, SideBarButtonTag) {
 - (OSGalleryViewController *)galleryViewController;
 - (OSImageViewController *)imageViewController;
 - (OSHelpViewController *)helpViewController;
+- (OSLocationViewController *)locationViewController;
 
 // Singleton
 + (OSRootViewController *)sharedController;

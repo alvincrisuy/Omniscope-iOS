@@ -13,6 +13,7 @@ typedef NS_ENUM(NSInteger, OSRootTableViewCellStyleRow) {
     OSRootTableViewCellStyleRow1 = 1,
     OSRootTableViewCellStyleRow2 = 2,
     OSRootTableViewCellStyleRow3 = 3,
+    OSRootTableViewCellStyleRow4 = 4,
 };
 
 @interface OSRootTableViewCell : UITableViewCell
@@ -23,11 +24,14 @@ typedef NS_ENUM(NSInteger, OSRootTableViewCellStyleRow) {
 // 1
 @property (nonatomic, retain) IBOutlet UIButton *rowButton1;
 
-// 2
+// 3
 @property (nonatomic, retain) IBOutlet UIButton *rowButton2;
 
-// 3
+// 2
 @property (nonatomic, retain) IBOutlet UIButton *rowButton3;
+
+// 3
+@property (nonatomic, retain) IBOutlet UIButton *rowButton4;
 
 + (instancetype)cellFromNib:(NSInteger)index;
 + (CGFloat)cellHeightWithStyle:(OSRootTableViewCellStyleRow)style;

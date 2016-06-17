@@ -10,10 +10,11 @@
 #import "UIDevice+DeviceType.h"
 #import "NSString+DeviceType.h"
 
-#define kOSRootTableViewCellRowHeight0 85.0f
-#define kOSRootTableViewCellRowHeight1 85.0f
-#define kOSRootTableViewCellRowHeight2 85.0f
-#define kOSRootTableViewCellRowHeight3 85.0f
+#define kOSRootTableViewCellRowHeight0 68.0f
+#define kOSRootTableViewCellRowHeight1 68.0f
+#define kOSRootTableViewCellRowHeight2 68.0f
+#define kOSRootTableViewCellRowHeight3 68.0f
+#define kOSRootTableViewCellRowHeight4 68.0f
 
 @implementation OSRootTableViewCell
 
@@ -42,13 +43,13 @@
                     return kOSRootTableViewCellRowHeight0;
                     break;
                 case UIDeviceTypeScreenXIB4:
-                    return kOSRootTableViewCellRowHeight0 + 22;
+                    return kOSRootTableViewCellRowHeight0 + 17.5f;
                     break;
                 case UIDeviceTypeScreenXIB47:
-                    return kOSRootTableViewCellRowHeight0 + 35;
+                    return kOSRootTableViewCellRowHeight0 + 37.0f;
                     break;
                 case UIDeviceTypeScreenXIB55:
-                    return kOSRootTableViewCellRowHeight0 + 64;
+                    return kOSRootTableViewCellRowHeight0 + 51.0f;
                     break;
                 case UIDeviceTypeScreenXIB97:
                     return kOSRootTableViewCellRowHeight0;
@@ -65,13 +66,13 @@
                     return kOSRootTableViewCellRowHeight1;
                     break;
                 case UIDeviceTypeScreenXIB4:
-                    return kOSRootTableViewCellRowHeight1 + 22;
+                    return kOSRootTableViewCellRowHeight1 + 17.5f;
                     break;
                 case UIDeviceTypeScreenXIB47:
-                    return kOSRootTableViewCellRowHeight1 + 35;
+                    return kOSRootTableViewCellRowHeight1 + 37.0f;
                     break;
                 case UIDeviceTypeScreenXIB55:
-                    return kOSRootTableViewCellRowHeight1 + 64;
+                    return kOSRootTableViewCellRowHeight1 + 51.0f;
                     break;
                 case UIDeviceTypeScreenXIB97:
                     return kOSRootTableViewCellRowHeight1;
@@ -88,13 +89,13 @@
                     return kOSRootTableViewCellRowHeight2;
                     break;
                 case UIDeviceTypeScreenXIB4:
-                    return kOSRootTableViewCellRowHeight2 + 22;
+                    return kOSRootTableViewCellRowHeight2 + 17.5f;
                     break;
                 case UIDeviceTypeScreenXIB47:
-                    return kOSRootTableViewCellRowHeight2 + 35;
+                    return kOSRootTableViewCellRowHeight2 + 37.0f;
                     break;
                 case UIDeviceTypeScreenXIB55:
-                    return kOSRootTableViewCellRowHeight2 + 64;
+                    return kOSRootTableViewCellRowHeight2 + 51.0f;
                     break;
                 case UIDeviceTypeScreenXIB97:
                     return kOSRootTableViewCellRowHeight2;
@@ -111,19 +112,42 @@
                     return kOSRootTableViewCellRowHeight3;
                     break;
                 case UIDeviceTypeScreenXIB4:
-                    return kOSRootTableViewCellRowHeight3 + 22;
+                    return kOSRootTableViewCellRowHeight3 + 17.5f;
                     break;
                 case UIDeviceTypeScreenXIB47:
-                    return kOSRootTableViewCellRowHeight3 + 35;
+                    return kOSRootTableViewCellRowHeight3 + 37.0f;
                     break;
                 case UIDeviceTypeScreenXIB55:
-                    return kOSRootTableViewCellRowHeight3 + 64;
+                    return kOSRootTableViewCellRowHeight3 + 51.0f;
                     break;
                 case UIDeviceTypeScreenXIB97:
                     return kOSRootTableViewCellRowHeight3;
                     break;
                 case UIDeviceTypeScreenXIB129:
                     return kOSRootTableViewCellRowHeight3;
+                    break;
+            }
+        }
+        case OSRootTableViewCellStyleRow4:
+        {
+            switch ([[UIDevice currentDevice] getDeviceTypeScreenXIB]) {
+                case UIDeviceTypeScreenXIB35:
+                    return kOSRootTableViewCellRowHeight4;
+                    break;
+                case UIDeviceTypeScreenXIB4:
+                    return kOSRootTableViewCellRowHeight4 + 17.5f;
+                    break;
+                case UIDeviceTypeScreenXIB47:
+                    return kOSRootTableViewCellRowHeight4 + 37.0f;
+                    break;
+                case UIDeviceTypeScreenXIB55:
+                    return kOSRootTableViewCellRowHeight4 + 51.0f;
+                    break;
+                case UIDeviceTypeScreenXIB97:
+                    return kOSRootTableViewCellRowHeight4;
+                    break;
+                case UIDeviceTypeScreenXIB129:
+                    return kOSRootTableViewCellRowHeight4;
                     break;
             }
         }

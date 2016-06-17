@@ -14,6 +14,7 @@
 #import "OSImageViewController.h"
 #import "OSRootTableViewCell.h"
 #import "OSHelpViewController.h"
+#import "OSLocationViewController.h"
 
 #import "UIDevice+DeviceType.h"
 #import "NSString+DeviceType.h"
@@ -27,6 +28,7 @@ static OSRootViewController *_sharedController = nil;
     OSGalleryViewController *_galleryViewController;
     OSImageViewController *_imageViewController;
     OSHelpViewController *_helpViewController;
+    OSLocationViewController *_locationViewController;
 }
 
 // Transition
@@ -192,6 +194,12 @@ static OSRootViewController *_sharedController = nil;
     [self hiddenAllPage];
     
     [self transition:self.helpViewController animated:NO];
+}
+
+- (void)transitionLocation {
+    [self hiddenAllPage];
+    
+    [self transition:self.locationViewController animated:NO];
 }
 
 - (void)disselectHighlightedButton {
@@ -371,6 +379,10 @@ static OSRootViewController *_sharedController = nil;
     [self pushTransition:self.helpViewController animated:animated];
 }
 
+- (void)transferLocationViewController:(id)sender animated:(BOOL)animated {
+    [self pushTransition:self.locationViewController animated:animated];
+}
+
 - (OSAboutViewController *)aboutViewController {
     if (!_aboutViewController) {
         _aboutViewController = [[OSAboutViewController alloc] init];
@@ -425,6 +437,15 @@ static OSRootViewController *_sharedController = nil;
     return _helpViewController;
 }
 
+- (OSLocationViewController *)locationViewController {
+    if (!_locationViewController) {
+        _locationViewController = [[OSLocationViewController alloc] init];
+        _locationViewController.view.frame = self.contentView.bounds;
+    }
+    
+    return _locationViewController;
+}
+
 + (CAAnimationGroup*)showAnimationGroup {
     static CAAnimationGroup* showAnimationGroup_ = nil;
     
@@ -463,7 +484,7 @@ static OSRootViewController *_sharedController = nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return 5;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -492,6 +513,9 @@ static OSRootViewController *_sharedController = nil;
         case OSRootTableViewCellStyleRow3:
             CELL_IDENTIFIER = @"3";
             break;
+        case OSRootTableViewCellStyleRow4:
+            CELL_IDENTIFIER = @"4";
+            break;
     }
     
     OSRootTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER];
@@ -504,6 +528,7 @@ static OSRootViewController *_sharedController = nil;
     [cell.rowButton1 addTarget:self action:@selector(rowButton1Action:) forControlEvents:UIControlEventTouchUpInside];
     [cell.rowButton2 addTarget:self action:@selector(rowButton2Action:) forControlEvents:UIControlEventTouchUpInside];
     [cell.rowButton3 addTarget:self action:@selector(rowButton3Action:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.rowButton4 addTarget:self action:@selector(rowButton4Action:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
 }
@@ -517,10 +542,14 @@ static OSRootViewController *_sharedController = nil;
 }
 
 - (void)rowButton2Action:(UIButton *)sender {
-    [self transferHelpViewController:self.contentNavigationController.visibleViewController animated:YES];
+    [self transferLocationViewController:self.contentNavigationController.visibleViewController animated:YES];
 }
 
 - (void)rowButton3Action:(UIButton *)sender {
+    [self transferHelpViewController:self.contentNavigationController.visibleViewController animated:YES];
+}
+
+- (void)rowButton4Action:(UIButton *)sender {
     [self transferAboutViewController:self.contentNavigationController.visibleViewController animated:YES];
 }
 
