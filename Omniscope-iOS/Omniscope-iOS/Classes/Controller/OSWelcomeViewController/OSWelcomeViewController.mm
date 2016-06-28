@@ -42,7 +42,7 @@
     [[OSRootViewController sharedController] hideTabView];
     [[OSRootViewController sharedController] hideSideTableView];
     
-    [NSTimer scheduledTimerWithTimeInterval:4.0
+    [NSTimer scheduledTimerWithTimeInterval:3.0
                                      target:self
                                    selector:@selector(showPressToStart)
                                    userInfo:nil
