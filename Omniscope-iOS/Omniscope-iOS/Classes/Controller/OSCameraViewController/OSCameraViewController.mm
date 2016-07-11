@@ -128,6 +128,14 @@ NSString *const CSAlbum = @"Omniscope";
                                      kEAGLDrawablePropertyColorFormat: kEAGLColorFormatRGBA8,
                                      };
     
+//    eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                    [NSNumber numberWithBool:FALSE],
+//                                    kEAGLDrawablePropertyRetainedBacking,
+//                                    kEAGLColorFormatRGBA8,
+//                                    kEAGLDrawablePropertyColorFormat,
+//                                    nil];
+
+    
     // a single tap will trigger a single autofocus operation
     tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(autofocus:)];
     
@@ -720,66 +728,82 @@ NSString *const CSAlbum = @"Omniscope";
         
     });
     
-    try {
-        UIImage *outputImage    = nil;
-        CGRect screenRect       = [[UIScreen mainScreen] bounds];
-        CGFloat scale           = [[UIScreen mainScreen] scale];
-        CGRect s                = CGRectMake(0, 0, screenRect.size.width * scale, screenRect.size.height * scale);
-        uint8_t *buffer         = (uint8_t *) malloc(s.size.width * s.size.height * 4);
-        
-        // TODO - Find fix for buffer error
-        glReadPixels(0, 0, s.size.width, s.size.height, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
-        CGDataProviderRef ref           = CGDataProviderCreateWithData(NULL, buffer, s.size.width * s.size.height * 4, NULL);
-        CGColorSpaceRef colorSpaceRef   = CGColorSpaceCreateDeviceRGB();
-        CGImageRef iref                 = CGImageCreate(s.size.width, s.size.height, 8, 32, s.size.width * 4, colorSpaceRef, kCGBitmapByteOrderDefault, ref, NULL, true, kCGRenderingIntentDefault);
-        
-        size_t width        = CGImageGetWidth(iref);
-        size_t height       = CGImageGetHeight(iref);
-        size_t length       = width * height * 4;
-        uint32_t *pixels    = (uint32_t *)malloc(length);
-        
-        CGContextRef context = CGBitmapContextCreate(pixels, width, height, 8, width * 4,
-                                                     CGImageGetColorSpace(iref), kCGImageAlphaNoneSkipFirst | kCGBitmapByteOrder32Big);
-        
-        CGAffineTransform transform = CGAffineTransformIdentity;
-        transform                   = CGAffineTransformMakeTranslation(0.0f, height);
-        transform                   = CGAffineTransformScale(transform, 1.0, -1.0);
-        CGContextConcatCTM(context, transform);
-        CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, width, height), iref);
-        CGImageRef outputRef    = CGBitmapContextCreateImage(context);
-        outputImage             = [UIImage imageWithCGImage: outputRef];
-        
-        CGColorSpaceRelease(colorSpaceRef);
-        CGDataProviderRelease(ref);
-        CGImageRelease(iref);
-        CGContextRelease(context);
-        CGImageRelease(outputRef);
-        free(pixels);
-        free(buffer);
-        
-        [CustomAlbum addNewAssetWithImage:outputImage toAlbum:[CustomAlbum getMyAlbumWithName:CSAlbum] onSuccess:^(NSString *ImageId) {
-            NSLog(@"%@",ImageId);
-            self.recentImg = ImageId;
-        } onError:^(NSError *error) {
-            NSLog(@"probelm in saving image");
-        } onFinish:^(NSString *finish) {
-            
-            PHAssetCollection *collection = [CustomAlbum getMyAlbumWithName:CSAlbum];
-            [CustomAlbum getImageWithCollection:collection onSuccess:^(UIImage *image) {
-                self.galleryImageView.image = image;
-                
-                [UIView animateWithDuration:0.3f animations:^(void) {
-                    [self.galleryImageView.layer addAnimation:[OSRootViewController showAnimationGroup] forKey:nil];
-                }];
-                
-            } onError:^(NSError *error) {
-                NSLog(@"Not Found!");
-            }];
-        }];
+//    try {
+    
+        @try {
+            UIImage *outputImage    = nil;
+            CGRect screenRect       = [[UIScreen mainScreen] bounds];
+            CGFloat scale           = [[UIScreen mainScreen] scale];
+            CGRect s                = CGRectMake(0, 0, screenRect.size.width * scale, screenRect.size.height * scale);
+//            uint8_t *buffer         = (uint8_t *) malloc(s.size.width * s.size.height * 4);
+            GLubyte *buffer         = (GLubyte *) malloc(s.size.width * s.size.height * 4);
 
-    } catch (NSError *error) {
-        NSLog(@"Error in capture");
-    }
+//            if (buffer == NULL || buffer == nil || (buffer[0] == '\0')) {
+//                
+//                NSLog(@"NULL");
+//                return;
+//            }
+            
+            // TODO - Find fix for buffer error
+            glReadPixels(0, 0, s.size.width, s.size.height, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
+            CGDataProviderRef ref           = CGDataProviderCreateWithData(NULL, buffer, s.size.width * s.size.height * 4, NULL);
+            CGColorSpaceRef colorSpaceRef   = CGColorSpaceCreateDeviceRGB();
+            CGImageRef iref                 = CGImageCreate(s.size.width, s.size.height, 8, 32, s.size.width * 4, colorSpaceRef, kCGBitmapByteOrderDefault, ref, NULL, true, kCGRenderingIntentDefault);
+            
+            size_t width        = CGImageGetWidth(iref);
+            size_t height       = CGImageGetHeight(iref);
+            size_t length       = width * height * 4;
+            uint32_t *pixels    = (uint32_t *)malloc(length);
+            
+            CGContextRef context = CGBitmapContextCreate(pixels, width, height, 8, width * 4,
+                                                         CGImageGetColorSpace(iref), kCGImageAlphaNoneSkipFirst | kCGBitmapByteOrder32Big);
+            
+            CGAffineTransform transform = CGAffineTransformIdentity;
+            transform                   = CGAffineTransformMakeTranslation(0.0f, height);
+            transform                   = CGAffineTransformScale(transform, 1.0, -1.0);
+            CGContextConcatCTM(context, transform);
+            CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, width, height), iref);
+            CGImageRef outputRef    = CGBitmapContextCreateImage(context);
+            outputImage             = [UIImage imageWithCGImage: outputRef];
+            
+            CGColorSpaceRelease(colorSpaceRef);
+            CGDataProviderRelease(ref);
+            CGImageRelease(iref);
+            CGContextRelease(context);
+            CGImageRelease(outputRef);
+            free(pixels);
+            free(buffer);
+            
+            [CustomAlbum addNewAssetWithImage:outputImage toAlbum:[CustomAlbum getMyAlbumWithName:CSAlbum] onSuccess:^(NSString *ImageId) {
+                NSLog(@"%@",ImageId);
+                self.recentImg = ImageId;
+            } onError:^(NSError *error) {
+                NSLog(@"probelm in saving image");
+            } onFinish:^(NSString *finish) {
+                
+                PHAssetCollection *collection = [CustomAlbum getMyAlbumWithName:CSAlbum];
+                [CustomAlbum getImageWithCollection:collection onSuccess:^(UIImage *image) {
+                    self.galleryImageView.image = image;
+                    
+                    [UIView animateWithDuration:0.3f animations:^(void) {
+                        [self.galleryImageView.layer addAnimation:[OSRootViewController showAnimationGroup] forKey:nil];
+                    }];
+                    
+                } onError:^(NSError *error) {
+                    NSLog(@"Not Found!");
+                }];
+            }];
+        }
+        @catch (NSException *exception) {
+            // do nothing
+            NSLog(@"Error in capture %@", exception.description);
+
+        }
+        
+
+//    } catch (NSError *error) {
+//        NSLog(@"Error in capture");
+//    }
     
     [UIView animateWithDuration:0.1f
                      animations: ^{

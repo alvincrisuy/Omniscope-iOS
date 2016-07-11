@@ -81,6 +81,7 @@ NSString *const CSAlbum1 = @"Omniscope";
     photo.userGenerated = YES;
     FBSDKSharePhotoContent *content = [[FBSDKSharePhotoContent alloc] init];
     content.photos = @[photo];
+    content.hashtag = [FBSDKHashtag hashtagWithString:@"#Omniscope"];
     
     FBSDKShareDialog *dialog = [[FBSDKShareDialog alloc] init];
     dialog.fromViewController = self;
