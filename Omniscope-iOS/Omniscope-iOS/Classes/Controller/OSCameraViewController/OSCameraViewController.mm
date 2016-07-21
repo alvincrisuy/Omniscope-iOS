@@ -7,7 +7,7 @@
 //
 
 #import "OSCameraViewController.h"
-#import "QCAR.h"
+#import "Vuforia.h"
 #import "TrackerManager.h"
 #import "ObjectTracker.h"
 #import "Trackable.h"
@@ -75,7 +75,7 @@ NSString *const CSAlbum = @"Omniscope";
 }
 
 - (void)cameraPerformAutoFocus {
-    QCAR::CameraDevice::getInstance().setFocusMode(QCAR::CameraDevice::FOCUS_MODE_TRIGGERAUTO);
+    Vuforia::CameraDevice::getInstance().setFocusMode(Vuforia::CameraDevice::FOCUS_MODE_TRIGGERAUTO);
 }
 
 - (void)doubleTapGestureAction:(UITapGestureRecognizer*)theGesture {
@@ -158,7 +158,7 @@ NSString *const CSAlbum = @"Omniscope";
      object:nil];
     
     // initialize AR
-    [vapp initAR:QCAR::GL_20 orientation:[[UIApplication sharedApplication] statusBarOrientation]];
+    [vapp initAR:Vuforia::GL_20 orientation:[[UIApplication sharedApplication] statusBarOrientation]];
     
     [self.view addGestureRecognizer:tapGestureRecognizer];
     
@@ -351,7 +351,7 @@ NSString *const CSAlbum = @"Omniscope";
     
 }
 
-- (void)onQCARUpdate:(QCAR::State *) state {
+- (void)onVuforiaUpdate:(Vuforia::State *)state {
     [self activateDataSet:dataSetPhoto];
 }
 
@@ -368,7 +368,7 @@ NSString *const CSAlbum = @"Omniscope";
         NSLog(@"Error resuming AR:%@", [error description]);
     }
     // on resume, we reset the flash
-    QCAR::CameraDevice::getInstance().setFlashTorchMode(false);
+    Vuforia::CameraDevice::getInstance().setFlashTorchMode(false);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -387,14 +387,14 @@ NSString *const CSAlbum = @"Omniscope";
 }
 
 - (bool)doDeinitTrackers {
-    QCAR::TrackerManager& trackerManager = QCAR::TrackerManager::getInstance();
-    trackerManager.deinitTracker(QCAR::ObjectTracker::getClassType());
+    Vuforia::TrackerManager& trackerManager = Vuforia::TrackerManager::getInstance();
+    trackerManager.deinitTracker(Vuforia::ObjectTracker::getClassType());
     return YES;
 }
 
 - (bool)doStopTrackers {
-    QCAR::TrackerManager& trackerManager = QCAR::TrackerManager::getInstance();
-    QCAR::Tracker* tracker = trackerManager.getTracker(QCAR::ObjectTracker::getClassType());
+    Vuforia::TrackerManager& trackerManager = Vuforia::TrackerManager::getInstance();
+    Vuforia::Tracker* tracker = trackerManager.getTracker(Vuforia::ObjectTracker::getClassType());
     
     if (NULL != tracker) {
         tracker->stop();
@@ -412,13 +412,13 @@ NSString *const CSAlbum = @"Omniscope";
     return YES;
 }
 
-- (QCAR::DataSet *)loadObjectTrackerDataSet:(NSString*)dataFile {
+- (Vuforia::DataSet *)loadObjectTrackerDataSet:(NSString*)dataFile {
     NSLog(@"loadObjectTrackerDataSet (%@)", dataFile);
-    QCAR::DataSet * dataSet = NULL;
+    Vuforia::DataSet * dataSet = NULL;
     
-    // Get the QCAR tracker manager image tracker
-    QCAR::TrackerManager& trackerManager = QCAR::TrackerManager::getInstance();
-    QCAR::ObjectTracker* objectTracker = static_cast<QCAR::ObjectTracker*>(trackerManager.getTracker(QCAR::ObjectTracker::getClassType()));
+    // Get the Vuforia tracker manager image tracker
+    Vuforia::TrackerManager& trackerManager = Vuforia::TrackerManager::getInstance();
+    Vuforia::ObjectTracker* objectTracker = static_cast<Vuforia::ObjectTracker*>(trackerManager.getTracker(Vuforia::ObjectTracker::getClassType()));
     
     if (NULL == objectTracker) {
         NSLog(@"ERROR: failed to get the ObjectTracker from the tracker manager");
@@ -429,10 +429,10 @@ NSString *const CSAlbum = @"Omniscope";
         if (NULL != dataSet) {
             NSLog(@"INFO: successfully loaded data set");
             
-            QCAR::setHint(QCAR::HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS, 5);
+            Vuforia::setHint(Vuforia::HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS, 5);
             
             // Load the data set from the app's resources location
-            if (!dataSet->load([dataFile cStringUsingEncoding:NSASCIIStringEncoding], QCAR::STORAGE_APPRESOURCE)) {
+            if (!dataSet->load([dataFile cStringUsingEncoding:NSASCIIStringEncoding], Vuforia::STORAGE_APPRESOURCE)) {
                 
                 NSLog(@"ERROR: failed to load data set");
                 objectTracker->destroyDataSet(dataSet);
@@ -448,8 +448,8 @@ NSString *const CSAlbum = @"Omniscope";
 }
 
 - (bool)doInitTrackers {
-    QCAR::TrackerManager& trackerManager = QCAR::TrackerManager::getInstance();
-    QCAR::Tracker* trackerBase = trackerManager.initTracker(QCAR::ObjectTracker::getClassType());
+    Vuforia::TrackerManager& trackerManager = Vuforia::TrackerManager::getInstance();
+    Vuforia::Tracker* trackerBase = trackerManager.initTracker(Vuforia::ObjectTracker::getClassType());
     if (trackerBase == NULL) {
         NSLog(@"Failed to initialize ObjectTracker.");
         return false;
@@ -462,8 +462,8 @@ NSString *const CSAlbum = @"Omniscope";
     dataSetCurrent = nil;
     
     // Get the image tracker:
-    QCAR::TrackerManager& trackerManager = QCAR::TrackerManager::getInstance();
-    QCAR::ObjectTracker* objectTracker = static_cast<QCAR::ObjectTracker*>(trackerManager.getTracker(QCAR::ObjectTracker::getClassType()));
+    Vuforia::TrackerManager& trackerManager = Vuforia::TrackerManager::getInstance();
+    Vuforia::ObjectTracker* objectTracker = static_cast<Vuforia::ObjectTracker*>(trackerManager.getTracker(Vuforia::ObjectTracker::getClassType()));
     
     // Destroy the data sets:
     if (!objectTracker->destroyDataSet(dataSetPhoto)) {
@@ -474,7 +474,7 @@ NSString *const CSAlbum = @"Omniscope";
     return YES;
 }
 
-- (BOOL)activateDataSet:(QCAR::DataSet *)theDataSet {
+- (BOOL)activateDataSet:(Vuforia::DataSet *)theDataSet {
     // if we've previously recorded an activation, deactivate it
     if (dataSetCurrent != nil) {
         [self deactivateDataSet:dataSetCurrent];
@@ -483,8 +483,8 @@ NSString *const CSAlbum = @"Omniscope";
     BOOL success = NO;
     
     // Get the image tracker:
-    QCAR::TrackerManager& trackerManager = QCAR::TrackerManager::getInstance();
-    QCAR::ObjectTracker* objectTracker = static_cast<QCAR::ObjectTracker*>(trackerManager.getTracker(QCAR::ObjectTracker::getClassType()));
+    Vuforia::TrackerManager& trackerManager = Vuforia::TrackerManager::getInstance();
+    Vuforia::ObjectTracker* objectTracker = static_cast<Vuforia::ObjectTracker*>(trackerManager.getTracker(Vuforia::ObjectTracker::getClassType()));
     
     if (objectTracker == NULL) {
         NSLog(@"Failed to load tracking data set because the ObjectTracker has not been initialized.");
@@ -502,7 +502,7 @@ NSString *const CSAlbum = @"Omniscope";
     return success;
 }
 
-- (BOOL)deactivateDataSet:(QCAR::DataSet *)theDataSet {
+- (BOOL)deactivateDataSet:(Vuforia::DataSet *)theDataSet {
     if ((dataSetCurrent == nil) || (theDataSet != dataSetCurrent)) {
         NSLog(@"Invalid request to deactivate data set.");
         return NO;
@@ -514,8 +514,8 @@ NSString *const CSAlbum = @"Omniscope";
     [self setExtendedTrackingForDataSet:theDataSet start:NO];
     
     // Get the image tracker:
-    QCAR::TrackerManager& trackerManager = QCAR::TrackerManager::getInstance();
-    QCAR::ObjectTracker* objectTracker = static_cast<QCAR::ObjectTracker*>(trackerManager.getTracker(QCAR::ObjectTracker::getClassType()));
+    Vuforia::TrackerManager& trackerManager = Vuforia::TrackerManager::getInstance();
+    Vuforia::ObjectTracker* objectTracker = static_cast<Vuforia::ObjectTracker*>(trackerManager.getTracker(Vuforia::ObjectTracker::getClassType()));
     
     if (objectTracker == NULL) {
         NSLog(@"Failed to unload tracking data set because the ObjectTracker has not been initialized.");
@@ -533,10 +533,10 @@ NSString *const CSAlbum = @"Omniscope";
     return success;
 }
 
-- (BOOL)setExtendedTrackingForDataSet:(QCAR::DataSet *)theDataSet start:(BOOL) start {
+- (BOOL)setExtendedTrackingForDataSet:(Vuforia::DataSet *)theDataSet start:(BOOL) start {
     BOOL result = YES;
     for (int tIdx = 0; tIdx < theDataSet->getNumTrackables(); tIdx++) {
-        QCAR::Trackable* trackable = theDataSet->getTrackable(tIdx);
+        Vuforia::Trackable* trackable = theDataSet->getTrackable(tIdx);
         if (start) {
             if (!trackable->startExtendedTracking()) {
                 NSLog(@"Failed to start extended tracking on: %s", trackable->getName());
@@ -556,10 +556,10 @@ NSString *const CSAlbum = @"Omniscope";
     
     if (error == nil) {
         NSError * error = nil;
-        [vapp startAR:QCAR::CameraDevice::CAMERA_BACK error:&error];
+        [vapp startAR:Vuforia::CameraDevice::CAMERA_DIRECTION_BACK error:&error];
         
         // by default, we try to set the continuous auto focus mode
-        continuousAutofocusEnabled = QCAR::CameraDevice::getInstance().setFocusMode(QCAR::CameraDevice::FOCUS_MODE_CONTINUOUSAUTO);
+        continuousAutofocusEnabled = Vuforia::CameraDevice::getInstance().setFocusMode(Vuforia::CameraDevice::FOCUS_MODE_CONTINUOUSAUTO);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -582,8 +582,8 @@ NSString *const CSAlbum = @"Omniscope";
 }
 
 - (bool)doStartTrackers {
-    QCAR::TrackerManager& trackerManager = QCAR::TrackerManager::getInstance();
-    QCAR::Tracker* tracker = trackerManager.getTracker(QCAR::ObjectTracker::getClassType());
+    Vuforia::TrackerManager& trackerManager = Vuforia::TrackerManager::getInstance();
+    Vuforia::Tracker* tracker = trackerManager.getTracker(Vuforia::ObjectTracker::getClassType());
     if (tracker == 0) {
         return false;
     }
@@ -619,7 +619,7 @@ NSString *const CSAlbum = @"Omniscope";
         OSRootTableViewCell *rowCell = [[OSRootViewController sharedController].sideBarTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
         
         if (self.frontCameraEnabled) {
-            bool result = [vapp startAR:QCAR::CameraDevice::CAMERA_BACK error:&error];
+            bool result = [vapp startAR:Vuforia::CameraDevice::CAMERA_DIRECTION_BACK error:&error];
             self.frontCameraEnabled = !result;
             
             switch(device.orientation) {
@@ -710,7 +710,7 @@ NSString *const CSAlbum = @"Omniscope";
                     break;
             };
             
-            bool result = [vapp startAR:QCAR::CameraDevice::CAMERA_FRONT error:&error];
+            bool result = [vapp startAR:Vuforia::CameraDevice::CAMERA_DIRECTION_FRONT error:&error];
             self.frontCameraEnabled = result;
             if (self.frontCameraEnabled) {
                 // Switch Flash toggle OFF, in case it was previously ON,

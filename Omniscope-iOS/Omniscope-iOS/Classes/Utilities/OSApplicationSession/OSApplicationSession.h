@@ -13,7 +13,7 @@
 #import "CameraDevice.h"
 #import "State.h"
 
-#define E_INITIALIZING_QCAR         100
+#define E_INITIALIZING_VUFORIA         100
 
 #define E_INITIALIZING_CAMERA       110
 #define E_STARTING_CAMERA           111
@@ -59,8 +59,8 @@
 - (bool) doDeinitTrackers;
 
 @optional
-// optional method to handle the QCAR callback - can be used to swap dataset for instance
-- (void) onQCARUpdate: (QCAR::State *) state;
+// optional method to handle the Vuforia callback - can be used to swap dataset for instance
+- (void) onVuforiaUpdate: (Vuforia::State *) state;
 
 @end
 
@@ -69,10 +69,10 @@
 - (id)initWithDelegate:(id<OSApplicationControl>) delegate;
 
 // initialize the AR library. This is an asynchronous method. When the initialization is complete, the callback method initARDone will be called
-- (void) initAR:(int) QCARInitFlags orientation:(UIInterfaceOrientation) ARViewOrientation;
+- (void) initAR:(int) VuforiaInitFlags orientation:(UIInterfaceOrientation) ARViewOrientation;
 
 // start the AR session
-- (bool) startAR:(QCAR::CameraDevice::CAMERA) camera error:(NSError **)error;
+- (bool) startAR:(Vuforia::CameraDevice::CAMERA_DIRECTION) camera error:(NSError **)error;
 
 // pause the AR session
 - (bool) pauseAR:(NSError **)error;
@@ -89,14 +89,14 @@
 
 @property (nonatomic, readwrite) BOOL isRetinaDisplay;
 @property (nonatomic, readwrite) BOOL cameraIsStarted;
-@property (nonatomic, readwrite) QCAR::Matrix44F projectionMatrix;
+@property (nonatomic, readwrite) Vuforia::Matrix44F projectionMatrix;
 
 // Viewport geometry
 @property (nonatomic, readwrite) struct tagViewport {
-    int posX;
-    int posY;
-    int sizeX;
-    int sizeY;
+int posX;
+int posY;
+int sizeX;
+int sizeY;
 } viewport;
 
 @end

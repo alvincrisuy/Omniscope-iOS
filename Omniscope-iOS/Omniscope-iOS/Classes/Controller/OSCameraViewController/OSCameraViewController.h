@@ -17,8 +17,8 @@
 #import <CTAssetsPickerController/CTAssetsPickerController.h>
 
 @interface OSCameraViewController : UIViewController <OSApplicationControl, CTAssetsPickerControllerDelegate, OSRootViewControllerDelegate> {
-    QCAR::DataSet*  dataSetCurrent;
-    QCAR::DataSet*  dataSetPhoto;
+    Vuforia::DataSet*  dataSetCurrent;
+    Vuforia::DataSet*  dataSetPhoto;
 
     BOOL continuousAutofocusEnabled;
 }

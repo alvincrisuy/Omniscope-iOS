@@ -7,13 +7,16 @@
 //
 
 #import "OSApplicationSession.h"
-#import "QCAR.h"
-#import "QCAR_iOS.h"
+#import "OSRootViewController.h"
+#import "Vuforia.h"
+#import "Vuforia_iOS.h"
 #import "Tool.h"
 #import "Renderer.h"
 #import "CameraDevice.h"
 #import "VideoBackgroundConfig.h"
 #import "UpdateCallback.h"
+
+#import <UIKit/UIKit.h>
 
 #define DEBUG_SAMPLE_APP 1
 
@@ -21,24 +24,24 @@ namespace {
     // --- Data private to this unit ---
     
     // instance of the seesion
-    // used to support the QCAR callback
+    // used to support the Vuforia callback
     // there should be only one instance of a session
     // at any given point of time
     OSApplicationSession* instance = nil;
     
-    // QCAR initialisation flags (passed to QCAR before initialising)
-    int mQCARInitFlags;
+    // Vuforia initialisation flags (passed to Vuforia before initialising)
+    int mVuforiaInitFlags;
     
     // camera to use for the session
-    QCAR::CameraDevice::CAMERA mCamera = QCAR::CameraDevice::CAMERA_DEFAULT;
+    Vuforia::CameraDevice::CAMERA_DIRECTION mCamera = Vuforia::CameraDevice::CAMERA_DIRECTION_DEFAULT;
     
-    // class used to support the QCAR callback mechanism
-    class VuforiaApplication_UpdateCallback : public QCAR::UpdateCallback {
-        virtual void QCAR_onUpdate(QCAR::State& state);
-    } qcarUpdate;
+    // class used to support the Vuforia callback mechanism
+    class VuforiaApplication_UpdateCallback : public Vuforia::UpdateCallback {
+        virtual void Vuforia_onUpdate(Vuforia::State& state);
+    } vuforiaUpdate;
     
     // NSerror domain for errors coming from the Sample application template classes
-    NSString * SAMPLE_APPLICATION_ERROR_DOMAIN = @"vuforia_sample_application";
+    NSString * SAMPLE_APPLICATION_ERROR_DOMAIN = @"Omniscope camera error";
 }
 
 @interface OSApplicationSession ()
@@ -53,6 +56,7 @@ namespace {
 
 @end
 
+
 @implementation OSApplicationSession
 @synthesize viewport;
 
@@ -62,7 +66,7 @@ namespace {
     if (self) {
         self.delegate = delegate;
         
-        // we keep a reference of the instance in order to implemet the QCAR callback
+        // we keep a reference of the instance in order to implemet the Vuforia callback
         instance = self;
     }
     return self;
@@ -94,37 +98,37 @@ namespace {
 - (BOOL)isRetinaDisplay
 {
     // If UIScreen mainScreen responds to selector
-    // displayLinkWithTarget:selector: and the scale property is 2.0, then this
+    // displayLinkWithTarget:selector: and the scale property is larger than 1.0, then this
     // is a retina display
-    return ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] && 2.0 == [UIScreen mainScreen].scale);
+    return ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] && 1.0 < [UIScreen mainScreen].scale);
 }
 
 // Initialize the Vuforia SDK
-- (void) initAR:(int) QCARInitFlags orientation:(UIInterfaceOrientation) ARViewOrientation {
+- (void) initAR:(int) VuforiaInitFlags orientation:(UIInterfaceOrientation) ARViewOrientation {
     self.cameraIsActive = NO;
     self.cameraIsStarted = NO;
-    mQCARInitFlags = QCARInitFlags;
+    mVuforiaInitFlags = VuforiaInitFlags;
     self.isRetinaDisplay = [self isRetinaDisplay];
     self.mARViewOrientation = ARViewOrientation;
     
-    // Initialising QCAR is a potentially lengthy operation, so perform it on a
+    // Initialising Vuforia is a potentially lengthy operation, so perform it on a
     // background thread
-    [self performSelectorInBackground:@selector(initQCARInBackground) withObject:nil];
+    [self performSelectorInBackground:@selector(initVuforiaInBackground) withObject:nil];
 }
 
-// Initialise QCAR
+// Initialise Vuforia
 // (Performed on a background thread)
-- (void)initQCARInBackground
+- (void)initVuforiaInBackground
 {
     // Background thread must have its own autorelease pool
     @autoreleasepool {
-        QCAR::setInitParameters(mQCARInitFlags,"AS9eCvD/////AAAAAR0l/CAxkUTfjLwBbHP8GWhtiVlddMrsLdUqjUqNUutQ3VNr7U555Ui3PLDfNKdpTy9Ml5YPHK8Ml9gInZjJ79VVQSa4dQk7wMMGVZcIuEpcs3rHm5d8sJTAhC4UHkFDvfnX/calz2YNYYhmKxkB5GysEbyBsKkKXJbkfiSaLT3FxD2X4JEvol304Mr1mS+BxUCm2wxbbctxt456qAYqhC0LKB1tRhbZJsE+k14mgmYsy79RsEdwfcal+fH7ku76EnJBgsDLUHFLGGtIlTeZIeqUMAoOlpUSp7ExsaF6zKnKlwH1iQceIhU21yDvLDE5Ab4hsQ986llfQX1J3n/WUQb8VRzP68cnhKS2I4gfzIan");
+        Vuforia::setInitParameters(mVuforiaInitFlags,"AS9eCvD/////AAAAAR0l/CAxkUTfjLwBbHP8GWhtiVlddMrsLdUqjUqNUutQ3VNr7U555Ui3PLDfNKdpTy9Ml5YPHK8Ml9gInZjJ79VVQSa4dQk7wMMGVZcIuEpcs3rHm5d8sJTAhC4UHkFDvfnX/calz2YNYYhmKxkB5GysEbyBsKkKXJbkfiSaLT3FxD2X4JEvol304Mr1mS+BxUCm2wxbbctxt456qAYqhC0LKB1tRhbZJsE+k14mgmYsy79RsEdwfcal+fH7ku76EnJBgsDLUHFLGGtIlTeZIeqUMAoOlpUSp7ExsaF6zKnKlwH1iQceIhU21yDvLDE5Ab4hsQ986llfQX1J3n/WUQb8VRzP68cnhKS2I4gfzIan");
         
-        // QCAR::init() will return positive numbers up to 100 as it progresses
+        // Vuforia::init() will return positive numbers up to 100 as it progresses
         // towards success.  Negative numbers indicate error conditions
         NSInteger initSuccess = 0;
         do {
-            initSuccess = QCAR::init();
+            initSuccess = Vuforia::init();
         } while (0 <= initSuccess && 100 > initSuccess);
         
         if (100 == initSuccess) {
@@ -133,12 +137,12 @@ namespace {
             [self performSelectorOnMainThread:@selector(prepareAR) withObject:nil waitUntilDone:NO];
         }
         else {
-            // Failed to initialise QCAR:
-            if (QCAR::INIT_NO_CAMERA_ACCESS == initSuccess) {
+            // Failed to initialise Vuforia:
+            if (Vuforia::INIT_NO_CAMERA_ACCESS == initSuccess) {
                 // On devices running iOS 8+, the user is required to explicitly grant
                 // camera access to an App.
-                // If camera access is denied, QCAR::init will return
-                // QCAR::INIT_NO_CAMERA_ACCESS.
+                // If camera access is denied, Vuforia::init will return
+                // Vuforia::INIT_NO_CAMERA_ACCESS.
                 // This case should be handled gracefully, e.g.
                 // by warning and instructing the user on how
                 // to restore the camera access for this app
@@ -148,27 +152,27 @@ namespace {
             else {
                 NSError * error;
                 switch(initSuccess) {
-                    case QCAR::INIT_LICENSE_ERROR_NO_NETWORK_TRANSIENT:
+                    case Vuforia::INIT_LICENSE_ERROR_NO_NETWORK_TRANSIENT:
                         error = [self NSErrorWithCode:NSLocalizedString(@"INIT_LICENSE_ERROR_NO_NETWORK_TRANSIENT", nil) code:initSuccess];
                         break;
                         
-                    case QCAR::INIT_LICENSE_ERROR_NO_NETWORK_PERMANENT:
+                    case Vuforia::INIT_LICENSE_ERROR_NO_NETWORK_PERMANENT:
                         error = [self NSErrorWithCode:NSLocalizedString(@"INIT_LICENSE_ERROR_NO_NETWORK_PERMANENT", nil) code:initSuccess];
                         break;
                         
-                    case QCAR::INIT_LICENSE_ERROR_INVALID_KEY:
+                    case Vuforia::INIT_LICENSE_ERROR_INVALID_KEY:
                         error = [self NSErrorWithCode:NSLocalizedString(@"INIT_LICENSE_ERROR_INVALID_KEY", nil) code:initSuccess];
                         break;
                         
-                    case QCAR::INIT_LICENSE_ERROR_CANCELED_KEY:
+                    case Vuforia::INIT_LICENSE_ERROR_CANCELED_KEY:
                         error = [self NSErrorWithCode:NSLocalizedString(@"INIT_LICENSE_ERROR_CANCELED_KEY", nil) code:initSuccess];
                         break;
                         
-                    case QCAR::INIT_LICENSE_ERROR_MISSING_KEY:
+                    case Vuforia::INIT_LICENSE_ERROR_MISSING_KEY:
                         error = [self NSErrorWithCode:NSLocalizedString(@"INIT_LICENSE_ERROR_MISSING_KEY", nil) code:initSuccess];
                         break;
                         
-                    case QCAR::INIT_LICENSE_ERROR_PRODUCT_TYPE_MISMATCH:
+                    case Vuforia::INIT_LICENSE_ERROR_PRODUCT_TYPE_MISMATCH:
                         error = [self NSErrorWithCode:NSLocalizedString(@"INIT_LICENSE_ERROR_PRODUCT_TYPE_MISMATCH", nil) code:initSuccess];
                         break;
                         
@@ -177,7 +181,7 @@ namespace {
                         break;
                         
                 }
-                // QCAR initialization error
+                // Vuforia initialization error
                 [self.delegate onInitARDone:error];
             }
         }
@@ -190,12 +194,20 @@ namespace {
 // to provide instructions on how to restore it.
 -(void) showCameraAccessWarning
 {
-//    NSString *appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleNameKey];
-//    NSString *message = [NSString stringWithFormat:@"User denied camera access to this App. To restore camera access, go to: \nSettings > Privacy > Camera > %@ and turn it ON.", appName];
-//    
+    NSString *appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleNameKey];
+    NSString *message = [NSString stringWithFormat:@"User denied camera access to this App. To restore camera access, go to: \nSettings > Privacy > Camera > %@ and turn it ON.", appName];
+//
 //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"iOS8 Camera Access Warning" message:message delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil, nil];
 //    
 //    [alert show];
+    
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"iOS Camera Access Warning"
+                                 message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    [[OSRootViewController sharedController] presentViewController:alert animated:YES completion:nil];
+
 }
 
 // Quit App when user dismisses the camera access alert dialog
@@ -206,22 +218,22 @@ namespace {
 //    }
 //}
 
-// Resume QCAR
+// Resume Vuforia
 - (bool) resumeAR:(NSError **)error {
-    QCAR::onResume();
+    Vuforia::onResume();
     
     // if the camera was previously started, but not currently active, then
     // we restart it
     if ((self.cameraIsStarted) && (! self.cameraIsActive)) {
         
         // initialize the camera
-        if (! QCAR::CameraDevice::getInstance().init(mCamera)) {
+        if (! Vuforia::CameraDevice::getInstance().init(mCamera)) {
             [self NSErrorWithCode:E_INITIALIZING_CAMERA error:error];
             return NO;
         }
         
         // start the camera
-        if (!QCAR::CameraDevice::getInstance().start()) {
+        if (!Vuforia::CameraDevice::getInstance().start()) {
             [self NSErrorWithCode:E_STARTING_CAMERA error:error];
             return NO;
         }
@@ -232,27 +244,27 @@ namespace {
 }
 
 
-// Pause QCAR
+// Pause Vuforia
 - (bool)pauseAR:(NSError **)error {
     if (self.cameraIsActive) {
         // Stop and deinit the camera
-        if(! QCAR::CameraDevice::getInstance().stop()) {
+        if(! Vuforia::CameraDevice::getInstance().stop()) {
             [self NSErrorWithCode:E_STOPPING_CAMERA error:error];
             return NO;
         }
-        if(! QCAR::CameraDevice::getInstance().deinit()) {
+        if(! Vuforia::CameraDevice::getInstance().deinit()) {
             [self NSErrorWithCode:E_DEINIT_CAMERA error:error];
             return NO;
         }
         self.cameraIsActive = NO;
     }
-    QCAR::onPause();
+    Vuforia::onPause();
     return YES;
 }
 
-- (void) QCAR_onUpdate:(QCAR::State *) state {
-    if ((self.delegate != nil) && [self.delegate respondsToSelector:@selector(onQCARUpdate:)]) {
-        [self.delegate onQCARUpdate:state];
+- (void) Vuforia_onUpdate:(Vuforia::State *) state {
+    if ((self.delegate != nil) && [self.delegate respondsToSelector:@selector(onVuforiaUpdate:)]) {
+        [self.delegate onVuforiaUpdate:state];
     }
 }
 
@@ -264,52 +276,52 @@ namespace {
     // If this device has a retina display, scale the view bounds
     // for the AR (OpenGL) view
     if (YES == self.isRetinaDisplay) {
-        viewSize.width *= 2.0;
-        viewSize.height *= 2.0;
+        viewSize.width *= [UIScreen mainScreen].nativeScale;
+        viewSize.height *= [UIScreen mainScreen].nativeScale;
     }
     return viewSize;
 }
 
 - (void) prepareAR  {
-    // we register for the QCAR callback
-    QCAR::registerCallback(&qcarUpdate);
+    // we register for the Vuforia callback
+    Vuforia::registerCallback(&vuforiaUpdate);
     
-    // Tell QCAR we've created a drawing surface
-    QCAR::onSurfaceCreated();
+    // Tell Vuforia we've created a drawing surface
+    Vuforia::onSurfaceCreated();
     
     CGSize viewBoundsSize = [self getCurrentARViewBoundsSize];
     int smallerSize = MIN(viewBoundsSize.width, viewBoundsSize.height);
     int largerSize = MAX(viewBoundsSize.width, viewBoundsSize.height);
     
     // Frames from the camera are always landscape, no matter what the
-    // orientation of the device.  Tell QCAR to rotate the video background (and
+    // orientation of the device.  Tell Vuforia to rotate the video background (and
     // the projection matrix it provides to us for rendering our augmentation)
     // by the proper angle in order to match the EAGLView orientation
     if (self.mARViewOrientation == UIInterfaceOrientationPortrait)
     {
-        QCAR::onSurfaceChanged(smallerSize, largerSize);
-        QCAR::setRotation(QCAR::ROTATE_IOS_90);
+        Vuforia::onSurfaceChanged(smallerSize, largerSize);
+        Vuforia::setRotation(Vuforia::ROTATE_IOS_90);
         
         self.mIsActivityInPortraitMode = YES;
     }
     else if (self.mARViewOrientation == UIInterfaceOrientationPortraitUpsideDown)
     {
-        QCAR::onSurfaceChanged(smallerSize, largerSize);
-        QCAR::setRotation(QCAR::ROTATE_IOS_270);
+        Vuforia::onSurfaceChanged(smallerSize, largerSize);
+        Vuforia::setRotation(Vuforia::ROTATE_IOS_270);
         
         self.mIsActivityInPortraitMode = YES;
     }
     else if (self.mARViewOrientation == UIInterfaceOrientationLandscapeLeft)
     {
-        QCAR::onSurfaceChanged(largerSize, smallerSize);
-        QCAR::setRotation(QCAR::ROTATE_IOS_180);
+        Vuforia::onSurfaceChanged(largerSize, smallerSize);
+        Vuforia::setRotation(Vuforia::ROTATE_IOS_180);
         
         self.mIsActivityInPortraitMode = NO;
     }
     else if (self.mARViewOrientation == UIInterfaceOrientationLandscapeRight)
     {
-        QCAR::onSurfaceChanged(largerSize, smallerSize);
-        QCAR::setRotation(QCAR::ROTATE_IOS_0);
+        Vuforia::onSurfaceChanged(largerSize, smallerSize);
+        Vuforia::setRotation(Vuforia::ROTATE_IOS_0);
         
         self.mIsActivityInPortraitMode = NO;
     }
@@ -348,15 +360,15 @@ namespace {
     [self.delegate onInitARDone:nil];
 }
 
-// Configure QCAR with the video background size
+// Configure Vuforia with the video background size
 - (void)configureVideoBackgroundWithViewWidth:(float)viewWidth andHeight:(float)viewHeight
 {
     // Get the default video mode
-    QCAR::CameraDevice& cameraDevice = QCAR::CameraDevice::getInstance();
-    QCAR::VideoMode videoMode = cameraDevice.getVideoMode(QCAR::CameraDevice::MODE_DEFAULT);
+    Vuforia::CameraDevice& cameraDevice = Vuforia::CameraDevice::getInstance();
+    Vuforia::VideoMode videoMode = cameraDevice.getVideoMode(Vuforia::CameraDevice::MODE_DEFAULT);
     
     // Configure the video background
-    QCAR::VideoBackgroundConfig config;
+    Vuforia::VideoBackgroundConfig config;
     config.mEnabled = true;
     config.mPosition.data[0] = 0.0f;
     config.mPosition.data[1] = 0.0f;
@@ -483,30 +495,30 @@ namespace {
 #endif
     
     // Set the config
-    QCAR::Renderer::getInstance().setVideoBackgroundConfig(config);
+    Vuforia::Renderer::getInstance().setVideoBackgroundConfig(config);
 }
 
 
-// Start QCAR camera with the specified view size
-- (bool)startCamera:(QCAR::CameraDevice::CAMERA)camera viewWidth:(float)viewWidth andHeight:(float)viewHeight error:(NSError **)error
+// Start Vuforia camera with the specified view size
+- (bool)startCamera:(Vuforia::CameraDevice::CAMERA_DIRECTION)camera viewWidth:(float)viewWidth andHeight:(float)viewHeight error:(NSError **)error
 {
     // initialize the camera
-    if (! QCAR::CameraDevice::getInstance().init(camera)) {
+    if (! Vuforia::CameraDevice::getInstance().init(camera)) {
         [self NSErrorWithCode:-1 error:error];
         return NO;
     }
     
     // select the default video mode
-    if(! QCAR::CameraDevice::getInstance().selectVideoMode(QCAR::CameraDevice::MODE_DEFAULT)) {
+    if(! Vuforia::CameraDevice::getInstance().selectVideoMode(Vuforia::CameraDevice::MODE_DEFAULT)) {
         [self NSErrorWithCode:-1 error:error];
         return NO;
     }
     
-    // configure QCAR video background
+    // configure Vuforia video background
     [self configureVideoBackgroundWithViewWidth:viewWidth andHeight:viewHeight];
     
     // start the camera
-    if (!QCAR::CameraDevice::getInstance().start()) {
+    if (!Vuforia::CameraDevice::getInstance().start()) {
         [self NSErrorWithCode:-1 error:error];
         return NO;
     }
@@ -521,18 +533,19 @@ namespace {
         return NO;
     }
     
+    
     // Cache the projection matrix
-    const QCAR::CameraCalibration& cameraCalibration = QCAR::CameraDevice::getInstance().getCameraCalibration();
-    _projectionMatrix = QCAR::Tool::getProjectionGL(cameraCalibration, 2.0f, 5000.0f);
+    const Vuforia::CameraCalibration& cameraCalibration = Vuforia::CameraDevice::getInstance().getCameraCalibration();
+    _projectionMatrix = Vuforia::Tool::getProjectionGL(cameraCalibration, 2.0f, 5000.0f);
     return YES;
 }
 
 
-- (bool) startAR:(QCAR::CameraDevice::CAMERA)camera error:(NSError **)error {
+- (bool) startAR:(Vuforia::CameraDevice::CAMERA_DIRECTION)camera error:(NSError **)error {
     CGSize ARViewBoundsSize = [self getCurrentARViewBoundsSize];
     
-    // Start the camera.  This causes QCAR to locate our EAGLView in the view
-    // hierarchy, start a render thread, and then call renderFrameQCAR on the
+    // Start the camera.  This causes Vuforia to locate our EAGLView in the view
+    // hierarchy, start a render thread, and then call renderFrameVuforia on the
     // view periodically
     if (! [self startCamera: camera viewWidth:ARViewBoundsSize.width andHeight:ARViewBoundsSize.height error:error]) {
         return NO;
@@ -543,13 +556,13 @@ namespace {
     return YES;
 }
 
-// Stop QCAR camera
+// Stop Vuforia camera
 - (bool)stopAR:(NSError **)error {
     // Stop the camera
     if (self.cameraIsActive) {
         // Stop and deinit the camera
-        QCAR::CameraDevice::getInstance().stop();
-        QCAR::CameraDevice::getInstance().deinit();
+        Vuforia::CameraDevice::getInstance().stop();
+        Vuforia::CameraDevice::getInstance().deinit();
         self.cameraIsActive = NO;
     }
     self.cameraIsStarted = NO;
@@ -572,9 +585,9 @@ namespace {
         return NO;
     }
     
-    // Pause and deinitialise QCAR
-    QCAR::onPause();
-    QCAR::deinit();
+    // Pause and deinitialise Vuforia
+    Vuforia::onPause();
+    Vuforia::deinit();
     
     return YES;
 }
@@ -583,8 +596,8 @@ namespace {
 - (bool) stopCamera:(NSError **)error {
     if (self.cameraIsActive) {
         // Stop and deinit the camera
-        QCAR::CameraDevice::getInstance().stop();
-        QCAR::CameraDevice::getInstance().deinit();
+        Vuforia::CameraDevice::getInstance().stop();
+        Vuforia::CameraDevice::getInstance().deinit();
         self.cameraIsActive = NO;
     } else {
         [self NSErrorWithCode:E_CAMERA_NOT_STARTED error:error];
@@ -612,12 +625,11 @@ namespace {
 
 ////////////////////////////////////////////////////////////////////////////////
 // Callback function called by the tracker when each tracking cycle has finished
-void VuforiaApplication_UpdateCallback::QCAR_onUpdate(QCAR::State& state)
+void VuforiaApplication_UpdateCallback::Vuforia_onUpdate(Vuforia::State& state)
 {
     if (instance != nil) {
-        [instance QCAR_onUpdate:&state];
+        [instance Vuforia_onUpdate:&state];
     }
 }
-
 
 @end

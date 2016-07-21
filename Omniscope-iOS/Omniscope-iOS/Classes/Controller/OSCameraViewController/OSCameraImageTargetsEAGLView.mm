@@ -13,7 +13,7 @@
 
 #import "OSCameraImageTargetsEAGLView.h"
 
-#import "QCAR.h"
+#import "Vuforia.h"
 #import "State.h"
 #import "Tool.h"
 #import "Renderer.h"
@@ -181,11 +181,11 @@ namespace {
 
 // Draw the current frame using OpenGL
 //
-// This method is called by QCAR when it wishes to render the current frame to
+// This method is called by Vuforia when it wishes to render the current frame to
 // the screen.
 //
-// *** QCAR will call this method periodically on a background thread ***
-- (void)renderFrameQCAR
+// *** Vuforia will call this method periodically on a background thread ***
+- (void)renderFrameVuforia
 {
     [self setFramebuffer];
     
@@ -193,8 +193,8 @@ namespace {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     // Render video background and retrieve tracking state
-    QCAR::State state = QCAR::Renderer::getInstance().begin();
-    QCAR::Renderer::getInstance().drawVideoBackground();
+    Vuforia::State state = Vuforia::Renderer::getInstance().begin();
+    Vuforia::Renderer::getInstance().drawVideoBackground();
     
     glEnable(GL_DEPTH_TEST);
     // We must detect if background reflection is active and adjust the culling direction.
@@ -204,21 +204,21 @@ namespace {
     glEnable(GL_BLEND);
     
     glCullFace(GL_BACK);
-    if(QCAR::Renderer::getInstance().getVideoBackgroundConfig().mReflection == QCAR::VIDEO_BACKGROUND_REFLECTION_ON)
+    if(Vuforia::Renderer::getInstance().getVideoBackgroundConfig().mReflection == Vuforia::VIDEO_BACKGROUND_REFLECTION_ON)
         glFrontFace(GL_CW);  //Front camera
     else
         glFrontFace(GL_CCW);   //Back camera
     
     //    if (state.getNumTrackableResults()) {
     //
-    //        const QCAR::TrackableResult* result = NULL;
+    //        const Vuforia::TrackableResult* result = NULL;
     //        int numResults = state.getNumTrackableResults();
     //
     //        // Browse results searching for the MultiTargets
     //        for (int j=0; j<numResults; j++) {
     //            NSLog(@"index: %d", j);
     //            result = state.getTrackableResult(j);
-    //            if (result->isOfType(QCAR::MultiTargetResult::getClassType())) {
+    //            if (result->isOfType(Vuforia::MultiTargetResult::getClassType())) {
     //                NSLog(@"ENTER is multitarget");
     //                break;
     //            }
@@ -233,7 +233,7 @@ namespace {
     //            glDisable(GL_DEPTH_TEST);
     //            glDisable(GL_CULL_FACE);
     //
-    //            QCAR::Renderer::getInstance().end();
+    //            Vuforia::Renderer::getInstance().end();
     //            [self presentFramebuffer];
     //            return;
     //        }
@@ -242,15 +242,15 @@ namespace {
     
     for (int i = 0; i < state.getNumTrackableResults(); ++i) {
         // Get the trackable
-        const QCAR::TrackableResult* result = state.getTrackableResult(i);
+        const Vuforia::TrackableResult* result = state.getTrackableResult(i);
         
-        const QCAR::Trackable& trackable = result->getTrackable();
+        const Vuforia::Trackable& trackable = result->getTrackable();
         
-        //const QCAR::Trackable& trackable = result->getTrackable();
-        QCAR::Matrix44F modelViewMatrix = QCAR::Tool::convertPose2GLMatrix(result->getPose());
+        //const Vuforia::Trackable& trackable = result->getTrackable();
+        Vuforia::Matrix44F modelViewMatrix = Vuforia::Tool::convertPose2GLMatrix(result->getPose());
         
         // OpenGL 2
-        QCAR::Matrix44F modelViewProjection;
+        Vuforia::Matrix44F modelViewProjection;
         
         int targetIndex = 0;
         float kObjectScaleNormal = 55.0f;
@@ -1135,14 +1135,14 @@ namespace {
         glDisableVertexAttribArray(vertexHandle);
         glDisableVertexAttribArray(textureCoordHandle);
         
-        OSApplicationUtils::checkGlError("EAGLView renderFrameQCAR");
+        OSApplicationUtils::checkGlError("EAGLView renderFrameVuforia");
     }
     
     glDisable(GL_DEPTH_TEST);
     glDisable(GL_CULL_FACE);
     glDisable(GL_BLEND);
     
-    QCAR::Renderer::getInstance().end();
+    Vuforia::Renderer::getInstance().end();
     [self presentFramebuffer];
 }
 
@@ -1153,9 +1153,9 @@ namespace {
     shaderProgramID = [OSApplicationShaderUtils createProgramWithVertexShaderFileName:@"Simple.vertsh"
                                                                fragmentShaderFileName:@"Simple.fragsh"];
     //
-    //    QCAR::setHint(QCAR::HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS, 5);
+    //    Vuforia::setHint(Vuforia::HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS, 5);
     //
-    //    QCAR::setHint(QCAR::HINT_MAX_SIMULTANEOUS_OBJECT_TARGETS, 2);
+    //    Vuforia::setHint(Vuforia::HINT_MAX_SIMULTANEOUS_OBJECT_TARGETS, 2);
     
     if (0 < shaderProgramID) {
         vertexHandle = glGetAttribLocation(shaderProgramID, "vertexPosition");
