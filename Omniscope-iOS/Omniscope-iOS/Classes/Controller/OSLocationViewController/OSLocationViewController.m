@@ -46,14 +46,11 @@
 //    
 //    self.geocoder = [[CLGeocoder alloc] init];
     
-    
-    
-    
     // 1
     CLLocationCoordinate2D center;
-    center.latitude = 25.037879;
-    center.longitude= 121.526437;
-
+    center.latitude = 14.607178;
+    center.longitude= 121.040266;
+    
     MKCoordinateSpan span;
     span.latitudeDelta = 0.5f;
     span.longitudeDelta = 0.5f;
@@ -65,7 +62,7 @@
     // 3
     [self.mapView setRegion:viewRegion animated:YES];
     
-    MyLocation *annotation = [[MyLocation alloc] initWithName:@"NUNU FINE ART" address:@"No. 5, Lane 67, Section 1, Jinshan S Rd, Zhongzheng District, Taipei City, Taiwan 100" coordinate:center];
+    MyLocation *annotation = [[MyLocation alloc] initWithName:@"SECRET FRESH" address:@"G/F RONAC ART Center, 424 Ortigas Ave, San Juan, 1504 Metro Manila" coordinate:center];
     [self.mapView addAnnotation:annotation];
     
 //    [self.locationManager startUpdatingLocation];
