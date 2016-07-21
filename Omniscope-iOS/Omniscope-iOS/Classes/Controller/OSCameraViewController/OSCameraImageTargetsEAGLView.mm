@@ -12,6 +12,7 @@
 #import <sys/time.h>
 
 #import "OSCameraImageTargetsEAGLView.h"
+#import "OSRootViewController.h"
 
 #import "Vuforia.h"
 #import "State.h"
@@ -20,11 +21,14 @@
 #import "TrackableResult.h"
 #import "VideoBackgroundConfig.h"
 #import "MultiTargetResult.h"
+#import "ImageTarget.h"
 
 #import "OSCameraImageTargetsEAGLView.h"
 #import "Texture.h"
 #import "OSApplicationUtils.h"
 #import "OSApplicationShaderUtils.h"
+#import "Quad.h"
+#import "SampleMath.h"
 
 namespace {
     // --- Data private to this unit ---
@@ -65,6 +69,48 @@ namespace {
         "J-tag.png",            // 31   USED
     };
     
+    const char* textureVideoStateFiles[kNumAugmentationTextures] = {
+        "icon_play.png",
+        "icon_loading.png",
+        "icon_error.png",
+        "VuforiaSizzleReel_1.png",
+        "VuforiaSizzleReel_2.png"
+    };
+    
+    enum tagObjectIndex {
+        OBJECT_PLAY_ICON,
+        OBJECT_BUSY_ICON,
+        OBJECT_ERROR_ICON,
+        OBJECT_KEYFRAME_1,
+        OBJECT_KEYFRAME_2,
+    };
+    
+    const NSTimeInterval TRACKING_LOST_TIMEOUT = 2.0f;
+    
+    // Playback icon scale factors
+    const float SCALE_ICON = 2.0f;
+    
+    // Video quad texture coordinates
+    const GLfloat videoQuadTextureCoords[] = {
+        0.0, 1.0,
+        1.0, 1.0,
+        1.0, 0.0,
+        0.0, 0.0,
+    };
+    
+    struct tagVideoData {
+        // Needed to calculate whether a screen tap is inside the target
+        Vuforia::Matrix44F modelViewMatrix;
+        
+        // Trackable dimensions
+        Vuforia::Vec2F targetPositiveDimensions;
+        
+        // Currently active flag
+        BOOL isActive;
+    } videoData[kNumVideoTargets];
+    
+    int touchedTarget = 0;
+    
     // Model scale factor
     //    const float kObjectScaleNormal = 20.0f;
     //    const float kObjectScaleNormal = 55.0f;
@@ -104,12 +150,16 @@ namespace {
         vapp = app;
         // Enable retina mode if available on this device
         if (YES == [vapp isRetinaDisplay]) {
-            [self setContentScaleFactor:2.0f];
+            [self setContentScaleFactor:[UIScreen mainScreen].nativeScale];
         }
         
         // Load the augmentation textures
         for (int i = 0; i < kNumAugmentationTextures; ++i) {
             augmentationTexture[i] = [[Texture alloc] initWithImageFile:[NSString stringWithCString:textureFilenames[i] encoding:NSASCIIStringEncoding]];
+        }
+        
+        for (int i = 0; i < kNumVideoAugmentationTextures; ++i) {
+            videoAugmentationTexture[i] = [[Texture alloc] initWithImageFile:[NSString stringWithCString:textureVideoStateFiles[i] encoding:NSASCIIStringEncoding]];
         }
         
         // Create the OpenGL ES context
@@ -133,12 +183,78 @@ namespace {
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, [augmentationTexture[i] width], [augmentationTexture[i] height], 0, GL_RGBA, GL_UNSIGNED_BYTE, (GLvoid*)[augmentationTexture[i] pngData]);
         }
         
+        for (int i = 0; i < kNumVideoAugmentationTextures; ++i) {
+            GLuint textureID;
+            glGenTextures(1, &textureID);
+            [videoAugmentationTexture[i] setTextureID:textureID];
+            glBindTexture(GL_TEXTURE_2D, textureID);
+            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, [videoAugmentationTexture[i] width], [videoAugmentationTexture[i] height], 0, GL_RGBA, GL_UNSIGNED_BYTE, (GLvoid*)[videoAugmentationTexture[i] pngData]);
+            
+            // Set appropriate texture parameters (for NPOT textures)
+            if (OBJECT_KEYFRAME_1 <= i) {
+                glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+                glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+            }
+        }
+        
         offTargetTrackingEnabled = YES;
         
         [self initShaders];
     }
     
     return self;
+}
+
+- (void) willPlayVideoFullScreen:(BOOL) fullScreen {
+    playVideoFullScreen = fullScreen;
+}
+
+- (void) prepare {
+    // For each target, create a VideoPlayerHelper object and zero the
+    // target dimensions
+    // For each target, create a VideoPlayerHelper object and zero the
+    // target dimensions
+    for (int i = 0; i < kNumVideoTargets; ++i) {
+        videoPlayerHelper[i] = [[OSVideoPlayerHelper alloc] initWithRootViewController:[OSRootViewController sharedController].cameraViewController];
+        videoData[i].targetPositiveDimensions.data[0] = 0.0f;
+        videoData[i].targetPositiveDimensions.data[1] = 0.0f;
+    }
+    
+    // Start video playback from the current position (the beginning) on the
+    // first run of the app
+    for (int i = 0; i < kNumVideoTargets; ++i) {
+        videoPlaybackTime[i] = VIDEO_PLAYBACK_CURRENT_POSITION;
+    }
+    
+    // For each video-augmented target
+    for (int i = 0; i < kNumVideoTargets; ++i) {
+        // Load a local file for playback and resume playback if video was
+        // playing when the app went into the background
+        OSVideoPlayerHelper* player = [self getVideoPlayerHelper:i];
+        NSString* filename;
+        
+        switch (i) {
+            case 0:
+                filename = @"VuforiaSizzleReel_1.mp4";
+                break;
+            default:
+                filename = @"VuforiaSizzleReel_2.mp4";
+                break;
+        }
+        
+        if (NO == [player load:filename playImmediately:NO fromPosition:videoPlaybackTime[i]]) {
+            NSLog(@"Failed to load media");
+        }
+    }
+}
+
+- (void) dismiss {
+    for (int i = 0; i < kNumVideoTargets; ++i) {
+        [videoPlayerHelper[i] unload];
+        videoPlayerHelper[i] = nil;
+    }
 }
 
 - (void)dealloc {
@@ -152,6 +268,15 @@ namespace {
     for (int i = 0; i < kNumAugmentationTextures; ++i) {
         augmentationTexture[i] = nil;
     }
+    
+    for (int i = 0; i < kNumVideoAugmentationTextures; ++i) {
+        videoAugmentationTexture[i] = nil;
+    }
+    
+    for (int i = 0; i < kNumVideoTargets; ++i) {
+        videoPlayerHelper[i] = nil;
+    }
+
 }
 
 
@@ -172,9 +297,112 @@ namespace {
     glFinish();
 }
 
-- (void) setOffTargetTrackingMode:(BOOL) enabled {
+- (void)setOffTargetTrackingMode:(BOOL) enabled {
     offTargetTrackingEnabled = enabled;
 }
+
+//------------------------------------------------------------------------------
+#pragma mark - User interaction
+
+- (bool) handleTouchPoint:(CGPoint) point {
+    // Store the current touch location
+    touchLocation_X = point.x;
+    touchLocation_Y = point.y;
+    
+    // Determine which target was touched (if no target was touch, touchedTarget
+    // will be -1)
+    touchedTarget = [self tapInsideTargetWithID];
+    
+    // Ignore touches when videoPlayerHelper is playing in fullscreen mode
+    if (-1 != touchedTarget && PLAYING_FULLSCREEN != [videoPlayerHelper[touchedTarget] getStatus]) {
+        // Get the state of the video player for the target the user touched
+        MEDIA_STATE mediaState = [videoPlayerHelper[touchedTarget] getStatus];
+        
+        // If any on-texture video is playing, pause it
+        for (int i = 0; i < kNumVideoTargets; ++i) {
+            if (PLAYING == [videoPlayerHelper[i] getStatus]) {
+                [videoPlayerHelper[i] pause];
+            }
+        }
+        
+#ifdef EXAMPLE_CODE_REMOTE_FILE
+        // With remote files, single tap starts playback using the native player
+        if (ERROR != mediaState && NOT_READY != mediaState) {
+            // Play the video
+            NSLog(@"Playing video with native player");
+            [videoPlayerHelper[touchedTarget] play:YES fromPosition:VIDEO_PLAYBACK_CURRENT_POSITION];
+        }
+#else
+        // For the target the user touched
+        if (ERROR != mediaState && NOT_READY != mediaState && PLAYING != mediaState) {
+            // Play the video
+            NSLog(@"Playing video with on-texture player");
+            [videoPlayerHelper[touchedTarget] play:playVideoFullScreen fromPosition:VIDEO_PLAYBACK_CURRENT_POSITION];
+        }
+#endif
+        return true;
+    } else {
+        return false;
+    }
+}
+- (void) preparePlayers {
+    [self prepare];
+}
+
+
+- (void) dismissPlayers {
+    [self dismiss];
+}
+
+
+
+// Determine whether a screen tap is inside the target
+- (int)tapInsideTargetWithID
+{
+    Vuforia::Vec3F intersection, lineStart, lineEnd;
+    // Get the current projection matrix
+    Vuforia::Matrix44F projectionMatrix = [vapp projectionMatrix];
+    Vuforia::Matrix44F inverseProjMatrix = SampleMath::Matrix44FInverse(projectionMatrix);
+    CGRect rect = [self bounds];
+    int touchInTarget = -1;
+    
+    // ----- Synchronise data access -----
+    [dataLock lock];
+    
+    // The target returns as pose the centre of the trackable.  Thus its
+    // dimensions go from -width / 2 to width / 2 and from -height / 2 to
+    // height / 2.  The following if statement simply checks that the tap is
+    // within this range
+    for (int i = 0; i < kNumVideoTargets; ++i) {
+        SampleMath::projectScreenPointToPlane(inverseProjMatrix, videoData[i].modelViewMatrix, rect.size.width, rect.size.height,
+                                              Vuforia::Vec2F(touchLocation_X, touchLocation_Y), Vuforia::Vec3F(0, 0, 0), Vuforia::Vec3F(0, 0, 1), intersection, lineStart, lineEnd);
+        
+        if ((intersection.data[0] >= -videoData[i].targetPositiveDimensions.data[0]) && (intersection.data[0] <= videoData[i].targetPositiveDimensions.data[0]) &&
+            (intersection.data[1] >= -videoData[i].targetPositiveDimensions.data[1]) && (intersection.data[1] <= videoData[i].targetPositiveDimensions.data[1])) {
+            // The tap is only valid if it is inside an active target
+            if (YES == videoData[i].isActive) {
+                touchInTarget = i;
+                break;
+            }
+        }
+    }
+    
+    [dataLock unlock];
+    // ----- End synchronise data access -----
+    
+    return touchInTarget;
+}
+
+// Get a pointer to a VideoPlayerHelper object held by this EAGLView
+- (OSVideoPlayerHelper*)getVideoPlayerHelper:(int)index
+{
+    return videoPlayerHelper[index];
+}
+
+
+
+
+
 
 //------------------------------------------------------------------------------
 #pragma mark - UIGLViewProtocol methods
@@ -240,10 +468,20 @@ namespace {
     //
     //    }
     
+    // ----- Synchronise data access -----
+    [dataLock lock];
+
+    // Assume all targets are inactive (used when determining tap locations)
+    for (int i = 0; i < kNumVideoTargets; ++i) {
+        videoData[i].isActive = NO;
+    }
+    
+    // Set the viewport
+    glViewport(vapp.viewport.posX, vapp.viewport.posY, vapp.viewport.sizeX, vapp.viewport.sizeY);
+    
     for (int i = 0; i < state.getNumTrackableResults(); ++i) {
         // Get the trackable
         const Vuforia::TrackableResult* result = state.getTrackableResult(i);
-        
         const Vuforia::Trackable& trackable = result->getTrackable();
         
         //const Vuforia::Trackable& trackable = result->getTrackable();
@@ -251,6 +489,9 @@ namespace {
         
         // OpenGL 2
         Vuforia::Matrix44F modelViewProjection;
+        
+        BOOL isVideo = NO;
+        int playerIndex = 0;
         
         int targetIndex = 0;
         float kObjectScaleNormal = 55.0f;
@@ -1088,55 +1329,282 @@ namespace {
             
             xX = 10.0f;
             yY = 250.0f;
+        } else if (!strcmp(trackable.getName(), "chips")) {
+            isVideo = YES;
+            playerIndex = 0;
         }
         
-        OSApplicationUtils::translatePoseMatrix(xX, yY, zZ, &modelViewMatrix.data[0]);
-        OSApplicationUtils::scalePoseMatrix(kObjectScaleNormal, kObjectScaleNormal, kObjectScaleNormal, &modelViewMatrix.data[0]);
+        if (!isVideo) {
+            OSApplicationUtils::translatePoseMatrix(xX, yY, zZ, &modelViewMatrix.data[0]);
+            OSApplicationUtils::scalePoseMatrix(kObjectScaleNormal, kObjectScaleNormal, kObjectScaleNormal, &modelViewMatrix.data[0]);
+            
+            OSApplicationUtils::multiplyMatrix(&vapp.projectionMatrix.data[0], &modelViewMatrix.data[0], &modelViewProjection.data[0]);
+            
+            glUseProgram(shaderProgramID);
+            
+            const GLfloat texices[] = {
+                0, 0,
+                0, 1,
+                1, 1,
+                1, 0
+            };
+            
+            glVertexAttribPointer(vertexHandle, 3, GL_FLOAT, GL_FALSE, 0, vertices);
+            glVertexAttribPointer(textureCoordHandle, 2, GL_FLOAT, GL_FALSE, 0, texices);
+            
+            glEnableVertexAttribArray(vertexHandle);
+            glEnableVertexAttribArray(textureCoordHandle);
+            
+            glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+            
+            glActiveTexture(GL_TEXTURE0);
+            
+            glBindTexture(GL_TEXTURE_2D, augmentationTexture[targetIndex].textureID);
+            glUniformMatrix4fv(mvpMatrixHandle, 1, GL_FALSE, (const GLfloat*)&modelViewProjection.data[0]);
+            glUniform1i(texSampler2DHandle, 0 /*GL_TEXTURE0*/);
+            
+            GLubyte indices[] = {
+                0, 1, 2,
+                0, 2, 3,
+            };
+            
+            glDrawElements(GL_TRIANGLES, sizeof(indices)/sizeof(indices[0]) , GL_UNSIGNED_BYTE, (const GLvoid*)indices);
+            
+            glDisableVertexAttribArray(vertexHandle);
+            glDisableVertexAttribArray(textureCoordHandle);
+            
+        } else {
+            // Mark this video (target) as active
+            videoData[playerIndex].isActive = YES;
+            
+            // Get the target size (used to determine if taps are within the target)
+            if (0.0f == videoData[playerIndex].targetPositiveDimensions.data[0] ||
+                0.0f == videoData[playerIndex].targetPositiveDimensions.data[1]) {
+                const Vuforia::ImageTarget& imageTarget = (const Vuforia::ImageTarget&)result->getTrackable();
+                
+                Vuforia::Vec3F size = imageTarget.getSize();
+                videoData[playerIndex].targetPositiveDimensions.data[0] = size.data[0];
+                videoData[playerIndex].targetPositiveDimensions.data[1] = size.data[1];
+                
+                // The pose delivers the centre of the target, thus the dimensions
+                // go from -width / 2 to width / 2, and -height / 2 to height / 2
+                videoData[playerIndex].targetPositiveDimensions.data[0] /= 2.0f;
+                videoData[playerIndex].targetPositiveDimensions.data[1] /= 2.0f;
+            }
+            
+            // Get the current trackable pose
+            const Vuforia::Matrix34F& trackablePose = result->getPose();
+            
+            // This matrix is used to calculate the location of the screen tap
+            videoData[playerIndex].modelViewMatrix = Vuforia::Tool::convertPose2GLMatrix(trackablePose);
+            
+            float aspectRatio;
+            const GLvoid* texCoords;
+            GLuint frameTextureID = 0;
+            BOOL displayVideoFrame = YES;
+            
+            // Retain value between calls
+            static GLuint videoTextureID[kNumVideoTargets] = {0};
+            
+            MEDIA_STATE currentStatus = [videoPlayerHelper[playerIndex] getStatus];
+            
+            // NSLog(@"MEDIA_STATE for %d is %d", playerIndex, currentStatus);
+            
+            // --- INFORMATION ---
+            // One could trigger automatic playback of a video at this point.  This
+            // could be achieved by calling the play method of the VideoPlayerHelper
+            // object if currentStatus is not PLAYING.  You should also call
+            // getStatus again after making the call to play, in order to update the
+            // value held in currentStatus.
+            // --- END INFORMATION ---
+            
+            switch (currentStatus) {
+                case PLAYING: {
+                    // If the tracking lost timer is scheduled, terminate it
+                    if (nil != trackingLostTimer) {
+                        // Timer termination must occur on the same thread on which
+                        // it was installed
+                        [self performSelectorOnMainThread:@selector(terminateTrackingLostTimer) withObject:nil waitUntilDone:YES];
+                    }
+                    
+                    // Upload the decoded video data for the latest frame to OpenGL
+                    // and obtain the video texture ID
+                    GLuint videoTexID = [videoPlayerHelper[playerIndex] updateVideoData];
+                    
+                    if (0 == videoTextureID[playerIndex]) {
+                        videoTextureID[playerIndex] = videoTexID;
+                    }
+                    
+                    // Fallthrough
+                }
+                case PAUSED:
+                    if (0 == videoTextureID[playerIndex]) {
+                        // No video texture available, display keyframe
+                        displayVideoFrame = NO;
+                    }
+                    else {
+                        // Display the texture most recently returned from the call
+                        // to [videoPlayerHelper updateVideoData]
+                        frameTextureID = videoTextureID[playerIndex];
+                    }
+                    
+                    break;
+                    
+                default:
+                    videoTextureID[playerIndex] = 0;
+                    displayVideoFrame = NO;
+                    break;
+            }
+            
+            if (YES == displayVideoFrame) {
+                // ---- Display the video frame -----
+                aspectRatio = (float)[videoPlayerHelper[playerIndex] getVideoHeight] / (float)[videoPlayerHelper[playerIndex] getVideoWidth];
+                texCoords = videoQuadTextureCoords;
+            }
+            else {
+                // ----- Display the keyframe -----
+                Texture* t = videoAugmentationTexture[OBJECT_KEYFRAME_1 + playerIndex];
+                frameTextureID = [t textureID];
+                aspectRatio = (float)[t height] / (float)[t width];
+                texCoords = quadTexCoords;
+            }
+            
+            // Get the current projection matrix
+            Vuforia::Matrix44F projMatrix = vapp.projectionMatrix;
+            
+            // If the current status is valid (not NOT_READY or ERROR), render the
+            // video quad with the texture we've just selected
+            if (NOT_READY != currentStatus) {
+                // Convert trackable pose to matrix for use with OpenGL
+                Vuforia::Matrix44F modelViewMatrixVideo = Vuforia::Tool::convertPose2GLMatrix(trackablePose);
+                Vuforia::Matrix44F modelViewProjectionVideo;
+                
+                //            SampleApplicationUtils::translatePoseMatrix(0.0f, 0.0f, videoData[playerIndex].targetPositiveDimensions.data[0],
+                //                                             &modelViewMatrixVideo.data[0]);
+                
+                OSApplicationUtils::scalePoseMatrix(videoData[playerIndex].targetPositiveDimensions.data[0],
+                                                        videoData[playerIndex].targetPositiveDimensions.data[0] * aspectRatio,
+                                                        videoData[playerIndex].targetPositiveDimensions.data[0],
+                                                        &modelViewMatrixVideo.data[0]);
+                
+                OSApplicationUtils::multiplyMatrix(projMatrix.data,
+                                                       &modelViewMatrixVideo.data[0] ,
+                                                       &modelViewProjectionVideo.data[0]);
+                
+                glUseProgram(shaderProgramID);
+                
+                glVertexAttribPointer(vertexHandle, 3, GL_FLOAT, GL_FALSE, 0, quadVertices);
+                glVertexAttribPointer(normalHandle, 3, GL_FLOAT, GL_FALSE, 0, quadNormals);
+                glVertexAttribPointer(textureCoordHandle, 2, GL_FLOAT, GL_FALSE, 0, texCoords);
+                
+                glEnableVertexAttribArray(vertexHandle);
+                glEnableVertexAttribArray(normalHandle);
+                glEnableVertexAttribArray(textureCoordHandle);
+                
+                glActiveTexture(GL_TEXTURE0);
+                glBindTexture(GL_TEXTURE_2D, frameTextureID);
+                glUniformMatrix4fv(mvpMatrixHandle, 1, GL_FALSE, (GLfloat*)&modelViewProjectionVideo.data[0]);
+                glUniform1i(texSampler2DHandle, 0 /*GL_TEXTURE0*/);
+                glDrawElements(GL_TRIANGLES, kNumQuadIndices, GL_UNSIGNED_SHORT, quadIndices);
+                
+                glDisableVertexAttribArray(vertexHandle);
+                glDisableVertexAttribArray(normalHandle);
+                glDisableVertexAttribArray(textureCoordHandle);
+                
+                glUseProgram(0);
+            }
+            
+            // If the current status is not PLAYING, render an icon
+            if (PLAYING != currentStatus) {
+                GLuint iconTextureID;
+                
+                switch (currentStatus) {
+                    case READY:
+                    case REACHED_END:
+                    case PAUSED:
+                    case STOPPED: {
+                        // ----- Display play icon -----
+                        iconTextureID = [videoAugmentationTexture[OBJECT_PLAY_ICON] textureID];
+                        break;
+                    }
+                        
+                    case ERROR: {
+                        // ----- Display error icon -----
+                        iconTextureID = [videoAugmentationTexture[OBJECT_ERROR_ICON] textureID];
+                        break;
+                    }
+                        
+                    default: {
+                        // ----- Display busy icon -----
+                        iconTextureID = [videoAugmentationTexture[OBJECT_BUSY_ICON] textureID];
+                        break;
+                    }
+                }
+                
+                // Convert trackable pose to matrix for use with OpenGL
+                Vuforia::Matrix44F modelViewMatrixButton = Vuforia::Tool::convertPose2GLMatrix(trackablePose);
+                Vuforia::Matrix44F modelViewProjectionButton;
+                
+                //SampleApplicationUtils::translatePoseMatrix(0.0f, 0.0f, videoData[playerIndex].targetPositiveDimensions.data[1] / SCALE_ICON_TRANSLATION, &modelViewMatrixButton.data[0]);
+                OSApplicationUtils::translatePoseMatrix(0.0f, 0.0f, 5.0f, &modelViewMatrixButton.data[0]);
+                
+                OSApplicationUtils::scalePoseMatrix(videoData[playerIndex].targetPositiveDimensions.data[1] / SCALE_ICON,
+                                                        videoData[playerIndex].targetPositiveDimensions.data[1] / SCALE_ICON,
+                                                        videoData[playerIndex].targetPositiveDimensions.data[1] / SCALE_ICON,
+                                                        &modelViewMatrixButton.data[0]);
+                
+                OSApplicationUtils::multiplyMatrix(projMatrix.data,
+                                                       &modelViewMatrixButton.data[0] ,
+                                                       &modelViewProjectionButton.data[0]);
+                
+                glDepthFunc(GL_LEQUAL);
+                
+                glUseProgram(shaderProgramID);
+                
+                glVertexAttribPointer(vertexHandle, 3, GL_FLOAT, GL_FALSE, 0, quadVertices);
+                glVertexAttribPointer(normalHandle, 3, GL_FLOAT, GL_FALSE, 0, quadNormals);
+                glVertexAttribPointer(textureCoordHandle, 2, GL_FLOAT, GL_FALSE, 0, quadTexCoords);
+                
+                glEnableVertexAttribArray(vertexHandle);
+                glEnableVertexAttribArray(normalHandle);
+                glEnableVertexAttribArray(textureCoordHandle);
+                
+                // Blend the icon over the background
+                glEnable(GL_BLEND);
+                glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+                
+                glActiveTexture(GL_TEXTURE0);
+                glBindTexture(GL_TEXTURE_2D, iconTextureID);
+                glUniformMatrix4fv(mvpMatrixHandle, 1, GL_FALSE, (GLfloat*)&modelViewProjectionButton.data[0] );
+                glDrawElements(GL_TRIANGLES, kNumQuadIndices, GL_UNSIGNED_SHORT, quadIndices);
+                
+                glDisable(GL_BLEND);
+                
+                glDisableVertexAttribArray(vertexHandle);
+                glDisableVertexAttribArray(normalHandle);
+                glDisableVertexAttribArray(textureCoordHandle);
+                
+                glUseProgram(0);
+                
+                glDepthFunc(GL_LESS);
+            }
+
+        }
         
-        OSApplicationUtils::multiplyMatrix(&vapp.projectionMatrix.data[0], &modelViewMatrix.data[0], &modelViewProjection.data[0]);
         
-        //        float x = modelViewMatrix.data[12];
-        //        float y = modelViewMatrix.data[13];
-        //        float z = modelViewMatrix.data[14];
-        //        float distance = sqrt(x*x + y*y + z*z);
-        
-        //        NSLog(@"DISTANCE: %f", distance);
-        
-        glUseProgram(shaderProgramID);
-        
-        const GLfloat texices[] = {
-            0, 0,
-            0, 1,
-            1, 1,
-            1, 0
-        };
-        
-        glVertexAttribPointer(vertexHandle, 3, GL_FLOAT, GL_FALSE, 0, vertices);
-        glVertexAttribPointer(textureCoordHandle, 2, GL_FLOAT, GL_FALSE, 0, texices);
-        
-        glEnableVertexAttribArray(vertexHandle);
-        glEnableVertexAttribArray(textureCoordHandle);
-        
-        glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-        
-        glActiveTexture(GL_TEXTURE0);
-        
-        glBindTexture(GL_TEXTURE_2D, augmentationTexture[targetIndex].textureID);
-        glUniformMatrix4fv(mvpMatrixHandle, 1, GL_FALSE, (const GLfloat*)&modelViewProjection.data[0]);
-        glUniform1i(texSampler2DHandle, 0 /*GL_TEXTURE0*/);
-        
-        GLubyte indices[] = {
-            0, 1, 2,
-            0, 2, 3,
-        };
-        
-        glDrawElements(GL_TRIANGLES, sizeof(indices)/sizeof(indices[0]) , GL_UNSIGNED_BYTE, (const GLvoid*)indices);
-        
-        glDisableVertexAttribArray(vertexHandle);
-        glDisableVertexAttribArray(textureCoordHandle);
         
         OSApplicationUtils::checkGlError("EAGLView renderFrameVuforia");
     }
+    
+    for (int i = 0; i < kNumVideoTargets; ++i) {
+        if (nil == trackingLostTimer && NO == videoData[i].isActive && PLAYING == [videoPlayerHelper[i] getStatus]) {
+            [self performSelectorOnMainThread:@selector(createTrackingLostTimer) withObject:nil waitUntilDone:YES];
+            break;
+        }
+    }
+    
+    [dataLock unlock];
+    // ----- End synchronise data access -----
     
     glDisable(GL_DEPTH_TEST);
     glDisable(GL_CULL_FACE);
@@ -1146,17 +1614,38 @@ namespace {
     [self presentFramebuffer];
 }
 
+// Create the tracking lost timer
+- (void)createTrackingLostTimer
+{
+    trackingLostTimer = [NSTimer scheduledTimerWithTimeInterval:TRACKING_LOST_TIMEOUT target:self selector:@selector(trackingLostTimerFired:) userInfo:nil repeats:NO];
+}
+
+
+// Terminate the tracking lost timer
+- (void)terminateTrackingLostTimer
+{
+    [trackingLostTimer invalidate];
+    trackingLostTimer = nil;
+}
+
+
+// Tracking lost timer fired, pause video playback
+- (void)trackingLostTimerFired:(NSTimer*)timer
+{
+    // Tracking has been lost for TRACKING_LOST_TIMEOUT seconds, pause playback
+    // (we can safely do this on all our VideoPlayerHelpers objects)
+    for (int i = 0; i < kNumVideoTargets; ++i) {
+        [videoPlayerHelper[i] pause];
+    }
+    trackingLostTimer = nil;
+}
+
 //------------------------------------------------------------------------------
 #pragma mark - OpenGL ES management
 
 - (void)initShaders {
     shaderProgramID = [OSApplicationShaderUtils createProgramWithVertexShaderFileName:@"Simple.vertsh"
                                                                fragmentShaderFileName:@"Simple.fragsh"];
-    //
-    //    Vuforia::setHint(Vuforia::HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS, 5);
-    //
-    //    Vuforia::setHint(Vuforia::HINT_MAX_SIMULTANEOUS_OBJECT_TARGETS, 2);
-    
     if (0 < shaderProgramID) {
         vertexHandle = glGetAttribLocation(shaderProgramID, "vertexPosition");
         normalHandle = glGetAttribLocation(shaderProgramID, "vertexNormal");
@@ -1168,7 +1657,6 @@ namespace {
         NSLog(@"Could not initialise augmentation shader");
     }
 }
-
 
 - (void)createFramebuffer {
     if (context) {

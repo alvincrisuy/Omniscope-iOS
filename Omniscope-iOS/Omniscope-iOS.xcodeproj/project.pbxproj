@@ -15,6 +15,21 @@
 		7825B9C31D12DC85009D9E3B /* OSLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7825B9C11D12DC85009D9E3B /* OSLocationViewController.xib */; };
 		7825B9C51D12E16D009D9E3B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7825B9C41D12E16D009D9E3B /* MapKit.framework */; };
 		7827C3141D4093AD003114A8 /* libVuforia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7827C3131D4093AD003114A8 /* libVuforia.a */; };
+		7827C36D1D409DED003114A8 /* OSVideoPlayerHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7827C36C1D409DED003114A8 /* OSVideoPlayerHelper.mm */; };
+		7827C36F1D40A374003114A8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7827C36E1D40A374003114A8 /* AudioToolbox.framework */; };
+		7827C3711D40A37C003114A8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7827C3701D40A37B003114A8 /* MediaPlayer.framework */; };
+		7827C3731D40A382003114A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7827C3721D40A382003114A8 /* Foundation.framework */; };
+		7827C3751D40A3A4003114A8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7827C3741D40A3A4003114A8 /* AVFoundation.framework */; };
+		7827C3771D40A3AC003114A8 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7827C3761D40A3AC003114A8 /* CoreFoundation.framework */; };
+		7827C3791D40A3B2003114A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7827C3781D40A3B2003114A8 /* UIKit.framework */; };
+		7827C37D1D40A4A7003114A8 /* SampleMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7827C37B1D40A4A7003114A8 /* SampleMath.cpp */; };
+		7827C3851D40AD5B003114A8 /* icon_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 7827C37E1D40AD5B003114A8 /* icon_error.png */; };
+		7827C3861D40AD5B003114A8 /* icon_loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 7827C37F1D40AD5B003114A8 /* icon_loading.png */; };
+		7827C3871D40AD5B003114A8 /* icon_play.png in Resources */ = {isa = PBXBuildFile; fileRef = 7827C3801D40AD5B003114A8 /* icon_play.png */; };
+		7827C3881D40AD5B003114A8 /* VuforiaSizzleReel_1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7827C3811D40AD5B003114A8 /* VuforiaSizzleReel_1.mp4 */; };
+		7827C3891D40AD5B003114A8 /* VuforiaSizzleReel_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7827C3821D40AD5B003114A8 /* VuforiaSizzleReel_1.png */; };
+		7827C38A1D40AD5B003114A8 /* VuforiaSizzleReel_2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7827C3831D40AD5B003114A8 /* VuforiaSizzleReel_2.mp4 */; };
+		7827C38B1D40AD5B003114A8 /* VuforiaSizzleReel_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7827C3841D40AD5B003114A8 /* VuforiaSizzleReel_2.png */; };
 		782B87D01CCB336200E0982E /* NSString+DeviceType.m in Sources */ = {isa = PBXBuildFile; fileRef = 782B87CD1CCB336200E0982E /* NSString+DeviceType.m */; };
 		782B87D51CCB344B00E0982E /* UIDevice+DeviceType.m in Sources */ = {isa = PBXBuildFile; fileRef = 782B87D41CCB344B00E0982E /* UIDevice+DeviceType.m */; };
 		783154EB1CFF295800920866 /* OSWelcomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 783154EA1CFF295800920866 /* OSWelcomeView.m */; };
@@ -284,6 +299,24 @@
 		7827C3111D4079C6003114A8 /* WordList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordList.h; sourceTree = "<group>"; };
 		7827C3121D4079C6003114A8 /* WordResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordResult.h; sourceTree = "<group>"; };
 		7827C3131D4093AD003114A8 /* libVuforia.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libVuforia.a; sourceTree = "<group>"; };
+		7827C36B1D409DED003114A8 /* OSVideoPlayerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSVideoPlayerHelper.h; sourceTree = "<group>"; };
+		7827C36C1D409DED003114A8 /* OSVideoPlayerHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OSVideoPlayerHelper.mm; sourceTree = "<group>"; };
+		7827C36E1D40A374003114A8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		7827C3701D40A37B003114A8 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		7827C3721D40A382003114A8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7827C3741D40A3A4003114A8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		7827C3761D40A3AC003114A8 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		7827C3781D40A3B2003114A8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7827C37A1D40A471003114A8 /* Quad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Quad.h; sourceTree = "<group>"; };
+		7827C37B1D40A4A7003114A8 /* SampleMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SampleMath.cpp; sourceTree = "<group>"; };
+		7827C37C1D40A4A7003114A8 /* SampleMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleMath.h; sourceTree = "<group>"; };
+		7827C37E1D40AD5B003114A8 /* icon_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_error.png; sourceTree = "<group>"; };
+		7827C37F1D40AD5B003114A8 /* icon_loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_loading.png; sourceTree = "<group>"; };
+		7827C3801D40AD5B003114A8 /* icon_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_play.png; sourceTree = "<group>"; };
+		7827C3811D40AD5B003114A8 /* VuforiaSizzleReel_1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = VuforiaSizzleReel_1.mp4; sourceTree = "<group>"; };
+		7827C3821D40AD5B003114A8 /* VuforiaSizzleReel_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VuforiaSizzleReel_1.png; sourceTree = "<group>"; };
+		7827C3831D40AD5B003114A8 /* VuforiaSizzleReel_2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = VuforiaSizzleReel_2.mp4; sourceTree = "<group>"; };
+		7827C3841D40AD5B003114A8 /* VuforiaSizzleReel_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VuforiaSizzleReel_2.png; sourceTree = "<group>"; };
 		782B87CC1CCB336200E0982E /* NSString+DeviceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DeviceType.h"; sourceTree = "<group>"; };
 		782B87CD1CCB336200E0982E /* NSString+DeviceType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DeviceType.m"; sourceTree = "<group>"; };
 		782B87D31CCB344B00E0982E /* UIDevice+DeviceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+DeviceType.h"; sourceTree = "<group>"; };
@@ -479,6 +512,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7827C3791D40A3B2003114A8 /* UIKit.framework in Frameworks */,
+				7827C3771D40A3AC003114A8 /* CoreFoundation.framework in Frameworks */,
+				7827C3751D40A3A4003114A8 /* AVFoundation.framework in Frameworks */,
+				7827C3731D40A382003114A8 /* Foundation.framework in Frameworks */,
+				7827C3711D40A37C003114A8 /* MediaPlayer.framework in Frameworks */,
+				7827C36F1D40A374003114A8 /* AudioToolbox.framework in Frameworks */,
 				78F4C4721CDF1C600044AF1A /* Security.framework in Frameworks */,
 				78F4C4701CDF1C530044AF1A /* SystemConfiguration.framework in Frameworks */,
 				78F4C46E1CDF1C480044AF1A /* QuartzCore.framework in Frameworks */,
@@ -514,6 +553,12 @@
 		04DDED58A8C9F73FAF816C77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7827C3781D40A3B2003114A8 /* UIKit.framework */,
+				7827C3761D40A3AC003114A8 /* CoreFoundation.framework */,
+				7827C3741D40A3A4003114A8 /* AVFoundation.framework */,
+				7827C3721D40A382003114A8 /* Foundation.framework */,
+				7827C3701D40A37B003114A8 /* MediaPlayer.framework */,
+				7827C36E1D40A374003114A8 /* AudioToolbox.framework */,
 				7825B9C41D12E16D009D9E3B /* MapKit.framework */,
 				78F4C4711CDF1C600044AF1A /* Security.framework */,
 				78F4C46F1CDF1C530044AF1A /* SystemConfiguration.framework */,
@@ -727,6 +772,13 @@
 		7845862E1C9567FC0063F152 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				7827C37E1D40AD5B003114A8 /* icon_error.png */,
+				7827C37F1D40AD5B003114A8 /* icon_loading.png */,
+				7827C3801D40AD5B003114A8 /* icon_play.png */,
+				7827C3811D40AD5B003114A8 /* VuforiaSizzleReel_1.mp4 */,
+				7827C3821D40AD5B003114A8 /* VuforiaSizzleReel_1.png */,
+				7827C3831D40AD5B003114A8 /* VuforiaSizzleReel_2.mp4 */,
+				7827C3841D40AD5B003114A8 /* VuforiaSizzleReel_2.png */,
 				78F808931CD45AC600E67007 /* emoji_heaven.png */,
 				78ED31161D20C423000F359C /* emojis.png */,
 				78FB9CDD1CD9C5A000D2023B /* e1.png */,
@@ -786,6 +838,8 @@
 		78683ADD1C950F41000EBE3E /* OSApplicationSession */ = {
 			isa = PBXGroup;
 			children = (
+				7827C37B1D40A4A7003114A8 /* SampleMath.cpp */,
+				7827C37C1D40A4A7003114A8 /* SampleMath.h */,
 				78683ADE1C950F53000EBE3E /* OSApplicationSession.h */,
 				78683ADF1C950F53000EBE3E /* OSApplicationSession.mm */,
 				78683AE11C95229D000EBE3E /* Texture.h */,
@@ -794,6 +848,7 @@
 				78683AE51C952355000EBE3E /* OSApplicationShaderUtils.m */,
 				78683AE71C95239F000EBE3E /* OSApplicationUtils.h */,
 				78683AE81C95239F000EBE3E /* OSApplicationUtils.cpp */,
+				7827C37A1D40A471003114A8 /* Quad.h */,
 			);
 			path = OSApplicationSession;
 			sourceTree = "<group>";
@@ -929,6 +984,8 @@
 				78F4C4A61CE045110044AF1A /* OSCameraViewController~iphone129.xib */,
 				78683ADA1C950C93000EBE3E /* OSCameraImageTargetsEAGLView.h */,
 				78683ADB1C950C93000EBE3E /* OSCameraImageTargetsEAGLView.mm */,
+				7827C36B1D409DED003114A8 /* OSVideoPlayerHelper.h */,
+				7827C36C1D409DED003114A8 /* OSVideoPlayerHelper.mm */,
 			);
 			path = OSCameraViewController;
 			sourceTree = "<group>";
@@ -1176,6 +1233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78FB9CF51CD9C5A000D2023B /* e12.png in Resources */,
+				7827C3861D40AD5B003114A8 /* icon_loading.png in Resources */,
 				78E5008A1D08CE8800672E19 /* OSAboutViewController~iphone4.xib in Resources */,
 				78FB9CF31CD9C5A000D2023B /* e10.png in Resources */,
 				78E500A21D09311D00672E19 /* OSGalleryImageBannerView~iphone55.xib in Resources */,
@@ -1208,6 +1266,7 @@
 				78F808861CD4275000E67007 /* CollectionCell~iphone55.xib in Resources */,
 				78F4C4A31CE045000044AF1A /* OSGalleryViewController~iphone97.xib in Resources */,
 				78367E041D0455190054440B /* OSHelpBannerView~iphone55.xib in Resources */,
+				7827C38B1D40AD5B003114A8 /* VuforiaSizzleReel_2.png in Resources */,
 				78A704751C5FA18A005114AA /* OSAppDelegate.xib in Resources */,
 				78F808801CD4266000E67007 /* OSGalleryViewController~iphone55.xib in Resources */,
 				78367DE61D0448160054440B /* OSRootViewController~iphone4.xib in Resources */,
@@ -1222,6 +1281,7 @@
 				7825B9C31D12DC85009D9E3B /* OSLocationViewController.xib in Resources */,
 				78E500A61D0934C700672E19 /* OSGalleryImagePopupView~iphone4.xib in Resources */,
 				787483701CF19B5100FD176F /* OSWelcomeViewController~iphone55.xib in Resources */,
+				7827C3871D40AD5B003114A8 /* icon_play.png in Resources */,
 				78D8D4DC1CE95E4400A0BD2C /* CollectionCell~iphone97.xib in Resources */,
 				784586471C957CDA0063F152 /* Simple.vertsh in Resources */,
 				783154F31CFF2ABE00920866 /* OSWelcomeView~iphone4.xib in Resources */,
@@ -1249,6 +1309,7 @@
 				787483711CF19B5100FD176F /* OSWelcomeViewController~iphone97.xib in Resources */,
 				78F8086C1CD3922E00E67007 /* OSCameraViewController~iphone47.xib in Resources */,
 				78FB9CF41CD9C5A000D2023B /* e11.png in Resources */,
+				7827C38A1D40AD5B003114A8 /* VuforiaSizzleReel_2.mp4 in Resources */,
 				78F4C49F1CE044ED0044AF1A /* OSImageViewController~iphone97.xib in Resources */,
 				78A7046E1C5FA0F8005114AA /* OSRootViewController.xib in Resources */,
 				78E500911D08CEAE00672E19 /* OSAboutTableViewCell~iphone47.xib in Resources */,
@@ -1272,7 +1333,9 @@
 				78F808941CD45AC600E67007 /* emoji_heaven.png in Resources */,
 				78367DF91D0451A20054440B /* OSHelpTableViewCell.xib in Resources */,
 				783154F71CFF2ABE00920866 /* OSWelcomeView~iphone129.xib in Resources */,
+				7827C3851D40AD5B003114A8 /* icon_error.png in Resources */,
 				78F8087A1CD4204700E67007 /* CollectionCell.xib in Resources */,
+				7827C3891D40AD5B003114A8 /* VuforiaSizzleReel_1.png in Resources */,
 				78F4C4A41CE045000044AF1A /* OSGalleryViewController~iphone129.xib in Resources */,
 				78FB9CEB1CD9C5A000D2023B /* e2.png in Resources */,
 				78A7046A1C5FA0F8005114AA /* OSCameraViewController.xib in Resources */,
@@ -1287,6 +1350,7 @@
 				78612EA21D21A5270058BC3A /* Ia.png in Resources */,
 				7831552F1D01BEDA00920866 /* OSGridLinesView.xib in Resources */,
 				78367E081D0455840054440B /* OSHelpTableViewCell~iphone4.xib in Resources */,
+				7827C3881D40AD5B003114A8 /* VuforiaSizzleReel_1.mp4 in Resources */,
 				78367DF41D04518E0054440B /* OSHelpViewController.xib in Resources */,
 				78E500A81D0934C700672E19 /* OSGalleryImagePopupView~iphone55.xib in Resources */,
 				78E5008B1D08CE8800672E19 /* OSAboutViewController~iphone47.xib in Resources */,
@@ -1384,7 +1448,9 @@
 				78A704671C5FA0F8005114AA /* OSAboutViewController.mm in Sources */,
 				78F808711CD3959600E67007 /* CustomAlbum.m in Sources */,
 				78A7046F1C5FA0F8005114AA /* OSWelcomeViewController.mm in Sources */,
+				7827C37D1D40A4A7003114A8 /* SampleMath.cpp in Sources */,
 				783154EB1CFF295800920866 /* OSWelcomeView.m in Sources */,
+				7827C36D1D409DED003114A8 /* OSVideoPlayerHelper.mm in Sources */,
 				78E5009A1D08F27F00672E19 /* OSGalleryImageBannerView.m in Sources */,
 				78683AE31C95229D000EBE3E /* Texture.mm in Sources */,
 				78F8088B1CD4285A00E67007 /* OSImageViewController.m in Sources */,

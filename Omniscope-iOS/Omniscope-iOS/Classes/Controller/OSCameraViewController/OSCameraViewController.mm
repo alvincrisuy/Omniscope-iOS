@@ -64,10 +64,21 @@ NSString *const CSAlbum = @"Omniscope";
     // If this device has a retina display, scale the view bounds
     // for the AR (OpenGL) view
     if (YES == vapp.isRetinaDisplay) {
-        viewFrame.size.width *= 2.0;
-        viewFrame.size.height *= 2.0;
+        viewFrame.size.width *= [UIScreen mainScreen].nativeScale;
+        viewFrame.size.height *= [UIScreen mainScreen].nativeScale;
     }
     return viewFrame;
+}
+
+// tap handler
+- (void)handleTap:(UITapGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        // handling code
+        CGPoint touchPoint = [sender locationInView:self.cameraView];
+        [self.cameraView handleTouchPoint:touchPoint];
+    }
+    
+    [self autofocus:sender];
 }
 
 - (void)autofocus:(UITapGestureRecognizer *)sender {
@@ -134,10 +145,9 @@ NSString *const CSAlbum = @"Omniscope";
 //                                    kEAGLColorFormatRGBA8,
 //                                    kEAGLDrawablePropertyColorFormat,
 //                                    nil];
-
     
     // a single tap will trigger a single autofocus operation
-    tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(autofocus:)];
+    tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(dismissARViewController)
@@ -169,6 +179,8 @@ NSString *const CSAlbum = @"Omniscope";
      object:[UIDevice currentDevice]];
     
     [self gridLines];
+    
+    [self.cameraView prepare];
 }
 
 - (void)gridLines {
@@ -356,6 +368,7 @@ NSString *const CSAlbum = @"Omniscope";
 }
 
 - (void)pauseAR {
+    [self.cameraView dismissPlayers];
     NSError * error = nil;
     if (![vapp pauseAR:&error]) {
         NSLog(@"Error pausing AR:%@", [error description]);
@@ -363,12 +376,14 @@ NSString *const CSAlbum = @"Omniscope";
 }
 
 - (void)resumeAR {
+    [self.cameraView preparePlayers];
     NSError * error = nil;
     if(! [vapp resumeAR:&error]) {
         NSLog(@"Error resuming AR:%@", [error description]);
     }
     // on resume, we reset the flash
     Vuforia::CameraDevice::getInstance().setFlashTorchMode(false);
+    self.flashEnabled = NO;
 }
 
 - (void)didReceiveMemoryWarning {
