@@ -244,7 +244,7 @@ namespace {
                 break;
         }
         
-        if (NO == [player load:filename playImmediately:NO fromPosition:videoPlaybackTime[i]]) {
+        if (NO == [player load:filename playImmediately:YES fromPosition:videoPlaybackTime[i]]) {
             NSLog(@"Failed to load media");
         }
     }
@@ -1408,6 +1408,26 @@ namespace {
             
             MEDIA_STATE currentStatus = [videoPlayerHelper[playerIndex] getStatus];
             
+            if (currentStatus == READY || currentStatus == REACHED_END || currentStatus == PAUSED || currentStatus == STOPPED) {
+                
+#ifdef EXAMPLE_CODE_REMOTE_FILE
+                // With remote files, single tap starts playback using the native player
+                if (ERROR != currentStatus && NOT_READY != currentStatus) {
+                    // Play the video
+                    NSLog(@"Playing video with native player");
+                    [videoPlayerHelper[playerIndex] play:YES fromPosition:VIDEO_PLAYBACK_CURRENT_POSITION];
+                }
+#else
+                // For the target the user touched
+                if (ERROR != currentStatus && NOT_READY != currentStatus && PLAYING != currentStatus) {
+                    // Play the video
+                    NSLog(@"Playing video with on-texture player");
+                    [videoPlayerHelper[playerIndex] play:playVideoFullScreen fromPosition:VIDEO_PLAYBACK_CURRENT_POSITION];
+                }
+#endif
+                
+            }
+            
             // NSLog(@"MEDIA_STATE for %d is %d", playerIndex, currentStatus);
             
             // --- INFORMATION ---
@@ -1449,9 +1469,19 @@ namespace {
                     }
                     
                     break;
-                    
-                default:
+                case READY:
                     videoTextureID[playerIndex] = 0;
+                    displayVideoFrame = NO;
+                    break;
+                case REACHED_END:
+                    videoTextureID[playerIndex] = 0;
+                    displayVideoFrame = NO;
+                    break;
+                case STOPPED:
+                    videoTextureID[playerIndex] = 0;
+                    displayVideoFrame = NO;
+                    break;
+                default:
                     displayVideoFrame = NO;
                     break;
             }

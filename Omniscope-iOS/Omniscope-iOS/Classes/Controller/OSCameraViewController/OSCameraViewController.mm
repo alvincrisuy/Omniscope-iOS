@@ -72,11 +72,11 @@ NSString *const CSAlbum = @"Omniscope";
 
 // tap handler
 - (void)handleTap:(UITapGestureRecognizer *)sender {
-    if (sender.state == UIGestureRecognizerStateEnded) {
-        // handling code
-        CGPoint touchPoint = [sender locationInView:self.cameraView];
-        [self.cameraView handleTouchPoint:touchPoint];
-    }
+//    if (sender.state == UIGestureRecognizerStateEnded) {
+//        // handling code
+//        CGPoint touchPoint = [sender locationInView:self.cameraView];
+//        [self.cameraView handleTouchPoint:touchPoint];
+//    }
     
     [self autofocus:sender];
 }
