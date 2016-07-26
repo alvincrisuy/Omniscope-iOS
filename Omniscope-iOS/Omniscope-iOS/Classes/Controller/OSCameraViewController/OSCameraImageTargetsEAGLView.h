@@ -13,11 +13,11 @@
 #import "OSApplicationSession.h"
 #import "OSVideoPlayerHelper.h"
 
-#define kNumAugmentationTextures 32
+#define kNumAugmentationTextures 34
 
 #define kNumVideoAugmentationTextures 5
 
-static const int kNumVideoTargets = 2;
+static const int kNumVideoTargets = 1;
 
 @interface OSCameraImageTargetsEAGLView : UIView <UIGLViewProtocol, OSGLResourceHandler> {
 @private

@@ -67,6 +67,8 @@ namespace {
         "H-tag.png",            // 29   USED
         "I-tag.png",            // 30   USED
         "J-tag.png",            // 31   USED
+        "Ka.png",               // 32   USED
+        "K-tag.png",            // 33   USED
     };
     
     const char* textureVideoStateFiles[kNumAugmentationTextures] = {
@@ -237,7 +239,7 @@ namespace {
         
         switch (i) {
             case 0:
-                filename = @"VuforiaSizzleReel_1.mp4";
+                filename = @"72016_FINAL1.mp4";
                 break;
             default:
                 filename = @"VuforiaSizzleReel_2.mp4";
@@ -1329,7 +1331,55 @@ namespace {
             
             xX = 10.0f;
             yY = 250.0f;
-        } else if (!strcmp(trackable.getName(), "chips")) {
+        } else if (!strcmp(trackable.getName(), "K1")) {
+            targetIndex = 32;
+            
+            kObjectScaleNormal = 100.0f;
+            zZ = 0.0f;
+            
+            vertices[0] = -5;
+            vertices[1] = -5;
+            vertices[2] = 0;
+            
+            vertices[3] = -5;
+            vertices[4] = 5;
+            vertices[5] = 0;
+            
+            vertices[6] = 5;
+            vertices[7] = 5;
+            vertices[8] = 0;
+            
+            vertices[9] = 5;
+            vertices[10] = -5;
+            vertices[11] = 0;
+            
+            xX = 16.0f;
+            yY = 885.0f;
+        } else if (!strcmp(trackable.getName(), "K-1")) {
+            targetIndex = 33;
+            
+            kObjectScaleNormal = 50.0f;
+            zZ = 0.0f;
+            
+            vertices[0] = -10;
+            vertices[1] = -5;
+            vertices[2] = 0;
+            
+            vertices[3] = -10;
+            vertices[4] = 5;
+            vertices[5] = 0;
+            
+            vertices[6] = 10;
+            vertices[7] = 5;
+            vertices[8] = 0;
+            
+            vertices[9] = 10;
+            vertices[10] = -5;
+            vertices[11] = 0;
+            
+            xX = 0.0f;
+            yY = -440.0f;
+        } else if (!strcmp(trackable.getName(), "FixGear")) {
             isVideo = YES;
             playerIndex = 0;
         }

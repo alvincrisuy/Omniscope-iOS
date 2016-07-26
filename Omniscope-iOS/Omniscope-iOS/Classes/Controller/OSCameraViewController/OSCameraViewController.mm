@@ -748,11 +748,13 @@ NSString *const CSAlbum = @"Omniscope";
         @try {
             UIImage *outputImage    = nil;
             CGRect screenRect       = [[UIScreen mainScreen] bounds];
-            CGFloat scale           = [[UIScreen mainScreen] scale];
-            CGRect s                = CGRectMake(0, 0, screenRect.size.width * scale, screenRect.size.height * scale);
+//            CGFloat scale           = [[UIScreen mainScreen] scale];
+            CGRect s                = CGRectMake(0, 0, screenRect.size.width * 2, screenRect.size.height * 2);
 //            uint8_t *buffer         = (uint8_t *) malloc(s.size.width * s.size.height * 4);
             GLubyte *buffer         = (GLubyte *) malloc(s.size.width * s.size.height * 4);
 
+            NSLog(@"%f,%f", screenRect.size.width, screenRect.size.height);
+            
 //            if (buffer == NULL || buffer == nil || (buffer[0] == '\0')) {
 //                
 //                NSLog(@"NULL");

@@ -26,10 +26,11 @@
 		7827C3851D40AD5B003114A8 /* icon_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 7827C37E1D40AD5B003114A8 /* icon_error.png */; };
 		7827C3861D40AD5B003114A8 /* icon_loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 7827C37F1D40AD5B003114A8 /* icon_loading.png */; };
 		7827C3871D40AD5B003114A8 /* icon_play.png in Resources */ = {isa = PBXBuildFile; fileRef = 7827C3801D40AD5B003114A8 /* icon_play.png */; };
-		7827C3881D40AD5B003114A8 /* VuforiaSizzleReel_1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7827C3811D40AD5B003114A8 /* VuforiaSizzleReel_1.mp4 */; };
 		7827C3891D40AD5B003114A8 /* VuforiaSizzleReel_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7827C3821D40AD5B003114A8 /* VuforiaSizzleReel_1.png */; };
-		7827C38A1D40AD5B003114A8 /* VuforiaSizzleReel_2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7827C3831D40AD5B003114A8 /* VuforiaSizzleReel_2.mp4 */; };
 		7827C38B1D40AD5B003114A8 /* VuforiaSizzleReel_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7827C3841D40AD5B003114A8 /* VuforiaSizzleReel_2.png */; };
+		7827C3941D4345E0003114A8 /* 72016_FINAL1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7827C38C1D4332E1003114A8 /* 72016_FINAL1.mp4 */; };
+		7827C3961D434B73003114A8 /* K-tag.png in Resources */ = {isa = PBXBuildFile; fileRef = 7827C3951D434B73003114A8 /* K-tag.png */; };
+		7827C3981D434C80003114A8 /* Ka.png in Resources */ = {isa = PBXBuildFile; fileRef = 7827C3971D434C80003114A8 /* Ka.png */; };
 		782B87D01CCB336200E0982E /* NSString+DeviceType.m in Sources */ = {isa = PBXBuildFile; fileRef = 782B87CD1CCB336200E0982E /* NSString+DeviceType.m */; };
 		782B87D51CCB344B00E0982E /* UIDevice+DeviceType.m in Sources */ = {isa = PBXBuildFile; fileRef = 782B87D41CCB344B00E0982E /* UIDevice+DeviceType.m */; };
 		783154EB1CFF295800920866 /* OSWelcomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 783154EA1CFF295800920866 /* OSWelcomeView.m */; };
@@ -313,10 +314,11 @@
 		7827C37E1D40AD5B003114A8 /* icon_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_error.png; sourceTree = "<group>"; };
 		7827C37F1D40AD5B003114A8 /* icon_loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_loading.png; sourceTree = "<group>"; };
 		7827C3801D40AD5B003114A8 /* icon_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_play.png; sourceTree = "<group>"; };
-		7827C3811D40AD5B003114A8 /* VuforiaSizzleReel_1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = VuforiaSizzleReel_1.mp4; sourceTree = "<group>"; };
 		7827C3821D40AD5B003114A8 /* VuforiaSizzleReel_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VuforiaSizzleReel_1.png; sourceTree = "<group>"; };
-		7827C3831D40AD5B003114A8 /* VuforiaSizzleReel_2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = VuforiaSizzleReel_2.mp4; sourceTree = "<group>"; };
 		7827C3841D40AD5B003114A8 /* VuforiaSizzleReel_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VuforiaSizzleReel_2.png; sourceTree = "<group>"; };
+		7827C38C1D4332E1003114A8 /* 72016_FINAL1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 72016_FINAL1.mp4; sourceTree = "<group>"; };
+		7827C3951D434B73003114A8 /* K-tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "K-tag.png"; sourceTree = "<group>"; };
+		7827C3971D434C80003114A8 /* Ka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ka.png; sourceTree = "<group>"; };
 		782B87CC1CCB336200E0982E /* NSString+DeviceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DeviceType.h"; sourceTree = "<group>"; };
 		782B87CD1CCB336200E0982E /* NSString+DeviceType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DeviceType.m"; sourceTree = "<group>"; };
 		782B87D31CCB344B00E0982E /* UIDevice+DeviceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+DeviceType.h"; sourceTree = "<group>"; };
@@ -775,9 +777,8 @@
 				7827C37E1D40AD5B003114A8 /* icon_error.png */,
 				7827C37F1D40AD5B003114A8 /* icon_loading.png */,
 				7827C3801D40AD5B003114A8 /* icon_play.png */,
-				7827C3811D40AD5B003114A8 /* VuforiaSizzleReel_1.mp4 */,
+				7827C38C1D4332E1003114A8 /* 72016_FINAL1.mp4 */,
 				7827C3821D40AD5B003114A8 /* VuforiaSizzleReel_1.png */,
-				7827C3831D40AD5B003114A8 /* VuforiaSizzleReel_2.mp4 */,
 				7827C3841D40AD5B003114A8 /* VuforiaSizzleReel_2.png */,
 				78F808931CD45AC600E67007 /* emoji_heaven.png */,
 				78ED31161D20C423000F359C /* emojis.png */,
@@ -802,6 +803,7 @@
 				7832AFDC1D0D499000198F37 /* Hb.png */,
 				78612EA01D21A5270058BC3A /* Ia.png */,
 				78612EA11D21A5270058BC3A /* Ja.png */,
+				7827C3971D434C80003114A8 /* Ka.png */,
 				78ED31181D2106D2000F359C /* A-tag.png */,
 				78ED31191D2106D2000F359C /* B-tag.png */,
 				78ED311A1D2106D2000F359C /* C-tag.png */,
@@ -811,6 +813,7 @@
 				78ED311E1D2106D2000F359C /* H-tag.png */,
 				78ED311F1D2106D2000F359C /* I-tag.png */,
 				78ED31201D2106D2000F359C /* J-tag.png */,
+				7827C3951D434B73003114A8 /* K-tag.png */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -1309,7 +1312,7 @@
 				787483711CF19B5100FD176F /* OSWelcomeViewController~iphone97.xib in Resources */,
 				78F8086C1CD3922E00E67007 /* OSCameraViewController~iphone47.xib in Resources */,
 				78FB9CF41CD9C5A000D2023B /* e11.png in Resources */,
-				7827C38A1D40AD5B003114A8 /* VuforiaSizzleReel_2.mp4 in Resources */,
+				7827C3961D434B73003114A8 /* K-tag.png in Resources */,
 				78F4C49F1CE044ED0044AF1A /* OSImageViewController~iphone97.xib in Resources */,
 				78A7046E1C5FA0F8005114AA /* OSRootViewController.xib in Resources */,
 				78E500911D08CEAE00672E19 /* OSAboutTableViewCell~iphone47.xib in Resources */,
@@ -1335,6 +1338,8 @@
 				783154F71CFF2ABE00920866 /* OSWelcomeView~iphone129.xib in Resources */,
 				7827C3851D40AD5B003114A8 /* icon_error.png in Resources */,
 				78F8087A1CD4204700E67007 /* CollectionCell.xib in Resources */,
+				7827C3981D434C80003114A8 /* Ka.png in Resources */,
+				7827C3941D4345E0003114A8 /* 72016_FINAL1.mp4 in Resources */,
 				7827C3891D40AD5B003114A8 /* VuforiaSizzleReel_1.png in Resources */,
 				78F4C4A41CE045000044AF1A /* OSGalleryViewController~iphone129.xib in Resources */,
 				78FB9CEB1CD9C5A000D2023B /* e2.png in Resources */,
@@ -1350,7 +1355,6 @@
 				78612EA21D21A5270058BC3A /* Ia.png in Resources */,
 				7831552F1D01BEDA00920866 /* OSGridLinesView.xib in Resources */,
 				78367E081D0455840054440B /* OSHelpTableViewCell~iphone4.xib in Resources */,
-				7827C3881D40AD5B003114A8 /* VuforiaSizzleReel_1.mp4 in Resources */,
 				78367DF41D04518E0054440B /* OSHelpViewController.xib in Resources */,
 				78E500A81D0934C700672E19 /* OSGalleryImagePopupView~iphone55.xib in Resources */,
 				78E5008B1D08CE8800672E19 /* OSAboutViewController~iphone47.xib in Resources */,
