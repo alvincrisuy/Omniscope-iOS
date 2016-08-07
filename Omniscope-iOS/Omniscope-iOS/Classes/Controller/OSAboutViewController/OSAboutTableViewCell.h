@@ -14,6 +14,8 @@ typedef NS_ENUM(NSInteger, OSAboutTableViewCellStyleRow) {
 
 @interface OSAboutTableViewCell : UITableViewCell
 
+@property (nonatomic, retain) IBOutlet UILabel *versionLabel;
+
 + (instancetype)cellFromNib:(NSInteger)index;
 + (CGFloat)cellHeightWithStyle:(OSAboutTableViewCellStyleRow)style;
 

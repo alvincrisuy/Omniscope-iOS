@@ -89,6 +89,11 @@
         cell = [OSAboutTableViewCell cellFromNib:index];
     }
     
+    NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
+    NSString *version = [info objectForKey:@"CFBundleShortVersionString"];
+    
+    cell.versionLabel.text = [NSString stringWithFormat:@"V%@", version];
+    
     return cell;
 }
 
