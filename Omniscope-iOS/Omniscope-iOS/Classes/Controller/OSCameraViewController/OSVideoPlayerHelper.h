@@ -6,7 +6,6 @@ countries.
 ===============================================================================*/
 
 #import <AVFoundation/AVFoundation.h>
-#import <AVKit/AVKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <OpenGLES/EAGL.h>
 #import <OpenGLES/ES1/gl.h>

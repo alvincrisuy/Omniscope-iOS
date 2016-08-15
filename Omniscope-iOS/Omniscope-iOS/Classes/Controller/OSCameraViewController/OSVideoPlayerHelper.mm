@@ -1,11 +1,11 @@
 /*===============================================================================
-Copyright (c) 2015 PTC Inc. All Rights Reserved.
-
-Copyright (c) 2012-2015 Qualcomm Connected Experiences, Inc. All Rights Reserved.
-
-Vuforia is a trademark of PTC Inc., registered in the United States and other 
-countries.
-===============================================================================*/
+ Copyright (c) 2015 PTC Inc. All Rights Reserved.
+ 
+ Copyright (c) 2012-2015 Qualcomm Connected Experiences, Inc. All Rights Reserved.
+ 
+ Vuforia is a trademark of PTC Inc., registered in the United States and other
+ countries.
+ ===============================================================================*/
 
 #import "OSVideoPlayerHelper.h"
 #import <AudioToolbox/AudioToolbox.h>
@@ -48,7 +48,7 @@ static NSString* const kRateKey = @"rate";
 @interface OSVideoPlayerHelper ()
 
 // We don't own rootViewController, so we use "weak" property
-@property (nonatomic, weak) OSCameraViewController *rootViewController;
+@property (nonatomic, weak) OSCameraViewController * rootViewController;
 @property (nonatomic, strong) MovieViewController* movieViewController;
 @property (nonatomic, strong) AVPlayer* player;
 @property (nonatomic, strong) NSTimer* frameTimer;
@@ -122,7 +122,7 @@ static NSString* const kRateKey = @"rate";
 
 
 //------------------------------------------------------------------------------
-#pragma mark - OSVideoPlayerHelper
+#pragma mark - VideoPlayerHelper
 
 @implementation OSVideoPlayerHelper
 
@@ -181,7 +181,7 @@ static NSString* const kRateKey = @"rate";
 // Load a movie
 - (BOOL)load:(NSString*)filename playImmediately:(BOOL)playOnTextureImmediately fromPosition:(float)seekPosition
 {
-//    (void)AudioSessionSetActive(true);
+    //    (void)AudioSessionSetActive(true);
     BOOL ret = NO;
     
     // Load only if there is no media currently loaded
@@ -248,7 +248,7 @@ static NSString* const kRateKey = @"rate";
 
 // Unload the movie
 - (BOOL)unload
-{    
+{
     // Stop playback
     [self stop];
     [self resetData];
@@ -370,7 +370,7 @@ static NSString* const kRateKey = @"rate";
             // Use an MPMoviePlayerController to play the media, owned by our
             // own MovieViewContrllerClass
             movieViewController = [[MovieViewController alloc] init];
-
+            
             // Set up observations
             [[NSNotificationCenter defaultCenter] addObserver:self
                                                      selector:@selector(moviePlayerPlaybackDidFinish:)
@@ -421,7 +421,6 @@ static NSString* const kRateKey = @"rate";
             
             // Present the MovieViewController in the root view controller
 //            [rootViewController rootViewControllerPresentViewController:movieViewController inContext:NO];
-            // TODO
             [[OSRootViewController sharedController] transitionCamera];
             
             mediaState = PLAYING_FULLSCREEN;
@@ -540,7 +539,6 @@ static NSString* const kRateKey = @"rate";
         
         // Dismiss the MovieViewController
 //        [rootViewController rootViewControllerDismissPresentedViewController];
-        // TODO
         [[OSRootViewController sharedController] popTransitionAnimated:NO];
         
         movieViewController = nil;
@@ -701,14 +699,14 @@ static NSString* const kRateKey = @"rate";
 #pragma mark - AVPlayer observation
 // Called when the value at the specified key path relative to the given object
 // has changed.  Note, this method is invoked on the main queue
-- (void)observeValueForKeyPath:(NSString*) path 
-                      ofObject:(id)object 
-                        change:(NSDictionary*)change 
+- (void)observeValueForKeyPath:(NSString*) path
+                      ofObject:(id)object
+                        change:(NSDictionary*)change
                        context:(void*)context
 {
     if (AVPlayerItemStatusObservationContext == context) {
         AVPlayerItemStatus status = static_cast<AVPlayerItemStatus>([[change objectForKey:NSKeyValueChangeNewKey] integerValue]);
-
+        
         switch (status) {
             case AVPlayerItemStatusUnknown:
                 DEBUGLOG(@"AVPlayerItemStatusObservationContext -> AVPlayerItemStatusUnknown");
@@ -838,10 +836,8 @@ static NSString* const kRateKey = @"rate";
     [movieViewController.moviePlayer setFullscreen:NO];
     
     // Dismiss the MovieViewController
-    // TODO
 //    [rootViewController rootViewControllerDismissPresentedViewController];
-    
-    
+    [[OSRootViewController sharedController] popTransitionAnimated:NO];
     
     movieViewController = nil;
     
@@ -849,7 +845,7 @@ static NSString* const kRateKey = @"rate";
     // Update the playback cursor position
     [self updatePlayerCursorPosition:position];
     [dataLock unlock];
-
+    
     // If video was playing on texture before switching to fullscreen mode,
     // restart playback
     if (YES == resumeOnTexturePlayback) {
@@ -1143,7 +1139,7 @@ static NSString* const kRateKey = @"rate";
     @catch (NSException* e) {
         // Assuming no other error, we are trying to read past the last sample
         // buffer
-        DEBUGLOG(@"Failed to copyNextSampleBuffer");        
+        DEBUGLOG(@"Failed to copyNextSampleBuffer");
         currentSampleBuffer = NULL;
     }
     
@@ -1235,16 +1231,16 @@ static NSString* const kRateKey = @"rate";
 // Create an OpenGL texture for the video data
 - (GLuint)createVideoTexture
 {
-	GLuint handle;
-	glGenTextures(1, &handle);
-	glBindTexture(GL_TEXTURE_2D, handle);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glBindTexture(GL_TEXTURE_2D, 0);
-	
-	return handle;
+    GLuint handle;
+    glGenTextures(1, &handle);
+    glBindTexture(GL_TEXTURE_2D, handle);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    
+    return handle;
 }
 
 
@@ -1310,7 +1306,7 @@ static NSString* const kRateKey = @"rate";
             // Set AVPlayer cursor position (audio)
             [player seekToTime:playerCursorStartPosition];
         }
-    
+        
         // Set the asset reader's start time to the new time (video)
         [self prepareAssetForReading:playerCursorStartPosition];
         
