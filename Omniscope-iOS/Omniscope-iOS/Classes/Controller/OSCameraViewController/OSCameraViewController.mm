@@ -113,7 +113,10 @@ NSString *const CSAlbum = @"Omniscope";
     // show loading animation while AR is being initialized
     [self showLoadingAnimation];
     
-    [[OSRootViewController sharedController] showTabView];
+//    [[OSRootViewController sharedController] hideNavigationView];
+//    [[OSRootViewController sharedController] hideSideTableView];
+//    
+//    [[OSRootViewController sharedController] showTabView];
     [OSRootViewController sharedController].delegate = self;
     
     self.frontCameraEnabled = NO;
@@ -293,6 +296,7 @@ NSString *const CSAlbum = @"Omniscope";
     OSRootTableViewCell *rowCell1 = [[OSRootViewController sharedController].sideBarTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
     OSRootTableViewCell *rowCell2 = [[OSRootViewController sharedController].sideBarTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
     OSRootTableViewCell *rowCell3 = [[OSRootViewController sharedController].sideBarTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+    OSRootTableViewCell *rowCell4 = [[OSRootViewController sharedController].sideBarTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
     
     switch(device.orientation) {
         case UIDeviceOrientationPortrait:
@@ -305,6 +309,7 @@ NSString *const CSAlbum = @"Omniscope";
                 rowCell1.rowButton1.transform = CGAffineTransformMakeRotation(0);
                 rowCell2.rowButton2.transform = CGAffineTransformMakeRotation(0);
                 rowCell3.rowButton3.transform = CGAffineTransformMakeRotation(0);
+                rowCell4.rowButton4.transform = CGAffineTransformMakeRotation(0);
             }];
         }
             break;
@@ -318,6 +323,7 @@ NSString *const CSAlbum = @"Omniscope";
                 rowCell1.rowButton1.transform = CGAffineTransformMakeRotation(-OS_PI);
                 rowCell2.rowButton2.transform = CGAffineTransformMakeRotation(-OS_PI);
                 rowCell3.rowButton3.transform = CGAffineTransformMakeRotation(-OS_PI);
+                rowCell4.rowButton4.transform = CGAffineTransformMakeRotation(-OS_PI);
             }];
         }
             
@@ -332,6 +338,7 @@ NSString *const CSAlbum = @"Omniscope";
                 rowCell1.rowButton1.transform = CGAffineTransformMakeRotation(OS_PI/2);
                 rowCell2.rowButton2.transform = CGAffineTransformMakeRotation(OS_PI/2);
                 rowCell3.rowButton3.transform = CGAffineTransformMakeRotation(OS_PI/2);
+                rowCell4.rowButton4.transform = CGAffineTransformMakeRotation(OS_PI/2);
             }];
         }
             break;
@@ -345,6 +352,7 @@ NSString *const CSAlbum = @"Omniscope";
                 rowCell1.rowButton1.transform = CGAffineTransformMakeRotation(-OS_PI/2);
                 rowCell2.rowButton2.transform = CGAffineTransformMakeRotation(-OS_PI/2);
                 rowCell3.rowButton3.transform = CGAffineTransformMakeRotation(-OS_PI/2);
+                rowCell4.rowButton4.transform = CGAffineTransformMakeRotation(-OS_PI/2);
             }];
         }
             break;

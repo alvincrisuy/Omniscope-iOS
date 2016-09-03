@@ -15,6 +15,7 @@
 #import "OSRootTableViewCell.h"
 #import "OSHelpViewController.h"
 #import "OSLocationViewController.h"
+#import "OSWelcomeView.h"
 
 #import "UIDevice+DeviceType.h"
 #import "NSString+DeviceType.h"
@@ -113,7 +114,7 @@ static OSRootViewController *_sharedController = nil;
     _selectedButtonTag = Capture;
     [self setSelectedButtonTag:_selectedButtonTag];
     
-    [self transitionWelcome];
+    [self transitionCamera];
 }
 
 - (void)didReceiveMemoryWarning {

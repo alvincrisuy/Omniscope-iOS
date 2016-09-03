@@ -8,6 +8,7 @@
 
 #import "OSAppDelegate.h"
 #import "OSRootViewController.h"
+#import "OSWelcomeView.h"
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
@@ -32,6 +33,13 @@
     }
     
     [self.window makeKeyAndVisible];
+    
+    
+    OSWelcomeView *splashPopupView = [OSWelcomeView viewFromNib];
+    [splashPopupView setup];
+    [splashPopupView show];
+    
+    [self.window addSubview:splashPopupView];
     
     return YES;
 }
