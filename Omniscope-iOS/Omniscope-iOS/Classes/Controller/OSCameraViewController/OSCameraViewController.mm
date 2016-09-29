@@ -757,19 +757,23 @@ NSString *const CSAlbum = @"Omniscope";
             UIImage *outputImage    = nil;
             CGRect screenRect       = [[UIScreen mainScreen] bounds];
 //            CGFloat scale           = [[UIScreen mainScreen] scale];
+//            GLint backingWidth, backingHeight;
+//
+//            glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_WIDTH_OES, &backingWidth);
+//            glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_HEIGHT_OES, &backingHeight);
+
+            
             CGRect s                = CGRectMake(0, 0, screenRect.size.width * 2, screenRect.size.height * 2);
 //            uint8_t *buffer         = (uint8_t *) malloc(s.size.width * s.size.height * 4);
-            GLubyte *buffer         = (GLubyte *) malloc(s.size.width * s.size.height * 4);
+//            GLubyte *buffer         = (GLubyte *) malloc(s.size.width * s.size.height * 4);
 
-            NSLog(@"%f,%f", screenRect.size.width, screenRect.size.height);
-            
-//            if (buffer == NULL || buffer == nil || (buffer[0] == '\0')) {
-//                
-//                NSLog(@"NULL");
-//                return;
-//            }
-            
+            NSInteger width1        = s.size.width;
+            NSInteger height1       = s.size.height;
+            NSInteger dataLength    = width1 * height1 * 4;
+            GLubyte *buffer         = (GLubyte *) malloc(dataLength * sizeof(GLubyte));
+                        
             // TODO - Find fix for buffer error
+            glPixelStorei(GL_PACK_ALIGNMENT, 4);
             glReadPixels(0, 0, s.size.width, s.size.height, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
             CGDataProviderRef ref           = CGDataProviderCreateWithData(NULL, buffer, s.size.width * s.size.height * 4, NULL);
             CGColorSpaceRef colorSpaceRef   = CGColorSpaceCreateDeviceRGB();
