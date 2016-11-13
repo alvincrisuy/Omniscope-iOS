@@ -48,8 +48,8 @@
     
     // 1
     CLLocationCoordinate2D center;
-    center.latitude = 14.607178;
-    center.longitude= 121.040266;
+    center.latitude = 14.553502;
+    center.longitude= 121.0233318;
     
     MKCoordinateSpan span;
     span.latitudeDelta = 0.5f;
@@ -62,7 +62,7 @@
     // 3
     [self.mapView setRegion:viewRegion animated:YES];
     
-    MyLocation *annotation = [[MyLocation alloc] initWithName:@"SECRET FRESH" address:@"G/F RONAC ART Center, 424 Ortigas Ave, San Juan, 1504 Metro Manila" coordinate:center];
+    MyLocation *annotation = [[MyLocation alloc] initWithName:@"ARTIST SPACE" address:@"2nd Floor, Glass Wing, Ayala Museum, Highway Drive, Corner East Drive, Makati, 1200 Metro Manila, Philippines" coordinate:center];
     [self.mapView addAnnotation:annotation];
     
 //    [self.locationManager startUpdatingLocation];

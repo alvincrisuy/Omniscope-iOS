@@ -86,9 +86,32 @@ NSString *const CSAlbum = @"Omniscope";
     
     NSInteger index = indexPath.row;
     
-    [CustomAlbum getImageWithCollection:self.collection onSuccess:^(UIImage *image) {
+//    [CustomAlbum getImageWithCollection:self.collection onSuccess:^(UIImage *image) {
+//        
+//        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+//        imageView.frame = CGRectMake(0,0,cell.frame.size.width, cell.frame.size.height);
+//        imageView.contentMode = UIViewContentModeScaleAspectFill;
+//        [cell.contentView addSubview:imageView];
+//        
+//        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0,0,cell.frame.size.width, cell.frame.size.height)];
+//        [button addTarget:self action:@selector(imageView:) forControlEvents:UIControlEventTouchUpInside];
+//        button.tag = index;
+//        [cell.contentView addSubview:button];
+//        
+//    } onError:^(NSError *error) {
+//        
+//        NSLog(@"Not Found!");
+//    
+//    } atIndex:index];
+//    
+    
+    PHImageManager *manager = [PHImageManager defaultManager];
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    PHAsset *asset = [CustomAlbum getImageWithCollectionAsset:self.collection atIndex:index];
+    
+    [manager requestImageForAsset:asset targetSize:screenRect.size contentMode:PHImageContentModeAspectFit options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:result];
         imageView.frame = CGRectMake(0,0,cell.frame.size.width, cell.frame.size.height);
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         [cell.contentView addSubview:imageView];
@@ -98,11 +121,26 @@ NSString *const CSAlbum = @"Omniscope";
         button.tag = index;
         [cell.contentView addSubview:button];
         
-    } onError:^(NSError *error) {
-        
-        NSLog(@"Not Found!");
-    
-    } atIndex:index];
+        switch (asset.mediaType) {
+            case PHAssetMediaTypeImage:
+                break;
+            case PHAssetMediaTypeVideo:
+            {
+                UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"play"]];
+                imageView.frame = CGRectMake(cell.frame.size.width/2 - cell.frame.size.width/4,
+                                             cell.frame.size.height/2 - cell.frame.size.height/4,
+                                             cell.frame.size.width/2,
+                                             cell.frame.size.height/2);
+                imageView.contentMode = UIViewContentModeScaleAspectFill;
+                imageView.alpha = 0.7f;
+                [cell.contentView addSubview:imageView];
+                
+            }
+                break;
+            default:
+                break;
+        }
+    }];
     
     return cell;
 }

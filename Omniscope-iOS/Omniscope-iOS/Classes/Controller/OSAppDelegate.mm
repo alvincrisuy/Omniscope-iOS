@@ -12,17 +12,34 @@
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
+static OSAppDelegate* _sharedDelegate = nil;
+
 @interface OSAppDelegate ()
 
 @end
 
 @implementation OSAppDelegate
 
++ (OSAppDelegate *)sharedDelegate {
+    
+    @synchronized(self) {
+        if (_sharedDelegate == nil) {
+            _sharedDelegate = [[self alloc] init];
+        }
+    }
+    
+    return _sharedDelegate;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    _sharedDelegate = self;
+
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
+    
+    [Fabric with:@[[Crashlytics class]]];
     
     if (!self.rootViewController) {
         OSRootViewController *vc = [[OSRootViewController alloc] init];
@@ -33,7 +50,6 @@
     }
     
     [self.window makeKeyAndVisible];
-    
     
     OSWelcomeView *splashPopupView = [OSWelcomeView viewFromNib];
     [splashPopupView setup];

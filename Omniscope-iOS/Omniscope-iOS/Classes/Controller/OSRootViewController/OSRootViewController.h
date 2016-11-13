@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CircleProgressBar/CircleProgressBar.h>
 
 @class OSAboutViewController;
 @class OSCameraViewController;
-@class OSWelcomeViewController;
 @class OSGalleryViewController;
 @class OSImageViewController;
 @class OSHelpViewController;
@@ -40,6 +40,9 @@ typedef NS_ENUM(NSInteger, SideBarButtonTag) {
 - (void)captureTabButtonAction:(UIButton *)sender;
 - (void)otherInformationTabButtonAction:(UIButton *)sender;
 
+- (void)startRecordTabButtonAction;
+- (void)endRecordTabButtonAction;
+
 - (void)row0SideButtonAction:(UIButton *)sender;
 - (void)row1SideButtonAction:(UIButton *)sender;
 - (void)row2SideButtonAction:(UIButton *)sender;
@@ -64,7 +67,6 @@ typedef NS_ENUM(NSInteger, SideBarButtonTag) {
 
 // Tab Bar Buttons
 @property (nonatomic, retain) IBOutlet UIButton *galleryTabButton;
-@property (nonatomic, retain) IBOutlet UIButton *captureTabButton;
 @property (nonatomic, retain) IBOutlet UIButton *otherInformationTabButton;
 @property (nonatomic, assign) TabBarButtonTag selectedButtonTag;
 @property (nonatomic, retain) NSArray *tabBar;
@@ -72,6 +74,15 @@ typedef NS_ENUM(NSInteger, SideBarButtonTag) {
 @property (nonatomic, retain) IBOutlet UIView *captureTabView;
 @property (nonatomic, retain) IBOutlet UIView *otherInformationTabView;
 @property (nonatomic, retain) NSArray *tabBarViews;
+
+@property (nonatomic, assign) BOOL isRecording;
+@property (nonatomic, retain) NSTimer *timeRecording;
+@property (nonatomic, assign) CGFloat recordProgress;
+@property (nonatomic, retain) IBOutlet UIView *captureTabView2;
+@property (nonatomic, retain) IBOutlet UIImageView *captureTabImageView;
+@property (nonatomic, retain) IBOutlet UIImageView *captureTabRecordImageView;
+@property (nonatomic, retain) IBOutlet CircleProgressBar *circularProgress;
+@property (nonatomic, retain) IBOutlet UIButton *captureTabButton;
 
 // Side Bar Buttons
 @property (nonatomic, retain) IBOutlet UITableView *sideBarTableView;
@@ -87,7 +98,6 @@ typedef NS_ENUM(NSInteger, SideBarButtonTag) {
 // Transitions
 - (void)transitionAbout;
 - (void)transitionCamera;
-- (void)transitionWelcome;
 - (void)transitionGallery;
 - (void)transitionImage;
 - (void)transitionHelp;
@@ -109,7 +119,6 @@ typedef NS_ENUM(NSInteger, SideBarButtonTag) {
 // Transfer
 - (void)transferAboutViewController:(id)sender animated:(BOOL)animated;
 - (void)transferCameraViewController:(id)sender animated:(BOOL)animated;
-- (void)transferWelcomeViewController:(id)sender animated:(BOOL)animated;
 - (void)transferGalleryViewController:(id)sender animated:(BOOL)animated;
 - (void)transferImageViewController:(id)sender animated:(BOOL)animated index:(NSInteger)index;
 - (void)transferHelpViewController:(id)sender animated:(BOOL)animated;
@@ -117,7 +126,6 @@ typedef NS_ENUM(NSInteger, SideBarButtonTag) {
 
 - (OSAboutViewController *)aboutViewController;
 - (OSCameraViewController *)cameraViewController;
-- (OSWelcomeViewController *)welcomeViewController;
 - (OSGalleryViewController *)galleryViewController;
 - (OSImageViewController *)imageViewController;
 - (OSHelpViewController *)helpViewController;

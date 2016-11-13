@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "OSGLResourceHandler.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @class OSRootViewController;
 
@@ -17,5 +19,7 @@
 @property (nonatomic, retain) OSRootViewController *rootViewController;
 
 @property (nonatomic, weak) id<OSGLResourceHandler> glResourceHandler;
+
++ (OSAppDelegate *)sharedDelegate;
 
 @end

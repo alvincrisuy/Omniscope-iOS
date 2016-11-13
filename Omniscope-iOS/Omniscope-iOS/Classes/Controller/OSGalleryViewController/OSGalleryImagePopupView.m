@@ -73,17 +73,7 @@ NSString *const CSAlbum2 = @"Omniscope";
     
     self.pages = assetArray.count;
     NSInteger bannerCount = self.pages;
-    int flexWidth = 0;
-    
-    if ([[NSStringFromClass([OSGalleryImagePopupView class]) concatenateClassToDeviceType] isEqualToString:@"OSGalleryImagePopupView"]) {
-        flexWidth = 320;
-    } else if ([[NSStringFromClass([OSGalleryImagePopupView class]) concatenateClassToDeviceType] isEqualToString:@"OSGalleryImagePopupView~iphone4"]) {
-        flexWidth = 320;
-    } else if ([[NSStringFromClass([OSGalleryImagePopupView class]) concatenateClassToDeviceType] isEqualToString:@"OSGalleryImagePopupView~iphone47"]) {
-        flexWidth = 375;
-    } else if ([[NSStringFromClass([OSGalleryImagePopupView class]) concatenateClassToDeviceType] isEqualToString:@"OSGalleryImagePopupView~iphone55"]) {
-        flexWidth = 414;
-    }
+    int flexWidth = self.frame.size.width;
     
     for (int i = 0; i < bannerCount; i++) {
         OSGalleryImageBannerView* bannerView = [OSGalleryImageBannerView loadNib:0];

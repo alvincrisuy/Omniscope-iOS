@@ -11,10 +11,8 @@
 @interface OSWelcomeView : UIView
 
 @property (nonatomic, retain) IBOutlet UIView *omniscopeView;
-@property (nonatomic, retain) IBOutlet UILabel *omniscopeLabel;
-@property (nonatomic, retain) IBOutlet UIButton *pressToStartButton;
-@property (nonatomic, retain) IBOutlet UILabel *pressToStartLabel;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *loadingIndicatorView;
+@property (nonatomic, retain) IBOutlet UIImageView *logoView;
+@property (nonatomic, retain) IBOutlet UILabel *progressLabel;
 
 + (instancetype)viewFromNib;
 

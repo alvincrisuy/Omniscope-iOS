@@ -30,6 +30,8 @@
 #import <sys/time.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
+#import "ASScreenRecorder.h"
+
 #import "CustomAlbum.h"
 
 NSString *const CSAlbum = @"Omniscope";
@@ -744,95 +746,104 @@ NSString *const CSAlbum = @"Omniscope";
     }
 }
 
+- (void)startRecordTabButtonAction {
+    ASScreenRecorder *recorder = [ASScreenRecorder sharedInstance];
+    [recorder startRecording];
+}
+
+- (void)endRecordTabButtonAction {
+    ASScreenRecorder *recorder = [ASScreenRecorder sharedInstance];
+    if (recorder.isRecording) {
+        [recorder stopRecordingWithCompletion:^{
+            NSLog(@"Finished recording");
+        }];
+    }
+}
+
 - (void)captureTabButtonAction:(UIButton *)sender {
     NSLog(@"capture");
+    
+    
+    // Capture
     
     AudioServicesPlaySystemSoundWithCompletion(1108, ^{
         
     });
     
-//    try {
-    
-        @try {
-            UIImage *outputImage    = nil;
-            CGRect screenRect       = [[UIScreen mainScreen] bounds];
+    @try {
+        UIImage *outputImage    = nil;
+        CGRect screenRect       = [[UIScreen mainScreen] bounds];
 //            CGFloat scale           = [[UIScreen mainScreen] scale];
 //            GLint backingWidth, backingHeight;
 //
 //            glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_WIDTH_OES, &backingWidth);
 //            glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_HEIGHT_OES, &backingHeight);
 
-            
-            CGRect s                = CGRectMake(0, 0, screenRect.size.width * 2, screenRect.size.height * 2);
+        
+        CGRect s                = CGRectMake(0, 0, screenRect.size.width * 2, screenRect.size.height * 2);
 //            uint8_t *buffer         = (uint8_t *) malloc(s.size.width * s.size.height * 4);
 //            GLubyte *buffer         = (GLubyte *) malloc(s.size.width * s.size.height * 4);
 
-            NSInteger width1        = s.size.width;
-            NSInteger height1       = s.size.height;
-            NSInteger dataLength    = width1 * height1 * 4;
-            GLubyte *buffer         = (GLubyte *) malloc(dataLength * sizeof(GLubyte));
-                        
-            // TODO - Find fix for buffer error
-            glPixelStorei(GL_PACK_ALIGNMENT, 4);
-            glReadPixels(0, 0, s.size.width, s.size.height, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
-            CGDataProviderRef ref           = CGDataProviderCreateWithData(NULL, buffer, s.size.width * s.size.height * 4, NULL);
-            CGColorSpaceRef colorSpaceRef   = CGColorSpaceCreateDeviceRGB();
-            CGImageRef iref                 = CGImageCreate(s.size.width, s.size.height, 8, 32, s.size.width * 4, colorSpaceRef, kCGBitmapByteOrderDefault, ref, NULL, true, kCGRenderingIntentDefault);
-            
-            size_t width        = CGImageGetWidth(iref);
-            size_t height       = CGImageGetHeight(iref);
-            size_t length       = width * height * 4;
-            uint32_t *pixels    = (uint32_t *)malloc(length);
-            
-            CGContextRef context = CGBitmapContextCreate(pixels, width, height, 8, width * 4,
-                                                         CGImageGetColorSpace(iref), kCGImageAlphaNoneSkipFirst | kCGBitmapByteOrder32Big);
-            
-            CGAffineTransform transform = CGAffineTransformIdentity;
-            transform                   = CGAffineTransformMakeTranslation(0.0f, height);
-            transform                   = CGAffineTransformScale(transform, 1.0, -1.0);
-            CGContextConcatCTM(context, transform);
-            CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, width, height), iref);
-            CGImageRef outputRef    = CGBitmapContextCreateImage(context);
-            outputImage             = [UIImage imageWithCGImage: outputRef];
-            
-            CGColorSpaceRelease(colorSpaceRef);
-            CGDataProviderRelease(ref);
-            CGImageRelease(iref);
-            CGContextRelease(context);
-            CGImageRelease(outputRef);
-            free(pixels);
-            free(buffer);
-            
-            [CustomAlbum addNewAssetWithImage:outputImage toAlbum:[CustomAlbum getMyAlbumWithName:CSAlbum] onSuccess:^(NSString *ImageId) {
-                NSLog(@"%@",ImageId);
-                self.recentImg = ImageId;
-            } onError:^(NSError *error) {
-                NSLog(@"probelm in saving image");
-            } onFinish:^(NSString *finish) {
-                
-                PHAssetCollection *collection = [CustomAlbum getMyAlbumWithName:CSAlbum];
-                [CustomAlbum getImageWithCollection:collection onSuccess:^(UIImage *image) {
-                    self.galleryImageView.image = image;
+        NSInteger width1        = s.size.width;
+        NSInteger height1       = s.size.height;
+        NSInteger dataLength    = width1 * height1 * 4;
+        GLubyte *buffer         = (GLubyte *) malloc(dataLength * sizeof(GLubyte));
                     
-                    [UIView animateWithDuration:0.3f animations:^(void) {
-                        [self.galleryImageView.layer addAnimation:[OSRootViewController showAnimationGroup] forKey:nil];
-                    }];
-                    
-                } onError:^(NSError *error) {
-                    NSLog(@"Not Found!");
-                }];
-            }];
-        }
-        @catch (NSException *exception) {
-            // do nothing
-            NSLog(@"Error in capture %@", exception.description);
-
-        }
+        glPixelStorei(GL_PACK_ALIGNMENT, 4);
+        glReadPixels(0, 0, s.size.width, s.size.height, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
+        CGDataProviderRef ref           = CGDataProviderCreateWithData(NULL, buffer, s.size.width * s.size.height * 4, NULL);
+        CGColorSpaceRef colorSpaceRef   = CGColorSpaceCreateDeviceRGB();
+        CGImageRef iref                 = CGImageCreate(s.size.width, s.size.height, 8, 32, s.size.width * 4, colorSpaceRef, kCGBitmapByteOrderDefault, ref, NULL, true, kCGRenderingIntentDefault);
         
+        size_t width        = CGImageGetWidth(iref);
+        size_t height       = CGImageGetHeight(iref);
+        size_t length       = width * height * 4;
+        uint32_t *pixels    = (uint32_t *)malloc(length);
+        
+        CGContextRef context = CGBitmapContextCreate(pixels, width, height, 8, width * 4,
+                                                     CGImageGetColorSpace(iref), kCGImageAlphaNoneSkipFirst | kCGBitmapByteOrder32Big);
+        
+        CGAffineTransform transform = CGAffineTransformIdentity;
+        transform                   = CGAffineTransformMakeTranslation(0.0f, height);
+        transform                   = CGAffineTransformScale(transform, 1.0, -1.0);
+        CGContextConcatCTM(context, transform);
+        CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, width, height), iref);
+        CGImageRef outputRef    = CGBitmapContextCreateImage(context);
+        outputImage             = [UIImage imageWithCGImage: outputRef];
+        
+        CGColorSpaceRelease(colorSpaceRef);
+        CGDataProviderRelease(ref);
+        CGImageRelease(iref);
+        CGContextRelease(context);
+        CGImageRelease(outputRef);
+        free(pixels);
+        free(buffer);
+        
+        [CustomAlbum addNewAssetWithImage:outputImage toAlbum:[CustomAlbum getMyAlbumWithName:CSAlbum] onSuccess:^(NSString *ImageId) {
+            NSLog(@"%@",ImageId);
+            self.recentImg = ImageId;
+        } onError:^(NSError *error) {
+            NSLog(@"probelm in saving image");
+        } onFinish:^(NSString *finish) {
+            
+            PHAssetCollection *collection = [CustomAlbum getMyAlbumWithName:CSAlbum];
+            [CustomAlbum getImageWithCollection:collection onSuccess:^(UIImage *image) {
+                self.galleryImageView.image = image;
+                
+                [UIView animateWithDuration:0.3f animations:^(void) {
+                    [self.galleryImageView.layer addAnimation:[OSRootViewController showAnimationGroup] forKey:nil];
+                }];
+                
+            } onError:^(NSError *error) {
+                NSLog(@"Not Found!");
+            }];
+        }];
+    }
+    @catch (NSException *exception) {
+        // do nothing
+        NSLog(@"Error in capture %@", exception.description);
 
-//    } catch (NSError *error) {
-//        NSLog(@"Error in capture");
-//    }
+    }
     
     [UIView animateWithDuration:0.1f
                      animations: ^{

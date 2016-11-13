@@ -140,7 +140,6 @@ namespace {
     return [CAEAGLLayer class];
 }
 
-
 //------------------------------------------------------------------------------
 #pragma mark - Lifecycle
 
@@ -241,12 +240,36 @@ namespace {
             case 0:
                 filename = @"72016_FINAL1.mp4";
                 break;
+            case 1:
+                filename = @"BOMB1.mp4";
+                break;
+            case 2:
+                filename = @"BOMB2.mp4";
+                break;
+            case 3:
+                filename = @"EGG1.mp4";
+                break;
+            case 4:
+                filename = @"EGG2.mp4";
+                break;
+            case 5:
+                filename = @"TANK1.mp4";
+                break;
+            case 6:
+                filename = @"TANK3.mp4";
+                break;
+            case 7:
+                filename = @"USSOLDIER.mp4";
+                break;
+            case 8:
+                filename = @"JAPSOLDIER.mp4";
+                break;
             default:
-                filename = @"VuforiaSizzleReel_2.mp4";
+                filename = @"72016_FINAL1.mp4";
                 break;
         }
         
-        if (NO == [player load:filename playImmediately:YES fromPosition:videoPlaybackTime[i]]) {
+        if (NO == [player load:filename playImmediately:NO fromPosition:videoPlaybackTime[i]]) {
             NSLog(@"Failed to load media");
         }
     }
@@ -356,8 +379,6 @@ namespace {
     [self dismiss];
 }
 
-
-
 // Determine whether a screen tap is inside the target
 - (int)tapInsideTargetWithID
 {
@@ -400,11 +421,6 @@ namespace {
 {
     return videoPlayerHelper[index];
 }
-
-
-
-
-
 
 //------------------------------------------------------------------------------
 #pragma mark - UIGLViewProtocol methods
@@ -497,7 +513,8 @@ namespace {
         
         int targetIndex = 0;
         float kObjectScaleNormal = 55.0f;
-        GLfloat vertices[] = {  -5, -10, 0, // bottom left corner
+        GLfloat vertices[] = {
+            -5, -10, 0, // bottom left corner
             -5,  10, 0, // top left corner
             5,  10, 0, // top right corner
             5, -10, 0  // bottom right corner
@@ -1382,7 +1399,33 @@ namespace {
         } else if (!strcmp(trackable.getName(), "FixGear")) {
             isVideo = YES;
             playerIndex = 0;
+        } else if (!strcmp(trackable.getName(), "BOMB1")) {
+            isVideo = YES;
+            playerIndex = 1;
+        } else if (!strcmp(trackable.getName(), "BOMB2")) {
+            isVideo = YES;
+            playerIndex = 2;
+        } else if (!strcmp(trackable.getName(), "EGG1")) {
+            isVideo = YES;
+            playerIndex = 3;
+        } else if (!strcmp(trackable.getName(), "EGG2")) {
+            isVideo = YES;
+            playerIndex = 4;
+        } else if (!strcmp(trackable.getName(), "TANK1")) {
+            isVideo = YES;
+            playerIndex = 5;
+        } else if (!strcmp(trackable.getName(), "TANK3")) {
+            isVideo = YES;
+            playerIndex = 6;
+        } else if (!strcmp(trackable.getName(), "USSOLDIER")) {
+            isVideo = YES;
+            playerIndex = 7;
+        } else if (!strcmp(trackable.getName(), "JAPSOLDIER")) {
+            isVideo = YES;
+            playerIndex = 8;
         }
+        
+        NSLog(@"%s",trackable.getName());
         
         if (!isVideo) {
             OSApplicationUtils::translatePoseMatrix(xX, yY, zZ, &modelViewMatrix.data[0]);
@@ -1543,12 +1586,13 @@ namespace {
             }
             else {
                 // ----- Display the keyframe -----
-                Texture* t = videoAugmentationTexture[OBJECT_KEYFRAME_1 + playerIndex];
+//                Texture* t = videoAugmentationTexture[OBJECT_KEYFRAME_1 + playerIndex];
+                Texture* t = videoAugmentationTexture[OBJECT_KEYFRAME_1];
                 frameTextureID = [t textureID];
                 aspectRatio = (float)[t height] / (float)[t width];
                 texCoords = quadTexCoords;
             }
-            
+        
             // Get the current projection matrix
             Vuforia::Matrix44F projMatrix = vapp.projectionMatrix;
             

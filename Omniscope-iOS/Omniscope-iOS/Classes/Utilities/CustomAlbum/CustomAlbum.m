@@ -68,6 +68,35 @@
     }];
 }
 
++ (void)addNewAssetWithVideo:(NSURL *)fileURL toAlbum:(PHAssetCollection *)album onSuccess:(void (^)(NSString *))onSuccess onError:(void (^)(NSError *))onError onFinish:(void (^)(NSString *))onFinish {
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+        // Request creating an asset from the image.
+        PHAssetChangeRequest *createAssetRequest = [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:fileURL];
+        
+        // Request editing the album.
+        PHAssetCollectionChangeRequest *albumChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:album];
+        
+        // Get a placeholder for the new asset and add it to the album editing request.
+        PHObjectPlaceholder * placeHolder = [createAssetRequest placeholderForCreatedAsset];
+        [albumChangeRequest addAssets:@[ placeHolder ]];
+        
+        NSLog(@"%@",placeHolder.localIdentifier);
+        if (placeHolder) {
+            onSuccess(placeHolder.localIdentifier);
+        }
+        
+        
+    } completionHandler:^(BOOL success, NSError *error) {
+        NSLog(@"Finished adding asset. %@", (success ? @"Success" : error));
+        
+        onFinish(@"finish");
+        
+        if (error) {
+            onError(error);
+        }
+    }];
+}
+
 + (PHAssetCollection *)getMyAlbumWithName:(NSString*)AlbumName
 {
 #if 0
@@ -102,7 +131,7 @@
 {
     __block NSMutableArray * assetArray = NSMutableArray.new;
     [fetch enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL *stop) {
-//        NSLog(@"asset:%@", asset);
+        NSLog(@"asset:%@", asset);
         [assetArray addObject:asset];
     }];
     return assetArray;
@@ -149,13 +178,34 @@
 //        onError(error);
     }
 
-    NSArray * assetArray = [self getAssets:assets];
+    NSArray *assetArray = [self getAssets:assets];
     PHImageManager *manager = [PHImageManager defaultManager];
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     PHAsset *asset = [assetArray objectAtIndex:index];
+    
     [manager requestImageForAsset:asset targetSize:screenRect.size contentMode:PHImageContentModeAspectFit options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         onSuccess(result);
     }];
+}
+
++ (PHAsset *)getImageWithCollectionAsset:(PHAssetCollection*)collection atIndex:(NSInteger)index
+{
+    //    NSError *error = [[NSError alloc] init];
+    PHFetchResult *assets = [PHAsset fetchAssetsInAssetCollection:collection options:nil];
+    if (assets.count == 0) {
+        //        onError(error);
+    }
+    
+    NSArray *assetArray = [self getAssets:assets];
+//    PHImageManager *manager = [PHImageManager defaultManager];
+//    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    PHAsset *asset = [assetArray objectAtIndex:index];
+    
+//    [manager requestImageForAsset:asset targetSize:screenRect.size contentMode:PHImageContentModeAspectFit options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+//        onSuccess(result);
+//    }];
+    
+    return asset;
 }
 
 + (void)deleteImageWithCollection:(PHAssetCollection *)collection onSuccess:(void(^)(BOOL isSuccess))onSuccess toAlbum:(PHAssetCollection *)album onError:(void(^)(NSError * error))onError atIndex:(NSInteger)index {

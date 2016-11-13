@@ -9,7 +9,6 @@
 #import "OSRootViewController.h"
 #import "OSAboutViewController.h"
 #import "OSCameraViewController.h"
-#import "OSWelcomeViewController.h"
 #import "OSGalleryViewController.h"
 #import "OSImageViewController.h"
 #import "OSRootTableViewCell.h"
@@ -25,12 +24,13 @@ static OSRootViewController *_sharedController = nil;
 @interface OSRootViewController () {
     OSAboutViewController *_aboutViewController;
     OSCameraViewController *_cameraViewController;
-    OSWelcomeViewController *_welcomeViewController;
     OSGalleryViewController *_galleryViewController;
     OSImageViewController *_imageViewController;
     OSHelpViewController *_helpViewController;
     OSLocationViewController *_locationViewController;
 }
+
+@property (nonatomic, retain) UILongPressGestureRecognizer *longPressGestureRecognizer;
 
 // Transition
 - (void)hiddenAllPage;
@@ -89,7 +89,6 @@ static OSRootViewController *_sharedController = nil;
                         self.captureTabView,
                         self.otherInformationTabButton, nil];
     
-    
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
     
     // Create a path with the rectangle in it.
@@ -115,6 +114,14 @@ static OSRootViewController *_sharedController = nil;
     [self setSelectedButtonTag:_selectedButtonTag];
     
     [self transitionCamera];
+    
+    self.circularProgress.progressBarProgressColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.7f];
+    self.circularProgress.startAngle = 270;
+    
+    self.isRecording = NO;
+    
+    self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureAction:)];
+    [self.captureTabButton addGestureRecognizer:self.longPressGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -145,6 +152,12 @@ static OSRootViewController *_sharedController = nil;
             break;
         case Capture:
             [_delegate captureTabButtonAction:sender];
+        {
+            [UIView animateWithDuration:0.3f animations:^(void) {
+                [self.captureTabImageView.layer addAnimation:[OSRootViewController showAnimationGroup] forKey:nil];
+            }];
+        }
+    
             break;
         case OtherInformation:
             
@@ -160,6 +173,86 @@ static OSRootViewController *_sharedController = nil;
     }
 }
 
+- (void)longPressGestureAction:(UILongPressGestureRecognizer *)recognizer {
+    
+    switch (recognizer.state) {
+        case UIGestureRecognizerStateBegan:
+            NSLog(@"LONG PRESS began");
+        {
+            [_delegate startRecordTabButtonAction];
+            
+            self.isRecording = YES;
+            self.circularProgress.alpha = 1.0f;
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                self.captureTabRecordImageView.alpha = 1.0f;
+                self.captureTabImageView.alpha = 0.0f;
+            }];
+            
+            self.recordProgress = 0.0f;
+            self.timeRecording = [NSTimer scheduledTimerWithTimeInterval:0.1f repeats:YES block:^(NSTimer * _Nonnull timer) {
+                
+                CGFloat durationInMinutes = 100.0f;
+                
+                NSLog(@"PROGRESS: %f", self.recordProgress);
+                
+                CGFloat progress = self.recordProgress / durationInMinutes;
+                
+                NSLog(@"RECORD PROGRESS: %f", self.recordProgress);
+                
+                [self.circularProgress setProgress:progress animated:YES];
+                
+                self.recordProgress += 1.0f;
+                
+                if (self.recordProgress > 100.0f) {
+                    self.longPressGestureRecognizer.enabled = NO;
+                    self.longPressGestureRecognizer.enabled = YES;
+                }
+            }];
+        }
+            
+            break;
+        case UIGestureRecognizerStateEnded:
+            NSLog(@"LONG PRESS ended");
+            
+            [self cancelRecording];
+            break;
+        case UIGestureRecognizerStateFailed:
+            NSLog(@"LONG PRESS failed");
+            break;
+        case UIGestureRecognizerStateChanged:
+            NSLog(@"LONG PRESS changed");
+            break;
+        case UIGestureRecognizerStateCancelled:
+            NSLog(@"LONG PRESS cancel");
+            
+            [self cancelRecording];
+            break;
+        case UIGestureRecognizerStatePossible:
+            NSLog(@"LONG PRESS possible");
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)cancelRecording {
+    self.isRecording = NO;
+    self.circularProgress.alpha = 0.0f;
+    [self.circularProgress stopAnimation];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.captureTabRecordImageView.alpha = 0.0f;
+        self.captureTabImageView.alpha = 1.0f;
+    }];
+    
+    self.recordProgress = 0.0f;
+    [self.timeRecording invalidate];
+    self.timeRecording = nil;
+    
+    [_delegate endRecordTabButtonAction];
+}
+
 #pragma mark - Transitions
 - (void)transitionAbout {
     [self hiddenAllPage];
@@ -171,12 +264,6 @@ static OSRootViewController *_sharedController = nil;
     [self hiddenAllPage];
     
     [self transition:self.cameraViewController animated:NO];
-}
-
-- (void)transitionWelcome {
-    [self hiddenAllPage];
-    
-    [self transition:self.welcomeViewController animated:NO];
 }
 
 - (void)transitionGallery {
@@ -360,10 +447,6 @@ static OSRootViewController *_sharedController = nil;
     [self pushTransition:self.cameraViewController animated:animated];
 }
 
-- (void)transferWelcomeViewController:(id)sender animated:(BOOL)animated {
-    [self pushTransition:self.welcomeViewController animated:animated];
-}
-
 - (void)transferGalleryViewController:(id)sender animated:(BOOL)animated {
     [self pushTransition:self.galleryViewController animated:animated];
 }
@@ -400,15 +483,6 @@ static OSRootViewController *_sharedController = nil;
     }
     
     return _cameraViewController;
-}
-
-- (OSWelcomeViewController *)welcomeViewController {
-    if (!_welcomeViewController) {
-        _welcomeViewController = [[OSWelcomeViewController alloc] init];
-        _welcomeViewController.view.frame = self.contentView.bounds;
-    }
-    
-    return _welcomeViewController;
 }
 
 - (OSGalleryViewController *)galleryViewController {

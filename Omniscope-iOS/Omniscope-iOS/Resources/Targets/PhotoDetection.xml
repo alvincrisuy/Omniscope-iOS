@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="TANK1" size="1200.000000 600.000000" />
+    <ImageTarget name="EGG1" size="1200.000000 600.000000" />
+    <ImageTarget name="BOMB2" size="1200.000000 600.000000" />
+    <ImageTarget name="USSOLDIER" size="1500.000000 1200.000000" />
+    <ImageTarget name="JAPSOLDIER" size="1500.000000 1200.000000" />
+    <ImageTarget name="TANK3" size="1500.000000 1200.000000" />
+    <ImageTarget name="EGG2" size="1500.000000 1200.000000" />
+    <ImageTarget name="BOMB1" size="1500.000000 1200.000000" />
     <ImageTarget name="K-1" size="975.000000 968.000000" />
     <ImageTarget name="FixGear" size="2400.000000 1800.000000" />
     <ImageTarget name="K1" size="2100.000000 2700.000000" />
