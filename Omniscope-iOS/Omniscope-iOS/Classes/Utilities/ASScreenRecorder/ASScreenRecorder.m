@@ -191,49 +191,28 @@ NSString *const CSAlbum3 = @"Omniscope";
             [_videoWriterInput markAsFinished];
             [_videoWriter finishWritingWithCompletionHandler:^{
                 
-                void (^completion)(void) = ^() {
+                void (^completion)(NSURL *url) = ^(NSURL *url) {
                     [self cleanup];
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        if (completionBlock) completionBlock();
+                        if (completionBlock) completionBlock(url);
                     });
                 };
                 
                 if (self.videoURL) {
-                    completion();
+                    completion(nil);
                 } else {
                     
-                    [CustomAlbum addNewAssetWithVideo:_videoWriter.outputURL toAlbum:[CustomAlbum getMyAlbumWithName:CSAlbum3] onSuccess:^(NSString *VideoId) {
-
-                    } onError:^(NSError *error) {
-                        NSLog(@"Error copying video to camera roll:%@", [error localizedDescription]);
-                    } onFinish:^(NSString *finish) {
-                        NSLog(@"PATH: %@", _videoWriter.outputURL.path);
-                        [self removeTempFilePath:_videoWriter.outputURL.path];
-                        completion();
-                        
-//                        PHAssetCollection *collection = [CustomAlbum getMyAlbumWithName:CSAlbum];
-//                        [CustomAlbum getImageWithCollection:collection onSuccess:^(UIImage *image) {
-//                            self.galleryImageView.image = image;
-//                            
-//                            [UIView animateWithDuration:0.3f animations:^(void) {
-//                                [self.galleryImageView.layer addAnimation:[OSRootViewController showAnimationGroup] forKey:nil];
-//                            }];
-//                            
-//                        } onError:^(NSError *error) {
-//                            NSLog(@"Not Found!");
-//                        }];
-
-                        
-                    }];
-                    
-//                    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-//                    [library writeVideoAtPathToSavedPhotosAlbum:_videoWriter.outputURL completionBlock:^(NSURL *assetURL, NSError *error) {
-//                        if (error) {
-//                        } else {
-//                            [self removeTempFilePath:_videoWriter.outputURL.path];
-//                            completion();
-//                        }
+//                    [CustomAlbum addNewAssetWithVideo:_videoWriter.outputURL toAlbum:[CustomAlbum getMyAlbumWithName:CSAlbum3] onSuccess:^(NSString *VideoId) {
+//
+//                    } onError:^(NSError *error) {
+//                        NSLog(@"Error copying video to camera roll:%@", [error localizedDescription]);
+//                    } onFinish:^(NSString *finish) {
+//                        NSLog(@"PATH: %@", _videoWriter.outputURL.path);
+//                        [self removeTempFilePath:_videoWriter.outputURL.path];
+//                        completion();
 //                    }];
+                    
+                    completion(_videoWriter.outputURL);
                 }
             }];
         });

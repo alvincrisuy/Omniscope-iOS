@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-typedef void (^VideoCompletionBlock)(void);
+typedef void (^VideoCompletionBlock)(NSURL *filename);
 @protocol ASScreenRecorderDelegate;
 
 @interface ASScreenRecorder : NSObject
