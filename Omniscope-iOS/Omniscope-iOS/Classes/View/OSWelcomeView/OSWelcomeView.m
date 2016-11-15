@@ -45,6 +45,101 @@
 }
 
 - (void)setup {
+    self.pressToStartButton.alpha = 0.0f;
+    self.pressToStartLabel.alpha = 0.0f;
+
+    [[OSRootViewController sharedController] hideNavigationView];
+    [[OSRootViewController sharedController] hideTabView];
+    [[OSRootViewController sharedController] hideSideTableView];
+
+    [NSTimer scheduledTimerWithTimeInterval:3.0
+                                     target:self
+                                   selector:@selector(showPressToStart)
+                                   userInfo:nil
+                                    repeats:NO];
+    
+    [NSTimer scheduledTimerWithTimeInterval:1.0
+                                     target:self
+                                   selector:@selector(animateLogo)
+                                   userInfo:nil
+                                    repeats:NO];
+}
+
+- (void)hideLoading {
+    
+    [self.loadingIndicatorView stopAnimating];
+    
+}
+
+- (void)showPressToStart {
+    
+    [self.pressToStartButton setAlpha:1.0f];
+    
+    [NSTimer scheduledTimerWithTimeInterval:1.0
+                                     target:self
+                                   selector:@selector(hideLoading)
+                                   userInfo:nil
+                                    repeats:NO];
+    
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(continuousFadeInOut) userInfo:nil repeats:YES];
+    
+}
+
+- (void)continuousFadeInOut {
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        [self.pressToStartLabel setAlpha:1.0f];
+        
+    } completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            [self.pressToStartLabel setAlpha:0.0f];
+            
+        } completion:^(BOOL finished) {
+            
+        }];
+        
+    }];
+}
+
+- (void)animateLogo {
+    
+    CATransition* animation;
+    animation      = [CATransition animation];
+    animation.type = kCATransitionFade;
+    {
+        [self.omniscopeView setAlpha:1.0f];
+    }
+    
+    [self.omniscopeView.layer addAnimation:animation forKey:nil];
+    
+}
+
+- (void)transitionCamera {
+    
+    [[OSRootViewController sharedController] transitionCamera];
+    
+}
+
+- (IBAction)pressToStartButtonAction:(UIButton *)sender {
+
+    [[OSRootViewController sharedController] showTabView];
+
+    [UIView animateWithDuration:0.3f animations:^{
+        [self setAlpha:0.0f];
+    } completion:^(BOOL finished) {
+        [self dismiss];
+    }];
+}
+
+- (void)dismiss {
+    [self removeFromSuperview];
+}
+
+/*
+- (void)setup {
     
     [[OSRootViewController sharedController] hideNavigationView];
     [[OSRootViewController sharedController] hideTabView];
@@ -131,6 +226,6 @@
         [self removeFromSuperview];
         
     }];
-}
+} */
 
 @end
