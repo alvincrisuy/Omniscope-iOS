@@ -207,7 +207,7 @@ NSString *const CSAlbum3 = @"Omniscope";
                     } onError:^(NSError *error) {
                         NSLog(@"Error copying video to camera roll:%@", [error localizedDescription]);
                     } onFinish:^(NSString *finish) {
-                        
+                        NSLog(@"PATH: %@", _videoWriter.outputURL.path);
                         [self removeTempFilePath:_videoWriter.outputURL.path];
                         completion();
                         

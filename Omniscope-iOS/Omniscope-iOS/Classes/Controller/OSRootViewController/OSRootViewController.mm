@@ -175,6 +175,14 @@ static OSRootViewController *_sharedController = nil;
     }
 }
 
+- (IBAction)closeRecordButtonAction:(UIButton *)sender {
+    [_delegate closeRecordButtonAction];
+}
+
+- (IBAction)saveRecordButtonAction:(UIButton *)sender {
+    [_delegate saveRecordButtonAction];
+}
+
 - (void)longPressGestureAction:(UILongPressGestureRecognizer *)recognizer {
     
     switch (recognizer.state) {

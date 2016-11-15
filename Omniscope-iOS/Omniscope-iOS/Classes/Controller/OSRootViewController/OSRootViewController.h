@@ -45,6 +45,9 @@ typedef NS_ENUM(NSInteger, SideBarButtonTag) {
 - (void)startRecordTabButtonAction;
 - (void)endRecordTabButtonAction;
 
+- (void)closeRecordButtonAction;
+- (void)saveRecordButtonAction;
+
 - (void)row0SideButtonAction:(UIButton *)sender;
 - (void)row1SideButtonAction:(UIButton *)sender;
 - (void)row2SideButtonAction:(UIButton *)sender;
@@ -96,6 +99,10 @@ typedef NS_ENUM(NSInteger, SideBarButtonTag) {
 
 @property (nonatomic, retain) UIView *backButtonView;
 @property (nonatomic, retain) UIButton *backButton;
+
+@property (nonatomic, retain) IBOutlet UIView *recordDisplayView;
+@property (nonatomic, retain) IBOutlet UIButton *closeRecordButton;
+@property (nonatomic, retain) IBOutlet UIButton *saveRecordButton;
 
 // Transitions
 - (void)transitionAbout;

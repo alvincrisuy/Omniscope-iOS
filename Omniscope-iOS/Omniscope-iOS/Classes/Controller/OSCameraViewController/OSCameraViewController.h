@@ -14,6 +14,9 @@
 #import "OSRootViewController.h"
 #import "OSGridLinesView.h"
 
+#import "ASVideoView.h"
+#import "ASQueueVideoPlayer.h"
+
 #import <CTAssetsPickerController/CTAssetsPickerController.h>
 
 @interface OSCameraViewController : UIViewController <OSApplicationControl, CTAssetsPickerControllerDelegate, OSRootViewControllerDelegate> {
@@ -38,5 +41,8 @@
 @property (nonatomic, retain) UIButton *captureButton;
 
 @property (nonatomic, retain) OSGridLinesView *gridLinesView;
+
+// After Record
+@property (nonatomic, retain) ASVideoView *videoView;
 
 @end

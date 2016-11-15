@@ -113,6 +113,7 @@
             <connections>
                 <outlet property="rowButton3" destination="oY9-Xv-n4Y" id="VsJ-VC-9on"/>
             </connections>
+            <point key="canvasLocation" x="-140.5" y="-68"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="kUG-2a-uxI" customClass="OSRootTableViewCell">
             <rect key="frame" x="0.0" y="0.0" width="106.5" height="68"/>

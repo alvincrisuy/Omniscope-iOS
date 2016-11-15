@@ -45,6 +45,10 @@ NSString *const CSAlbum = @"Omniscope";
 //@property (nonatomic, retain) NSString *albumId;
 @property (nonatomic, retain) NSString *recentImg;
 
+@property (nonatomic, retain) PHAssetCollection *collection;
+@property (nonatomic, retain) AVURLAsset *urlAsset;
+@property (nonatomic, retain) PHAsset *phAsset;
+
 @end
 
 @implementation OSCameraViewController
@@ -753,8 +757,103 @@ NSString *const CSAlbum = @"Omniscope";
     if (recorder.isRecording) {
         [recorder stopRecordingWithCompletion:^{
             NSLog(@"Finished recording");
+
+            [OSRootViewController sharedController].recordDisplayView.alpha = 1.0f;
+            [[OSRootViewController sharedController] hideTabView];
+            
+            if ([OSRootViewController sharedController].isSideBarTableViewDisplay) {
+                [[OSRootViewController sharedController] hideSideTableView];
+            }
+            
+            // displaying
+            self.collection = [CustomAlbum getMyAlbumWithName:CSAlbum];
+
+            PHImageManager *manager = [PHImageManager defaultManager];
+            PHFetchResult *assets = [PHAsset fetchAssetsInAssetCollection:self.collection options:nil];
+            NSArray *assetArray = [CustomAlbum getAssets:assets];
+            
+            PHAsset *phAsset = [CustomAlbum getImageWithCollectionAsset:self.collection atIndex:assetArray.count - 1];
+
+            [manager requestAVAssetForVideo:phAsset
+                                    options:nil
+                              resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
+                                  
+                                  AVURLAsset *urlAsset = (AVURLAsset *)asset;
+                                  
+                                  self.videoView = [ASVideoView create];
+                                  self.videoView.popoverParent.alpha = 0.0f;
+                                  self.videoView.vwOverlayContainer.alpha = 0.0f;
+                                  self.videoView.vwTopBar.alpha = 0.0f;
+                                  self.videoView.vwBottomBar.alpha = 0.0f;
+                                  self.videoView.vwAirPlay.alpha = 0.0f;
+                                  
+                                  [self.videoView setFrame:self.view.bounds];
+                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                      [[OSRootViewController sharedController].recordDisplayView insertSubview:self.videoView atIndex:0];
+                                  });
+                                  
+                                  self.videoView.player.logs = ^(NSString *log) {
+                                      dispatch_async(dispatch_get_main_queue(), ^{
+                                          NSLog(@"LOG %@", log);
+                                      });
+                                  };
+                                  
+                                  [self addObserver:self
+                                         forKeyPath:@"videoView.player.currentItem.state"
+                                            options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
+                                            context:nil];
+                                  
+                                  ASQueuePlayerItem *item = nil;
+                                  NSMutableArray *items = [NSMutableArray array];
+                                  item = [[ASQueuePlayerItem alloc] initWithTitle:@""
+                                                                              url:urlAsset.URL.absoluteURL
+                                                                         userInfo:@{}];
+                                  
+                                  [items addObject:item];
+                                  
+                                  [self.videoView.player appendItemsToPlaylist:items];
+                                  [self.videoView.player playItemAtIndex:0];
+
+                                  
+                              }];
+            
         }];
     }
+}
+
+- (void)closeRecordButtonAction {
+
+    [self removeObserver:self
+              forKeyPath:@"videoView.player.currentItem.state"
+                 context:nil];
+
+    [self.videoView.player stop];
+    [self.videoView removeFromSuperview];
+    
+    [OSRootViewController sharedController].recordDisplayView.alpha = 0.0f;
+    [[OSRootViewController sharedController] showTabView];
+    
+    if ([OSRootViewController sharedController].isSideBarTableViewDisplay) {
+        [[OSRootViewController sharedController] showSideTableView];
+    }
+}
+
+- (void)saveRecordButtonAction {
+
+    [self removeObserver:self
+              forKeyPath:@"videoView.player.currentItem.state"
+                 context:nil];
+
+    [self.videoView.player stop];
+    [self.videoView removeFromSuperview];
+    
+    [OSRootViewController sharedController].recordDisplayView.alpha = 0.0f;
+    [[OSRootViewController sharedController] showTabView];
+    
+    if ([OSRootViewController sharedController].isSideBarTableViewDisplay) {
+        [[OSRootViewController sharedController] showSideTableView];
+    }
+    
 }
 
 - (void)captureTabButtonAction:(UIButton *)sender {
@@ -848,6 +947,40 @@ NSString *const CSAlbum = @"Omniscope";
                      } completion: ^(BOOL finished) {
                          self.view.alpha = 1.0f;
                      }];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+    
+    OSCameraViewController *cameraViewController = (OSCameraViewController *)object;
+    
+    switch (cameraViewController.videoView.player.currentItem.state) {
+        case ASQueuePlayerItemStatePrepared:
+            NSLog(@"Prepare");
+            break;
+        case ASQueuePlayerItemStateUnprepared:
+            NSLog(@"unprepared");
+//            if (self.isPlaying) {
+                [self.videoView.player playItemAtIndex:0];
+//            }
+            break;
+        case ASQueuePlayerItemStateFailed:
+            NSLog(@"failed");
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)dealloc {
+    
+//    if (self.mediaType == PHAssetMediaTypeVideo) {
+        [self removeObserver:self
+                  forKeyPath:@"videoView.player.currentItem.state"
+                     context:nil];
+//    }
 }
 
 @end

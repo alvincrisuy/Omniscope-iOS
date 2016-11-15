@@ -16,6 +16,7 @@
                 <outlet property="captureTabView" destination="nyc-2f-TGk" id="YDa-PP-xhJ"/>
                 <outlet property="captureTabView2" destination="sMd-dg-Lal" id="bGl-Kt-ZYu"/>
                 <outlet property="circularProgress" destination="yR2-cw-Ft7" id="OAG-tk-LbX"/>
+                <outlet property="closeRecordButton" destination="mdO-iW-3M9" id="d7T-3l-Ymn"/>
                 <outlet property="contentView" destination="gdA-hz-eKy" id="k4V-or-KmX"/>
                 <outlet property="galleryTabButton" destination="FNl-vh-7q0" id="fhO-Iv-dXw"/>
                 <outlet property="galleryTabView" destination="p7Q-aF-Fre" id="Z8k-Fi-EPI"/>
@@ -23,6 +24,8 @@
                 <outlet property="navigationViewHeight" destination="R4z-EG-wNT" id="dWC-1M-K9X"/>
                 <outlet property="otherInformationTabButton" destination="bkP-yO-fy5" id="WNz-aK-9NZ"/>
                 <outlet property="otherInformationTabView" destination="O0m-37-nG5" id="0MT-NS-32h"/>
+                <outlet property="recordDisplayView" destination="23B-AT-of3" id="C2r-Hz-Kk7"/>
+                <outlet property="saveRecordButton" destination="MhM-ud-ORG" id="nIE-IK-H4Z"/>
                 <outlet property="sideBarTableView" destination="Fcj-fE-sxb" id="w1r-AN-ewd"/>
                 <outlet property="sideBarTableViewWidth" destination="VrA-Lf-Ke6" id="qQk-1S-95h"/>
                 <outlet property="tabView" destination="o1V-dO-nf7" id="Mbz-tf-PCP"/>
@@ -45,6 +48,46 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gdA-hz-eKy">
                     <rect key="frame" x="0.0" y="60" width="320" height="420"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="23B-AT-of3">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j7c-4w-EfU">
+                            <rect key="frame" x="213.5" y="20" width="106.5" height="68"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdO-iW-3M9">
+                                    <rect key="frame" x="50" y="19" width="35" height="35"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                    <state key="normal" title="✕">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="closeRecordButtonAction:" destination="-1" eventType="touchUpInside" id="yfi-HX-Ruz"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cfj-xV-2AW">
+                            <rect key="frame" x="213" y="360" width="106.5" height="100"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MhM-ud-ORG">
+                                    <rect key="frame" x="50" y="35" width="30" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" image="save"/>
+                                    <connections>
+                                        <action selector="saveRecordButtonAction:" destination="-1" eventType="touchUpInside" id="1FM-fa-7lp"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fcj-fE-sxb">
                     <rect key="frame" x="213.5" y="20" width="106.5" height="340"/>
@@ -184,6 +227,7 @@
         <image name="capture150" width="75" height="75"/>
         <image name="capture150recording" width="150" height="150"/>
         <image name="capture150selected" width="75" height="75"/>
+        <image name="save" width="556" height="548"/>
         <image name="tab1" width="70" height="70"/>
         <image name="tab3" width="350" height="350"/>
     </resources>
