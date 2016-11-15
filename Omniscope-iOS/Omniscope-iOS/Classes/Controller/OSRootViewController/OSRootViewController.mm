@@ -10,10 +10,12 @@
 #import "OSAboutViewController.h"
 #import "OSCameraViewController.h"
 #import "OSGalleryViewController.h"
-#import "OSImageViewController.h"
 #import "OSRootTableViewCell.h"
 #import "OSHelpViewController.h"
 #import "OSLocationViewController.h"
+#import "OSImageViewController.h"
+#import "OSVideoViewController.h"
+
 #import "OSWelcomeView.h"
 
 #import "UIDevice+DeviceType.h"
@@ -25,9 +27,10 @@ static OSRootViewController *_sharedController = nil;
     OSAboutViewController *_aboutViewController;
     OSCameraViewController *_cameraViewController;
     OSGalleryViewController *_galleryViewController;
-    OSImageViewController *_imageViewController;
     OSHelpViewController *_helpViewController;
     OSLocationViewController *_locationViewController;
+    OSImageViewController *_imageViewController;
+    OSVideoViewController *_videoViewController;
 }
 
 @property (nonatomic, retain) UILongPressGestureRecognizer *longPressGestureRecognizer;
@@ -142,13 +145,12 @@ static OSRootViewController *_sharedController = nil;
     
     switch (self.selectedButtonTag) {
         case Gallery:
-        {
-            OSGalleryViewController *galleryViewController = [OSRootViewController sharedController].galleryViewController;
             
-            [[OSRootViewController sharedController].contentNavigationController presentViewController:galleryViewController animated:YES completion:^{
-                
-            }];
-        }
+            [[OSRootViewController sharedController] hideTabView];
+            [[OSRootViewController sharedController] hideSideTableView];
+
+            [self presentGalleryViewController:self];
+            
             break;
         case Capture:
             [_delegate captureTabButtonAction:sender];
@@ -416,6 +418,8 @@ static OSRootViewController *_sharedController = nil;
     [UIView animateWithDuration:0.3 animations:^{
         self.sideBarTableViewWidth.constant = 0.0f;
         
+//        self.isSideBarTableViewDisplay = YES;
+        
         [self.view layoutIfNeeded];
     }];
 }
@@ -426,8 +430,34 @@ static OSRootViewController *_sharedController = nil;
     [UIView animateWithDuration:0.3 animations:^{
         self.sideBarTableViewWidth.constant = -106.5f;
         
+//        self.isSideBarTableViewDisplay = NO;
+        
         [self.view layoutIfNeeded];
     }];
+}
+
+- (void)presentingTransition:(UIViewController *)viewController animated:(BOOL)animated {
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.3f;
+    transition.type     = kCATransitionMoveIn;
+    transition.subtype  = kCATransitionFromTop;
+    
+    [self.contentNavigationController.view.layer addAnimation:transition forKey:kCATransition];
+    [self.contentNavigationController pushViewController:viewController animated:animated];
+    
+}
+
+- (void)popPresentingTransitionAnimated:(BOOL)animated {
+    
+    CATransition* transition = [CATransition animation];
+    transition.duration = 0.3f;
+    transition.type = kCATransitionReveal;
+    transition.subtype = kCATransitionFromBottom;
+    
+    [self.contentNavigationController.view.layer addAnimation:transition forKey:kCATransition];
+    [self.contentNavigationController popViewControllerAnimated:animated];
+    
 }
 
 - (void)showTabView {
@@ -467,6 +497,27 @@ static OSRootViewController *_sharedController = nil;
     [self pushTransition:self.locationViewController animated:animated];
 }
 
+// Present
+- (void)presentGalleryViewController:(id)sender {
+    [self presentingTransition:self.galleryViewController animated:NO];
+}
+
+- (void)presentImageViewController:(id)sender index:(NSInteger)index {
+    _imageViewController = [[OSImageViewController alloc] init];
+    _imageViewController.index = index;
+    _imageViewController.view.frame = self.contentView.bounds;
+
+    [self presentingTransition:_imageViewController animated:NO];
+}
+
+- (void)presentVideoViewController:(id)sender index:(NSInteger)index {
+    _videoViewController = [[OSVideoViewController alloc] init];
+    _videoViewController.index = index;
+    _videoViewController.view.frame = self.contentView.bounds;
+
+    [self presentingTransition:_videoViewController animated:NO];
+}
+
 - (OSAboutViewController *)aboutViewController {
     if (!_aboutViewController) {
         _aboutViewController = [[OSAboutViewController alloc] init];
@@ -494,15 +545,6 @@ static OSRootViewController *_sharedController = nil;
     return _galleryViewController;
 }
 
-- (OSImageViewController *)imageViewController {
-//    if (!_imageViewController) {
-    _imageViewController = [[OSImageViewController alloc] init];
-    _imageViewController.view.frame = self.contentView.bounds;
-//    }
-    
-    return _imageViewController;
-}
-
 - (OSHelpViewController *)helpViewController {
     if (!_helpViewController) {
         _helpViewController = [[OSHelpViewController alloc] init];
@@ -519,6 +561,24 @@ static OSRootViewController *_sharedController = nil;
     }
     
     return _locationViewController;
+}
+
+- (OSImageViewController *)imageViewController {
+    //    if (!_imageViewController) {
+    _imageViewController = [[OSImageViewController alloc] init];
+    _imageViewController.view.frame = self.contentView.bounds;
+    //    }
+    
+    return _imageViewController;
+}
+
+- (OSVideoViewController *)videoViewController {
+//    if (!_videoViewController) {
+        _videoViewController = [[OSVideoViewController alloc] init];
+        _videoViewController.view.frame = self.contentView.bounds;
+//    }
+    
+    return _videoViewController;
 }
 
 + (CAAnimationGroup*)showAnimationGroup {

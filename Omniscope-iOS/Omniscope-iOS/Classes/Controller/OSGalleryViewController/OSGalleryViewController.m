@@ -9,7 +9,6 @@
 #import "OSGalleryViewController.h"
 #import "OSRootViewController.h"
 #import "CustomAlbum.h"
-#import "OSGalleryImagePopupView.h"
 #import "NSString+DeviceType.h"
 
 #import "OSImageViewController.h"
@@ -62,9 +61,13 @@ NSString *const CSAlbum = @"Omniscope";
 
 - (void)closeButtonAction:(UIButton *)sender {
     
-    [[OSRootViewController sharedController].contentNavigationController dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [[OSRootViewController sharedController] showTabView];
+    
+    if ([OSRootViewController sharedController].isSideBarTableViewDisplay) {
+        [[OSRootViewController sharedController] showSideTableView];
+    }
+
+    [[OSRootViewController sharedController] popPresentingTransitionAnimated:NO];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -147,16 +150,12 @@ NSString *const CSAlbum = @"Omniscope";
 
 - (void)imageView:(UIButton *)sender {
     
-//    [[OSRootViewController sharedController].contentNavigationController dismissViewControllerAnimated:YES completion:^{
-//        
-//    }];
-//    
-//    [[OSRootViewController sharedController] transferImageViewController:self animated:YES index:sender.tag];
+//    OSGalleryImagePopupView *popupView = [OSGalleryImagePopupView viewFromNib];
+//    popupView.delegate = self;
+//    popupView.index = sender.tag;
+//    [popupView show];
     
-    OSGalleryImagePopupView *popupView = [OSGalleryImagePopupView viewFromNib];
-    popupView.delegate = self;
-    popupView.index = sender.tag;
-    [popupView show];
+    [[OSRootViewController sharedController] presentImageViewController:self index:sender.tag];
 }
 
 @end

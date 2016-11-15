@@ -104,17 +104,8 @@
         bannerView.frame = frame;
         [cell.scrollView0 addSubview:bannerView];
         
-        int flexWidth = 0;
+        int flexWidth = self.view.frame.size.width;
         
-        if ([[NSStringFromClass([OSHelpViewController class]) concatenateClassToDeviceType] isEqualToString:@"OSHelpViewController"]) {
-            flexWidth = 320;
-        } else if ([[NSStringFromClass([OSHelpViewController class]) concatenateClassToDeviceType] isEqualToString:@"OSHelpViewController~iphone4"]) {
-            flexWidth = 320;
-        } else if ([[NSStringFromClass([OSHelpViewController class]) concatenateClassToDeviceType] isEqualToString:@"OSHelpViewController~iphone47"]) {
-            flexWidth = 375;
-        } else if ([[NSStringFromClass([OSHelpViewController class]) concatenateClassToDeviceType] isEqualToString:@"OSHelpViewController~iphone55"]) {
-            flexWidth = 414;
-        }
         for (int i = 1; i <= bannerCount; i++) {
             OSHelpBannerView* bannerView = [OSHelpBannerView loadNib:i - 1];
             
@@ -161,17 +152,7 @@
     int currentPage = floor((rowCell.scrollView0.contentOffset.x - rowCell.scrollView0.frame.size.width / rowCell.totalPages0) / rowCell.scrollView0.frame.size.width) + 1;
     NSInteger setCurrentPage = 0;
     
-    int flexWidth = 0;
-    
-    if ([[NSStringFromClass([OSHelpViewController class]) concatenateClassToDeviceType] isEqualToString:@"OSHelpViewController"]) {
-        flexWidth = 320;
-    } else if ([[NSStringFromClass([OSHelpViewController class]) concatenateClassToDeviceType] isEqualToString:@"OSHelpViewController~iphone4"]) {
-        flexWidth = 320;
-    } else if ([[NSStringFromClass([OSHelpViewController class]) concatenateClassToDeviceType] isEqualToString:@"OSHelpViewController~iphone47"]) {
-        flexWidth = 375;
-    } else if ([[NSStringFromClass([OSHelpViewController class]) concatenateClassToDeviceType] isEqualToString:@"OSHelpViewController~iphone55"]) {
-        flexWidth = 414;
-    }
+    int flexWidth = self.view.frame.size.width;
     
     if (currentPage==0) {
         [rowCell.scrollView0 scrollRectToVisible:CGRectMake(flexWidth * (rowCell.totalPages0 - 2), 0, flexWidth, scrollView.frame.size.height) animated:NO];
@@ -192,17 +173,7 @@
     int currentPage = floor((rowCell.scrollView0.contentOffset.x - rowCell.scrollView0.frame.size.width / rowCell.totalPages0) / rowCell.scrollView0.frame.size.width) + 1;
     NSInteger setCurrentPage = 0;
     
-    int flexWidth = 0;
-    
-    if ([[NSStringFromClass([OSHelpViewController class]) concatenateClassToDeviceType] isEqualToString:@"OSHelpViewController"]) {
-        flexWidth = 320;
-    } else if ([[NSStringFromClass([OSHelpViewController class]) concatenateClassToDeviceType] isEqualToString:@"OSHelpViewController~iphone4"]) {
-        flexWidth = 320;
-    } else if ([[NSStringFromClass([OSHelpViewController class]) concatenateClassToDeviceType] isEqualToString:@"OSHelpViewController~iphone47"]) {
-        flexWidth = 375;
-    } else if ([[NSStringFromClass([OSHelpViewController class]) concatenateClassToDeviceType] isEqualToString:@"OSHelpViewController~iphone55"]) {
-        flexWidth = 414;
-    }
+    int flexWidth = self.view.frame.size.width;
     
     if (currentPage == 0) {
         setCurrentPage = rowCell.totalPages0 - 2;

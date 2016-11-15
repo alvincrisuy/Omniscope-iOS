@@ -62,7 +62,7 @@
     // 3
     [self.mapView setRegion:viewRegion animated:YES];
     
-    MyLocation *annotation = [[MyLocation alloc] initWithName:@"ARTIST SPACE" address:@"2nd Floor, Glass Wing, Ayala Museum, Highway Drive, Corner East Drive, Makati, 1200 Metro Manila, Philippines" coordinate:center];
+    MyLocation *annotation = [[MyLocation alloc] initWithName:@"ARTIST SPACE" address:@"Ground Level, Ayala Museum Annex, Makati Avenue Cor. De La Rosa St. Greenbelt Park, Makati City, 1224 Philippines" coordinate:center];
     [self.mapView addAnnotation:annotation];
     
 //    [self.locationManager startUpdatingLocation];

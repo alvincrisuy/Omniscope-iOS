@@ -1,64 +1,28 @@
 PODS:
-  - Bolts (1.8.4):
-    - Bolts/AppLinks (= 1.8.4)
-    - Bolts/Tasks (= 1.8.4)
-  - Bolts/AppLinks (1.8.4):
-    - Bolts/Tasks
-  - Bolts/Tasks (1.8.4)
+  - ASVideoPlayer (1.0.8)
   - CircleProgressBar (0.32)
   - Crashlytics (3.8.3):
     - Fabric (~> 1.6.3)
   - CTAssetsPickerController (3.3.1):
     - PureLayout (~> 3.0.0)
   - Fabric (1.6.11)
-  - FBSDKCoreKit (4.17.0):
-    - Bolts (~> 1.7)
-  - FBSDKShareKit (4.17.0):
-    - FBSDKCoreKit
-  - FLAnimatedImage (1.0.12)
-  - Masonry (1.0.2)
-  - MHVideoPhotoGallery (2.1.3):
-    - Masonry
-    - SDWebImage
-    - TTTAttributedLabel (= 1.13.3)
-  - NYTPhotoViewer (1.2.0):
-    - NYTPhotoViewer/AnimatedGifSupport (= 1.2.0)
-    - NYTPhotoViewer/Core (= 1.2.0)
-  - NYTPhotoViewer/AnimatedGifSupport (1.2.0):
-    - FLAnimatedImage (~> 1.0.12)
-    - NYTPhotoViewer/Core
-  - NYTPhotoViewer/Core (1.2.0)
   - PureLayout (3.0.2)
-  - SDWebImage (3.8.2):
-    - SDWebImage/Core (= 3.8.2)
-  - SDWebImage/Core (3.8.2)
-  - TTTAttributedLabel (1.13.3)
 
 DEPENDENCIES:
+  - ASVideoPlayer
   - CircleProgressBar
   - Crashlytics
   - CTAssetsPickerController
   - Fabric
-  - FBSDKShareKit
-  - MHVideoPhotoGallery
-  - NYTPhotoViewer
 
 SPEC CHECKSUMS:
-  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  ASVideoPlayer: 7354ae9a04073bd1026d2f26eb53daa9f64cf3a5
   CircleProgressBar: 3920079be5224b62b3d9ed6eeb23ac01c835b681
   Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
   CTAssetsPickerController: b1d1d50ab87cf6b8b13531de5f4530482e7e53ed
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  FBSDKCoreKit: 30a21d2d7b92984b3d80497113433c00824c35e9
-  FBSDKShareKit: 9b573d03fbee36cbaf42d5bb1f2bc019e0d72347
-  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
-  MHVideoPhotoGallery: aa36cdd9b75c6d5a19b48005cddb9b730c2e27e8
-  NYTPhotoViewer: 323217e4590a1586eb3c9674b3fefb0fb8b57896
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
-  TTTAttributedLabel: 6f3174aef8e738f44dff97c2eb7d8184f6ab6277
 
-PODFILE CHECKSUM: c496446162bd718a1eb0a64e5ea697eca2f36636
+PODFILE CHECKSUM: b0683a53f829c7f77d0252763e6fffb5f6775f07
 
 COCOAPODS: 1.1.1

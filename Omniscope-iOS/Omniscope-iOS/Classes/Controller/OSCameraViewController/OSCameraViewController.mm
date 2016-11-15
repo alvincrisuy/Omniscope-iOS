@@ -115,9 +115,6 @@ NSString *const CSAlbum = @"Omniscope";
     // show loading animation while AR is being initialized
     [self showLoadingAnimation];
     
-//    [[OSRootViewController sharedController] hideNavigationView];
-//    [[OSRootViewController sharedController] hideSideTableView];
-//    
 //    [[OSRootViewController sharedController] showTabView];
     [OSRootViewController sharedController].delegate = self;
     

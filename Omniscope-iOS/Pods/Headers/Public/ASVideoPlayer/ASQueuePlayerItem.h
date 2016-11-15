@@ -1,0 +1,1 @@
+../../../ASVideoPlayer/Pod/Classes/ASVideoPlayer/ASQueuePlayerItem.h

@@ -10,8 +10,6 @@
 #import "OSRootViewController.h"
 #import "OSWelcomeView.h"
 
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-
 static OSAppDelegate* _sharedDelegate = nil;
 
 @interface OSAppDelegate ()
@@ -36,9 +34,6 @@ static OSAppDelegate* _sharedDelegate = nil;
     
     _sharedDelegate = self;
 
-    [[FBSDKApplicationDelegate sharedInstance] application:application
-                             didFinishLaunchingWithOptions:launchOptions];
-    
     [Fabric with:@[[Crashlytics class]]];
     
     if (!self.rootViewController) {
@@ -88,19 +83,11 @@ static OSAppDelegate* _sharedDelegate = nil;
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    [FBSDKAppEvents activateApp];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [[FBSDKApplicationDelegate sharedInstance] application:application
-                                                          openURL:url
-                                                sourceApplication:sourceApplication
-                                                       annotation:annotation];
-}
-
 
 @end

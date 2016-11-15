@@ -12,9 +12,11 @@
 @class OSAboutViewController;
 @class OSCameraViewController;
 @class OSGalleryViewController;
-@class OSImageViewController;
 @class OSHelpViewController;
 @class OSLocationViewController;
+
+@class OSImageViewController;
+@class OSVideoViewController;
 
 typedef NS_ENUM(NSInteger, TabBarButtonTag) {
     Gallery             = 0,
@@ -106,6 +108,8 @@ typedef NS_ENUM(NSInteger, SideBarButtonTag) {
 - (void)transition:(UIViewController *)viewController animated:(BOOL)animated;
 - (void)popTransitionAnimated:(BOOL)animated;
 - (void)pushTransition:(UIViewController *)viewController animated:(BOOL)animated;
+- (void)presentingTransition:(UIViewController *)viewController animated:(BOOL)animated;
+- (void)popPresentingTransitionAnimated:(BOOL)animated;
 
 - (void)showNavigationView;
 - (void)hideNavigationView;
@@ -117,19 +121,25 @@ typedef NS_ENUM(NSInteger, SideBarButtonTag) {
 - (void)hideTabView;
 
 // Transfer
-- (void)transferAboutViewController:(id)sender animated:(BOOL)animated;
-- (void)transferCameraViewController:(id)sender animated:(BOOL)animated;
-- (void)transferGalleryViewController:(id)sender animated:(BOOL)animated;
-- (void)transferImageViewController:(id)sender animated:(BOOL)animated index:(NSInteger)index;
-- (void)transferHelpViewController:(id)sender animated:(BOOL)animated;
-- (void)transferLocationViewController:(id)sender animated:(BOOL)animated;
+- (void)transferAboutViewController:(id)sender      animated:(BOOL)animated;
+- (void)transferCameraViewController:(id)sender     animated:(BOOL)animated;
+- (void)transferGalleryViewController:(id)sender    animated:(BOOL)animated;
+- (void)transferImageViewController:(id)sender      animated:(BOOL)animated     index:(NSInteger)index;
+- (void)transferHelpViewController:(id)sender       animated:(BOOL)animated;
+- (void)transferLocationViewController:(id)sender   animated:(BOOL)animated;
+
+// Present
+- (void)presentGalleryViewController:   (id)sender;
+- (void)presentImageViewController:     (id)sender  index:(NSInteger)index;
+- (void)presentVideoViewController:     (id)sender  index:(NSInteger)index;
 
 - (OSAboutViewController *)aboutViewController;
 - (OSCameraViewController *)cameraViewController;
 - (OSGalleryViewController *)galleryViewController;
-- (OSImageViewController *)imageViewController;
 - (OSHelpViewController *)helpViewController;
 - (OSLocationViewController *)locationViewController;
+- (OSImageViewController *)imageViewController;
+- (OSVideoViewController *)videoViewController;
 
 // Singleton
 + (OSRootViewController *)sharedController;
