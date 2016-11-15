@@ -59,21 +59,21 @@ static void *ASVC_ContextCurrentPlayerItemObservation           = &ASVC_ContextC
         
         PHImageManager *manager = [PHImageManager defaultManager];
         CGRect screenRect = [[UIScreen mainScreen] bounds];
-        PHAsset *asset = [CustomAlbum getImageWithCollectionAsset:self.collection atIndex:i];
+        PHAsset *phAsset = [CustomAlbum getImageWithCollectionAsset:self.collection atIndex:i];
         
-        bannerView.mediaType = asset.mediaType;
+        bannerView.mediaType = phAsset.mediaType;
         
-        switch (asset.mediaType) {
+        switch (phAsset.mediaType) {
             case PHAssetMediaTypeImage:
             {
-                [manager requestImageForAsset:asset targetSize:screenRect.size contentMode:PHImageContentModeAspectFit options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                [manager requestImageForAsset:phAsset targetSize:screenRect.size contentMode:PHImageContentModeAspectFit options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
                     bannerView.imageView.image = result;
                 }];
             }
                 break;
             case PHAssetMediaTypeVideo:
             {
-                [manager requestAVAssetForVideo:asset
+                [manager requestAVAssetForVideo:phAsset
                                         options:nil
                                   resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
                                       
@@ -83,6 +83,7 @@ static void *ASVC_ContextCurrentPlayerItemObservation           = &ASVC_ContextC
                                           bannerView.isPlaying = NO;
                                       }
                                       
+                                      bannerView.phAsset = phAsset;
                                       [bannerView setup:asset];
                 }];
             }
@@ -164,6 +165,118 @@ static void *ASVC_ContextCurrentPlayerItemObservation           = &ASVC_ContextC
     
     if (bannerView.mediaType == PHAssetMediaTypeVideo) {
         // share video
+        
+//        NSURL *videoPath = [NSURL fileURLWithPath:bannerView.urlAsset.URL.absoluteString];
+//
+//        NSArray *objectsToShare = @[videoPath];
+//        
+//        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
+//        activityVC.excludedActivityTypes = @[
+////                                             UIActivityTypePostToFacebook,
+//                                             UIActivityTypePostToTwitter,
+//                                            @"com.apple.reminders.RemindersEditorExtension",
+//                                            @"com.apple.mobilenotes.SharingExtension",
+//                                            @"com.google.Drive.ShareExtension"
+//                                             ];
+//        
+//        activityVC.completionWithItemsHandler = ^(NSString * __nullable activityType, BOOL completed, NSArray * __nullable returnedItems, NSError * __nullable activityError) {
+//            
+//            NSLog(@"%@", activityType);
+//            NSLog(@"%@", returnedItems);
+//            NSLog(@"ERROR: %@", activityError.description);
+//        };
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            
+//            [[OSRootViewController sharedController].contentNavigationController presentViewController:activityVC
+//                                                                  animated:YES
+//                                                                completion:^{
+//                                                                
+//                                                                }];
+//        });
+        
+//        typeof(self) __weak weakSelf = self;
+        
+        [[PHImageManager defaultManager] requestExportSessionForVideo:bannerView.phAsset options:nil exportPreset:AVAssetExportPresetPassthrough resultHandler:^(AVAssetExportSession *exportSession, NSDictionary *info) {
+            
+            NSLog(@"INFO %@", info);
+            
+            NSString *locationDetails = [info objectForKey:@"PHImageFileSandboxExtensionTokenKey"];
+            NSArray *detailsArray = [locationDetails componentsSeparatedByString: @";"];
+            NSString *filePath = [detailsArray objectAtIndex:detailsArray.count - 1];
+            NSArray *filenameArray = [filePath componentsSeparatedByString:@"/"];
+            NSString *filename = [filenameArray objectAtIndex:filenameArray.count - 1];
+
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString* videoPath = [documentsDirectory stringByAppendingPathComponent:filename];
+            NSFileManager *manager = [NSFileManager defaultManager];
+            
+            NSError *error;
+            if ([manager fileExistsAtPath:videoPath]) {
+                BOOL success = [manager removeItemAtPath:videoPath error:&error];
+                if (success) {
+                    NSLog(@"Already exist. Removed!");
+                }
+            }
+            
+            NSURL *outputURL = [NSURL fileURLWithPath:videoPath];
+            NSLog(@"Final path %@",outputURL);
+            exportSession.outputFileType=AVFileTypeQuickTimeMovie;
+            exportSession.outputURL=outputURL;
+            
+            [exportSession exportAsynchronouslyWithCompletionHandler:^{
+                if (exportSession.status == AVAssetExportSessionStatusFailed) {
+                    NSLog(@"failed");
+                } else if(exportSession.status == AVAssetExportSessionStatusCompleted){
+                    NSLog(@"completed!");
+                    dispatch_async(dispatch_get_main_queue(), ^(void) {
+                        NSArray *activityItems = [NSArray arrayWithObjects:outputURL, nil];
+                        
+//                        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+//                        activityViewController.completionWithItemsHandler = ^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
+//                            NSError *error;
+//                            if ([manager fileExistsAtPath:videoPath]) {
+//                                BOOL success = [manager removeItemAtPath:videoPath error:&error];
+//                                if (success) {
+//                                    NSLog(@"Successfully removed temp video!");
+//                                }
+//                            }
+//                            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+//                        };
+//                        [weakSelf presentViewController:activityViewController animated:YES completion:nil];
+                        
+                        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+                        activityVC.excludedActivityTypes = @[
+//                                                             UIActivityTypePostToFacebook,
+                                                             UIActivityTypePostToTwitter,
+                                                             @"com.apple.reminders.RemindersEditorExtension",
+                                                             @"com.apple.mobilenotes.SharingExtension",
+                                                             @"com.google.Drive.ShareExtension"
+                                                             ];
+                        
+                        activityVC.completionWithItemsHandler = ^(NSString * __nullable activityType, BOOL completed, NSArray * __nullable returnedItems, NSError * __nullable activityError) {
+                            
+                            NSLog(@"%@", activityType);
+                            NSLog(@"%@", returnedItems);
+                            NSLog(@"ERROR: %@", activityError.description);
+                        };
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            [[OSRootViewController sharedController].contentNavigationController presentViewController:activityVC
+                                                                                                              animated:YES
+                                                                                                            completion:^{
+                                                                                                                
+                                                                                                            }];
+                        });
+
+                    });
+                }
+            }];
+        }];
+
+        
     } else if (bannerView.mediaType == PHAssetMediaTypeImage) {
         UIImage *shareImage = bannerView.imageView.image;
         NSArray *objectsToShare = @[shareImage];
@@ -174,13 +287,17 @@ static void *ASVC_ContextCurrentPlayerItemObservation           = &ASVC_ContextC
             
             NSLog(@"%@", activityType);
             NSLog(@"%@", returnedItems);
+            NSLog(@"ERROR: %@", activityError.description);
         };
         
-        [[OSRootViewController sharedController].contentNavigationController presentViewController:activityVC
-                                                                                          animated:YES
-                                                                                        completion:^{
-                                                                                            
-                                                                                        }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [[OSRootViewController sharedController].contentNavigationController presentViewController:activityVC
+                                                                  animated:YES
+                                                                completion:^{
+                                                                
+                                                                }];
+        });
     }
 }
 
@@ -211,12 +328,6 @@ static void *ASVC_ContextCurrentPlayerItemObservation           = &ASVC_ContextC
         
         counter++;
     }
-    
-//    OSImageBannerView *bannerView = [self.scrollView.subviews objectAtIndex:self.index];
-//    if (bannerView.mediaType == PHAssetMediaTypeVideo) {
-//        bannerView.isPlaying = YES;
-//        [bannerView.videoView.player playItemAtIndex:0];
-//    }
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {

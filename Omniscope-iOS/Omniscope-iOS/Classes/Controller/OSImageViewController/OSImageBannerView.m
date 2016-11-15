@@ -23,7 +23,7 @@
 
 - (void)setup:(AVAsset *)asset {
     
-    AVURLAsset *urlAsset = (AVURLAsset *)asset;
+    self.urlAsset = (AVURLAsset *)asset;
     
     self.videoView = [ASVideoView create];
     self.videoView.popoverParent.alpha = 0.0f;
@@ -51,7 +51,7 @@
     ASQueuePlayerItem *item = nil;
     NSMutableArray *items = [NSMutableArray array];
     item = [[ASQueuePlayerItem alloc] initWithTitle:@""
-                                                url:urlAsset.URL.absoluteURL
+                                                url:self.urlAsset.URL.absoluteURL
                                            userInfo:@{}];
     
     [items addObject:item];

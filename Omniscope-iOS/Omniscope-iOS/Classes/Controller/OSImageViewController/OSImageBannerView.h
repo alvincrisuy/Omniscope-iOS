@@ -16,6 +16,8 @@
 
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
 @property (nonatomic, assign) PHAssetMediaType mediaType;
+@property (nonatomic, retain) AVURLAsset *urlAsset;
+@property (nonatomic, retain) PHAsset *phAsset;
 
 @property (nonatomic, retain) ASVideoView *videoView;
 @property (nonatomic, assign) BOOL isPlaying;
