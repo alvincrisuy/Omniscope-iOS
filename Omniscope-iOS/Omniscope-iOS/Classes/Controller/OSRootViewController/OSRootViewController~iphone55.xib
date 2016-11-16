@@ -16,6 +16,7 @@
                 <outlet property="captureTabView" destination="nyc-2f-TGk" id="YDa-PP-xhJ"/>
                 <outlet property="captureTabView2" destination="02h-X4-SRF" id="lkV-8T-rQ4"/>
                 <outlet property="circularProgress" destination="E5k-NI-r6g" id="a9T-5p-bFI"/>
+                <outlet property="circularProgressGray" destination="aKV-h3-Ose" id="J9z-7Z-NyH"/>
                 <outlet property="closeRecordButton" destination="0mT-Hp-KTq" id="Far-M8-S2c"/>
                 <outlet property="contentView" destination="gdA-hz-eKy" id="k4V-or-KmX"/>
                 <outlet property="galleryTabButton" destination="FNl-vh-7q0" id="fhO-Iv-dXw"/>
@@ -161,6 +162,29 @@
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="progressBarWidth">
                                                     <real key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aKV-h3-Ose" customClass="CircleProgressBar">
+                                            <rect key="frame" x="0.66666666666666663" y="0.66666666666666663" width="74" height="74"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="progressBarProgressColor">
+                                                    <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="progressBarTrackColor">
+                                                    <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="hintHidden" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="progress">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="progressBarWidth">
+                                                    <real key="value" value="0.5"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>

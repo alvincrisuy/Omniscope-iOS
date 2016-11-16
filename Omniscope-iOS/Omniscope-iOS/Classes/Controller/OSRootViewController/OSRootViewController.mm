@@ -120,6 +120,8 @@ static OSRootViewController *_sharedController = nil;
     
     self.circularProgress.progressBarProgressColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.7f];
     self.circularProgress.startAngle = 270;
+    self.circularProgressGray.startAngle = 270;
+    
     
     self.isRecording = NO;
     
@@ -193,6 +195,7 @@ static OSRootViewController *_sharedController = nil;
             
             self.isRecording = YES;
             self.circularProgress.alpha = 1.0f;
+            self.circularProgressGray.alpha = 1.0f;
             
             [UIView animateWithDuration:0.3 animations:^{
                 self.captureTabRecordImageView.alpha = 1.0f;
@@ -211,6 +214,7 @@ static OSRootViewController *_sharedController = nil;
                 NSLog(@"RECORD PROGRESS: %f", self.recordProgress);
                 
                 [self.circularProgress setProgress:progress animated:YES];
+                [self.circularProgressGray setProgress:progress animated:YES];
                 
                 self.recordProgress += 1.0f;
                 
@@ -250,6 +254,9 @@ static OSRootViewController *_sharedController = nil;
     self.isRecording = NO;
     self.circularProgress.alpha = 0.0f;
     [self.circularProgress stopAnimation];
+    
+    self.circularProgressGray.alpha = 0.0f;
+    [self.circularProgressGray stopAnimation];
     
     [UIView animateWithDuration:0.3 animations:^{
         self.captureTabRecordImageView.alpha = 0.0f;

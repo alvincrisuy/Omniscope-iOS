@@ -87,6 +87,7 @@ typedef NS_ENUM(NSInteger, SideBarButtonTag) {
 @property (nonatomic, retain) IBOutlet UIImageView *captureTabImageView;
 @property (nonatomic, retain) IBOutlet UIImageView *captureTabRecordImageView;
 @property (nonatomic, retain) IBOutlet CircleProgressBar *circularProgress;
+@property (nonatomic, retain) IBOutlet CircleProgressBar *circularProgressGray;
 @property (nonatomic, retain) IBOutlet UIButton *captureTabButton;
 
 // Side Bar Buttons
