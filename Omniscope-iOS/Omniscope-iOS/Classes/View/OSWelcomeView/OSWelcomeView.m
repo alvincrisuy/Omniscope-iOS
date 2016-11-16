@@ -11,6 +11,10 @@
 #import "NSString+DeviceType.h"
 #import "OSRootViewController.h"
 
+#import "CustomAlbum.h"
+
+NSString *const CSAlbum4 = @"Omniscope";
+
 @interface OSWelcomeView() {
     BOOL isShowing;
 }
@@ -42,6 +46,18 @@
     self.center = [[[UIApplication sharedApplication] keyWindow] center];
     [[[UIApplication sharedApplication] keyWindow] addSubview:self];
     [[[UIApplication sharedApplication] keyWindow] bringSubviewToFront:self];
+    
+    [CustomAlbum makeAlbumWithTitle:CSAlbum4 onSuccess:^(NSString *AlbumId) {
+        //        self.albumId = AlbumId;
+    } onError:^(NSError *error) {
+        NSLog(@"problem in creating album");
+    }];
+    
+    if ([[AVAudioSession sharedInstance] respondsToSelector:@selector(requestRecordPermission:)]) {
+        [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
+            
+        }];
+    }
 }
 
 - (void)setup {
