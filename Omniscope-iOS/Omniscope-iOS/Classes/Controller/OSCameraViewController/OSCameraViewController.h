@@ -17,9 +17,7 @@
 #import "ASVideoView.h"
 #import "ASQueueVideoPlayer.h"
 
-#import <CTAssetsPickerController/CTAssetsPickerController.h>
-
-@interface OSCameraViewController : UIViewController <OSApplicationControl, CTAssetsPickerControllerDelegate, OSRootViewControllerDelegate> {
+@interface OSCameraViewController : UIViewController <OSApplicationControl, OSRootViewControllerDelegate> {
     Vuforia::DataSet*  dataSetCurrent;
     Vuforia::DataSet*  dataSetPhoto;
 
