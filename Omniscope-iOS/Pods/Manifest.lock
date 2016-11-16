@@ -3,26 +3,20 @@ PODS:
   - CircleProgressBar (0.32)
   - Crashlytics (3.8.3):
     - Fabric (~> 1.6.3)
-  - CTAssetsPickerController (3.3.1):
-    - PureLayout (~> 3.0.0)
   - Fabric (1.6.11)
-  - PureLayout (3.0.2)
 
 DEPENDENCIES:
   - ASVideoPlayer
   - CircleProgressBar
   - Crashlytics
-  - CTAssetsPickerController
   - Fabric
 
 SPEC CHECKSUMS:
   ASVideoPlayer: 7354ae9a04073bd1026d2f26eb53daa9f64cf3a5
   CircleProgressBar: 3920079be5224b62b3d9ed6eeb23ac01c835b681
   Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
-  CTAssetsPickerController: b1d1d50ab87cf6b8b13531de5f4530482e7e53ed
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
 
-PODFILE CHECKSUM: b0683a53f829c7f77d0252763e6fffb5f6775f07
+PODFILE CHECKSUM: 2fce484d22fa0767867aaeba79982b4f469b2b82
 
 COCOAPODS: 1.1.1
