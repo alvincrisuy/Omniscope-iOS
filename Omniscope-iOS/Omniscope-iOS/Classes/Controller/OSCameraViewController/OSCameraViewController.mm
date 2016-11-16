@@ -879,6 +879,8 @@ NSString *const CSAlbum = @"Omniscope";
         [[OSRootViewController sharedController] showSideTableView];
     }
     
+    [self removeTempFilePath:self.tempFileLocation.path];
+    
     self.tempFileLocation = nil;
 }
 

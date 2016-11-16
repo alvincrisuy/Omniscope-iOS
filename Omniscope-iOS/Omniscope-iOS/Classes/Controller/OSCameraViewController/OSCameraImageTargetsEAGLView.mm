@@ -264,6 +264,9 @@ namespace {
             case 8:
                 filename = @"JAPSOLDIER.mp4";
                 break;
+            case 9:
+                filename = @"REEL.mp4";
+                break;
             default:
                 filename = @"72016_FINAL1.mp4";
                 break;
@@ -1423,6 +1426,9 @@ namespace {
         } else if (!strcmp(trackable.getName(), "JAPSOLDIER")) {
             isVideo = YES;
             playerIndex = 8;
+        } else if (!strcmp(trackable.getName(), "REEL")) {
+            isVideo = YES;
+            playerIndex = 9;
         }
         
         NSLog(@"%s",trackable.getName());

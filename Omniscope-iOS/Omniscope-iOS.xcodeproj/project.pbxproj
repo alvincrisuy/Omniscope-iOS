@@ -168,6 +168,7 @@
 		78F96D0B1DD80AB40015D19E /* OSImageViewController~iphone4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78F96D081DD80AB40015D19E /* OSImageViewController~iphone4.xib */; };
 		78F96D0C1DD80AB40015D19E /* OSImageViewController~iphone47.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78F96D091DD80AB40015D19E /* OSImageViewController~iphone47.xib */; };
 		78F96D0D1DD80AB40015D19E /* OSImageViewController~iphone55.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78F96D0A1DD80AB40015D19E /* OSImageViewController~iphone55.xib */; };
+		78F96D111DDB00AF0015D19E /* REEL.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 78F96D101DDB00AF0015D19E /* REEL.mp4 */; };
 		78FB9CEA1CD9C5A000D2023B /* e1.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FB9CDD1CD9C5A000D2023B /* e1.png */; };
 		78FB9CEB1CD9C5A000D2023B /* e2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FB9CDE1CD9C5A000D2023B /* e2.png */; };
 		78FB9CEC1CD9C5A000D2023B /* e3.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FB9CDF1CD9C5A000D2023B /* e3.png */; };
@@ -487,6 +488,7 @@
 		78F96D081DD80AB40015D19E /* OSImageViewController~iphone4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSImageViewController~iphone4.xib"; sourceTree = "<group>"; };
 		78F96D091DD80AB40015D19E /* OSImageViewController~iphone47.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSImageViewController~iphone47.xib"; sourceTree = "<group>"; };
 		78F96D0A1DD80AB40015D19E /* OSImageViewController~iphone55.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSImageViewController~iphone55.xib"; sourceTree = "<group>"; };
+		78F96D101DDB00AF0015D19E /* REEL.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = REEL.mp4; sourceTree = "<group>"; };
 		78FB9CDD1CD9C5A000D2023B /* e1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e1.png; sourceTree = "<group>"; };
 		78FB9CDE1CD9C5A000D2023B /* e2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e2.png; sourceTree = "<group>"; };
 		78FB9CDF1CD9C5A000D2023B /* e3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e3.png; sourceTree = "<group>"; };
@@ -676,6 +678,7 @@
 		7845862E1C9567FC0063F152 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				78F96D101DDB00AF0015D19E /* REEL.mp4 */,
 				7845349A1DD5EB33005D237B /* BOMB1.mp4 */,
 				7845349B1DD5EB33005D237B /* BOMB2.mp4 */,
 				7845349C1DD5EB33005D237B /* EGG1.mp4 */,
@@ -1264,6 +1267,7 @@
 				78FB9CF21CD9C5A000D2023B /* e9.png in Resources */,
 				78367DE71D0448160054440B /* OSRootViewController~iphone47.xib in Resources */,
 				784534A21DD5EB33005D237B /* BOMB1.mp4 in Resources */,
+				78F96D111DDB00AF0015D19E /* REEL.mp4 in Resources */,
 				784534A81DD5EB33005D237B /* TANK3.mp4 in Resources */,
 				78F8087F1CD4266000E67007 /* OSGalleryViewController~iphone47.xib in Resources */,
 				78367E091D0455840054440B /* OSHelpTableViewCell~iphone47.xib in Resources */,

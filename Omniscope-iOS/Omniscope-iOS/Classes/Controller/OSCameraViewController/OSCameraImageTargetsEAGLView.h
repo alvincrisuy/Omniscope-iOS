@@ -17,7 +17,7 @@
 
 #define kNumVideoAugmentationTextures 5
 
-static const int kNumVideoTargets = 11;
+static const int kNumVideoTargets = 10;
 
 @interface OSCameraImageTargetsEAGLView : UIView <UIGLViewProtocol, OSGLResourceHandler> {
 @private
