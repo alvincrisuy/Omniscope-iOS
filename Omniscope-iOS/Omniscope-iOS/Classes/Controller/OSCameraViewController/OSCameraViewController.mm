@@ -190,6 +190,12 @@ NSString *const CSAlbum = @"Omniscope";
     [self gridLines];
     
     [self.cameraView prepare];
+    
+    [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(prepareVideo) userInfo:nil repeats:NO];
+}
+
+- (void)prepareVideo {
+    [self.cameraView preparePlayers];
 }
 
 - (void)gridLines {
