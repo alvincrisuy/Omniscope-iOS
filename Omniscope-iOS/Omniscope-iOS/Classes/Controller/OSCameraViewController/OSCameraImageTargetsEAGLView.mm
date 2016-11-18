@@ -1609,17 +1609,35 @@ namespace {
                 Vuforia::Matrix44F modelViewMatrixVideo = Vuforia::Tool::convertPose2GLMatrix(trackablePose);
                 Vuforia::Matrix44F modelViewProjectionVideo;
                 
-                //            SampleApplicationUtils::translatePoseMatrix(0.0f, 0.0f, videoData[playerIndex].targetPositiveDimensions.data[0],
-                //                                             &modelViewMatrixVideo.data[0]);
-                
-                OSApplicationUtils::scalePoseMatrix(videoData[playerIndex].targetPositiveDimensions.data[0],
+                if (playerIndex == 9) {
+                    
+                    NSLog(@"aspect ratio: %f", aspectRatio);
+                    NSLog(@"size: %f", videoData[playerIndex].targetPositiveDimensions.data[0]);
+                    
+                    OSApplicationUtils::translatePoseMatrix(0.0f, 80.0f, 0.0f,
+                                                            &modelViewMatrixVideo.data[0]);
+                    
+                    OSApplicationUtils::scalePoseMatrix(380,
+                                                        380 * aspectRatio,
+                                                        380,
+                                                        &modelViewMatrixVideo.data[0]);
+                    
+                    OSApplicationUtils::multiplyMatrix(projMatrix.data,
+                                                       &modelViewMatrixVideo.data[0] ,
+                                                       &modelViewProjectionVideo.data[0]);
+                    
+                } else {
+                    // normal
+                    
+                    OSApplicationUtils::scalePoseMatrix(videoData[playerIndex].targetPositiveDimensions.data[0],
                                                         videoData[playerIndex].targetPositiveDimensions.data[0] * aspectRatio,
                                                         videoData[playerIndex].targetPositiveDimensions.data[0],
                                                         &modelViewMatrixVideo.data[0]);
-                
-                OSApplicationUtils::multiplyMatrix(projMatrix.data,
+                    
+                    OSApplicationUtils::multiplyMatrix(projMatrix.data,
                                                        &modelViewMatrixVideo.data[0] ,
                                                        &modelViewProjectionVideo.data[0]);
+                }
                 
                 glUseProgram(shaderProgramID);
                 
@@ -1718,10 +1736,7 @@ namespace {
                 
                 glDepthFunc(GL_LESS);
             }
-
         }
-        
-        
         
         OSApplicationUtils::checkGlError("EAGLView renderFrameVuforia");
     }

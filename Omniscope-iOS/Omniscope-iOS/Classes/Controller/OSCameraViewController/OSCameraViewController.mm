@@ -811,7 +811,6 @@ NSString *const CSAlbum = @"Omniscope";
         
 //        [self.audioRecorder saveRecording];
         
-        
         [recorder stopRecordingWithCompletion:^(NSURL *filename) {
             NSLog(@"Finished recording");
             
