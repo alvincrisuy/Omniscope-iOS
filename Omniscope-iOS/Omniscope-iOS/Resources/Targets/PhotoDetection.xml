@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="hermes2" size="2400.000000 2398.000000" />
+    <ImageTarget name="glitch" size="2400.000000 2997.000000" />
+    <ImageTarget name="hermes" size="2400.000000 3001.000000" />
     <ImageTarget name="REEL" size="863.000000 863.000000" />
     <ImageTarget name="USSOLDIER" size="3000.000000 2400.000000" />
     <ImageTarget name="TANK3" size="3000.000000 2400.000000" />

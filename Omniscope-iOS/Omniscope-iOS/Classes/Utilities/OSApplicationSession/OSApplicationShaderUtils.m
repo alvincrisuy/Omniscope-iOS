@@ -50,8 +50,8 @@
     if (compileSuccess == GL_FALSE) {
         GLchar messages[256];
         glGetShaderInfoLog(shaderHandle, sizeof(messages), 0, &messages[0]);
-//        NSString *messageString = [NSString stringWithUTF8String:messages];
-//        NSLog(@"Error compiling shader (%@): %@", shaderFileName, messageString);
+        NSString *messageString = [NSString stringWithUTF8String:messages];
+        NSLog(@"Error compiling shader (%@): %@", shaderFileName, messageString);
         return 0;
     }
     

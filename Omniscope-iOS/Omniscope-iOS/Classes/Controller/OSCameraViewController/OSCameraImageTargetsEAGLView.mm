@@ -69,6 +69,8 @@ namespace {
         "J-tag.png",            // 31   USED
         "Ka.png",               // 32   USED
         "K-tag.png",            // 33   USED
+        "hermes.png",           // 34   USED
+        "merhes-tag.png",       // 35   USED
     };
     
     const char* textureVideoStateFiles[kNumAugmentationTextures] = {
@@ -266,6 +268,9 @@ namespace {
                 break;
             case 9:
                 filename = @"REEL.mp4";
+                break;
+            case 10:
+                filename = @"glitch.mp4";
                 break;
             default:
                 filename = @"72016_FINAL1.mp4";
@@ -1399,6 +1404,54 @@ namespace {
             
             xX = 0.0f;
             yY = -440.0f;
+        } else if (!strcmp(trackable.getName(), "hermes")) {
+            targetIndex = 34;
+            
+            kObjectScaleNormal = 29.0f;
+            zZ = 0.0f;
+            
+            vertices[0] = -10;
+            vertices[1] = -20;
+            vertices[2] = 0;
+            
+            vertices[3] = -10;
+            vertices[4] = 20;
+            vertices[5] = 0;
+            
+            vertices[6] = 10;
+            vertices[7] = 20;
+            vertices[8] = 0;
+            
+            vertices[9] = 10;
+            vertices[10] = -20;
+            vertices[11] = 0;
+            
+            xX = 225.0f;
+            yY = 155.0f;
+        } else if (!strcmp(trackable.getName(), "hermes2")) {
+            targetIndex = 35;
+            
+            kObjectScaleNormal = 50.0f;
+            zZ = 0.0f;
+            
+            vertices[0] = -10;
+            vertices[1] = -5;
+            vertices[2] = 0;
+            
+            vertices[3] = -10;
+            vertices[4] = 5;
+            vertices[5] = 0;
+            
+            vertices[6] = 10;
+            vertices[7] = 5;
+            vertices[8] = 0;
+            
+            vertices[9] = 10;
+            vertices[10] = -5;
+            vertices[11] = 0;
+            
+            xX = 0.0f;
+            yY = -350.0f;
         } else if (!strcmp(trackable.getName(), "FixGear")) {
             isVideo = YES;
             playerIndex = 0;
@@ -1429,6 +1482,9 @@ namespace {
         } else if (!strcmp(trackable.getName(), "REEL")) {
             isVideo = YES;
             playerIndex = 9;
+        } else if (!strcmp(trackable.getName(), "glitch")) {
+            isVideo = YES;
+            playerIndex = 10;
         }
         
         NSLog(@"%s",trackable.getName());
@@ -1639,6 +1695,11 @@ namespace {
                                                        &modelViewProjectionVideo.data[0]);
                 }
                 
+//                // Blend the icon over the background
+//                glEnable(GL_BLEND);
+//                glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+                
+                
                 glUseProgram(shaderProgramID);
                 
                 glVertexAttribPointer(vertexHandle, 3, GL_FLOAT, GL_FALSE, 0, quadVertices);
@@ -1659,7 +1720,30 @@ namespace {
                 glDisableVertexAttribArray(normalHandle);
                 glDisableVertexAttribArray(textureCoordHandle);
                 
+//                glUseProgram(videoShaderProgramID);
+//                
+//                glVertexAttribPointer(videoVertexHandle, 3, GL_FLOAT, GL_FALSE, 0, quadVertices);
+//                glVertexAttribPointer(videoNormalHandle, 3, GL_FLOAT, GL_FALSE, 0, quadNormals);
+//                glVertexAttribPointer(videoTextureCoordHandle, 2, GL_FLOAT, GL_FALSE, 0, texCoords);
+//                
+//                glEnableVertexAttribArray(videoVertexHandle);
+//                glEnableVertexAttribArray(videoNormalHandle);
+//                glEnableVertexAttribArray(videoTextureCoordHandle);
+//                
+//                glActiveTexture(GL_TEXTURE0);
+//                glBindTexture(GL_TEXTURE_2D, frameTextureID);
+//                glUniformMatrix4fv(videoMvpMatrixHandle, 1, GL_FALSE, (GLfloat*)&modelViewProjectionVideo.data[0]);
+//                glUniform1i(videoTexSampler2DHandle, 0 /*GL_TEXTURE0*/);
+//                glDrawElements(GL_TRIANGLES, kNumQuadIndices, GL_UNSIGNED_SHORT, quadIndices);
+//                
+//                glDisableVertexAttribArray(videoVertexHandle);
+//                glDisableVertexAttribArray(videoNormalHandle);
+//                glDisableVertexAttribArray(videoTextureCoordHandle);
+                
                 glUseProgram(0);
+                
+                
+//                glDisable(GL_BLEND);
             }
             
             // If the current status is not PLAYING, render an icon
@@ -1797,6 +1881,19 @@ namespace {
         textureCoordHandle = glGetAttribLocation(shaderProgramID, "vertexTexCoord");
         mvpMatrixHandle = glGetUniformLocation(shaderProgramID, "modelViewProjectionMatrix");
         texSampler2DHandle  = glGetUniformLocation(shaderProgramID,"texSampler2D");
+    }
+    else {
+        NSLog(@"Could not initialise augmentation shader");
+    }
+    
+    videoShaderProgramID = [OSApplicationShaderUtils createProgramWithVertexShaderFileName:@"VideoAlpha.vertsh"
+                                                                    fragmentShaderFileName:@"VideoAlpha.fragsh"];
+    if (0 < videoShaderProgramID) {
+        videoVertexHandle = glGetAttribLocation(videoShaderProgramID, "vertexPosition");
+        videoNormalHandle = glGetAttribLocation(videoShaderProgramID, "vertexNormal");
+        videoTextureCoordHandle = glGetAttribLocation(videoShaderProgramID, "vertexTexCoord");
+        videoMvpMatrixHandle = glGetUniformLocation(videoShaderProgramID, "modelViewProjectionMatrix");
+        videoTexSampler2DHandle  = glGetUniformLocation(videoShaderProgramID,"texSamplerOES");
     }
     else {
         NSLog(@"Could not initialise augmentation shader");

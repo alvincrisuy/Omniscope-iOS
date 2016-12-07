@@ -203,26 +203,11 @@ static OSRootViewController *_sharedController = nil;
             }];
             
             self.recordProgress = 0.0f;
-            self.timeRecording = [NSTimer scheduledTimerWithTimeInterval:0.1f repeats:YES block:^(NSTimer * _Nonnull timer) {
-                
-                CGFloat durationInMinutes = 100.0f;
-                
-                NSLog(@"PROGRESS: %f", self.recordProgress);
-                
-                CGFloat progress = self.recordProgress / durationInMinutes;
-                
-                NSLog(@"RECORD PROGRESS: %f", self.recordProgress);
-                
-                [self.circularProgress setProgress:progress animated:YES];
-                [self.circularProgressGray setProgress:progress animated:YES];
-                
-                self.recordProgress += 1.0f;
-                
-                if (self.recordProgress > 100.0f) {
-                    self.longPressGestureRecognizer.enabled = NO;
-                    self.longPressGestureRecognizer.enabled = YES;
-                }
-            }];
+            
+            self.timeRecording = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(record) userInfo:nil repeats:YES];
+//            self.timeRecording = [NSTimer scheduledTimerWithTimeInterval:0.1f repeats:YES block:^(NSTimer * _Nonnull timer) {
+//                
+//            }];
         }
             
             break;
@@ -247,6 +232,27 @@ static OSRootViewController *_sharedController = nil;
             break;
         default:
             break;
+    }
+}
+
+- (void)record {
+    
+    CGFloat durationInMinutes = 100.0f;
+    
+    NSLog(@"PROGRESS: %f", self.recordProgress);
+    
+    CGFloat progress = self.recordProgress / durationInMinutes;
+    
+    NSLog(@"RECORD PROGRESS: %f", self.recordProgress);
+    
+    [self.circularProgress setProgress:progress animated:YES];
+    [self.circularProgressGray setProgress:progress animated:YES];
+    
+    self.recordProgress += 1.0f;
+    
+    if (self.recordProgress > 100.0f) {
+        self.longPressGestureRecognizer.enabled = NO;
+        self.longPressGestureRecognizer.enabled = YES;
     }
 }
 

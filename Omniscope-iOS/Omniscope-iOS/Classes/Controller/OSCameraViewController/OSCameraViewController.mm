@@ -192,6 +192,7 @@ NSString *const CSAlbum = @"Omniscope";
     [self.cameraView prepare];
     
     [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(prepareVideo) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(prepareVideo) userInfo:nil repeats:NO];
 }
 
 - (void)prepareVideo {

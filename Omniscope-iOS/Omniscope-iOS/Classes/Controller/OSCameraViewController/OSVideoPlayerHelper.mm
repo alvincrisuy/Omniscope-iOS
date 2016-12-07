@@ -916,7 +916,7 @@ static NSString* const kRateKey = @"rate";
                                     // Asset loaded, retrieve info and prepare
                                     // for playback
                                     if (NO == [self prepareAssetForPlayback]) {
-                                        NSLog(@"Error - Unable to prepare media for playback");
+                                        NSLog(@"Error - Unable to prepare media for playback %@", [error localizedDescription]);
                                         mediaState = ERROR;
                                     }
                                 }
@@ -999,7 +999,7 @@ static NSString* const kRateKey = @"rate";
         [assetReader startReading];
         
         if (AVAssetReaderStatusReading != [assetReader status]) {
-            NSLog(@"Error - AVAssetReader not in reading state");
+            NSLog(@"Error - AVAssetReader not in reading state %ld", (long)[assetReader status]);
             ret = NO;
         }
     }

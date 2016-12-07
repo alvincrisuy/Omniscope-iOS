@@ -20,6 +20,8 @@ static void *ASVC_ContextCurrentPlayerItemObservation           = &ASVC_ContextC
 
 @interface OSImageViewController ()
 
+@property (nonatomic, retain) UIActivityViewController *activityVC;
+
 @end
 
 @implementation OSImageViewController
@@ -154,6 +156,13 @@ static void *ASVC_ContextCurrentPlayerItemObservation           = &ASVC_ContextC
 - (IBAction)okButtonAction:(UIButton *)sender {
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     
+    OSImageBannerView* bannerView = [self.scrollView.subviews objectAtIndex:self.index];
+    
+    if (bannerView.mediaType == PHAssetMediaTypeVideo) {
+        bannerView.isPlaying = NO;
+        [bannerView.videoView.player stop];
+    }
+    
     [[OSRootViewController sharedController] popPresentingTransitionAnimated:NO];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -245,31 +254,42 @@ static void *ASVC_ContextCurrentPlayerItemObservation           = &ASVC_ContextC
 //                            [weakSelf dismissViewControllerAnimated:YES completion:nil];
 //                        };
 //                        [weakSelf presentViewController:activityViewController animated:YES completion:nil];
+                    
+                    __block OSImageViewController *vc = self;
+                        self.activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+//                        activityVC.excludedActivityTypes = @[
+////                                                             UIActivityTypePostToFacebook,
+//                                                             UIActivityTypePostToTwitter,
+//                                                             @"com.apple.reminders.RemindersEditorExtension",
+//                                                             @"com.apple.mobilenotes.SharingExtension",
+//                                                             @"com.google.Drive.ShareExtension"
+//                                                             ];
                         
-                        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
-                        activityVC.excludedActivityTypes = @[
-//                                                             UIActivityTypePostToFacebook,
-                                                             UIActivityTypePostToTwitter,
-                                                             @"com.apple.reminders.RemindersEditorExtension",
-                                                             @"com.apple.mobilenotes.SharingExtension",
-                                                             @"com.google.Drive.ShareExtension"
-                                                             ];
-                        
-                        activityVC.completionWithItemsHandler = ^(NSString * __nullable activityType, BOOL completed, NSArray * __nullable returnedItems, NSError * __nullable activityError) {
+                        self.activityVC.completionWithItemsHandler = ^(NSString * __nullable activityType, BOOL completed, NSArray * __nullable returnedItems, NSError * __nullable activityError) {
                             
                             NSLog(@"%@", activityType);
                             NSLog(@"%@", returnedItems);
                             NSLog(@"ERROR: %@", activityError.description);
-                        };
-                        
-                        dispatch_async(dispatch_get_main_queue(), ^{
                             
-                            [[OSRootViewController sharedController].contentNavigationController presentViewController:activityVC
-                                                                                                              animated:YES
-                                                                                                            completion:^{
-                                                                                                                
-                                                                                                            }];
-                        });
+                            vc.activityVC = nil;
+                        };
+                    
+                    [self presentViewController:self.activityVC animated:YES completion:^{
+                        
+                    }];
+                        
+//                        dispatch_async(dispatch_get_main_queue(), ^{
+                        
+//                            [[OSRootViewController sharedController].contentNavigationController presentViewController:activityVC
+//                                                                                                              animated:YES
+//                                                                                                            completion:^{
+//                                                                                                                
+//                                                                                                            }];
+                            
+//                            [[OSRootViewController sharedController] presentViewController:activityVC animated:YES completion:^{
+//                                
+//                            }];
+//                        });
 
                     });
                 }
@@ -281,22 +301,33 @@ static void *ASVC_ContextCurrentPlayerItemObservation           = &ASVC_ContextC
         UIImage *shareImage = bannerView.imageView.image;
         NSArray *objectsToShare = @[shareImage];
         
-        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
+        __block OSImageViewController *vc = self;
         
-        activityVC.completionWithItemsHandler = ^(NSString * __nullable activityType, BOOL completed, NSArray * __nullable returnedItems, NSError * __nullable activityError) {
+        self.activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
+        self.activityVC.completionWithItemsHandler = ^(NSString * __nullable activityType, BOOL completed, NSArray * __nullable returnedItems, NSError * __nullable activityError) {
             
             NSLog(@"%@", activityType);
             NSLog(@"%@", returnedItems);
             NSLog(@"ERROR: %@", activityError.description);
+            
+            vc.activityVC = nil;
         };
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            [[OSRootViewController sharedController].contentNavigationController presentViewController:activityVC
-                                                                  animated:YES
-                                                                completion:^{
-                                                                
-                                                                }];
+            [self presentViewController:self.activityVC animated:YES completion:^{
+                
+            }];
+            
+//            [[OSRootViewController sharedController].contentNavigationController presentViewController:activityVC
+//                                                                  animated:YES
+//                                                                completion:^{
+//                                                                
+//                                                                }];
+            
+//            [[OSRootViewController sharedController] presentViewController:activityVC animated:YES completion:^{
+//                
+//            }];
         });
     }
 }

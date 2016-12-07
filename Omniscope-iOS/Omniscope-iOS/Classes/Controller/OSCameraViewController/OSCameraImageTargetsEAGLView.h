@@ -13,11 +13,11 @@
 #import "OSApplicationSession.h"
 #import "OSVideoPlayerHelper.h"
 
-#define kNumAugmentationTextures 34
+#define kNumAugmentationTextures 36
 
 #define kNumVideoAugmentationTextures 5
 
-static const int kNumVideoTargets = 10;
+static const int kNumVideoTargets = 11;
 
 @interface OSCameraImageTargetsEAGLView : UIView <UIGLViewProtocol, OSGLResourceHandler> {
 @private
@@ -37,6 +37,14 @@ static const int kNumVideoTargets = 10;
     GLint textureCoordHandle;
     GLint mvpMatrixHandle;
     GLint texSampler2DHandle;
+    
+    // Video Shader handles
+    GLuint videoShaderProgramID;
+    GLint videoVertexHandle;
+    GLint videoNormalHandle;
+    GLint videoTextureCoordHandle;
+    GLint videoMvpMatrixHandle;
+    GLint videoTexSampler2DHandle;
     
     // Texture used when rendering augmentation
     Texture* augmentationTexture[kNumAugmentationTextures];

@@ -1,0 +1,28 @@
+/*==============================================================================
+ Copyright (c) 2012-2015 Qualcomm Connected Experiences, Inc.
+ All Rights Reserved.
+ ==============================================================================*/
+
+//#extension GL_OES_EGL_image_external : require
+
+precision mediump float;
+
+//uniform samplerExternalOES texSamplerOES;
+
+uniform sampler2D texSamplerOES;
+
+varying vec2 texCoord;
+varying vec2 texdim0;
+
+void main()
+{
+    vec3 keying_color = vec3(0.0823,1,0.1725);
+    float thresh = 0.45; // [0, 1.732]
+    float slope = 0.1; // [0, 1]
+    vec3 input_color = texture2D(texSamplerOES, texCoord).rgb;
+    float d = abs(length(abs(keying_color.rgb - input_color.rgb)));
+    float edge0 = thresh * (1.0 - slope);
+    float alpha = smoothstep(edge0, thresh, d);
+    gl_FragColor = vec4(input_color,alpha);
+}
+

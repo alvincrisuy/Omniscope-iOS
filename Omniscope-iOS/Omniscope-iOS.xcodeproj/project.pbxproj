@@ -87,6 +87,7 @@
 		784586471C957CDA0063F152 /* Simple.vertsh in Resources */ = {isa = PBXBuildFile; fileRef = 784586431C957CDA0063F152 /* Simple.vertsh */; };
 		785ADE331CC9C9BA00EF4FCA /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785ADE321CC9C9BA00EF4FCA /* Photos.framework */; };
 		785ADE351CC9C9C200EF4FCA /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785ADE341CC9C9C200EF4FCA /* PhotosUI.framework */; };
+		785FBBA21DF7F78D00EC939E /* glitch.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 785FBBA11DF7F78D00EC939E /* glitch.mp4 */; };
 		78612EA21D21A5270058BC3A /* Ia.png in Resources */ = {isa = PBXBuildFile; fileRef = 78612EA01D21A5270058BC3A /* Ia.png */; };
 		78612EA31D21A5270058BC3A /* Ja.png in Resources */ = {isa = PBXBuildFile; fileRef = 78612EA11D21A5270058BC3A /* Ja.png */; };
 		78683ADC1C950C93000EBE3E /* OSCameraImageTargetsEAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78683ADB1C950C93000EBE3E /* OSCameraImageTargetsEAGLView.mm */; };
@@ -95,6 +96,10 @@
 		78683AE61C952355000EBE3E /* OSApplicationShaderUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 78683AE51C952355000EBE3E /* OSApplicationShaderUtils.m */; };
 		78683AE91C95239F000EBE3E /* OSApplicationUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78683AE81C95239F000EBE3E /* OSApplicationUtils.cpp */; };
 		78A3D9681DC6024100837A60 /* libVuforia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A3D9671DC6024100837A60 /* libVuforia.a */; };
+		78A4A60C1DF01BE700D0E84A /* merhes-tag.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A4A60B1DF01BE700D0E84A /* merhes-tag.png */; };
+		78A4A6101DF01F1800D0E84A /* hermes.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A4A60F1DF01F1800D0E84A /* hermes.png */; };
+		78A4A6171DF15C9500D0E84A /* VideoAlpha.fragsh in Resources */ = {isa = PBXBuildFile; fileRef = 78A4A6151DF15C9500D0E84A /* VideoAlpha.fragsh */; };
+		78A4A6181DF15C9500D0E84A /* VideoAlpha.vertsh in Resources */ = {isa = PBXBuildFile; fileRef = 78A4A6161DF15C9500D0E84A /* VideoAlpha.vertsh */; };
 		78A703651C5E297B005114AA /* Omniscope_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A703641C5E297B005114AA /* Omniscope_iOSTests.m */; };
 		78A703701C5E297B005114AA /* Omniscope_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A7036F1C5E297B005114AA /* Omniscope_iOSUITests.m */; };
 		78A703831C5E35B9005114AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A703811C5E35B9005114AA /* main.m */; };
@@ -297,6 +302,7 @@
 		784586431C957CDA0063F152 /* Simple.vertsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Simple.vertsh; sourceTree = "<group>"; };
 		785ADE321CC9C9BA00EF4FCA /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		785ADE341CC9C9C200EF4FCA /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
+		785FBBA11DF7F78D00EC939E /* glitch.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = glitch.mp4; sourceTree = "<group>"; };
 		78612EA01D21A5270058BC3A /* Ia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ia.png; sourceTree = "<group>"; };
 		78612EA11D21A5270058BC3A /* Ja.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ja.png; sourceTree = "<group>"; };
 		78683ADA1C950C93000EBE3E /* OSCameraImageTargetsEAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCameraImageTargetsEAGLView.h; sourceTree = "<group>"; };
@@ -398,6 +404,10 @@
 		78A3D9651DC6023100837A60 /* WordList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordList.h; sourceTree = "<group>"; };
 		78A3D9661DC6023100837A60 /* WordResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordResult.h; sourceTree = "<group>"; };
 		78A3D9671DC6024100837A60 /* libVuforia.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libVuforia.a; sourceTree = "<group>"; };
+		78A4A60B1DF01BE700D0E84A /* merhes-tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "merhes-tag.png"; sourceTree = "<group>"; };
+		78A4A60F1DF01F1800D0E84A /* hermes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hermes.png; sourceTree = "<group>"; };
+		78A4A6151DF15C9500D0E84A /* VideoAlpha.fragsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VideoAlpha.fragsh; sourceTree = "<group>"; };
+		78A4A6161DF15C9500D0E84A /* VideoAlpha.vertsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VideoAlpha.vertsh; sourceTree = "<group>"; };
 		78A703471C5E297B005114AA /* Omniscope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Omniscope.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A703601C5E297B005114AA /* Omniscope-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Omniscope-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A703641C5E297B005114AA /* Omniscope_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Omniscope_iOSTests.m; sourceTree = "<group>"; };
@@ -678,6 +688,7 @@
 		7845862E1C9567FC0063F152 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				785FBBA11DF7F78D00EC939E /* glitch.mp4 */,
 				78F96D101DDB00AF0015D19E /* REEL.mp4 */,
 				7845349A1DD5EB33005D237B /* BOMB1.mp4 */,
 				7845349B1DD5EB33005D237B /* BOMB2.mp4 */,
@@ -727,6 +738,8 @@
 				78ED311F1D2106D2000F359C /* I-tag.png */,
 				78ED31201D2106D2000F359C /* J-tag.png */,
 				7827C3951D434B73003114A8 /* K-tag.png */,
+				78A4A60F1DF01F1800D0E84A /* hermes.png */,
+				78A4A60B1DF01BE700D0E84A /* merhes-tag.png */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -747,6 +760,8 @@
 				784586411C957CDA0063F152 /* Line.vertsh */,
 				784586421C957CDA0063F152 /* Simple.fragsh */,
 				784586431C957CDA0063F152 /* Simple.vertsh */,
+				78A4A6151DF15C9500D0E84A /* VideoAlpha.fragsh */,
+				78A4A6161DF15C9500D0E84A /* VideoAlpha.vertsh */,
 			);
 			path = shaders;
 			sourceTree = "<group>";
@@ -1287,10 +1302,12 @@
 				78367DE81D0448160054440B /* OSRootViewController~iphone55.xib in Resources */,
 				78367DEE1D0448DD0054440B /* OSRootTableViewCell~iphone55.xib in Resources */,
 				78367E151D04591D0054440B /* OSHelpViewController~iphone47.xib in Resources */,
+				78A4A60C1DF01BE700D0E84A /* merhes-tag.png in Resources */,
 				78ED31281D2106D2000F359C /* I-tag.png in Resources */,
 				78367E031D0455190054440B /* OSHelpBannerView~iphone47.xib in Resources */,
 				78ED31151D20B5AD000F359C /* Ca.png in Resources */,
 				7825B9C31D12DC85009D9E3B /* OSLocationViewController.xib in Resources */,
+				78A4A6101DF01F1800D0E84A /* hermes.png in Resources */,
 				7827C3871D40AD5B003114A8 /* icon_play.png in Resources */,
 				78D8D4DC1CE95E4400A0BD2C /* CollectionCell~iphone97.xib in Resources */,
 				784586471C957CDA0063F152 /* Simple.vertsh in Resources */,
@@ -1330,6 +1347,8 @@
 				78F96D071DD809EF0015D19E /* OSImageBannerView~iphone55.xib in Resources */,
 				7826CADD1DD695FB003D5A6D /* OSWelcomeView~iphone55.xib in Resources */,
 				78ED310C1D207610000F359C /* Aa.png in Resources */,
+				785FBBA21DF7F78D00EC939E /* glitch.mp4 in Resources */,
+				78A4A6181DF15C9500D0E84A /* VideoAlpha.vertsh in Resources */,
 				78F8086B1CD3922E00E67007 /* OSCameraViewController~iphone4.xib in Resources */,
 				78ED31261D2106D2000F359C /* G-tag.png in Resources */,
 				78A704681C5FA0F8005114AA /* OSAboutViewController.xib in Resources */,
@@ -1349,6 +1368,7 @@
 				78F4C4A41CE045000044AF1A /* OSGalleryViewController~iphone129.xib in Resources */,
 				78FB9CEB1CD9C5A000D2023B /* e2.png in Resources */,
 				78A7046A1C5FA0F8005114AA /* OSCameraViewController.xib in Resources */,
+				78A4A6171DF15C9500D0E84A /* VideoAlpha.fragsh in Resources */,
 				78FB9CED1CD9C5A000D2023B /* e4.png in Resources */,
 				78ED31251D2106D2000F359C /* F-tag.png in Resources */,
 				7832AFDD1D0D499000198F37 /* Hb.png in Resources */,
