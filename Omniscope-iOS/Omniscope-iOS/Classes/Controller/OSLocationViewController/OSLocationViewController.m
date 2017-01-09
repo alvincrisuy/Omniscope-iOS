@@ -48,8 +48,8 @@
     
     // 1
     CLLocationCoordinate2D center;
-    center.latitude = 14.553502;
-    center.longitude= 121.0233318;
+    center.latitude = 14.642867;
+    center.longitude= 121.027254;
     
     MKCoordinateSpan span;
     span.latitudeDelta = 0.5f;
@@ -62,7 +62,7 @@
     // 3
     [self.mapView setRegion:viewRegion animated:YES];
     
-    MyLocation *annotation = [[MyLocation alloc] initWithName:@"ARTIST SPACE" address:@"Ground Level, Ayala Museum Annex, Makati Avenue Cor. De La Rosa St. Greenbelt Park, Makati City, 1224 Philippines" coordinate:center];
+    MyLocation *annotation = [[MyLocation alloc] initWithName:@"48 West Avenue" address:@"Quezon City, Philippines" coordinate:center];
     [self.mapView addAnnotation:annotation];
     
 //    [self.locationManager startUpdatingLocation];

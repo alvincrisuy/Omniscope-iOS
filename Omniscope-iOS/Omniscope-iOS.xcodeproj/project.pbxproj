@@ -95,6 +95,8 @@
 		78683AE31C95229D000EBE3E /* Texture.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78683AE21C95229D000EBE3E /* Texture.mm */; };
 		78683AE61C952355000EBE3E /* OSApplicationShaderUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 78683AE51C952355000EBE3E /* OSApplicationShaderUtils.m */; };
 		78683AE91C95239F000EBE3E /* OSApplicationUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78683AE81C95239F000EBE3E /* OSApplicationUtils.cpp */; };
+		78A3084A1E23F4B1001FD1E5 /* GLITCHSKY1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 78A308481E23F4B1001FD1E5 /* GLITCHSKY1.mp4 */; };
+		78A3084B1E23F4B1001FD1E5 /* GLITCHSKY2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 78A308491E23F4B1001FD1E5 /* GLITCHSKY2.mp4 */; };
 		78A3D9681DC6024100837A60 /* libVuforia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A3D9671DC6024100837A60 /* libVuforia.a */; };
 		78A4A60C1DF01BE700D0E84A /* merhes-tag.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A4A60B1DF01BE700D0E84A /* merhes-tag.png */; };
 		78A4A6101DF01F1800D0E84A /* hermes.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A4A60F1DF01F1800D0E84A /* hermes.png */; };
@@ -315,6 +317,8 @@
 		78683AE51C952355000EBE3E /* OSApplicationShaderUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSApplicationShaderUtils.m; sourceTree = "<group>"; };
 		78683AE71C95239F000EBE3E /* OSApplicationUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSApplicationUtils.h; sourceTree = "<group>"; };
 		78683AE81C95239F000EBE3E /* OSApplicationUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OSApplicationUtils.cpp; sourceTree = "<group>"; };
+		78A308481E23F4B1001FD1E5 /* GLITCHSKY1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = GLITCHSKY1.mp4; sourceTree = "<group>"; };
+		78A308491E23F4B1001FD1E5 /* GLITCHSKY2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = GLITCHSKY2.mp4; sourceTree = "<group>"; };
 		78A3D90F1DC6023100837A60 /* Area.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Area.h; sourceTree = "<group>"; };
 		78A3D9101DC6023100837A60 /* Box3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box3D.h; sourceTree = "<group>"; };
 		78A3D9111DC6023100837A60 /* CameraCalibration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraCalibration.h; sourceTree = "<group>"; };
@@ -688,6 +692,8 @@
 		7845862E1C9567FC0063F152 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				78A308481E23F4B1001FD1E5 /* GLITCHSKY1.mp4 */,
+				78A308491E23F4B1001FD1E5 /* GLITCHSKY2.mp4 */,
 				785FBBA11DF7F78D00EC939E /* glitch.mp4 */,
 				78F96D101DDB00AF0015D19E /* REEL.mp4 */,
 				7845349A1DD5EB33005D237B /* BOMB1.mp4 */,
@@ -1262,6 +1268,7 @@
 				78FB9CF51CD9C5A000D2023B /* e12.png in Resources */,
 				7827C3861D40AD5B003114A8 /* icon_loading.png in Resources */,
 				78E5008A1D08CE8800672E19 /* OSAboutViewController~iphone4.xib in Resources */,
+				78A3084A1E23F4B1001FD1E5 /* GLITCHSKY1.mp4 in Resources */,
 				78FB9CF31CD9C5A000D2023B /* e10.png in Resources */,
 				78367DFE1D0454B10054440B /* OSHelpBannerView.xib in Resources */,
 				7826CAE11DD69603003D5A6D /* OSWelcomeView.xib in Resources */,
@@ -1379,6 +1386,7 @@
 				78F808771CD415FE00E67007 /* OSGalleryViewController.xib in Resources */,
 				78612EA21D21A5270058BC3A /* Ia.png in Resources */,
 				7831552F1D01BEDA00920866 /* OSGridLinesView.xib in Resources */,
+				78A3084B1E23F4B1001FD1E5 /* GLITCHSKY2.mp4 in Resources */,
 				78367E081D0455840054440B /* OSHelpTableViewCell~iphone4.xib in Resources */,
 				78367DF41D04518E0054440B /* OSHelpViewController.xib in Resources */,
 				78F96CFC1DD805AC0015D19E /* OSVideoViewController.xib in Resources */,
@@ -1651,7 +1659,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pancakeunlimited.Omniscope-iOS";
 				PRODUCT_NAME = Omniscope;
-				PROVISIONING_PROFILE = "bfbc81c2-699e-4167-8d93-c67b30508573";
+				PROVISIONING_PROFILE = "6fade389-a897-43e2-b486-a45be39d3849";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1683,7 +1691,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pancakeunlimited.Omniscope-iOS";
 				PRODUCT_NAME = Omniscope;
-				PROVISIONING_PROFILE = "0b61e7df-9781-4352-8920-e52022967ccb";
+				PROVISIONING_PROFILE = "4fee170f-c2cd-40ab-971a-34e56969d26d";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

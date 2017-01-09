@@ -87,6 +87,8 @@
         delete[] _pngData;
     }
     
+    NSLog(@"count: %ld", (long)_width * _height * channels);
+    
     _pngData = new unsigned char[_width * _height * channels];
     const int rowSize = _width * channels;
     const unsigned char* pixels = (unsigned char*)CFDataGetBytePtr(imageData);

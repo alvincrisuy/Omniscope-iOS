@@ -272,6 +272,12 @@ namespace {
             case 10:
                 filename = @"glitch.mp4";
                 break;
+            case 11:
+                filename = @"GLITCHSKY1.mp4";
+                break;
+            case 12:
+                filename = @"GLITCHSKY2.mp4";
+                break;
             default:
                 filename = @"72016_FINAL1.mp4";
                 break;
@@ -1485,6 +1491,12 @@ namespace {
         } else if (!strcmp(trackable.getName(), "glitch")) {
             isVideo = YES;
             playerIndex = 10;
+        } else if (!strcmp(trackable.getName(), "GLICTHSKY1")) {
+            isVideo = YES;
+            playerIndex = 11;
+        } else if (!strcmp(trackable.getName(), "GLITCHSKY2")) {
+            isVideo = YES;
+            playerIndex = 12;
         }
         
         NSLog(@"%s",trackable.getName());
