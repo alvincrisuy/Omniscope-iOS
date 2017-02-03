@@ -277,6 +277,10 @@ namespace {
                 break;
             case 12:
                 filename = @"GLITCHSKY2.mp4";
+//                filename = @"https://s3.amazonaws.com/ciela/GLITCHSKY2.mp4";
+                break;
+            case 13:
+                filename = @"GLITCHSKY3.mov";
                 break;
             default:
                 filename = @"72016_FINAL1.mp4";
@@ -1497,6 +1501,9 @@ namespace {
         } else if (!strcmp(trackable.getName(), "GLITCHSKY2")) {
             isVideo = YES;
             playerIndex = 12;
+        } else if (!strcmp(trackable.getName(), "GLITCHSKY3")) {
+            isVideo = YES;
+            playerIndex = 13;
         }
         
         NSLog(@"%s",trackable.getName());
