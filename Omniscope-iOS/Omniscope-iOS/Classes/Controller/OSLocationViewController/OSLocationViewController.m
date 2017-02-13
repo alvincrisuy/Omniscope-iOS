@@ -48,8 +48,8 @@
     
     // 1
     CLLocationCoordinate2D center;
-    center.latitude = 14.642867;
-    center.longitude= 121.027254;
+    center.latitude = 14.5528931;
+    center.longitude= 121.0240792;
     
     MKCoordinateSpan span;
     span.latitudeDelta = 0.5f;
@@ -62,7 +62,7 @@
     // 3
     [self.mapView setRegion:viewRegion animated:YES];
     
-    MyLocation *annotation = [[MyLocation alloc] initWithName:@"48 West Avenue" address:@"Quezon City, Philippines" coordinate:center];
+    MyLocation *annotation = [[MyLocation alloc] initWithName:@"Art Fair Philippines" address:@"The Link Carpark, Makati City" coordinate:center];
     [self.mapView addAnnotation:annotation];
     
 //    [self.locationManager startUpdatingLocation];

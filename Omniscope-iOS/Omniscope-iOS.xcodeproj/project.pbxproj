@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		780EAB431E469096009D509A /* jollibee.png in Resources */ = {isa = PBXBuildFile; fileRef = 780EAB421E469096009D509A /* jollibee.png */; };
 		78205CD11D12FA0B0011D6EC /* MyLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78205CD01D12FA0B0011D6EC /* MyLocation.m */; };
 		78205CD51D12FB710011D6EC /* OSLocationViewController~iphone4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78205CD21D12FB710011D6EC /* OSLocationViewController~iphone4.xib */; };
 		78205CD61D12FB710011D6EC /* OSLocationViewController~iphone47.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78205CD31D12FB710011D6EC /* OSLocationViewController~iphone47.xib */; };
@@ -114,6 +115,8 @@
 		78A7046E1C5FA0F8005114AA /* OSRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78A704601C5FA0F8005114AA /* OSRootViewController.xib */; };
 		78A704731C5FA159005114AA /* OSAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78A704721C5FA159005114AA /* OSAppDelegate.mm */; };
 		78A704751C5FA18A005114AA /* OSAppDelegate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78A704741C5FA18A005114AA /* OSAppDelegate.xib */; };
+		78AA267C1E4ED8B3001AF447 /* glitchgirl2.mov in Resources */ = {isa = PBXBuildFile; fileRef = 78AA267A1E4ED8B3001AF447 /* glitchgirl2.mov */; };
+		78AA267D1E4ED8B3001AF447 /* glitchgirl3.mov in Resources */ = {isa = PBXBuildFile; fileRef = 78AA267B1E4ED8B3001AF447 /* glitchgirl3.mov */; };
 		78C658651E260FDD003197FD /* OSRootTableViewCell~ipad97.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78C658631E260FDD003197FD /* OSRootTableViewCell~ipad97.xib */; };
 		78C658661E260FDD003197FD /* OSRootTableViewCell~ipad129.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78C658641E260FDD003197FD /* OSRootTableViewCell~ipad129.xib */; };
 		78C658691E260FF8003197FD /* OSRootViewController~ipad97.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78C658671E260FF8003197FD /* OSRootViewController~ipad97.xib */; };
@@ -217,6 +220,7 @@
 
 /* Begin PBXFileReference section */
 		2B21F4C37A6FF98F10D91B32 /* Pods-Omniscope-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Omniscope-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Omniscope-iOS/Pods-Omniscope-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		780EAB421E469096009D509A /* jollibee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jollibee.png; sourceTree = "<group>"; };
 		78205CCF1D12FA0B0011D6EC /* MyLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLocation.h; sourceTree = "<group>"; };
 		78205CD01D12FA0B0011D6EC /* MyLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLocation.m; sourceTree = "<group>"; };
 		78205CD21D12FB710011D6EC /* OSLocationViewController~iphone4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSLocationViewController~iphone4.xib"; sourceTree = "<group>"; };
@@ -442,6 +446,8 @@
 		78A704711C5FA159005114AA /* OSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSAppDelegate.h; sourceTree = "<group>"; };
 		78A704721C5FA159005114AA /* OSAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OSAppDelegate.mm; sourceTree = "<group>"; };
 		78A704741C5FA18A005114AA /* OSAppDelegate.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OSAppDelegate.xib; sourceTree = "<group>"; };
+		78AA267A1E4ED8B3001AF447 /* glitchgirl2.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = glitchgirl2.mov; sourceTree = "<group>"; };
+		78AA267B1E4ED8B3001AF447 /* glitchgirl3.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = glitchgirl3.mov; sourceTree = "<group>"; };
 		78C658631E260FDD003197FD /* OSRootTableViewCell~ipad97.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSRootTableViewCell~ipad97.xib"; sourceTree = "<group>"; };
 		78C658641E260FDD003197FD /* OSRootTableViewCell~ipad129.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSRootTableViewCell~ipad129.xib"; sourceTree = "<group>"; };
 		78C658671E260FF8003197FD /* OSRootViewController~ipad97.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "OSRootViewController~ipad97.xib"; sourceTree = "<group>"; };
@@ -708,6 +714,8 @@
 		7845862E1C9567FC0063F152 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				78AA267A1E4ED8B3001AF447 /* glitchgirl2.mov */,
+				78AA267B1E4ED8B3001AF447 /* glitchgirl3.mov */,
 				78A308481E23F4B1001FD1E5 /* GLITCHSKY1.mp4 */,
 				78A308491E23F4B1001FD1E5 /* GLITCHSKY2.mp4 */,
 				78F1CAA51E44683B000C96A1 /* GLITCHSKY3.mov */,
@@ -763,6 +771,7 @@
 				7827C3951D434B73003114A8 /* K-tag.png */,
 				78A4A60F1DF01F1800D0E84A /* hermes.png */,
 				78A4A60B1DF01BE700D0E84A /* merhes-tag.png */,
+				780EAB421E469096009D509A /* jollibee.png */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -1289,11 +1298,14 @@
 				78FB9CF51CD9C5A000D2023B /* e12.png in Resources */,
 				7827C3861D40AD5B003114A8 /* icon_loading.png in Resources */,
 				78E5008A1D08CE8800672E19 /* OSAboutViewController~iphone4.xib in Resources */,
+				780EAB431E469096009D509A /* jollibee.png in Resources */,
 				78A3084A1E23F4B1001FD1E5 /* GLITCHSKY1.mp4 in Resources */,
 				78FB9CF31CD9C5A000D2023B /* e10.png in Resources */,
+				78AA267D1E4ED8B3001AF447 /* glitchgirl3.mov in Resources */,
 				78367DFE1D0454B10054440B /* OSHelpBannerView.xib in Resources */,
 				7826CAE11DD69603003D5A6D /* OSWelcomeView.xib in Resources */,
 				784534A51DD5EB33005D237B /* EGG2.mp4 in Resources */,
+				78AA267C1E4ED8B3001AF447 /* glitchgirl2.mov in Resources */,
 				784534A61DD5EB33005D237B /* JAPSOLDIER.mp4 in Resources */,
 				78FB9CEF1CD9C5A000D2023B /* e6.png in Resources */,
 				78367DED1D0448DD0054440B /* OSRootTableViewCell~iphone47.xib in Resources */,

@@ -71,6 +71,7 @@ namespace {
         "K-tag.png",            // 33   USED
         "hermes.png",           // 34   USED
         "merhes-tag.png",       // 35   USED
+        "jollibee.png",         // 36   USED
     };
     
     const char* textureVideoStateFiles[kNumAugmentationTextures] = {
@@ -281,6 +282,12 @@ namespace {
                 break;
             case 13:
                 filename = @"GLITCHSKY3.mov";
+                break;
+            case 14:
+                filename = @"glitchgirl2.mov";
+                break;
+            case 15:
+                filename = @"glitchgirl3.mov";
                 break;
             default:
                 filename = @"72016_FINAL1.mp4";
@@ -1462,6 +1469,30 @@ namespace {
             
             xX = 0.0f;
             yY = -350.0f;
+        } else if (!strcmp(trackable.getName(), "jollibee")) {
+            targetIndex = 36;
+            
+            kObjectScaleNormal = 100.0f;
+            zZ = 0.0f;
+            
+            vertices[0] = -5;
+            vertices[1] = -5;
+            vertices[2] = 0;
+            
+            vertices[3] = -5;
+            vertices[4] = 5;
+            vertices[5] = 0;
+            
+            vertices[6] = 5;
+            vertices[7] = 5;
+            vertices[8] = 0;
+            
+            vertices[9] = 5;
+            vertices[10] = -5;
+            vertices[11] = 0;
+            
+            xX = 0.0f;
+            yY = 0.0f;
         } else if (!strcmp(trackable.getName(), "FixGear")) {
             isVideo = YES;
             playerIndex = 0;
@@ -1504,6 +1535,12 @@ namespace {
         } else if (!strcmp(trackable.getName(), "GLITCHSKY3")) {
             isVideo = YES;
             playerIndex = 13;
+        } else if (!strcmp(trackable.getName(), "glitchgirl2")) {
+            isVideo = YES;
+            playerIndex = 14;
+        } else if (!strcmp(trackable.getName(), "glitchgirl3")) {
+            isVideo = YES;
+            playerIndex = 15;
         }
         
         NSLog(@"%s",trackable.getName());
@@ -1717,7 +1754,6 @@ namespace {
 //                // Blend the icon over the background
 //                glEnable(GL_BLEND);
 //                glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-                
                 
                 glUseProgram(shaderProgramID);
                 
