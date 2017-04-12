@@ -57,10 +57,10 @@ NSString *const CSAlbum3 = @"Omniscope";
     self = [super init];
     if (self) {
         _viewSize = [UIApplication sharedApplication].delegate.window.bounds.size;
-        _scale = [UIScreen mainScreen].scale;
+        _scale = [UIScreen mainScreen].nativeScale;
         // record half size resolution for retina iPads
         if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) && _scale > 1) {
-            _scale = 1.0;
+            _scale = 2.0;
         }
         _isRecording = NO;
         
