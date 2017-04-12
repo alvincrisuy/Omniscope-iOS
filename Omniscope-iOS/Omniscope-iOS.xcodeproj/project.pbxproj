@@ -1699,8 +1699,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pancakeunlimited.Omniscope-iOS";
 				PRODUCT_NAME = Omniscope;
-				PROVISIONING_PROFILE = "2a4bbbd7-f0d0-42e6-8a3c-42004a787702";
-				TARGETED_DEVICE_FAMILY = 1;
+				PROVISIONING_PROFILE = "0102752d-0aaa-41ef-abee-03664bfceed7";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1732,7 +1732,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pancakeunlimited.Omniscope-iOS";
 				PRODUCT_NAME = Omniscope;
 				PROVISIONING_PROFILE = "4fee170f-c2cd-40ab-971a-34e56969d26d";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
